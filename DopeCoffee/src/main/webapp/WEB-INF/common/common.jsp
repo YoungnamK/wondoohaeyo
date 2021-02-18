@@ -43,7 +43,7 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" type="image/png" href="images/favicon.png">
-        <title>::DOPE COFFEE::</title>
+        <title>Timer Agency Template</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -109,8 +109,8 @@
                     
                     <!-- logo -->
                     <div class="navbar-brand">
-                        <a href="${contextPath}/main.co">
-                            <img src="" alt="" width="243px" height="50px">
+                        <a href="index.html" >
+                            <img src="images/logo1.png" alt="">
                         </a>
                     </div>
                     <!-- /logo -->
@@ -123,7 +123,7 @@
                                 <a href="${contextPath}/main.co">Home</a>
                             </li>
                             <li><a href="${contextPath}/nolist.no">공지사항</a></li>
-                            <li><a href="${contextPath}/cbti.cb">내 커피 찾기</a></li>
+                            <li><a href="${contextPath}/cbti.cb">CBTI</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">회원 <span class="caret"></span></a>
                                 <c:if test="${whologin == 0}">
@@ -186,8 +186,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">원데이클래스 <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <c:if test="${whologin == 2}">
-                       					 <li><a href="${contextPath}/onedayinsert.odc">수업등록</a></li>
+                                        <c:if test="${whologin == 0}">
+                       					 <li><a href="${contextPath}/onedayInsert.odc">수업등록</a></li>
                      					</c:if>
                      					<li><a href="${contextPath}/onedaylist.odc">수업목록</a></li>
                                     </ul>

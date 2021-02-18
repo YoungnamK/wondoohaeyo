@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OnedayClassInsertController {
 	private final String command = "/onedayInsert.odc";
-	private final String get_gotopage = "onedayInsertForm"; 
+	private final String get_gotopage = "oneday_InsertForm"; 
 	
 	@GetMapping(value = command)
 	public String doGet() {
