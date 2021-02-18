@@ -43,7 +43,7 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" type="image/png" href="images/favicon.png">
-        <title>Timer Agency Template</title>
+        <title>::DOPE COFFEE::</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -110,7 +110,7 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="${contextPath}/main.co">
-                            <img src="images/logo.png" alt="" width="243px" height="50px">
+                            <img src="" alt="" width="243px" height="50px">
                         </a>
                     </div>
                     <!-- /logo -->
@@ -123,7 +123,7 @@
                                 <a href="${contextPath}/main.co">Home</a>
                             </li>
                             <li><a href="${contextPath}/nolist.no">공지사항</a></li>
-                            <li><a href="${contextPath}/cbti.cb">CBTI</a></li>
+                            <li><a href="${contextPath}/cbti.cb">내 커피 찾기</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">회원 <span class="caret"></span></a>
                                 <c:if test="${whologin == 0}">
