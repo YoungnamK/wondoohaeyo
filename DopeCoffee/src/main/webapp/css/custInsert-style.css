@@ -1,0 +1,71 @@
+body { 
+  font-family:'Malgun Gothic';
+  font-size: 12px;
+  padding-top: 120px; 
+}
+
+/* 중복확인, 우편번호찾기 버튼 */
+.btn{
+	border-radius: 20px;
+	background-color: #84C1D9;
+	color: #fff;
+}
+
+form-group{
+	visibility: visible; 
+	animation-duration: 500ms; 
+	animation-delay: 0.6s; 
+	animation-name: fadeInDown;
+}
+
+button {
+	left: 50%;
+	text-align: center;
+   
+    width: 100%;
+    margin: auto;
+    padding: 13px;
+    border: 0;
+    border-radius: 10px;
+    opacity: 0.15;
+}
+
+button p {
+    color: #fff;
+    opacity: 1;
+}
+
+
+
+button.submit {
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 1;
+    background-color: #5080BF;
+    cursor: pointer;
+}
+
+
+.container{
+/* 	margin:0 auto; 
+	text-align: center;
+	padding-left:20px;
+ 	padding-right:20px; */
+ }
+ 
+ /* 유효성 검사시 보여 주는 빨간색 글자를 위한 스타일 입니다. */
+.err{ 
+	font-size : 8pt;
+	color:red;
+	font-weight: bolder;
+	text-align: left;
+}
+#myalert{ 
+	font-size : 15px;
+	margin-top: 7px;
+	margin-right: 20px;
+	color:black;
+		}

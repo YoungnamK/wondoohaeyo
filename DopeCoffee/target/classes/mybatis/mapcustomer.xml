@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapcustomer.xml 파일 -->
+<!-- CustomerDao > namespace -->
+<mapper namespace="MapperCustomer">
+
+	<!-- 개인 회원 테이블 조회 -->
+	<sql id="myselect">
+		select *
+		from customers
+	</sql>
+	
+	<!-- 개인 회원 조회 -->
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from customers
+		<if test="mode == 'cust_Name'">
+			where cust_Name like #{keyword}
+		</if>
+		<if test="mode == 'cust_Email'">
+			where cust_Email like #{keyword}
+		</if>
+	</select>
+	
+	
+	<select id="SelectDataList" resultType="MyCustomer">
+		select cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
+		cust_Pic, to_char(cust_RegDate, 'yyyy/MM/dd') as cust_RegDate, cust_Join, remark, savepoint
+		from customers
+		<if test="mode == 'cust_Name'">
+			where cust_Name like #{keyword}
+		</if>
+		<if test="mode == 'cust_Email'">
+			where cust_Email like #{keyword}
+		</if>
+	</select>
+	
+	
+	<!-- 회원가입 -->
+	<insert id="InsertData" parameterType="MyCustomer">
+		insert into customers(cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
+		cust_Pic, cust_Join) 
+		values(#{cust_Email}, #{cust_PW}, #{cust_Name}, #{cust_Contact}, #{cust_Birth}, #{cust_Zipcode}, #{cust_ADR01}, 
+		#{cust_ADR02}, #{cust_Pic}, #{cust_Join})
+	</insert>
+	
+	<!-- 회원가입 중복 -->
+	<select id="SelectDataByPk" parameterType="String" resultType="MyCustomer">
+		<include refid="myselect" />
+		 where cust_Email = #{cust_Email}
+	</select>
+
+
+
+
+</mapper>

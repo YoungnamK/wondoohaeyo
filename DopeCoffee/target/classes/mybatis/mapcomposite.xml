@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MapperComposite">
+
+	<select id="SelectDataByPk" parameterType="java.util.HashMap" resultType="MyPostcode">
+		select * from  postcodes 
+		where emd_nm like #{dong} or 
+		rd_nm like #{dong} or 
+		search_word like #{dong}  
+		order by si_nm, sgg_nm, rd_nm
+	</select>	
+	<select id="SelectDataByPk2" parameterType="String" resultType="MyPostcode">
+		select * from  postcodes 
+		where emd_nm like '%" + #{dong} + "%' or 
+		rd_nm like '%" + #{dong} + "%' or 
+		search_word like '%" + #{dong} + "%' 
+		order by si_nm, sgg_nm, rd_nm
+	</select>	
+
+</mapper> 

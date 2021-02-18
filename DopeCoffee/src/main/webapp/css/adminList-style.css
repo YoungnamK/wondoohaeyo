@@ -1,0 +1,27 @@
+
+body { 
+  font-family:'Malgun Gothic';
+  padding-top: 120px; 
+  	margin:0 auto; 
+  
+}
+
+
+h2 {
+  padding: 20px 0;
+}
+
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+  text-align: center;
+  
+}
+
+.p {
+/*   text-align: center;
+  padding-top: 140px; */
+  font-size: 11px;
+}
+

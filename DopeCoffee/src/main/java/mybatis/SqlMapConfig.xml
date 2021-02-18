@@ -8,7 +8,7 @@
 	<typeAliases>
 		<!-- <typeAlias alias="MyNotice" type="bean.Notice" /> -->
 		<!-- <typeAlias alias="MyComment" type="bean.Comment" /> -->
-		<!-- <typeAlias alias="MyCustomer" type="bean.Customer" /> -->
+		<typeAlias alias="MyCustomer" type="bean.Customer" />
 		<!-- <typeAlias alias="MySeller" type="bean.Seller" /> -->
 		<!-- <typeAlias alias="MyShopping" type="bean.Shopping" /> -->
 		<!-- <typeAlias alias="MyOrder" type="bean.Order" /> -->
@@ -17,6 +17,9 @@
 		<!-- <typeAlias alias="MyCoffee" type="bean.Coffee" /> -->
 		<!-- <typeAlias alias="MyOnedayclass" type="bean.Onedayclass" /> -->
 		<!-- <typeAlias alias="MyOnedayorder" type="bean.Onedayorder" /> -->
+		<!-- <typeAlias alias="MyComment" type="bean.Comment" /> -->
+		<typeAlias alias="MyPostcode" type="bean.Postcode" />
+		
 		
 		
 		<!-- <typeAlias alias="MyCheckes" type="bean.Checkes" /> -->
@@ -27,7 +30,7 @@
 	<mappers>
 	<!-- 	<mapper resource="mybatis/mapnotice.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapcomment.xml" /> -->
-	<!-- 	<mapper resource="mybatis/mapcustomer.xml" /> -->
+	 		<mapper resource="mybatis/mapcustomer.xml" />
 	<!-- 	<mapper resource="mybatis/mapseller.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapcoffee.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapproduct.xml" /> -->
@@ -36,5 +39,7 @@
 	<!-- 	<mapper resource="mybatis/mapshopping.xml" /> -->
 	<!-- 	<mapper resource="mybatis/maponedayclass.xml" /> -->
 	<!-- 	<mapper resource="mybatis/maponedayorder.xml" /> -->
+			<mapper resource="mybatis/mapcomposite.xml" />
+	
 	</mappers>
 </configuration>
