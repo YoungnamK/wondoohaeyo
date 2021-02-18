@@ -156,26 +156,26 @@
                                                     <!-- ------------------------------------- [클래스 코드 code section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <!-- coffee : c로 시작 / pottery : p로 시작 -->
-                                                        <input type="text" class="form-control" placeholder="클래스 코드" id="code" name="code" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="클래스 코드" id="code" name="code" >
                                                     </div>
                                                     <!-- ------------------------------------- [클래스명 classname section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="클래스명" id="classname" name="classname" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="클래스명" id="classname" name="classname">
                                                     </div>
                                                     <!-- ------------------------------------- [강사명 instructor section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="강사명" id="instructor" name="instructor" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="강사명" id="instructor" name="instructor">
                                                     </div>
                                                     <!-- ------------------------------------- [수강인원 person section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="수강인원" id="person" name="person" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="수강인원" id="person" name="person">
                                                     </div>
                                                     <!-- ------------------------------------- [가격 oneprice section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="가격" id="oneprice" name="oneprice" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="가격" id="oneprice" name="oneprice"">
                                                     </div>
                                                     <!-- ------------------------------------- [우편번호 zipcode section]--------------------------------------- -->
-                                                    <div id="zipcode-section" class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
+                                                    <div id="zipcode-section2" class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <input type="text" class="form-control" placeholder="우편번호" id="zipcode" name="zipcode">
                                                         <button type="button" id="zipcode-find" class="btn btn-default btn-send" >
                                                             우편번호 찾기
@@ -183,18 +183,18 @@
                                                     </div>
                                                     <!-- ------------------------------------- [주소 address1 section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="주소" id="address1" name="address1" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="주소" id="address1" name="address1">
                                                     </div>
                                                     <!-- ------------------------------------- [상세주소 address2 section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="상세주소" id="address2" name="address2" oninput="this.className = ''">
+                                                        <input type="text" class="form-control" placeholder="상세주소" id="address2" name="address2" >
                                                     </div>
                                                     <!-- ------------------------------------- [수업내용 content section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <textarea class="form-control" name="comment" placeholder="상품 설명"></textarea>
                                                     </div>
                                                     <ul class="list-inline pull-right wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
-                                                        <li><button type="button" class="next-step">다음 단계</button></li>
+                                                        <li class="step-li"><button type="button" class="btn btn-default next-step">다음 단계</button></li>
                                                     </ul>
                                                 </div>    
                                                 <!-- step2 -->
@@ -234,8 +234,8 @@
                                                         <input type="text" class="form-control" placeholder="수업 마감시간(추가)" id="add_closetime2" name="add_closetime2">
                                                     </div>
                                                     <ul class="list-inline pull-right wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
-                                                        <li><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
-                                                        <li><button type="button" class="btn btn-primary next-step">다음 단계</button></li>
+                                                        <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
+                                                        <li class="step-li"><button type="button" class="btn btn-default next-step">다음 단계</button></li>
                                                     </ul>
                                                 </div>
                                                 
@@ -255,8 +255,8 @@
                                                         <input type="text" class="form-control" placeholder="세부사진(추가)" id="detail_image2" name="detail_image2">
                                                     </div>
                                                     <ul class="list-inline pull-right wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.2s">
-                                                        <li><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
-                                                        <li><button type="button" class="btn btn-default next-step">다음 단계</button></li>
+                                                        <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
+                                                        <li class="step-li"><button type="button" class="btn btn-default next-step">다음 단계</button></li>
                                                     </ul>
                                                     <div id="submit" class="wow fadeInDown"
                                                     data-wow-duration="500ms" data-wow-delay="1.4s">

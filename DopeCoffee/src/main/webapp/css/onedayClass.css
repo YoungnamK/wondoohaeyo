@@ -151,7 +151,7 @@ span.round-tab:hover {
 button.next-step{
 	font-size: 13px;
 	margin: 0;
-	width: 30px;
+	width: 100%;
     color: #fff;
     outline: none;
     background: #5080BF;
@@ -164,12 +164,48 @@ button.next-step{
     border: 1px solid rgba(111, 121, 122, 0.3);
 }
 
+button.next-step:hover{
+	font-size: 13px;
+	margin: 0;
+	width: 100%;
+    color: #fff;
+    outline: none;
+    background: #5080BF;
+    border-radius: 1px;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border: 1px solid rgba(111, 121, 122, 0.3);
+}
+
+button.prev-step{
+	font-size: 13px;
+	margin: 0;
+	width: 100%;
+    color: #fff;
+    outline: none;
+    background: #5080BF;
+    border-radius: 1px;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border: 1px solid rgba(111, 121, 122, 0.3);
+}
+
+
+
 /* 우편번호 전체 */
-#contact-section div#zipcode-section{ 
+#contact-section div#zipcode-section2{ 
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
+	margin:0px;
+	padding-bottom: 15px;
 }
 
 /* 우편번호 input 태그 */
@@ -195,35 +231,9 @@ button.next-step{
 }
 
 
-/* 이전 , 다음 버튼 */
-#contact-section div#nextPrev{
-	display: flex;
-	justify-content: space-between;
-}
-
-@media(max-width: 600px)  {
-	
-	#contact-form{
-		margin: 0px;
-	}
-	
-	
-	#contact-section button#zipcode-find{
-		
-		white-space: normal;
-	}
-}
-
-@media(max-width: 1000px)  {
-	
-	#contact-form{
-		margin: 0px;
-	}
-	
-	
-	#contact-section button#zipcode-find{
-		
-		white-space: normal;
-	}
+.list-inline > li.step-li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
 }
 
