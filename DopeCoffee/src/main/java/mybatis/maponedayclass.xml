@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- maponedayclass.xml 파일 -->
+
+<mapper namespace="NsOnedayClass">
+	<insert id="InsertData"  parameterType="MyOnedayclass">
+		insert into onedayclasses
+		(code , sell_email, regdate, type, classname
+		,instructor ,person ,oneprice ,approval, startdate 
+		,enddate ,opentime ,closetime ,add_opentime1 ,add_closetime1 
+		,add_opentime2 ,add_closetime2 ,zipcode ,address1 ,address2 
+		,content ,main_image ,detail_image1 ,detail_image2) 
+		values
+		(#{code} ,#{sell_email} ,default ,#{type} , #{classname}
+		,#{instructor} ,#{person} ,#{oneprice} ,#{approval} ,#{startdate} 
+		,#{enddate} ,#{opentime} ,#{closetime} ,#{add_opentime1} ,#{add_closetime1}
+		,#{add_opentime2} ,#{add_closetime2} ,#{zipcode} ,#{address1} ,#{address2} 
+		,#{content} ,#{main_image} ,#{detail_image1} ,#{detail_image2})
+	</insert>
+	
+	<insert id="InsertData1"  parameterType="MyOnedayclass">
+		insert into onedayclasses
+		(code , sell_email, regdate, type, classname
+		,instructor ,person ,oneprice ,approval ,startdate 
+		,enddate ,opentime ,closetime ,add_opentime1 ,add_closetime1 
+		,add_opentime2 ,add_closetime2 ,zipcode ,address1 ,address2 
+		,content ,main_image ,detail_image1 ,detail_image2, remark)
+		
+		values
+		(#{code} ,#{sell_email} ,sysdate ,#{type} , #{classname}
+		,#{instructor} ,#{person} ,#{oneprice} ,'' ,#{startdate} 
+		,#{enddate} ,#{opentime} ,#{closetime} ,#{add_opentime1} ,#{add_closetime1}
+		,#{add_opentime2} ,#{add_closetime2} ,#{zipcode} ,#{address1} ,#{address2} 
+		,#{content} ,#{main_image} ,#{detail_image1} ,#{detail_image2} ,'' );
+	</insert>
+</mapper>

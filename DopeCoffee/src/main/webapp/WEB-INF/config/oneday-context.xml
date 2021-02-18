@@ -14,7 +14,8 @@
 
 	<!-- 원데이 클래스 컨트롤러 컴포넌트 스캔(자동 Bean 객체 생성)-->
 	<context:component-scan base-package="onedayClass.controller" />
-	<!-- <context:component-scan base-package="dao" /> -->
+	<context:component-scan base-package="dao" />
+	
 	<!-- ViewResolver 설정하기 -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -5,6 +5,12 @@
 
   <configuration>
 	<!-- 마이바티스의 작동 규칙 정의 -->
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+
+        <setting name="jdbcTypeForNull" value="NULL"/>
+	</settings> 
+	
 	<typeAliases>
 		<!-- <typeAlias alias="MyNotice" type="bean.Notice" /> -->
 		<!-- <typeAlias alias="MyComment" type="bean.Comment" /> -->
@@ -15,7 +21,7 @@
 		<!-- <typeAlias alias="MyProductPay" type="bean.ProductPay" /> -->
 		<!-- <typeAlias alias="MyProduct" type="bean.Product" /> -->
 		<!-- <typeAlias alias="MyCoffee" type="bean.Coffee" /> -->
-		<!-- <typeAlias alias="MyOnedayclass" type="bean.Onedayclass" /> -->
+		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
 		<!-- <typeAlias alias="MyOnedayorder" type="bean.Onedayorder" /> -->
 		<!-- <typeAlias alias="MyComment" type="bean.Comment" /> -->
 		<typeAlias alias="MyPostcode" type="bean.Postcode" />
@@ -37,9 +43,12 @@
 	<!-- 	<mapper resource="mybatis/maporder.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapproductpay.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapshopping.xml" /> -->
-	<!-- 	<mapper resource="mybatis/maponedayclass.xml" /> -->
+			<mapper resource="mybatis/maponedayclass.xml" />
 	<!-- 	<mapper resource="mybatis/maponedayorder.xml" /> -->
 			<mapper resource="mybatis/mapcomposite.xml" />
 	
 	</mappers>
+	
+	
 </configuration>
+

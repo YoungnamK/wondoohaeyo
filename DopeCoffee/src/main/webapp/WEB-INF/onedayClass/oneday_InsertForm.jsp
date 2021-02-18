@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>원데이 클래스 등록</title>
 	<link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -76,6 +76,7 @@
 			    			    
 			    var startdate = String(year) + String(month) + String(date) ;
 			    //alert(startdate);
+			    $('#fake-startdate').val(startdate);
 			    $('#startdate').val(startdate);
 			}
 		    
@@ -175,7 +176,7 @@
                                                     </div>
                                                     <!-- ------------------------------------- [우편번호 zipcode section]--------------------------------------- -->
                                                     <div id="zipcode-section" class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" disabled="disabled" class="form-control" placeholder="우편번호" id="zipcode" name="zipcode">
+                                                        <input type="text" class="form-control" placeholder="우편번호" id="zipcode" name="zipcode">
                                                         <button type="button" id="zipcode-find" class="btn btn-default btn-send" >
                                                             우편번호 찾기
                                                         </button>
@@ -201,7 +202,8 @@
                                                     <h4 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.8s">수업 정보</h4>
                                                     <!-- ------------------------------------- [오픈일자 startdate section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="date" class="form-control" placeholder="오픈일자" id="startdate" name="startdate">
+                                                        <input type="text" disabled="disabled" class="form-control" placeholder="오픈일자" id="fake-startdate" name="fake-startdate">
+                                                        <input type="hidden" class="form-control" id="startdate" name="startdate">
                                                     </div>
                                                     <!-- ------------------------------------- [마감일자 enddate section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">

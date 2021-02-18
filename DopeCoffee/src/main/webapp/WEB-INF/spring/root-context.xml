@@ -26,7 +26,7 @@
 
 	<!-- SqlSessionTemplate 객체는 setterInjection을 지원하지 않습니다. -->
 	<!-- 반드시 생성자 인젝션으로 처리해야 합니다. -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
