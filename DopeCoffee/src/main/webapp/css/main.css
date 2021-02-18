@@ -85,6 +85,11 @@ a:hover {
   display: inline-block;
   margin-top: 8px;
 }
+
+.navbar-header .navbar-brand img {
+  height: auto;
+  display: inline-block;
+}
 .navbar-inverse .navbar-toggle:focus,
 .navbar-inverse .navbar-toggle {
   background: #444;
@@ -520,7 +525,7 @@ figure figcaption p {
   color: #02bdd5;
 }
 .cd-headline.slide .cd-words-wrapper {
-  color: #02bdd5;
+  color: #5080bf;
 }
 ul.social-icons {
   height: auto;

@@ -24,19 +24,20 @@
                             <!-- Slider -->
                             <section class="cd-intro">
                                 <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
-                                <span>HI, MY NAME IS JONATHON & I AM A</span><br>
+                                <span>안녕하세요. DOPE COFFEE 입니다. 당신과 딱 맞는 </span><br>
                                 <span class="cd-words-wrapper">
-                                    <b class="is-visible">DESIGNER</b>
-                                    <b>DEVELOPER</b>
-                                    <b>FATHER</b>
+                                    <b class="is-visible">커피를 찾아드립니다.</b>
+                                    <b>커피용품을 찾아드립니다.</b>
+                                    <b>디저트를 찾아드립니다.</b>
                                 </span>
                                 </h1>
                                 </section> <!-- cd-intro -->
                                 <!-- /.slider -->
                                 <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
-                                    With 10 years experience, I've occupied many roles including digital design director,<br> web designer and developer. This site showcases some of my work.
+                                    저희 DOPE COFFEE는 다양한 싱글오리진, 블렌딩, 캡슐 커피를 제공하기 위해 최고의 노력을 다할 것을 약속합니다.<BR>
+                                    당신의 집이 최고의 카페가 될 수 있도록 도와드리겠습니다.
                                 </h2>
-                                <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works" >View Works</a>
+                                <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works" >대표 상품 보기</a>
                                 
                             </div>
                         </div>

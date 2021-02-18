@@ -109,8 +109,8 @@
                     
                     <!-- logo -->
                     <div class="navbar-brand">
-                        <a href="index.html" >
-                            <img src="images/logo.png" alt="">
+                        <a href="${contextPath}/main.co">
+                            <img src="images/logo.png" alt="" width="243px" height="50px">
                         </a>
                     </div>
                     <!-- /logo -->
