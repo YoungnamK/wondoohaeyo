@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapperNotice">
+
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from notice
+		<if test="mode == 'writer'">
+			where writer like #{keyword}
+		</if>
+		<if test="mode == 'title'">
+			where title like #{keyword}
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword}
+		</if>
+	</select>
+	<select id="SelectDataList" resultType="MyNotice">
+		select num, writer, title, content, image, readhit,
+		to_char(regdate,'YYYY-MM-DD') regdate, fix,
+		remark
+		from(select num, writer, title, content, image, readhit,
+		regdate, remark, fix,
+		rank()over (order by fix desc, num desc) as
+		ranking from notice
+		<if test="mode == 'writer'">
+			where writer like #{keyword} 
+		</if>
+		<if test="mode == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword} 
+		</if>
+		)
+	</select>
+</mapper>

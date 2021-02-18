@@ -99,7 +99,7 @@ public class Paging {
 		
 		for (int i = beginPage ; i <= endPage ; i++) {
 			if(i == pageNumber){ //현재 페이지이면 링크는 없고, 빨간색으로 표시
-				result += "<li class='active'><a><font color='red'><b>" + i + "</b></font></a></li>&nbsp;";
+				result += "<li class='active'><a><b>" + i + "</b></a></li>&nbsp;";
 			}else{
 				result += "<li><a href='" + url + "?pageNumber=" + i + 
 					"&pageSize=" + pageSize + add_param + "'>" + i + "</li></a>&nbsp;";	
