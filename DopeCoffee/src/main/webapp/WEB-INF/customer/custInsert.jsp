@@ -58,7 +58,7 @@
 <body>
 <div align="center" class="container col-sm-offset-2 col-sm-8">
 <%--<h2><spring:message code="customer.register01"/></h2> --%>
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel" align="center">
 			<font color="#84C1D9" size="12px">
 				Sign Up

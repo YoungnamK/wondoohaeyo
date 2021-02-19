@@ -67,7 +67,7 @@ body {
 
 span a{
   text-decoration: none;
-  color: #000;
+  color: rgb(255, 255, 255);
 }
 
  ::-webkit-input-placeholder { /*Chrome/Opera/Safari*/

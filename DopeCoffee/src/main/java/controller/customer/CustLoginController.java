@@ -41,8 +41,8 @@ public class CustLoginController extends SuperClass{
 	//로그인 페이지에서 "로그인" 버튼 클릭
 	@PostMapping(command)
 	public ModelAndView doPost(
-		@RequestParam(value="cust_Email", required=true) String cust_Email,
-		@RequestParam(value="cust_PW", required=true) String cust_PW,
+		@RequestParam(value="cust_Email", required=false) String cust_Email,
+		@RequestParam(value="cust_PW", required=false) String cust_PW,
 		HttpSession session){
 		
 		// 유효성 검사 true이면 문제 없음	
@@ -57,11 +57,12 @@ public class CustLoginController extends SuperClass{
 			isCheck = false ;
 		}
 		
+		System.out.println("로그인 테스트1 : 유효성검사 통과");
+
 
 		if (isCheck == true) { // 유효성 검사 통과 시 진입
 			// bean : 로그인한 사람의 Bean 정보
 			Customer bean = this.cdao.SelectData(cust_Email, cust_PW) ;
-			System.out.println("로그인 테스트1 : 유효성검사 통과");
 			System.out.println(bean);
 
 		if (bean == null) { // 로그인 실패

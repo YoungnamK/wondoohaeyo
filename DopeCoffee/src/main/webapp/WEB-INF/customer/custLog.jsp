@@ -19,27 +19,6 @@
 <link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 <script type="text/javascript">
 
-/* 	$(".login-form").hide();
-	$(".login").css("background", "none");
-	
-	$(".login").click(function(){
-	  $(".signup-form").hide();
-	  $(".login-form").show();
-	  $(".signup").css("background", "none");
-	  $(".login").css("background", "#fff");
-	});
-	
-	$(".signup").click(function(){
-	  $(".signup-form").show();
-	  $(".login-form").hide();
-	  $(".login").css("background", "none");
-	  $(".signup").css("background", "#5080bf");
-	});
-	
-	$(".btn").click(function(){
-	  $(".input").val("");
-	}); */
-	
 </script>
 </head>
 <body>
