@@ -7,82 +7,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>원데이 클래스 등록</title>
-	<link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
-	<script type="text/javascript">
-		$(document).ready(function () {
-	        //Initialize tooltips
-            $('.nav-tabs > li a[title]').tooltip();
-		            
-            //Wizard
-            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		
-                var $target = $(e.target);
-		            
-                if ($target.parent().hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $(".next-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                $active.next().removeClass('disabled');
-                nextTab($active);
-
-            });
-            
-            $(".prev-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                prevTab($active);
-
-		          });
-		    });
-		
-		    function nextTab(elem) {
-		        $(elem).next().find('a[data-toggle="tab"]').click();
-		    }
-		    function prevTab(elem) {
-		        $(elem).prev().find('a[data-toggle="tab"]').click();
-		    }
-		    
-		    /* 현재 날짜를 구해주는 함수 */
-		    function today() {
-		    	var today = new Date(); 
-			    var year = today.getFullYear(); //년도 
-			    var _month = today.getMonth() + 1; 
-			    var _date = today.getDate(); 
-			    var month ; // 월 
-			    var date ; // 날짜 
-			    
-			    if (_month < 10) { // 1의 자리 일때 
-					month = "0" + _month;
-			    }else{
-			    	month = _month;
-			    }
-			    
-			    if (_date < 10) { // 1의 자리 일때 
-			    	date = "0" + _date;
-				}else{
-			    	date = _date;
-			    }
-			    			    
-			    var startdate = String(year) + String(month) + String(date) ;
-			    //alert(startdate);
-			    $('#fake-startdate').val(startdate);
-			    $('#startdate').val(startdate);
-			}
-		    
-		    
-		    
-	</script>
+    <script type="text/javascript" src="js/onedayClass.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">	
 </head>
 <body onload="today();">
 	<section id="contact-section">
@@ -147,20 +77,23 @@
                                                     <h4 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.8s">기본 정보</h4>
                                                     <!-- ------------------------------------- [주제 type section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <select class="form-control" name="type">
+                                                        <select class="form-control" name="type" id="type">
                                                             <option class="form-control" value="-">주제</option>
                                                             <option class="form-control" value="coffee">커피</option>
                                                             <option class="form-control" value="pottery">도자기</option>
                                                         </select>
+                                                        <span class="valid_check" id="err_type"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [클래스 코드 code section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <!-- coffee : c로 시작 / pottery : p로 시작 -->
-                                                        <input type="text" class="form-control" placeholder="클래스 코드" id="code" name="code" >
+                                                        <input type="text" class="form-control" placeholder="클래스 코드" id="code" name="code" onblur="code_ajax();">
+                                                        <span class="valid_check" id="err_code"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [클래스명 classname section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <input type="text" class="form-control" placeholder="클래스명" id="classname" name="classname">
+                                                        <span class="valid_check" id="err_classname"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [강사명 instructor section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
@@ -169,29 +102,35 @@
                                                     <!-- ------------------------------------- [수강인원 person section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <input type="text" class="form-control" placeholder="수강인원" id="person" name="person">
+                                                        <span class="valid_check" id="err_person"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [가격 oneprice section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="가격" id="oneprice" name="oneprice"">
+                                                        <input type="text" class="form-control" placeholder="가격" id="oneprice" name="oneprice">
+                                                        <span class="valid_check" id="err_oneprice"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [우편번호 zipcode section]--------------------------------------- -->
                                                     <div id="zipcode-section2" class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="우편번호" id="zipcode" name="zipcode">
-                                                        <button type="button" id="zipcode-find" class="btn btn-default btn-send" >
+                                                        <input type="text" placeholder="우편번호" disabled="disabled" class="form-control" id="fakezipcode" name="fakezipcode">
+                                                        <input type="hidden" class="form-control" id="zipcode" name="zipcode">
+                                                        <button type="button" id="zipcode-find" class="btn btn-default btn-send" onclick='zipCheck();'>
                                                             우편번호 찾기
                                                         </button>
                                                     </div>
                                                     <!-- ------------------------------------- [주소 address1 section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <input type="text" class="form-control" placeholder="주소" id="address1" name="address1">
+                                                        <input type="text" placeholder="주소" disabled="disabled" class="form-control" id="fakeaddress1" name="fakeaddress1">
+                                                        <input type="hidden" class="form-control" id="address1" name="address1">
                                                     </div>
                                                     <!-- ------------------------------------- [상세주소 address2 section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
                                                         <input type="text" class="form-control" placeholder="상세주소" id="address2" name="address2" >
+                                                        <span class="valid_check" id="err_address2"></span>
                                                     </div>
                                                     <!-- ------------------------------------- [수업내용 content section]--------------------------------------- -->
                                                     <div class="form-group wow fadeInDown " data-wow-duration="500ms" data-wow-delay="1.0s">
-                                                        <textarea class="form-control" name="comment" placeholder="상품 설명"></textarea>
+                                                        <textarea class="form-control" id="content" name="content" placeholder="상품 설명"></textarea>
+                                                        <span class="valid_check" id="err_content"></span>
                                                     </div>
                                                     <ul class="list-inline pull-right wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
                                                         <li class="step-li"><button type="button" class="btn btn-default next-step">다음 단계</button></li>
@@ -269,11 +208,7 @@
                                                     <p>성공적으로 등록이 되었습니다.</p>
                                                 </div>
                                                 <div class="clearfix"></div>
-                                            
-                                            
-                                            
-                                            
-                                                
+
                                             </div>
                                         </form>
                                     </div>

@@ -146,8 +146,6 @@ span.round-tab:hover {
 }
 
 /* ------------------------------------------------------------------------------ */
-
-
 button.next-step{
 	font-size: 13px;
 	margin: 0;
@@ -198,6 +196,7 @@ button.prev-step{
 
 
 
+
 /* 우편번호 전체 */
 #contact-section div#zipcode-section2{ 
 	display: flex;
@@ -209,7 +208,7 @@ button.prev-step{
 }
 
 /* 우편번호 input 태그 */
-#contact-section input#zipcode{
+#contact-section input#fakezipcode{
   width: 80%;
 }
 

@@ -9,7 +9,7 @@
 <body>
 <%
 	String imsi = request.getContextPath() + "/main.co" ;
-	// out.print(imsi);
+	//out.print(imsi);
 	response.sendRedirect(imsi) ;
 %>
 </body>
