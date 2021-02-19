@@ -14,15 +14,15 @@
    <c:set var="whologin" value="0" />
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
-   <c:if test="${sessionScope.loginfo.cust_email == 'admin@gmail.com'}">
+   <c:if test="${sessionScope.loginfo.cust_Email == 'admin@gmail.com'}">
       <!-- 관리자로 로그인한 경우 -->
       <c:set var="whologin" value="1" />
    </c:if>
-   <c:if test="${not empty sessionScope.loginfo.cust_email}">
+   <c:if test="${not empty sessionScope.loginfo.cust_Email}">
       <!-- 사업자로 로그인한 경우 -->
       <c:set var="whologin" value="2" />
    </c:if>
-   <c:if test="${sessionScope.loginfo.cust_email != 'admin@gmail.com'}">
+   <c:if test="${sessionScope.loginfo.cust_Email != 'admin@gmail.com'}">
       <!-- 일반 사용자로 로그인한 경우 -->
       <c:set var="whologin" value="3" />
    </c:if>
@@ -137,6 +137,7 @@
                                  <c:if test="${whologin == 1 || whologin == 3}">
                                 <div class="dropdown-menu">
                                     <ul>
+                                        <li><a href="${contextPath}/custLogout.cu">로그아웃</a></li>                                    
                                         <li><a href="${contextPath}/custDetail.cu">마이페이지</a></li>
                                         <li><a href="${contextPath}/custUpdate.cu">회원정보수정</a></li>
                                         <li><a href="${contextPath}/pmorderlist.pm">나의 구매내역</a></li>
@@ -148,6 +149,7 @@
                                 <c:if test="${whologin == 2}">
                                 <div class="dropdown-menu">
                                     <ul>
+                                    	<li><a href="${contextPath}/sellLogout.se">로그아웃</a></li>
                                         <li><a href="${contextPath}/sellDetail.se">마이페이지</a></li>
                                         <li><a href="${contextPath}/sellUpdate.se">회원정보수정</a></li>
                                         <li><a href="${contextPath}/sellorderlist.pm">상품관리</a></li>
@@ -212,10 +214,6 @@
                 </nav>
                 <!-- /main nav -->
             </div>
-        </header>
-        
-                            
-           
-                
+        </header>               
         </body>
     </html>

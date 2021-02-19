@@ -47,13 +47,17 @@
 	</insert>
 
 	
-	
 	<!-- 회원가입 중복 -->
 	<select id="SelectDataByPk" parameterType="String" resultType="MyCustomer">
 		<include refid="myselect" />
 		 where cust_Email = #{cust_Email}
 	</select>
-
+	
+	<!-- 로그인 -->
+	<select id="SelectData" resultType="MyCustomer">
+		<include refid="myselect" />
+		where cust_Email = #{cust_Email} and cust_PW = #{cust_PW}
+	</select>
 
 
 

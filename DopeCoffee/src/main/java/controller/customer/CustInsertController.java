@@ -19,7 +19,7 @@ import dao.CustomerDao;
 @Controller // 관리자가 회원들의 목록을 조회하는 컨트롤러
 public class CustInsertController extends SuperClass{
 	private final String command = "/custInsert.cu" ; // 요청 커맨드(변경 요망)
-	private final String redirect = "redirect:/adminList.cu" ; // 리다이렉션(변경 요망)
+	private final String redirect = "redirect:/main.co" ; // 리다이렉션(변경 요망)
 	
 	// 뷰에 넘겨줄 ModelAndView 객체
 	private ModelAndView mav = null ; 

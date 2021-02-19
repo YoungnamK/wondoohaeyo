@@ -51,6 +51,15 @@ public class CustomerDao {
 		return this.abcd.selectOne(namespace + "SelectDataByPk", cust_Email);	
 	}
 
-	
+	public Customer SelectData(String cust_Email, String cust_PW) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(cust_Email, "cust_Email");
+		map.put(cust_PW, "cust_PW");
+		return this.abcd.selectOne(namespace + "SelectData", map);
+	}
+
+	public CustomerDao() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }
