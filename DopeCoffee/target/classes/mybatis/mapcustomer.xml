@@ -41,10 +41,12 @@
 	<!-- 회원가입 -->
 	<insert id="InsertData" parameterType="MyCustomer">
 		insert into customers(cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
-		cust_Pic, cust_Join) 
+		cust_Pic, cust_RegDate, cust_Join, remark, savepoint) 
 		values(#{cust_Email}, #{cust_PW}, #{cust_Name}, #{cust_Contact}, #{cust_Birth}, #{cust_Zipcode}, #{cust_ADR01}, 
-		#{cust_ADR02}, #{cust_Pic}, #{cust_Join})
+		#{cust_ADR02}, #{cust_Pic}, to_date(#{cust_RegDate}, 'yyyy/MM/dd'), #{cust_Join}, #{remark}, #{savepoint})
 	</insert>
+
+	
 	
 	<!-- 회원가입 중복 -->
 	<select id="SelectDataByPk" parameterType="String" resultType="MyCustomer">

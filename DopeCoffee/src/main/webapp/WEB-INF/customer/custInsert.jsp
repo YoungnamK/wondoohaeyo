@@ -28,15 +28,8 @@
 		document.myform.cust_Email.focus();
 		return false ;
 	}
-	var url = '<%=contextPath%>/idcheck.cu?id=' + id  ;
+	var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email  ;
 	window.open(url, 'mywin', 'height=150,widht=300') ;			
-	}
-	
-	/* 우편 번호 찾기 */
-	function findZipcode(){ 
-		// alert('우편 번호 찾기') ;
-		var url = '<%=contextPath%>/zipcheck.cu'  ;
-		window.open(url, 'mywin', 'height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no') ;
 	}
 	
 	 /* 회원 가입 버튼 클릭*/
@@ -51,6 +44,13 @@
 	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
 	function isCheckFalse() {
 		document.myform.isCheck.value = false ;
+	}
+	
+	/* 우편 번호 찾기 */
+	function findZipcode(){ 
+		// alert('우편 번호 찾기') ;
+		var url = '<%=contextPath%>/zipcheck.cu'  ;
+		window.open(url, 'mywin', 'height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no') ;
 	}
 
 </script>
@@ -69,7 +69,14 @@
 			<c:set var="apppath" value="<%=contextPath%>"/>
 			<form:form modelAttribute="customer" method="post" action="${apppath}/custInsert.cu"
 				class="form-horizontal" role="form" name="myform" > 
-
+				
+				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
+				<input type="hidden" name="isCheck" value="false">
+				<input type="hidden" name="cust_Pic" value="">
+				<input type="hidden" name="cust_RegDate" value="">
+				<input type="hidden" name="cust_Join" value="Y">
+				<input type="hidden" name="remark" value="">
+				
 				
 				<%-- cust_Email ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
@@ -184,6 +191,7 @@
 						<form:errors path="cust_ADR02" cssClass="err" /> 
 					</div>
 				</div>
+				
 				<br><br>
 				<%-- 하단 버튼------------------------------------------------- --%>
 				<div class="form-group">
