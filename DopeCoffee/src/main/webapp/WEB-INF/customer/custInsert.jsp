@@ -23,11 +23,12 @@
 	/* 아이디 중복 체크 */
 	function checkDuplicateId(){ 	
 	var cust_Email = document.myform.cust_Email.value ;	
-	if(cust_Email.length < 8){
-		alert('이메일은 최소 8자리 이상이어야 합니다.') ;
+	if(cust_Email.length < 10){
+		alert('이메일은 최소 10자리 이상이어야 합니다.') ;
 		document.myform.cust_Email.focus();
 		return false ;
 	}
+	
 	var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email  ;
 	window.open(url, 'mywin', 'height=150,widht=300') ;			
 	}

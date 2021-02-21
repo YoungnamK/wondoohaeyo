@@ -19,6 +19,19 @@
 <link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 <script type="text/javascript">
 
+	
+	function logincheck(){
+		var cust_Email = $('#cust_Email').val();
+		var cust_PW = $('#cust_PW').val();
+		if(cust_Email == '' || cust_PW == ''){
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('입력한 값을 확인하세요!');
+			return false;
+		} else {
+			return true; 
+			}
+	}
+
 </script>
 </head>
 <body>
@@ -36,19 +49,21 @@
 			          <input type="text" placeholder="Your Email Address" 
 			          class="input" name="cust_Email" id="cust_Email"
 			          data-toggle="tooltip" data-placement="top" 
-						title="이메일을 입력해주세요." value="admin@gmail.com">
+						title="이메일을 입력해주세요." value="">
 			         <span class="err">${errid}</span>
 			         <br />
 			         
 			         <%-- password --%>
 			          <input type="password" placeholder="Password" 
 			          data-toggle="tooltip" data-placement="top" 
-						title="비밀번호를 입력해주세요." value="admin123"
+						title="비밀번호를 입력해주세요." value=""
 			          class="input" name="cust_PW" id="cust_PW">                     
 			          <span class="err">${errpassword}</span>
 					   <br />	   
 					          
-			          <button class="btn" type="submit">Sign In</button>
+			          <button class="btn" type="submit" data-toggle="modal" data-target="#myModal" onclick="return logincheck();">Sign In</button>
+			          <button class="btn_kakao" type="submit">Kakao Account</button>
+			          
 			       </div>
 			
 			       <%-- 사업자회원 로그인 -------------------------------------------------- --%>
@@ -63,6 +78,29 @@
 			  	</div>
 			  	</form>
 </div>
+
+	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
+	<div class="container">
+	
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+	        </div>
+	        <div class="modal-body">
+	          <p id="modal-body" style="font-size: 13px"></p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">닫기</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<script>
 		$(document).ready(function(){
     		$('[data-toggle="tooltip"]').tooltip();    		

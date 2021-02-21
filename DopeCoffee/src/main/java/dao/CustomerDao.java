@@ -46,16 +46,13 @@ public class CustomerDao {
 		return this.abcd.insert(namespace + "InsertData", bean);
 	}
 
-	/* 회원가입 시 중복되는 이메일 조회 */
+	// email 조회
 	public Customer SelectDataByPk(String cust_Email) {
 		return this.abcd.selectOne(namespace + "SelectDataByPk", cust_Email);	
 	}
 
-	
 	public Customer SelectData(String cust_Email, String cust_PW) {
-		System.out.println(cust_Email);
-		System.out.println(cust_PW);
-
+		System.out.println( "dao의 selectData 출력 : " + "(1)이메일 : " + cust_Email + "\t" + "(2)비밀번호 : " + cust_PW );
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("cust_Email", cust_Email);
 		map.put("cust_PW", cust_PW);

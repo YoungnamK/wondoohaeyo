@@ -18,10 +18,10 @@
       <!-- 관리자로 로그인한 경우 -->
       <c:set var="whologin" value="1" />
    </c:if>
-   <c:if test="${not empty sessionScope.loginfo.cust_Email}">
+<%--    <c:if test="${not empty sessionScope.loginfo.cust_Email}">
       <!-- 사업자로 로그인한 경우 -->
       <c:set var="whologin" value="2" />
-   </c:if>
+   </c:if> --%>
    <c:if test="${sessionScope.loginfo.cust_Email != 'admin@gmail.com'}">
       <!-- 일반 사용자로 로그인한 경우 -->
       <c:set var="whologin" value="3" />

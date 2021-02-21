@@ -62,7 +62,26 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.btn_kakao{
+	font-size: 20px;
+  width: 100%;
+  background: #F7E600;;
+  height: 60px;
+  text-align: center;
+  line-height: 50px;
+  text-transform: uppercase;
+  color: #3A1D1D;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 0;
 }
 
 span a{
@@ -72,19 +91,19 @@ span a{
 
  ::-webkit-input-placeholder { /*Chrome/Opera/Safari*/
   color: #3e3e40;
-  font-family: roboto;
+  font-family:'Malgun Gothic';
 }
 ::-moz-placeholder { /*Firefox 19+*/
   color: #3e3e40;
-  font-family: roboto;
+  font-family:'Malgun Gothic';
 }
 :-ms-input-placeholder { /*IE 10+*/
   color: #3e3e40;
-  font-family: roboto;
+  font-family:'Malgun Gothic';
 }
 :-moz-placeholder { /*Firefox 18-*/
   color: #3e3e40;
-  font-family: roboto;
+  font-family:'Malgun Gothic';
 }
 
 
