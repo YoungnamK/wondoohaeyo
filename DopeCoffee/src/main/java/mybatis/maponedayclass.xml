@@ -8,14 +8,14 @@
 <mapper namespace="NsOnedayClass">
 	<insert id="InsertData"  parameterType="MyOnedayclass">
 		insert into onedayclasses
-		(code , sell_email, regdate, type, classname
-		,instructor ,person ,oneprice ,approval, startdate 
+		(code , sell_email, type, classname
+		,instructor ,person ,oneprice ,startdate 
 		,enddate ,opentime ,closetime ,add_opentime1 ,add_closetime1 
 		,add_opentime2 ,add_closetime2 ,zipcode ,address1 ,address2 
 		,content ,main_image ,detail_image1 ,detail_image2) 
 		values
-		(#{code} ,#{sell_email} ,default ,#{type} , #{classname}
-		,#{instructor} ,#{person} ,#{oneprice} ,#{approval} ,#{startdate} 
+		(#{code} ,#{sell_email} ,#{type} , #{classname}
+		,#{instructor} ,#{person} ,#{oneprice} ,#{startdate} 
 		,#{enddate} ,#{opentime} ,#{closetime} ,#{add_opentime1} ,#{add_closetime1}
 		,#{add_opentime2} ,#{add_closetime2} ,#{zipcode} ,#{address1} ,#{address2} 
 		,#{content} ,#{main_image} ,#{detail_image1} ,#{detail_image2})

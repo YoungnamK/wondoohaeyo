@@ -3,21 +3,19 @@ package bean;
 public class OnedayClass {
 	private String code; // 등록 코드
 	private String sell_email; // 사업자 이메일
-	private String regdate; // 등록 일자
 	private String type; // 등록 타입 (ex. 커피 , 도자기)
 	private String classname; // 클래스 이름
 	private String instructor; // 강사명
 	private int person; // 인원수
 	private int oneprice; // 1인 기준 가격
-	private String approval; // 관리자 승인 여부
-	private String startdate; // 관리자 승인 일자(=상품 판매 시작 일자)
+	private String startdate; // 상품 판매 시작 일자
 	private String enddate; // 상품 판매 종료 일자
-	private int opentime; // 수업 오픈 시간
-	private int closetime; // 수업 마감 시간
-	private int add_opentime1; // 추가_수업 오픈 시간1
-	private int add_closetime1; // 추가_수업 마감 시간1
-	private int add_opentime2; // 추가_수업 오픈 시간2
-	private int add_closetime2; // 추가_수업 마감 시간2
+	private String opentime; // 수업 오픈 시간
+	private String closetime; // 수업 마감 시간
+	private String add_opentime1; // 추가_수업 오픈 시간1
+	private String add_closetime1; // 추가_수업 마감 시간1
+	private String add_opentime2; // 추가_수업 오픈 시간2
+	private String add_closetime2; // 추가_수업 마감 시간2
 	private String zipcode; // 우편 번호
 	private String address1; // 주소
 	private String address2; // 상세주소
@@ -44,14 +42,6 @@ public class OnedayClass {
 
 	public void setSell_email(String sell_email) {
 		this.sell_email = sell_email;
-	}
-
-	public String getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
 	}
 
 	public String getType() {
@@ -94,14 +84,6 @@ public class OnedayClass {
 		this.oneprice = oneprice;
 	}
 
-	public String getApproval() {
-		return approval;
-	}
-
-	public void setApproval(String approval) {
-		this.approval = approval;
-	}
-
 	public String getStartdate() {
 		return startdate;
 	}
@@ -118,51 +100,51 @@ public class OnedayClass {
 		this.enddate = enddate;
 	}
 
-	public int getOpentime() {
+	public String getOpentime() {
 		return opentime;
 	}
 
-	public void setOpentime(int opentime) {
+	public void setOpentime(String opentime) {
 		this.opentime = opentime;
 	}
 
-	public int getClosetime() {
+	public String getClosetime() {
 		return closetime;
 	}
 
-	public void setClosetime(int closetime) {
+	public void setClosetime(String closetime) {
 		this.closetime = closetime;
 	}
 
-	public int getAdd_opentime1() {
+	public String getAdd_opentime1() {
 		return add_opentime1;
 	}
 
-	public void setAdd_opentime1(int add_opentime1) {
+	public void setAdd_opentime1(String add_opentime1) {
 		this.add_opentime1 = add_opentime1;
 	}
 
-	public int getAdd_closetime1() {
+	public String getAdd_closetime1() {
 		return add_closetime1;
 	}
 
-	public void setAdd_closetime1(int add_closetime1) {
+	public void setAdd_closetime1(String add_closetime1) {
 		this.add_closetime1 = add_closetime1;
 	}
 
-	public int getAdd_opentime2() {
+	public String getAdd_opentime2() {
 		return add_opentime2;
 	}
 
-	public void setAdd_opentime2(int add_opentime2) {
+	public void setAdd_opentime2(String add_opentime2) {
 		this.add_opentime2 = add_opentime2;
 	}
 
-	public int getAdd_closetime2() {
+	public String getAdd_closetime2() {
 		return add_closetime2;
 	}
 
-	public void setAdd_closetime2(int add_closetime2) {
+	public void setAdd_closetime2(String add_closetime2) {
 		this.add_closetime2 = add_closetime2;
 	}
 
@@ -232,14 +214,14 @@ public class OnedayClass {
 
 	@Override
 	public String toString() {
-		return "OnedayClass [code=" + code + ", sell_email=" + sell_email + ", regdate=" + regdate + ", type=" + type
-				+ ", classname=" + classname + ", instructor=" + instructor + ", person=" + person + ", oneprice="
-				+ oneprice + ", approval=" + approval + ", startdate=" + startdate + ", enddate=" + enddate
-				+ ", opentime=" + opentime + ", closetime=" + closetime + ", add_opentime1=" + add_opentime1
-				+ ", add_closetime1=" + add_closetime1 + ", add_opentime2=" + add_opentime2 + ", add_closetime2="
-				+ add_closetime2 + ", zipcode=" + zipcode + ", address1=" + address1 + ", address2=" + address2
-				+ ", content=" + content + ", main_image=" + main_image + ", detail_image1=" + detail_image1
-				+ ", detail_image2=" + detail_image2 + ", remark=" + remark + "]";
+		return "OnedayClass [code=" + code + ", sell_email=" + sell_email + ", type=" + type + ", classname="
+				+ classname + ", instructor=" + instructor + ", person=" + person + ", oneprice=" + oneprice
+				+ ", startdate=" + startdate + ", enddate=" + enddate + ", opentime=" + opentime + ", closetime="
+				+ closetime + ", add_opentime1=" + add_opentime1 + ", add_closetime1=" + add_closetime1
+				+ ", add_opentime2=" + add_opentime2 + ", add_closetime2=" + add_closetime2 + ", zipcode=" + zipcode
+				+ ", address1=" + address1 + ", address2=" + address2 + ", content=" + content + ", main_image="
+				+ main_image + ", detail_image1=" + detail_image1 + ", detail_image2=" + detail_image2 + ", remark="
+				+ remark + "]";
 	}
 
 }

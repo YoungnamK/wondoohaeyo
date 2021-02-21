@@ -3,6 +3,11 @@
  */
 
 /* ----------------- 상단 Step Process Bar --------------------- */
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+
+
 $(document).ready(function () {
     //Initialize tooltips
     $('.nav-tabs > li a[title]').tooltip();
@@ -43,7 +48,6 @@ function next_check1(){
 	var address1 = $('#address1').val();
 	var address2 = $('#address2').val();
 	
-	
 	if(type == '-' || code == '' || classname == '' ||
 	person == '' || oneprice == '' || zipcode == '' ||
 	address1 == '' || address2 == ''){
@@ -52,6 +56,7 @@ function next_check1(){
 		$('#modal-body').text('입력한 값을 확인하세요!');
 	}else{
 		$('#isCheck').val('true');
+		$('button#modalbtn1').removeAttr('data-toggle');
 		var result = nextTab(elem);
 		return result;
 	}
@@ -65,10 +70,12 @@ function next_check2(){
 	
 	if(enddate == '' || opentime == '' || closetime == ''){
 		$('#isCheck').val('false');
+		alert($('#isCheck').val());
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
 	}else{
 		$('#isCheck').val('true');
+		$('button#modalbtn2').removeAttr('data-toggle');
 		var result = nextTab(elem);
 		return result;
 	}
@@ -118,28 +125,46 @@ function today() {
 	$('#fake-startdate').val(startdate);
 	$('#startdate').val(startdate);
 	
-	// 로드 되었을 때 , 추가 시간은 안보이게 처리 
-	$('.add').hide();
+	
+	
+	// 로드 되었을 때 , 추가 부분은 안보이게 처리 
+	$('#add1').hide(); // 추가시간
+	$('#add2').hide(); // 세부사진
 }
-/* +시간 버튼을 눌러야지 추가 시간 section 이 보이게 처리 */
+/* + 버튼을 눌러야지 추가  section 이 보이게 처리 */
 $(document).ready(function(){ 
-	$('.btn_icon').click(function (){
+	$('.time_add').click(function (){
+		
+		// step 2 
 		var enddate = $('#enddate').val();
 		var opentime = $('#opentime').val();
 		var closetime = $('#closetime').val();
 		
-		$(".btn_icon").attr("data-toggle", "modal"); // 에러가 났을 때 지워놨던 modal 속성 원복
 		
 		if(enddate != '' && opentime != '' && closetime != ''){
-			$('.btn_icon').removeAttr('data-toggle');
-			$('.add').toggle();
+			$('section#add1').toggle();
+			$('p.time_add').removeAttr('data-toggle');
 		}else{
+			$('p.time_add').attr('data-toggle' , 'modal');
 			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 			$('#modal-body').text('기본 수업 정보를 먼저 입력하세요!');
 		}
-		
 	});
 	
+	$('.pic_add').click(function (){
+		
+		// step 3 
+		var main_image = $('#main_image').val();
+		
+		if(main_image != ''){
+			$('section#add2').toggle();
+			$('p.pic_add').removeAttr('data-toggle');
+		}else{
+			$('p.pic_add').attr('data-toggle' , 'modal');
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('기본 메인 사진을 먼저 업로드하세요!');
+		}
+	});
 });
 
 
@@ -558,4 +583,121 @@ $(document).ready(function(){
 	
 });
 /* -------------------------------------------------------------- */
+/* ===================
+	메인 파일 업로드
+   ===================
+*/
+
+function readURL_main(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#main_wrap').hide();
+
+      $('#M_image').attr('src', e.target.result);
+      $('#main_content').show();
+
+      $('#main_title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload_main() {
+  $('#main_image').replaceWith($('#main_image').clone());
+  $('#main_content').hide();
+  $('#main_wrap').show();
+}
+$('#main_wrap').bind('dragover', function () {
+		$('#main_wrap').addClass('image-dropping');
+	});
+	$('#main_wrap').bind('dragleave', function () {
+		$('#main_wrap').removeClass('image-dropping');
+});
+
+/* ===================
+	세부 파일 업로드 1
+   ===================
+*/
+
+
+function readURL_detail1(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#detail1_wrap').hide();
+
+      $('#D1_image').attr('src', e.target.result);
+      $('#detail1_content').show();
+
+      $('#detail1_title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload_detail1() {
+  $('#D1_image').replaceWith($('#D1_image').clone());
+  $('#detail1_content').hide();
+  $('#detail1_wrap').show();
+}
+$('#detail1_wrap').bind('dragover', function () {
+		$('#detail1_wrap').addClass('image-dropping');
+	});
+	$('#detail1_wrap').bind('dragleave', function () {
+		$('#detail1_wrap').removeClass('image-dropping');
+});
+
+/* ===================
+	세부 파일 업로드 2
+   ===================
+*/
+
+
+function readURL_detail2(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#detail2_wrap').hide();
+
+      $('#D2_image').attr('src', e.target.result);
+      $('#detail2_content').show();
+
+      $('#detail2_title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload_detail2() {
+  $('#D2_image').replaceWith($('#D2_image').clone());
+  $('#detail2_content').hide();
+  $('#detail2_wrap').show();
+}
+$('#detail2_wrap').bind('dragover', function () {
+		$('#detail2_wrap').addClass('image-dropping');
+	});
+	$('#detail2_wrap').bind('dragleave', function () {
+		$('#detail2_wrap').removeClass('image-dropping');
+});
+
+
 
