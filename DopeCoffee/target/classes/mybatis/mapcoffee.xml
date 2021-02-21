@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="MapperCoffee">
+		<insert id="InsertData" parameterType="MyCoffee">
+			insert into coffees(c_no, c_type, c_seller_email , c_name, c_price, c_origin, c_weight, c_roasting , 
+			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,ramark)
+			values (seqcoffee.nextval , #{c_type}, #{c_seller_email}, #{c_name}, #{c_price}, #{c_origin}, #{c_weight}, #{c_roasting},
+			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{ramark})
+		</insert>
+		
+	<sql id="myselect">
+		select c_no, c_type, c_seller_email, c_name, c_price, c_origin, c_weight, c_roasting, 
+		c_blending, c_crushing_status, c_qty, c_image, c_image2, c_image3, ramark
+		from coffees
+	</sql> 	
+		
+	<!--<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from coffees	
+		<if test="mode == 'c_name'">
+			where c_name like #{keyword}
+		</if>
+		<if test="mode == 'c_origin'">
+			where c_origin like #{keyword}
+		</if>
+		<if test="mode == 'c_blending'">
+			where c_blending like #{keyword}
+		</if>
+	</select>
+	
+		<select id="SelectDataList" resultType="MyCoffee">
+		<include refid="myselect" />
+		<if test="mode == 'c_name'">
+			where c_name like #{keyword}
+		</if>
+		<if test="mode == 'c_origin'">
+			where c_origin like #{keyword}
+		</if>
+		<if test="mode == 'c_blending'">
+			where c_blending like #{keyword}
+		</if>
+		order by c_no desc
+	</select>	  -->	
+<!-- 	<select id="GetList" parameterType="String" resultType="MyCheckes">
+		select *
+		from checkes
+		where module = #{module} and field = #{field} and kind = #{kind}
+		order by mykey asc
+	</select> -->
+		
+	</mapper>

@@ -177,7 +177,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">커피 <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <c:if test="${whologin == 2}">
+                                        <c:if test="${whologin == 0}">
                         				<li><a href="${contextPath}/cfInsert.cf">상품 등록</a></li>
                      					</c:if>
 					                     <li><a href="${contextPath}/cfList.cf?c_type=1">싱글오리진</a></li>
