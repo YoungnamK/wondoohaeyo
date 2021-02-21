@@ -89,6 +89,20 @@
         <script src="js/jquery.fancybox.js"></script>
         <!-- template main js -->
         <script src="js/main.js"></script>
+        
+        <!-- pickatime / pickadate API 사용-->
+        <link rel="stylesheet" href="${contextPath}/css/default.css">
+	    <link rel="stylesheet" href="${contextPath}/css/default.date.css">
+	    <link rel="stylesheet" href="${contextPath}/css/default.time.css">
+	    <script type="text/javascript" src="js/picker.js"></script>
+	    <script type="text/javascript" src="js/picker.date.js"></script>
+	    <script type="text/javascript" src="js/picker.time.js"></script>
+	    
+	    <!-- 카카오 우편 주소 API 사용 -->
+	    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	    
+	    <!-- 아이콘 사용 -->
+	    <script src="https://kit.fontawesome.com/0bccbc6608.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!--

@@ -20,8 +20,7 @@ public class OnedayClassCodeCheckController {
 	
 	// code 중복 체크 컨트롤러
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	@ResponseBody
-	public int doGet(@RequestParam("code") String code) {
+	public @ResponseBody int doGet(@RequestParam("code") String code) {
 		int cnt = -1;
 		cnt = this.onedayDao.SelectCodeCheck(code);
 		
