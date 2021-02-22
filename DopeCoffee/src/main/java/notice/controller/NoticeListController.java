@@ -28,7 +28,7 @@ public class NoticeListController extends SuperClass {
 	private NoticeDao ndao;
 
 	public NoticeListController() {
-		super("noList", null);
+		super("noList", "noList");
 		this.mav = new ModelAndView();
 	}
 
@@ -53,12 +53,16 @@ public class NoticeListController extends SuperClass {
 		System.out.println("파라미터 정보를 위한 출력");
 		System.out.println(parameters.toString());
 
-		Paging pageInfo = new Paging(parameters.getPageNumber(), parameters.getPageSize(), totalCount, null, parameters.getMode(),
+		String contextpath = request.getContextPath() + "/" ;
+		String myurl = contextpath +  this.command ;
+		
+		Paging pageInfo = new Paging(parameters.getPageNumber(), parameters.getPageSize(), totalCount, myurl, parameters.getMode(),
 				parameters.getKeyword());
-
+		
+		
 		List<Notice> lists = this.ndao.SelectDataList(pageInfo.getOffset(), pageInfo.getLimit(), parameters.getMode(),
 				parameters.getKeyword());
-
+		
 		this.mav.addObject("lists", lists);
 		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
 		mav.addObject("pagingStatus", pageInfo.getPagingStatus());

@@ -51,7 +51,7 @@
 	  	<div class="row">
 	      <table class="table table-bordered table-hover dt-responsive">
 	        
-	        <%-- 회원 목록의 header 부분 -------------------------------------------------------%>
+	        <%-- 공지사항 목록의 header 부분 -------------------------------------------------------%>
 	        <thead>
                 <tr>
                     <th width="60%">제목</th>
@@ -61,13 +61,14 @@
                 </tr>
 	        </thead>
 	        
-	      	<%-- 회원 목록의 내용 부분 -------------------------------------------------------%>
+	      	<%-- 공지사항 목록의 내용 부분 -------------------------------------------------------%>
             <tbody>
 	            <c:forEach var="bean" items="${requestScope.lists}">
 	                <tr>
 	                    <td>
 		                    <a href="<%=contextPath%>/nodetail.no?num=${bean.num}&${requestScope.parameters}">
-		                    	${bean.title}
+		                    	<c:if test="${bean.fix==0 }">${bean.title }</c:if>
+		                    	<c:if test="${bean.fix==1 }"><div style="color:red;">${bean.title }</div></c:if>
 		                    </a>
 	                    </td>
 	                    <td>${bean.writer}</td>
@@ -77,7 +78,7 @@
 	            </c:forEach>    
             </tbody>
             
-	        <%-- 회원 목록의 하단 부분 -------------------------------------------------------%>
+	        <%-- 공지사항 목록의 하단 부분 -------------------------------------------------------%>
 			<tfoot>
 			    <tr>
 			        <td colspan="7" align="center">
@@ -87,9 +88,11 @@
 			</tfoot>
 	      </table>
 	  </div>
+	   <c:if test="${whologin == 1}">
 	  <div align="right">
 	  	<a type="button" class="btn btn-primary" href="${contextPath }/noinsert.no">새 글 쓰기</a>
 	  </div>
+	  </c:if>
 </div>
 </body>
 </html>

@@ -21,10 +21,7 @@
 		select num, writer, title, content, image, readhit,
 		to_char(regdate,'YYYY-MM-DD') regdate, fix,
 		remark
-		from(select num, writer, title, content, image, readhit,
-		regdate, remark, fix,
-		rank()over (order by fix desc, num desc) as
-		ranking from notice
+		from notice 
 		<if test="mode == 'writer'">
 			where writer like #{keyword} 
 		</if>
@@ -34,7 +31,7 @@
 		<if test="mode == 'content'">
 			where content like #{keyword} 
 		</if>
-		)
+		order by fix desc, num desc
 	</select>
 	<!-- 상세보기를 위해 1건의 데이터를 조회합니다. -->
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyNotice">
@@ -54,5 +51,9 @@
 		insert into notice (num, writer, title, content, image, readhit, regdate, fix)
 		values (seqnoti.nextval, #{writer}, #{title} ,#{content}, #{image}, default, sysdate, #{fix})
 	</insert>
+	<update id="UpdateData" parameterType="MyNotice" >
+		update notice set title=#{title}, content = #{content}, image = #{image}, fix = #{fix}
+		where num = #{num}
 	
+	</update>
 </mapper>

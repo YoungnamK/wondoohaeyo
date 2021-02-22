@@ -19,7 +19,7 @@ body {
 				<div class="col-md-12">
 					<div class="block">
 						<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
-							data-wow-delay="0.3s">공지사항 등록</h2>
+							data-wow-delay="0.3s">공지사항 수정</h2>
 
 						<div class="container">
 							<div class="row">
@@ -35,8 +35,14 @@ body {
 											<c:set var="contextPath" value="<%=contextPath%>"
 												scope="application" />
 											<form id="noti-form" method="post"
-												action="${contextPath}/noinsert.no" role="form"
+												action="${contextPath}/noupdate.no" role="form"
 												enctype="multipart/form-data">
+												<input type="hidden" name="pageNumber"
+													value="${param.pageNumber}"> <input type="hidden"
+													name="pageSize" value="${param.pageSize}"> <input
+													type="hidden" name="mode" value="${param.mode}"> <input
+													type="hidden" name="keyword" value="${param.keyword}">
+												<input type="hidden" name="num" id="num" value="${bean.num}">
 												<!-- step1 -->
 												<div class="tab-pane active  wow fadeInDown"
 													data-wow-duration="500ms" data-wow-delay="0.6s"
@@ -44,22 +50,22 @@ body {
 													<!-- ------------------------------------- [공지사항 제목]--------------------------------------- -->
 													<div class="form-group">
 														제목<input type="text" class="form-control"
-															placeholder="제목입력" id="title" name="title" value="${bean.title }">
-														<span class="valid_check" id="err_title"></span>
+															placeholder="제목입력" id="title" name="title"
+															value="${bean.title }"> <span class="valid_check"
+															id="err_title"></span>
 													</div>
 													<!-- ------------------------------------- [작성자]--------------------------------------- -->
 													<div id="writer" class="form-group">
 														작성자<input type="text" class="form-control "
-															placeholder="작성자" id="fakewriter" name="fakewriter" value="${sessionScope.loginfo.cust_Name }"
-															disabled="disabled">
-															<input
+															placeholder="작성자" id="fakewriter" name="fakewriter"
+															value="도프커피" disabled="disabled"> <input
 															type="hidden" name="writer" id="writer"
 															value="${sessionScope.loginfo.cust_Email}" />
 													</div>
 													<!-- ------------------------------------- [내용]--------------------------------------- -->
 													<div class="form-group">
 														<textarea class="form-control" id="content" name="content"
-															placeholder="내용 입력"></textarea>
+															placeholder="내용 입력" >${bean.content }</textarea>
 														<span class="valid_check" id="err_content"></span>
 													</div>
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
@@ -72,6 +78,8 @@ body {
 													</div>
 													<!-- ------------------------------------- [사진]--------------------------------------- -->
 													<div class="form-group">
+														<input name="image" type="hidden" value="${bean.image}">
+														<input name="oldimg" type="hidden" value="${bean.image}">
 														<input type="file" class="form-control" name="img"
 															id="img" placeholder="이미지를 넣어 주셔용^^">
 													</div>
@@ -98,63 +106,61 @@ body {
 		</div>
 	</section>
 	<script type="text/javascript">
-	var font_color = '#5080BF';
+		var font_color = '#5080BF';
 
-	$(document).ready(function(){ 
-		$("#title").keyup(function(){
-			if($(this).val().length < 3){
-				$("#err_title").text('3글자 이상 입력하세요!');
-				$("#err_title").css("color" , font_color);
-			}else{
-				$("#err_title").text('');
-			}
-			
-		});
-		$("#title").blur(function(){
-			var classname = $('#title').val();
+		$(document).ready(function() {
+			$("#title").keyup(function() {
+				if ($(this).val().length < 3) {
+					$("#err_title").text('3글자 이상 입력하세요!');
+					$("#err_title").css("color", font_color);
+				} else {
+					$("#err_title").text('');
+				}
 
-			if(classname.length == 0){
-				$("#err_title").text('제목을 입력하세요!');
-				$("#err_title").css("color" , font_color);
-			}else{
-				$("#err_title").text('');
-			}
-		});
-		
-		
-			$("#content").keyup(function(){
-				if($(this).val().length < 10){
+			});
+			$("#title").blur(function() {
+				var classname = $('#title').val();
+
+				if (classname.length == 0) {
+					$("#err_title").text('제목을 입력하세요!');
+					$("#err_title").css("color", font_color);
+				} else {
+					$("#err_title").text('');
+				}
+			});
+
+			$("#content").keyup(function() {
+				if ($(this).val().length < 10) {
 					$("#err_content").text('내용은 10글자 이상 입력하세요!');
-					$("#err_content").css("color" , font_color);
-				}else{
+					$("#err_content").css("color", font_color);
+				} else {
 					$("#err_content").text('');
 				}
-				
+
 			});
-			$("#content").blur(function(){
+			$("#content").blur(function() {
 				var classname = $('#content').val();
 
-				if(classname.length == 0){
+				if (classname.length == 0) {
 					$("#err_content").text('내용을 입력하세요!');
-					$("#err_content").css("color" , font_color);
-				}else{
+					$("#err_content").css("color", font_color);
+				} else {
 					$("#err_content").text('');
 				}
 			});
 
-	});
-	
-	$("select#fix option").click(function(){
-		var type = $('#fix option:selected').val();
-			if(type == ""){
+		});
+
+		$("select#fix option").click(function() {
+			var type = $('#fix option:selected').val();
+			if (type == "") {
 				$("#err_type").text('중요도를 선택하세요!');
-				$("#err_type").css("color" , font_color);		
-			}else{
+				$("#err_type").css("color", font_color);
+			} else {
 				$("#err_type").text('');
 			}
-	});
-	
-</script>
+		});
+	</script>
 
 </body>
 </html>

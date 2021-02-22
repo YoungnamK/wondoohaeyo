@@ -14,6 +14,8 @@ int formright = twelve - formleft;
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath }/css/adminList-style.css">
 <script type="text/javascript" src="${contextPath}/js/noticedetail.js"></script>
+<link rel="stylesheet" href="/styles/vendor/jquery.fancybox.min.css">
+ <script src="/scripts/vendor/jquery.fancybox.min.js"></script>
 <style type="text/css">
 .reply-write-title{
 	padding-top : 40px;
@@ -94,21 +96,22 @@ int formright = twelve - formleft;
 <body>
 
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
+		<input type="hidden" value="${bean.num }" name="num" id="num">
 		<h2 align="left">공지사항</h2>
 		<div class="row">
 			<table class="table table-bordered table-hover dt-responsive">
-				<%-- <c:if test="${whologin != 1}">
+				 <c:if test="${whologin != 1}">
 				<tr>
 					<th colspan="4" align="left">${bean.title }</th>
 				</tr>
-				</c:if> --%>
-<%-- 				<c:if test="${whologin == 1}">
- --%>				<tr>
+				</c:if> 
+				<c:if test="${whologin == 1}">
+				<tr>
 					<th colspan="3" align="left">${bean.title }</th>
-					<th colspan="1" align="right"><a>수정</a>&nbsp;&nbsp;<a id="delbtn" data-toggle="modal" data-target=".modal">삭제</a></th>
+					<th colspan="1" align="right"><a id="updatebtn" href="${contextPath }/noupdate.no?num=${bean.num}&${requestScope.parameters}">수정</a>&nbsp;&nbsp;<a id="delbtn" data-toggle="modal" data-target=".modal">삭제</a></th>
 				</tr>
-<%-- 				</c:if>
- --%>				<tr>
+ 				</c:if>
+				<tr>
 					<td colspan="1" align="center">작성자</td>
 					<td colspan="3" align="left">${bean.writer }</td>
 				</tr>
@@ -123,11 +126,12 @@ int formright = twelve - formleft;
 				<td colspan="4">
 					<table>
 					<tr>
-						<td colspan="1" align="center"><img
-							src="./upload/${bean.image}"
-							class="img-responsive" width="200" height="200"
-							alt="${bean.image}"></td>
-							<td colspan="8" align="center">${bean.content}</td>
+						<td colspan="1" align="center">
+						<a href="./upload/${bean.image}" data-fancybox data-caption="캡션">
+						<img src="./upload/${bean.image}" class="img-responsive" width="200" height="200" alt="${bean.image}">
+						</a>
+						</td>
+						<td colspan="8" align="center">${bean.content}</td>
 						</tr>
 				</table>
 				</td>
@@ -160,7 +164,7 @@ int formright = twelve - formleft;
 	          <p id="modal-body" style="font-size: 13px">정말 삭제하시겠습니까?</p>
 	        </div>
 	        <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" id="modal-btn-del">삭제</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" id="modal-btn-del" onclick="del_check();">삭제</button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" id="modal-btn-no">닫기</button>
 	        </div>
 	      </div>

@@ -1,26 +1,12 @@
-var modalConfirm = function(callback){
-  
-  $("#delbtn").on("click", function(){
-    $("#myModal").modal('show');
-  });
 
-  $("#modal-btn-del").on("click", function(){
-    callback(true);
-    $("#myModal").modal('hide');
-  });
-  
-  $("#modal-btn-no").on("click", function(){
-    callback(false);	
-    $("#myModal").modal('hide');
-  });
-};
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
 
-modalConfirm(function(confirm){
-	
-  if(confirm){
-	location.href="${contextPath}/nodelete.no?num=${bean.num}";
-  }else{
-    return;
-  }
-});
 
+function del_check(){
+	var num=$('#num').val();
+	location.href = getContextPath()+"/nodelete.no?num="+num;
+}

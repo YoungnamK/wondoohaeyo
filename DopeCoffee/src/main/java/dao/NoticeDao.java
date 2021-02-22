@@ -54,4 +54,9 @@ public class NoticeDao {
 		return this.sst.insert(namespace+"InsertData", notice);
 	}
 
+	public int UpdateData(Notice notice) {
+		// 게시물 1건 수정하기
+		return this.sst.update(namespace+"UpdateData", notice);
+	}
+
 }

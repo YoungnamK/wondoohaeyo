@@ -15,7 +15,6 @@ public class Notice {
 	
 	
 private MultipartFile img ;	
-	
 
 	public MultipartFile getImg() {
 		return img;
