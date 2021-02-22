@@ -18,7 +18,7 @@ import dao.OnedayClassDao;
 public class OnedayClassInsertController extends SuperClass {
 	private final String command = "/onedayInsert.odc";
 	private final String get_gotopage = "oneday_InsertForm";
-	private final String post_gotopage = "main";
+	private final String post_gotopage = "main.co";
 
 	@Autowired
 	@Qualifier("onedayDao")
@@ -43,7 +43,7 @@ public class OnedayClassInsertController extends SuperClass {
 			mav.setViewName(get_gotopage);
 
 		} else {// 유효성 검사 성공
-
+			System.out.println("유효성 검사 통과");
 			int cnt = -1;
 			cnt = onedayDao.InsertData(oneday);
 
