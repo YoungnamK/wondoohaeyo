@@ -14,11 +14,13 @@
 <title>Insert title here</title>
 <!-- AdminList Style CSS -->
 <link rel="stylesheet" href="${contextPath}/css/adminList-style.css">
+<!-- 댓글 모듈 -->
+<script src="/js/reply.js"></script>
 </head>
 <body>
 
 <div align="center" class="container col-sm-offset-2 col-sm-8">
-	<h2>공지사항목록</h2>
+	<h2 align="left">공지사항목록</h2>
 		<div class="row">
 			<%-- 상단 페이지 수 show ---------------------------------------------------%>
 		    <div class="col-sm-6">
@@ -64,7 +66,7 @@
 	            <c:forEach var="bean" items="${requestScope.lists}">
 	                <tr>
 	                    <td>
-		                    <a href="<%=contextPath%>/noDetail.no?num=${bean.num}&${requestScope.parameters}">
+		                    <a href="<%=contextPath%>/nodetail.no?num=${bean.num}&${requestScope.parameters}">
 		                    	${bean.title}
 		                    </a>
 	                    </td>
@@ -84,6 +86,9 @@
 			    </tr>
 			</tfoot>
 	      </table>
+	  </div>
+	  <div align="right">
+	  	<a type="button" class="btn btn-primary" href="${contextPath }/noinsert.no">새 글 쓰기</a>
 	  </div>
 </div>
 </body>

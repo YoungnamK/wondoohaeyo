@@ -35,4 +35,23 @@ public class NoticeDao {
 		return this.sst.selectList(namespace + "SelectDataList", map, rowBounds);
 	}
 
+	public Notice SelectDataByPk(int num) {
+		// 공지사항 상세보기를 위해 pk를 통해 1건의 객체를 구함.
+		return this.sst.selectOne(namespace+"SelectDataByPk",num);
+	}
+
+	public int UpdateReadhit(int num) {
+		// 게시물 조회수 증가
+		return this.sst.insert(namespace+"UpdateReadhit", num);
+	}
+
+	public int DeleteData(int num) {
+		return this.sst.delete(namespace+"DeleteData", num);
+	}
+
+	public int InsertData(Notice notice) {
+		//게시물 1건 작성하기
+		return this.sst.insert(namespace+"InsertData", notice);
+	}
+
 }

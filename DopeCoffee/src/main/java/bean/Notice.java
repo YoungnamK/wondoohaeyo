@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Notice {
 	private int num;
 	private String writer;
@@ -10,6 +12,24 @@ public class Notice {
 	private String regdate;
 	private int fix;
 	private String remark;
+	
+	
+private MultipartFile img ;	
+	
+
+	public MultipartFile getImg() {
+		return img;
+	}
+
+	public void setImg(MultipartFile img) {
+		this.img = img;
+		if (this.img != null) {
+			this.image = this.img.getOriginalFilename();
+		}
+	}
+
+
+
 
 	public int getNum() {
 		return num;
