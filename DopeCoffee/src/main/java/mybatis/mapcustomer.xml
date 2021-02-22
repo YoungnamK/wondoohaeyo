@@ -56,5 +56,23 @@
 		<include refid="myselect" />
 		where cust_Email = #{cust_Email} and cust_PW = #{cust_PW}
 	</select>
+	
+	<!-- 기존 회원 데이터 수정 관련 항목 -->
+	<update id="UpdateData" parameterType="MyCustomer">
+		update customers set
+		cust_PW = #{cust_PW},
+		cust_Name = #{cust_Name},
+		cust_Contact = #{cust_Contact},
+		cust_Birth = #{cust_Birth},
+		cust_Zipcode = #{cust_Zipcode},
+		cust_ADR01 = #{cust_ADR01},
+		cust_ADR02 = #{cust_ADR02},
+		cust_Pic = #{cust_Pic},
+		cust_RegDate = #{cust_RegDate},	
+		cust_Join = #{cust_Join},
+		remark = #{remark},
+		savepoint = #{savepoint}
+		where cust_Email = #{cust_Email}
+	</update>
 
 </mapper>

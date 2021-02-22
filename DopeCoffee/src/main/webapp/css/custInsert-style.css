@@ -5,8 +5,9 @@ body {
 }
 
 /* 중복확인, 우편번호찾기 버튼 */
+.btn:hover { background-color: #5080BF; color: #fff;}
 .btn{
-	border-radius: 20px;
+	border-radius: 10px;
 	background-color: #84C1D9;
 	color: #fff;
 }
@@ -18,7 +19,9 @@ form-group{
 	animation-name: fadeInDown;
 }
 
-button {
+/* submit 버튼 */
+.submit:hover { background-color: #5080BF; }
+.submit {
 	left: 50%;
 	text-align: center;
     width: 100%;
@@ -26,13 +29,7 @@ button {
     padding: 13px;
     border: 0;
     border-radius: 10px;
-    opacity: 0.15;
-}
-
-button p {
-    color: #fff;
-    opacity: 1;
-}
+    opacity: 0.15;}
 
 
 button.submit {
@@ -45,7 +42,6 @@ button.submit {
     background-color: #84C1D9;
     cursor: pointer;
 }
-
 
 .container{
 /* 	margin:0 auto; 

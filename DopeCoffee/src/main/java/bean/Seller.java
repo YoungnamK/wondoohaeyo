@@ -1,21 +1,40 @@
 package bean;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 public class Seller {
-	
+	private final String MUST_INPUT = "필수 입력 사항입니다.";
+
+	@Length(min=8, max=50, message="이메일 주소는 최소 8자리 이상입니다.")
 	private String sell_Email;
+	
+	@Length(min=8, max=20, message="비밀번호는 최소 8자리 이상입니다.")
 	private String sell_PW;
+	
+	@Length(min=2, max=20, message="이름은 최소 2자리 이상입니다.")		
 	private String sell_Name;
+	
+	@Length(min=11, max=20, message="휴대폰번호는 최소 11자리 이상입니다.")	
 	private String sell_Contact;
+	
 	private String sell_Zipcode;
+	
 	private String sell_ADR01;
+	
 	private String sell_ADR02;
+	
 	private String sell_Pic;
+
+	@NotNull(message="가입정보 동의는 반드시 체크가 되어야 합니다.")	
 	private String sell_Join;
+	
     private int sell_License;
-    private String sell_Status;
-    private String remark;
     
+    private String sell_Status;
+    
+    private String remark;
     
 	public String getSell_Email() {
 		return sell_Email;

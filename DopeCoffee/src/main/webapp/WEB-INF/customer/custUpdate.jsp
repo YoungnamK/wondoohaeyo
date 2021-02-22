@@ -32,21 +32,21 @@
 	var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email  ;
 	window.open(url, 'mywin', 'height=150,widht=300') ;			
 	}
-	
-	 /* 회원 가입 버튼 클릭*/
-	function checkForm(){
+
+	/* 회원 가입 버튼 클릭*/
+/* 	function checkForm(){
 		var isCheck = document.myform.isCheck.value ;
 		if(isCheck == 'false'){
 			alert('이메일 중복확인을 해주세요.');	
 			return false ;	
 		}
-	}
+	} */
 	 
 	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
-	function isCheckFalse() {
+/* 	function isCheckFalse() {
 		document.myform.isCheck.value = false ;
-	}
-	
+	} */
+
 	/* 우편 번호 찾기 */
 	function findZipcode(){ 
 		// alert('우편 번호 찾기') ;
@@ -61,40 +61,38 @@
 	<div class="panel">
 		<div class="panel" align="center">
 	<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
-	data-wow-delay="0.3s">회원가입</h2>
+	data-wow-delay="0.3s">회원 정보 수정</h2>
 	<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.3s">
-		필수 항목들을 반드시 작성해주세요!
+		회원 정보 수정 페이지입니다.
 	</p>
 		</div>
-		<div class="panel panel-body">
+		<div class="panel panel-body">		
+<%--		<form class="form-horizontal" role="form" name="myform" action="<%=YesForm%>" method="post">
+			<input type="hidden" name="command" value="custUpdate.cu">--%>		
+			
 			<c:set var="apppath" value="<%=contextPath%>"/>
-			<form:form modelAttribute="customer" method="post" action="${apppath}/custInsert.cu"
-				class="form-horizontal" role="form" name="myform" > 
+			<form:form modelAttribute="customer" method="post" action="${apppath}/custUpdate.cu"
+				class="form-horizontal" role="form" name="myform" >  
 				
 				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
 				<input type="hidden" name="isCheck" value="false">
-				<input type="hidden" name="cust_Join" value="Y">
 				<input type="hidden" name="cust_Pic" value="">
 				<input type="hidden" name="cust_RegDate" value="">
+				<input type="hidden" name="cust_Join" value="Y">
 				<input type="hidden" name="remark" value="">
 				
 				
 				<%-- cust_Email ------------------------------------------------- --%>
+				<%-- 중복 체크 기능이 필요없습니다. --%>
+			 	<%-- 이메일은 읽기 전용으로 설정하고, 숨겨서 넘기도록 합니다. --%>
 				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Email" class="col-sm-3" style="text-align:right">
 						<spring:message code="customer.cust_Email"/>
 					</label>
 					<div class="col-sm-6">
-						<input type="text" placeholder="Your Email" class="form-control" name="cust_Email" id="cust_Email"
-						value="${cust_Email}"
-						onkeyup="isCheckFalse();" /> 
-						<form:errors path="cust_Email" cssClass="err" /> 
+						<input type="text" placeholder="Your Email" class="form-control" name="fakecust_Email" id="fakecust_Email"
+						value="${customer.cust_Email}" disabled="disabled"/>
 					</div>
-					<div class="col-sm-3" align="left">
-						<input type="button" class="btn" 
-							value="<spring:message code="customer.duplicatedId"/>"
-							onclick="return checkDuplicateId();" > 
-					</div>		
 				</div>
 				
 				<%-- cust_PW ------------------------------------------------- --%>
@@ -164,13 +162,13 @@
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control" name="fakecust_Zipcode" id="fakecust_Zipcode"
-						value="${cust_Zipcode}" disabled="true">
-						<input type="hidden" name="cust_Zipcode" id="cust_Zipcode" value="${cust_Zipcode}">
+						value="${customer.cust_Zipcode}" disabled="disabled">
+						<input type="hidden" name="cust_Zipcode" id="cust_Zipcode" value="${customer.cust_Zipcode}">
 						<form:errors path="cust_Zipcode" cssClass="err" /> 
 					</div>
                     <div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control" name="fakecust_ADR01" id="fakecust_ADR01"
-						value="${cust_ADR01}" disabled="true">
+						value="${customer.cust_ADR01}" disabled="disabled">
 						<input type="hidden" id="cust_ADR01" name="cust_ADR01" style="text-align:left">
 						<form:errors path="cust_ADR01" cssClass="err" /> 
 					</div>
@@ -196,12 +194,15 @@
 				<%-- 하단 버튼------------------------------------------------- --%>
 				<div class="form-group">
 					<div class="submit_btn col-sm-offset-3 col-sm-6">
-						<button type="submit" class="submit">동의하고 가입하기</button>
+						<button type="submit" class="submit">수정 완료</button>
 					</div>
 				</div>
-			</form:form>
-		</div>
+<%--			</form>--%>
+ 			</form:form>
+ 		</div>
 	</div>
 </div>
 </body>
+
+
 </html>

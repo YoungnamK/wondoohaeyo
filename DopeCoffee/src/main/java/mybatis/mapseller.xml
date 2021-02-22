@@ -39,10 +39,8 @@
 	
 	<!-- 회원가입시 데이터 추가 -->
 	<insert id="InsertData" parameterType="MySeller">
-		insert into sellers( sell_Email, sell_PW, sell_Name, sell_Contact, sell_Zipcode, sell_ADR01, sell_ADR02, 
-		sell_Pic, sell_Join, sell_License, sell_Status, remark ) 
-		values(#{sell_Email}, #{sell_PW}, #{sell_Name}, #{sell_Contact}, #{sell_Zipcode}, #{sell_ADR01}, #{sell_ADR02},
-		#{sell_Pic}, #{sell_Join}, #{sell_License}, #{sell_Status}, #{remark})
+		insert into sellers( sell_Email, sell_PW, sell_Name, sell_Contact, sell_Zipcode, sell_ADR01, sell_ADR02, sell_Pic, sell_Join, sell_License, sell_Status, remark ) 
+		values(#{sell_Email}, #{sell_PW}, #{sell_Name}, #{sell_Contact}, #{sell_Zipcode}, #{sell_ADR01}, #{sell_ADR02}, #{sell_Pic}, #{sell_Join}, #{sell_License}, #{sell_Status}, #{remark})
 	</insert>
 	
 	<!-- 이메일 주소로 동일한 메일 주소 조회 -->
@@ -57,4 +55,21 @@
 		where sell_Email = #{sell_Email} and sell_PW = #{sell_PW}
 	</select>
 
+	<!-- 기존 회원 데이터 수정 관련 항목 -->
+	<update id="UpdateData" parameterType="MySeller">
+		update sellers set
+		sell_PW = #{sell_PW},
+		sell_Name = #{sell_Name},
+		sell_Contact = #{sell_Contact},
+		sell_Zipcode = #{sell_Zipcode},
+		sell_ADR01 = #{sell_ADR01},
+		sell_ADR02 = #{sell_ADR02},
+		sell_Pic = #{sell_Pic},
+		sell_Join = #{sell_Join},
+		sell_License = #{sell_License},
+		sell_Status = #{sell_Status},
+		remark = #{remark}
+		where sell_Email = #{sell_Email}
+	</update>
+	
 </mapper>

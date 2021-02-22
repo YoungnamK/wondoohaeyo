@@ -63,4 +63,9 @@ public class CustomerDao {
 		// TODO Auto-generated constructor stub
 	}
 	
+	// 회원 정보 수정
+	public int UpdateData(Customer bean) {
+		return this.abcd.update(namespace + "UpdateData", bean);
+	}
+	
 }
