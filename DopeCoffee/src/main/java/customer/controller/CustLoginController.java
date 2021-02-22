@@ -49,22 +49,20 @@ public class CustLoginController extends SuperClass{
 			boolean isCheck = true ;
 			System.out.println("로그인 테스트1 : 이메일, 비밀번호 입력완료");
 	
-	
 			if (isCheck == true) {
 					// bean : 로그인한 사람의 Bean 정보
 					Customer bean = this.cdao.SelectData(cust_Email, cust_PW) ;
-		
-				if (bean == null) { // 로그인 실패, 
-					String message = "이메일 또는 비빌번호를 다시 확인해주세요." ;
+				if (bean == null) { // 로그인 실패
+					System.out.println("로그인 테스트2 : 이메일 또는 비밀번호 확인필요");
+					String message = "이메일 또는 비빌번호를 다시 확인해주세요.";
 					this.mav.addObject("errmsg", message);
 					this.mav.setViewName(super.getpage); 
-					System.out.println("로그인 테스트2 : 이메일 또는 비밀번호 확인필요");
 					} else { // 로그인 성공
 						// 로그인에 대한 정보를 세션 영역에 바인딩
 						// 이 내용은 common.jsp 파일에서 참조
 						System.out.println("로그인 테스트3 : 로그인 성공");
-						this.mav.setViewName(redirect);
 						session.setAttribute("loginfo", bean);
+						this.mav.setViewName(redirect);
 					}
 				
 			} else { // 문제있음

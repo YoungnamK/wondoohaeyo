@@ -12,7 +12,7 @@
 			$('#modal-body').text('입력한 값을 확인하세요!');
 			return false;
 		} else {
-			return true; 
+			return true;
 			}
 	}
 	
