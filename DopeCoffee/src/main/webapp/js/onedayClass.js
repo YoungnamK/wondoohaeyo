@@ -297,11 +297,14 @@ function time(){
 
 /* ---------------------- 유효성 검사 --------------------------------*/
 var font_color = '#5080BF';
+var number_check = /^[0-9]*$/; // 숫자만 가능
+
 
 $(document).ready(function(){ 
 	// 주제
-	$("select#type option").click(function(){
+	$("#type").click(function(){
 		var type = $('#type option:selected').val();
+		
 		if(type == 'coffee'){
 			$('#code').val( type + '_');
 			$("#err_type").text('');
@@ -318,6 +321,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
 	
 	// 클래스 코드 
 	$("#code").blur(function(){
@@ -372,10 +376,13 @@ $(document).ready(function(){
 		
 	});
 	
+	
+	
 	// 수강 인원	
 	$("#person").blur(function(){
 		var person = $('#person').val();
 		
+	
 		if(person.length >= 2){
 			if(person.charAt(0) == '0'){
 				$("#err_person").text('인원수를 확인해주세요!');
@@ -395,8 +402,12 @@ $(document).ready(function(){
 			$("#err_person").css("color" , font_color);
 		}else{
 			$("#err_person").text('');
-		}		
+		}	
 		
+		if(!number_check.test(person)){	
+			$("#err_person").text('숫자만 입력하세요!');
+			$("#err_person").css("color" , font_color);
+		}
 		
 	});
 	
@@ -407,6 +418,11 @@ $(document).ready(function(){
 			$("#err_oneprice").css("color" , font_color);
 		}else{
 			$("#err_oneprice").text('');
+		}
+		
+		if(!number_check.test($(this).val())){	
+			$("#err_oneprice").text('숫자만 입력하세요!');
+			$("#err_oneprice").css("color" , font_color);
 		}
 		
 	});
@@ -436,6 +452,10 @@ $(document).ready(function(){
 			$("#err_oneprice").text('');
 		}		
 		
+		if(!number_check.test($(this).val())){	
+			$("#err_oneprice").text('숫자만 입력하세요!');
+			$("#err_oneprice").css("color" , font_color);
+		}
 		
 	});
 	
