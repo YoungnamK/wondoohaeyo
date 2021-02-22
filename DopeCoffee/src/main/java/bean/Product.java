@@ -11,7 +11,7 @@ public class Product {
 	private String p_image;							   
 	private String p_image2;							    
 	private String p_image3;							   
-	private String ramark;
+	private String remark;
 		
 	public Product() {}
 	
@@ -28,13 +28,13 @@ public class Product {
 		this.p_image = p_image;
 		this.p_image2 = p_image2;
 		this.p_image3 = p_image3;
-		this.ramark = ramark;
+		this.remark = ramark;
 	}
 	@Override
 	public String toString() {
 		return "Product [p_no=" + p_no + ", p_type=" + p_type + ", p_seller_email=" + p_seller_email + ", p_name="
 				+ p_name + ", p_price=" + p_price + ", p_origin=" + p_origin + ", p_qty=" + p_qty + ", p_image="
-				+ p_image + ", p_image2=" + p_image2 + ", p_image3=" + p_image3 + ", ramark=" + ramark + "]";
+				+ p_image + ", p_image2=" + p_image2 + ", p_image3=" + p_image3 + ", ramark=" + remark + "]";
 	}
 	public int getP_no() {
 		return p_no;
@@ -96,11 +96,11 @@ public class Product {
 	public void setP_image3(String p_image3) {
 		this.p_image3 = p_image3;
 	}
-	public String getRamark() {
-		return ramark;
+	public String getRemark() {
+		return remark;
 	}
-	public void setRamark(String ramark) {
-		this.ramark = ramark;
+	public void setRemark(String ramark) {
+		this.remark = ramark;
 	}
 	
 	

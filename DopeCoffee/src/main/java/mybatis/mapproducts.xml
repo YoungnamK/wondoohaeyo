@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="NsMapperProduct">
+		<insert id="InsertData" parameterType="MyProducts">
+		insert into products
+		(p_no , p_type, p_seller_email, p_name
+		,p_price ,p_origin ,p_qty 
+		,p_image ,p_image2 ,p_image3 ,remark ) 
+		values
+		(seqproduct.nextval ,#{p_type} , #{p_seller_email}
+		,#{p_name} ,#{p_price} ,#{p_origin} ,#{p_qty} 
+		,#{p_image} ,#{p_image2} ,#{p_image3} ,#{remark} )			
+		</insert>
+</mapper>

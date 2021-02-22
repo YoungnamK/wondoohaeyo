@@ -193,8 +193,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">용품&디저트 <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <c:if test="${whologin == 2}">
-                       					 <li><a href="${contextPath}">상품 등록</a></li>
+                                        <c:if test="${whologin == 0}">
+                       					 <li><a href="${contextPath}/prInsert.pr">상품 등록</a></li>
                      					</c:if>
                      					<li><a href="${contextPath}/prList.pr?p_type=1">커피 용품</a></li>
                      					<li><a href="${contextPath}/prList.pr?p_type=2">쿠키</a></li>

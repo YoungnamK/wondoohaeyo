@@ -1,0 +1,29 @@
+@charset "EUC-KR";
+
+.list_item_category {
+    margin: 0 0 40px 0;
+    padding: 3px 0 3px 0;
+    border: 1px solid #d8d8d8;
+    border-top: 1px solid #999999;
+}
+
+
+
+body, th, td, input, select, textarea, button {
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: NanumGothic,"³ª´® °íµñ",Dotum,"µ¸¿ò",sans-serif;
+    color: #423028;
+}
+body {
+    background: #fff;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+body {
+    display: block;
+    margin: 8px;
+}
