@@ -9,24 +9,26 @@
 
 <!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
 <c:set var="whologin" value="0" />
-<c:if test="${empty sessionScope.loginfo}">
-   <!-- 로그인 하지 않은 경우 (비회원)-->
-   <c:set var="whologin" value="0" />
+	<c:if test="${empty sessionScope.loginfo || empty sessionScope.loginfo_seller}">
+	   <!-- 로그인 하지 않은 경우 (비회원)-->
+	<c:set var="whologin" value="0" />
 </c:if>
-<c:if test="${not empty sessionScope.loginfo}">
-   <c:if test="${sessionScope.loginfo.cust_Email == 'admin@gmail.com'}">
-      <!-- 관리자로 로그인한 경우 -->
-      <c:set var="whologin" value="1" />
-   </c:if>
-<%--    <c:if test="${not empty sessionScope.loginfo.cust_Email}">
-      <!-- 사업자로 로그인한 경우 -->
+
+<c:if test="${not empty sessionScope.loginfo || not empty sessionScope.loginfo_seller}">
+	<!-- 사업자로 로그인한 경우 -->
+	<c:if test="${empty sessionScope.loginfo.cust_Email || not empty sessionScope.loginfo_seller.sell_Email}">
       <c:set var="whologin" value="2" />
-   </c:if> --%>
-   <c:if test="${sessionScope.loginfo.cust_Email != 'admin@gmail.com'}">
-      <!-- 일반 사용자로 로그인한 경우 -->
+   </c:if> 
+   <!-- 일반 사용자로 로그인한 경우 -->
+   <c:if test="${not empty sessionScope.loginfo.cust_Email || empty sessionScope.loginfo_seller.sell_Email}">
       <c:set var="whologin" value="3" />
    </c:if>
+   <!-- 관리자로 로그인한 경우 -->
+	<c:if test="${sessionScope.loginfo.cust_Email == 'admin@gmail.com' || sessionScope.loginfo_seller.sell_Email == 'admin@gmail.com'}">
+		<c:set var="whologin" value="1" />
+	</c:if>
 </c:if>
+
 
 <!-- 부트 스트랩 -->
 <% int twelve = 12 ; %>
@@ -144,6 +146,7 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li><a href="${contextPath}/custInsert.cu">회원가입</a></li>
+                                        <li><a href="${contextPath}/sellInsert.se">사업자 회원가입</a></li>
                                         <li><a href="${contextPath}/custLog.cu">로그인</a></li>
                                     </ul>
                                 </div>

@@ -15,7 +15,7 @@
 		<typeAlias alias="MyNotice" type="bean.Notice" />
 		<!-- <typeAlias alias="MyComment" type="bean.Comment" /> -->
 		<typeAlias alias="MyCustomer" type="bean.Customer" />
-		<!-- <typeAlias alias="MySeller" type="bean.Seller" /> -->
+		<typeAlias alias="MySeller" type="bean.Seller" />
 		<!-- <typeAlias alias="MyShopping" type="bean.Shopping" /> -->
 		<!-- <typeAlias alias="MyOrder" type="bean.Order" /> -->
 		<!-- <typeAlias alias="MyProductPay" type="bean.ProductPay" /> -->
@@ -37,7 +37,7 @@
 		 	<mapper resource="mybatis/mapnotice.xml" />
 	<!-- 	<mapper resource="mybatis/mapcomment.xml" /> -->
 	 		<mapper resource="mybatis/mapcustomer.xml" />
-	<!-- 	<mapper resource="mybatis/mapseller.xml" /> -->
+	<mapper resource="mybatis/mapseller.xml" />
  	<mapper resource="mybatis/mapcoffee.xml" /> 
 	<!-- 	<mapper resource="mybatis/mapproduct.xml" /> -->
 	<!-- 	<mapper resource="mybatis/maporder.xml" /> -->

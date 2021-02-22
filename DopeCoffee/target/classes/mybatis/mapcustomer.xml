@@ -7,13 +7,13 @@
 <!-- CustomerDao > namespace -->
 <mapper namespace="MapperCustomer">
 
-	<!-- 개인 회원 테이블 조회 -->
+	<!-- 개인회원 테이블 조회 -->
 	<sql id="myselect">
 		select *
 		from customers
 	</sql>
 	
-	<!-- 개인 회원 조회 -->
+	<!-- 개인회원 조회 -->
 	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from customers
 		<if test="mode == 'cust_Name'">
@@ -24,7 +24,7 @@
 		</if>
 	</select>
 	
-	
+	<!-- 개인회원 전체목록 조회 -->
 	<select id="SelectDataList" resultType="MyCustomer">
 		select cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
 		cust_Pic, to_char(cust_RegDate, 'yyyy/MM/dd') as cust_RegDate, cust_Join, remark, savepoint
@@ -37,28 +37,24 @@
 		</if>
 	</select>
 	
-	
-	<!-- 회원가입 -->
+	<!-- 회원가입시 데이터 추가 -->
 	<insert id="InsertData" parameterType="MyCustomer">
 		insert into customers(cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
 		cust_Pic, cust_RegDate, cust_Join, remark, savepoint) 
 		values(#{cust_Email}, #{cust_PW}, #{cust_Name}, #{cust_Contact}, #{cust_Birth}, #{cust_Zipcode}, #{cust_ADR01}, 
 		#{cust_ADR02}, #{cust_Pic}, to_date(#{cust_RegDate}, 'yyyy/MM/dd'), #{cust_Join}, #{remark}, #{savepoint})
 	</insert>
-
 	
-	<!-- 회원가입 중복 -->
+	<!-- 이메일 주소로 동일한 메일 주소 조회 -->
 	<select id="SelectDataByPk" parameterType="String" resultType="MyCustomer">
 		<include refid="myselect" />
 		 where cust_Email = #{cust_Email}
 	</select>
 	
-	<!-- 로그인 -->
+	<!-- 로그인시 기존 데이터에서 이메일과 비밀번호가 일치하는지 조회 -->
 	<select id="SelectData" resultType="MyCustomer">
 		<include refid="myselect" />
 		where cust_Email = #{cust_Email} and cust_PW = #{cust_PW}
 	</select>
-
-
 
 </mapper>

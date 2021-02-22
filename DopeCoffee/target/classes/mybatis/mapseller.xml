@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapseller.xml 파일 -->
+<!-- SellerDao > namespace -->
+<mapper namespace="MapperSeller">
+
+	<!-- 개인 회원 테이블 조회 -->
+	<sql id="myselect">
+		select *
+		from sellers
+	</sql>
+	
+	<!-- 개인 회원 조회 -->
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from sellers
+		<if test="mode == 'sell_Name'">
+			where sell_Name like #{keyword}
+		</if>
+		<if test="mode == 'sell_Email'">
+			where sell_Email like #{keyword}
+		</if>
+	</select>
+	
+	<!-- 사업자회원 전체목록 조회 -->	
+	<select id="SelectDataList" resultType="MySeller">
+		select  sell_Email, sell_PW, sell_Name, sell_Contact, sell_Zipcode, sell_ADR01, sell_ADR02, 
+		sell_Pic, sell_Join, sell_License, sell_Status, remark 
+		from sellers
+		<if test="mode == 'sell_Name'">
+			where sell_Name like #{keyword}
+		</if>
+		<if test="mode == 'sell_Email'">
+			where sell_Email like #{keyword}
+		</if>
+	</select>
+	
+	<!-- 회원가입시 데이터 추가 -->
+	<insert id="InsertData" parameterType="MySeller">
+		insert into sellers( sell_Email, sell_PW, sell_Name, sell_Contact, sell_Zipcode, sell_ADR01, sell_ADR02, 
+		sell_Pic, sell_Join, sell_License, sell_Status, remark ) 
+		values(#{sell_Email}, #{sell_PW}, #{sell_Name}, #{sell_Contact}, #{sell_Zipcode}, #{sell_ADR01}, #{sell_ADR02},
+		#{sell_Pic}, #{sell_Join}, #{sell_License}, #{sell_Status}, #{remark})
+	</insert>
+	
+	<!-- 이메일 주소로 동일한 메일 주소 조회 -->
+	<select id="SelectDataByPk" parameterType="String" resultType="MySeller">
+		<include refid="myselect" />
+		 where sell_Email = #{sell_Email}
+	</select>
+	
+	<!-- 로그인시 기존 데이터에서 이메일과 비밀번호가 일치하는지 조회 -->
+	<select id="SelectData" resultType="MySeller">
+		<include refid="myselect" />
+		where sell_Email = #{sell_Email} and sell_PW = #{sell_PW}
+	</select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package controller.customer;
+package customer.controller;
 
 import java.util.List;
 

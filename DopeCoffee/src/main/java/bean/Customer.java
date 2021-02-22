@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Customer {
 	private final String MUST_INPUT = "필수 입력 사항입니다.";
 	
-	@Length(min=10, max=50, message="이메일 주소는 최소 10자리 이상입니다.")
+	@Length(min=8, max=50, message="이메일 주소는 최소 8자리 이상입니다.")
 	private String cust_Email;
 	
 	@Length(min=8, max=20, message="비밀번호는 최소 8자리 이상입니다.")

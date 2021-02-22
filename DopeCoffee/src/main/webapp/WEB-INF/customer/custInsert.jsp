@@ -19,12 +19,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript">
-	
+
 	/* 아이디 중복 체크 */
 	function checkDuplicateId(){ 	
 	var cust_Email = document.myform.cust_Email.value ;	
-	if(cust_Email.length < 10){
-		alert('이메일은 최소 10자리 이상이어야 합니다.') ;
+	if(cust_Email.length < 8){
+		alert('이메일은 최소 8자리 이상이어야 합니다.') ;
 		document.myform.cust_Email.focus();
 		return false ;
 	}
@@ -58,14 +58,14 @@
 </head>
 <body>
 <div align="center" class="container col-sm-offset-2 col-sm-8">
-<%--<h2><spring:message code="customer.register01"/></h2> --%>
 	<div class="panel">
 		<div class="panel" align="center">
-			<font color="#84C1D9" size="12px">
-				Sign Up
-			</font>
+	<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
+	data-wow-delay="0.3s">회원가입</h2>
+	<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.3s">
+		필수 항목들을 반드시 작성해주세요!
+	</p>
 		</div>
-		<br><br>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>"/>
 			<form:form modelAttribute="customer" method="post" action="${apppath}/custInsert.cu"
@@ -109,8 +109,8 @@
 					</div>
 				</div>
 				
-				<%-- cust_PW 확인 ------------------------------------------------- 
-				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
+				<%-- cust_PW 확인 ------------------------------------------------- --%>
+<%-- 				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_PW" class="col-sm-3" style="text-align:right">
 						<spring:message code="customer.cust_PW2"/>
 					</label>
@@ -119,7 +119,7 @@
 						value="${cust_PW}">
 						<form:errors path="cust_PW" cssClass="err" /> 
 					</div>
-				</div>--%>
+				</div> --%>
 				
 				<%-- cust_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">

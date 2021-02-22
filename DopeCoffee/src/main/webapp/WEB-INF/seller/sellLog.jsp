@@ -16,9 +16,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 <script type="text/javascript" src="${contextPath}/js/login.js"></script>
-<script type="text/javascript" src="${contextPath}/js/login_seller.js"></script>
+<link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 </head>
 <body>
 <div align="center" class="container col-md-12">
@@ -40,17 +39,21 @@
               <input type="password" placeholder="Password" class="input" name="cust_PW" id="cust_PW"
                             data-toggle="tooltip" data-placement="top" title="비밀번호를 입력해주세요." value="">                     
             </div>
+            
             <span class="error"></span>
-<!--             <div class="keepcheck">
+
+            <div class="keepcheck">
 				<input type="checkbox" id="remember">
 	            <label for="remember">이메일 저장</label>
-            </div> -->
-<!--             <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
- -->            <button type="submit">로그인</button>
+            </div>
+
+            <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
+	         
 	         <div class="search">
 	          	<span><a href="<%=contextPath%>/custIdSearch.cu">I forgot my email</a></span>
 				<span><a href="<%=contextPath%>/custPWSearch.cu">I forgot my password</a></span>
           	</div>
+          	
           	<hr>
           	<div class="social"> <span>or sign up with social media</span></div>
           	<div class="buttons">
@@ -72,13 +75,13 @@
                <input type="password" placeholder="Password" class="input" name="sell_PW" id="sell_PW"
                             data-toggle="tooltip" data-placement="top" title="비밀번호를 입력해주세요." value="">                     
             </div>
-<!--             <div class="keepcheck">
+            <div class="keepcheck">
 			<input type="checkbox" id="remember">
             <label for="remember">이메일 저장</label>
-            </div> -->
+            </div>
             <span class="error"></span>
-<!--             <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck_sell();">로그인</button>
- -->            <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck_sell();">로그인</button>
+            <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
+            
             <br>
           	<span><a href="<%=contextPath%>/sellIdSearch.se">I forgot my email</a></span>
 			<span><a href="<%=contextPath%>/sellPWSearch.se">I forgot my password</a></span>
