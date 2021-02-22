@@ -205,10 +205,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">원데이클래스 <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <c:if test="${whologin == 0}">
+                                        <c:if test="${whologin == 2}">
                        					 <li><a href="${contextPath}/onedayInsert.odc">수업등록</a></li>
                      					</c:if>
-                     					<li><a href="${contextPath}/onedaylist.odc">수업목록</a></li>
+                     					<li><a href="${contextPath}/onedayList.odc">수업목록</a></li>
                                     </ul>
                                 </div>
                             </li>

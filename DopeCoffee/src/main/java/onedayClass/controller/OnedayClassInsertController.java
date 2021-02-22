@@ -18,7 +18,7 @@ import dao.OnedayClassDao;
 public class OnedayClassInsertController extends SuperClass {
 	private final String command = "/onedayInsert.odc";
 	private final String get_gotopage = "oneday_InsertForm";
-	private final String post_gotopage = "main.co";
+	private final String redirect = "redirect:/main.co";
 
 	@Autowired
 	@Qualifier("onedayDao")
@@ -26,6 +26,9 @@ public class OnedayClassInsertController extends SuperClass {
 
 	@GetMapping(value = command)
 	public String doGet() {
+		
+		// loginfo_seller : 사업자로 로그인 했을 때 
+		
 		return get_gotopage;
 	}
 
@@ -49,7 +52,7 @@ public class OnedayClassInsertController extends SuperClass {
 
 			if (cnt > 0) {
 				System.out.println("등록 완료");
-				mav.setViewName(post_gotopage);
+				mav.setViewName(redirect);
 			} else {
 				System.out.println("등록 실패");
 				mav.setViewName(get_gotopage);

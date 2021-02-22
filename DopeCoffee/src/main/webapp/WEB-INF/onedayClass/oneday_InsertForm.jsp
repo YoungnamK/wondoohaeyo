@@ -199,10 +199,10 @@
                                                     <!-- ------------------------------------- [메인 사진  main_image section]--------------------------------------- -->
                                                     <%-- ======================구분선===================== --%>
                                                     <div class="file-upload">
-												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="메인 사진을 업로드 해주세요!" onclick="$('#main_image').trigger( 'click' )">사진 업로드</button>
+												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="메인 사진을 업로드 해주세요!" onclick="$('#m_img').trigger( 'click' )">사진 업로드</button>
 												
 												        <div id="main_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="main_image" name="main_image"  type='file' onchange="readURL_main(this);" accept="image/*" />
+												            <input class="file-upload-input" id="m_img" name="m_img"  type='file' onchange="readURL_main(this);" accept="image/*" />
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>
@@ -225,10 +225,10 @@
                                                      <section id="add2"> 
 	                                                    <!-- ------------------------------------- [상세 사진 1  detail_image1 section]--------------------------------------- -->
 	                                                    <div class="file-upload">
-												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#detail_image1').trigger( 'click' )">추가 사진 업로드</button>
+												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#d_img1').trigger( 'click' )">추가 사진 업로드</button>
 												
 												        <div id="detail1_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="detail_image1" name="detail_image1"  type='file' onchange="readURL_detail1(this);" accept="image/*" />
+												            <input class="file-upload-input" id="d_img1" name="d_img1"  type='file' onchange="readURL_detail1(this);" accept="image/*" />
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>
@@ -245,10 +245,10 @@
 	                                                    
 	                                                    <!-- ------------------------------------- [상세 사진 2  detail_image2 section]--------------------------------------- -->
 	                                                   <div class="file-upload">
-												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#detail_image2').trigger( 'click' )">추가 사진 업로드</button>
+												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#d_img2').trigger( 'click' )">추가 사진 업로드</button>
 												
 												        <div id="detail2_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="detail_image2" name="detail_image2"  type='file' onchange="readURL_detail2(this);" accept="image/*" />
+												            <input class="file-upload-input" id="d_img2" name="d_img2"  type='file' onchange="readURL_detail2(this);" accept="image/*" />
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>

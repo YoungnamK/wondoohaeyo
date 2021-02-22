@@ -610,7 +610,7 @@ function readURL_main(input) {
 }
 
 function removeUpload_main() {
-  $('#main_image').replaceWith($('#main_image').clone());
+  $('#M_image').replaceWith($('#M_image').clone());
   $('#main_content').hide();
   $('#main_wrap').show();
 }

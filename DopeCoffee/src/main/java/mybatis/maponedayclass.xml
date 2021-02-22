@@ -6,6 +6,10 @@
 <!-- maponedayclass.xml 파일 -->
 
 <mapper namespace="NsOnedayClass">
+	<sql id="basic_select">
+		select * from onedayclasses
+	</sql>
+
 	<insert id="InsertData"  parameterType="MyOnedayclass">
 		insert into onedayclasses
 		(code , sell_email, type, classname
@@ -24,4 +28,10 @@
 	<select id="SelectCodeCheck" parameterType="String" resultType="Integer">
 		select count(*) from onedayclasses where code=#{code}
 	</select>
+	
+	<select id="SelectAllData" resultType="MyOnedayclass">
+		<include refid="basic_select"/>
+		order by rownum desc
+	</select>
+	
 </mapper>

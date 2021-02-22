@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class OnedayClass {
 	private String code; // 등록 코드
 	private String sell_email; // 사업자 이메일
@@ -20,10 +22,57 @@ public class OnedayClass {
 	private String address1; // 주소
 	private String address2; // 상세주소
 	private String content; // 수업 내용
-	private String main_image; // 메인 사진
-	private String detail_image1; // 추가 사진(상세)
-	private String detail_image2; // 추가 사진(상세)
 	private String remark; // 비고
+
+	// 파일 업로드
+	private String main_image; // 메인 사진
+
+	private MultipartFile m_img;
+
+	public MultipartFile getM_img() {
+		return m_img;
+	}
+
+	public void setM_img(MultipartFile m_img) {
+		this.m_img = m_img;
+
+		if (this.m_img != null) {
+			this.main_image = this.m_img.getOriginalFilename();
+		}
+
+	}
+
+	private String detail_image1; // 추가 사진(상세)
+
+	private MultipartFile d_img1;
+
+	public MultipartFile getD_img1() {
+		return d_img1;
+	}
+
+	public void setD_img1(MultipartFile d_img1) {
+		this.d_img1 = d_img1;
+
+		if (this.d_img1 != null) {
+			this.detail_image1 = this.d_img1.getOriginalFilename();
+		}
+	}
+
+	private String detail_image2; // 추가 사진(상세)
+
+	private MultipartFile d_img2;
+
+	public MultipartFile getD_img2() {
+		return d_img2;
+	}
+
+	public void setD_img2(MultipartFile d_img2) {
+		this.d_img2 = d_img2;
+
+		if (this.d_img2 != null) {
+			this.detail_image2 = this.d_img2.getOriginalFilename();
+		}
+	}
 
 	public OnedayClass() {
 	}
