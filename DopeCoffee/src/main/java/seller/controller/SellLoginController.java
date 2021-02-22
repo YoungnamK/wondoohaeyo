@@ -19,7 +19,7 @@ import dao.SellerDao;
 public class SellLoginController extends SuperClass{
 	private final String command = "/sellLog.se";
 	private final String redirect = "redirect:/main.co";
-	
+
 	private ModelAndView mav = null;
 	
 	@Autowired
@@ -49,7 +49,6 @@ public class SellLoginController extends SuperClass{
 			boolean isCheck = true ;
 			System.out.println("로그인 테스트1 : 이메일, 비밀번호 입력완료");
 	
-	
 			if (isCheck == true) {
 					// bean : 로그인한 사람의 Bean 정보
 					Seller bean = this.sdao.SelectData(sell_Email, sell_PW) ;
@@ -67,7 +66,7 @@ public class SellLoginController extends SuperClass{
 						session.setAttribute("loginfo_seller", bean);
 					}
 				
-			} else { // 문제있음
+			} else {
 				this.mav.addObject("sell_Email", sell_Email);
 				this.mav.addObject("sell_PW", sell_PW);
 				this.mav.setViewName(super.getpage); 
