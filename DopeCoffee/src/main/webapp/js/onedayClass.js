@@ -39,6 +39,8 @@ $(document).ready(function () {
 
 /* -----------------다음 단계 버튼을 눌렀을 때----------------------------- */
 function next_check1(){
+	var valid_check = $('.valid_check').text();
+	
 	var type = $('#type option:selected').val();
 	var code = $('#code').val();
 	var classname = $('#classname').val();
@@ -48,10 +50,18 @@ function next_check1(){
 	var address1 = $('#address1').val();
 	var address2 = $('#address2').val();
 	
+	// step1 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
 	if(type == '-' || code == '' || classname == '' ||
 	person == '' || oneprice == '' || zipcode == '' ||
 	address1 == '' || address2 == ''){
 		$('#isCheck').val('false');
+		$('button#modalbtn1').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+		
+	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
+		$('#isCheck').val('false');
+		$('button#modalbtn1').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
 	}else{
@@ -60,7 +70,6 @@ function next_check1(){
 		var result = nextTab(elem);
 		return result;
 	}
-	
 }
 
 function next_check2(){
@@ -298,6 +307,12 @@ function time(){
 /* ---------------------- 유효성 검사 --------------------------------*/
 var font_color = '#5080BF';
 var number_check = /^[0-9]*$/; // 숫자만 가능
+var string_check = /^[ㄱ-ㅎㅏ-ㅣ가-힣]$/; // 자음 , 모음으로 들어왔을 경우
+
+/*=====================
+	STEP1
+=======================*/
+   
 
 
 $(document).ready(function(){ 
@@ -326,7 +341,7 @@ $(document).ready(function(){
 	// 클래스 코드 
 	$("#code").blur(function(){
 		var code = $('#code').val();
-
+		
 		if(code.length == 0){
 			$("#err_code").text('클래스 코드를 입력하세요!');
 			$("#err_code").css("color" , font_color);
@@ -340,6 +355,8 @@ $(document).ready(function(){
 			$("#err_code").text('');
 		}
 		
+		
+		
 	});
 	
 	$("#code").keyup(function(){
@@ -348,6 +365,7 @@ $(document).ready(function(){
 			$("#err_code").text('반드시 클래스 코드를 기억해주세요! 코드는 중복 불가합니다.');
 			$("#err_code").css("color" , font_color);
 		}
+		
 	});
 	
 
@@ -368,6 +386,9 @@ $(document).ready(function(){
 
 		if(classname.length == 0){
 			$("#err_classname").text('클래스 명을 입력하세요!');
+			$("#err_classname").css("color" , font_color);
+		}else if(classname.length < 4){
+			$("#err_classname").text('4글자 이상 입력하세요!');
 			$("#err_classname").css("color" , font_color);
 		}else{
 			$("#err_classname").text('');
@@ -431,26 +452,27 @@ $(document).ready(function(){
 	$("#oneprice").blur(function(){
 		var oneprice = $('#oneprice').val();
 		
-		if(oneprice.length >= 2){
+		if(oneprice.length < 4){
+			$("#err_oneprice").text('1000원 단위부터 입력 가능합니다!');
+			$("#err_oneprice").css("color" , font_color);	
+			
 			if(oneprice.charAt(0) == '0'){
 				$("#err_oneprice").text('가격을 확인해주세요!');
 				$("#err_oneprice").css("color" , font_color);
-			}else{
-				$("#err_oneprice").text('');
-			}
-		}else if(oneprice.length == 1){
-			if(oneprice.charAt(0) == '0'){
-				$("#err_oneprice").text('1000원 단위부터 입력 가능합니다!');
+			}	
+			if(oneprice.length == 0){
+				$("#err_oneprice").text('1인 기준 가격을 입력하세요!');
 				$("#err_oneprice").css("color" , font_color);
-			}else{
-				$("#err_person").text('');
 			}
-		}else if(oneprice.length == 0){
-			$("#err_oneprice").text('1인 기준 가격을 입력하세요!');
-			$("#err_oneprice").css("color" , font_color);
+		}else if(oneprice.length >= 4){
+			if(oneprice.charAt(0) == '0'){
+				$("#err_oneprice").text('가격을 확인해주세요!');
+				$("#err_oneprice").css("color" , font_color);
+			}
 		}else{
 			$("#err_oneprice").text('');
 		}		
+		
 		
 		if(!number_check.test($(this).val())){	
 			$("#err_oneprice").text('숫자만 입력하세요!');
@@ -492,6 +514,10 @@ $(document).ready(function(){
 		}
 	});
 	
+	/*=====================
+		STEP2
+	=======================*/
+   
 	// 수업 마감 일자
 	$("#enddate").mouseleave(function(){
 		var enddate = $('#enddate').val();
