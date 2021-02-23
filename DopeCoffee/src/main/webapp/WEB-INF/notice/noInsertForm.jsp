@@ -37,6 +37,7 @@ body {
 											<form id="noti-form" method="post"
 												action="${contextPath}/noinsert.no" role="form"
 												enctype="multipart/form-data">
+												<input type="hidden" id="validcheck" name="validcheck" value="false"> 
 												<!-- step1 -->
 												<div class="tab-pane active  wow fadeInDown"
 													data-wow-duration="500ms" data-wow-delay="0.6s"
@@ -65,7 +66,7 @@ body {
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
 													<div class="form-group">
 														<select class="form-control" name="fix" id="fix">
-															<option class="form-control" value="">-</option>
+															<option class="form-control" value="33" selected="selected">===중요여부를 선택하세요===</option>
 															<option class="form-control" value="0">일반</option>
 															<option class="form-control" value="1">중요</option>
 														</select> <span class="valid_check" id="err_fix"></span>
@@ -99,8 +100,9 @@ body {
 	</section>
 	<script type="text/javascript">
 	var font_color = '#5080BF';
-
 	$(document).ready(function(){ 
+		
+		
 		$("#title").keyup(function(){
 			if($(this).val().length < 3){
 				$("#err_title").text('3글자 이상 입력하세요!');
@@ -141,18 +143,19 @@ body {
 					$("#err_content").text('');
 				}
 			});
+			
+			$("select#fix").click(function(){
+				var fix = $('#fix option:selected').val();
+				if(fix=="33"){
+					$("#err_fix").text('중요도를 선택하세요!');
+					$("#err_fix").css("color" , font_color);		
+				}else{
+					$("#err_fix").text('');
+				}
+		});
 
 	});
 	
-	$("select#fix option").click(function(){
-		var type = $('#fix option:selected').val();
-			if(type == ""){
-				$("#err_type").text('중요도를 선택하세요!');
-				$("#err_type").css("color" , font_color);		
-			}else{
-				$("#err_type").text('');
-			}
-	});
 	
 </script>
 

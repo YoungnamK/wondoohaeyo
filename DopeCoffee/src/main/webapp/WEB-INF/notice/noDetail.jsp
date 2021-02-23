@@ -127,7 +127,7 @@ int formright = twelve - formleft;
 					<table>
 					<tr>
 						<td colspan="1" align="center">
-						<a href="./upload/${bean.image}" data-fancybox data-caption="캡션">
+						<a href="./upload/${bean.image}" data-fancybox data-caption="캡션" class="fancybox-img" >
 						<img src="./upload/${bean.image}" class="img-responsive" width="200" height="200" alt="${bean.image}">
 						</a>
 						</td>

@@ -12,7 +12,7 @@ body {
 }
 </style>
 </head>
-<body>
+<body onload = 'getoption();'>
 	<section id="notice-section">
 		<div class="container">
 			<div class="row">
@@ -71,7 +71,7 @@ body {
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
 													<div class="form-group">
 														<select class="form-control" name="fix" id="fix">
-															<option class="form-control" value="">-</option>
+															<option class="form-control" value="33">===중요여부를 선택하세요===</option>
 															<option class="form-control" value="0">일반</option>
 															<option class="form-control" value="1">중요</option>
 														</select> <span class="valid_check" id="err_fix"></span>
@@ -151,15 +151,26 @@ body {
 
 		});
 
-		$("select#fix option").click(function() {
-			var type = $('#fix option:selected').val();
-			if (type == "") {
-				$("#err_type").text('중요도를 선택하세요!');
-				$("#err_type").css("color", font_color);
+		$("select#fix").click(function() {
+			var fix = $('#fix option:selected').val();
+			if (fix == "33") {
+				$("#err_fix").text('중요도를 선택하세요!');
+				$("#err_fix").css("color", font_color);
 			} else {
-				$("#err_type").text('');
+				$("#err_fix").text('');
 			}
 		});
+		
+		
+		function getoption(){
+			var length = document.getElementById("fix").options.length;
+			for(i = 0 ; i < length ; i++){
+				if(document.getElementById("fix").options[i].value == "${bean.fix}"){
+					document.getElementById("fix").options[i].selected = true;
+					break;
+				}
+			}
+		};
 	</script>
 
 </body>

@@ -10,3 +10,8 @@ function del_check(){
 	var num=$('#num').val();
 	location.href = getContextPath()+"/nodelete.no?num="+num;
 }
+
+
+$('.fancybox-img').fancybox({
+	width : 1000, height : 1000
+});
