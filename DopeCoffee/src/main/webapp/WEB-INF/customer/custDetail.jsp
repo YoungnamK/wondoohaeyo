@@ -25,7 +25,7 @@
 		<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
 		data-wow-delay="0.3s">마이페이지</h2>
 		<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.3s">
-			회원님의 가입 정보입니다.
+			${sessionScope.loginfo.cust_Name}&nbsp;회원님의 가입 정보입니다.
 		</p>
 		</div>
 		<div class="panel panel-body">
@@ -37,7 +37,7 @@
 						</label>
 						</td>
 						<td width="75%">
-							${bean.cust_Email}
+							${sessionScope.loginfo.cust_Email}
 						</td>
 					</tr>
 
@@ -49,7 +49,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_Name}
+							${sessionScope.loginfo.cust_Name}
 					</td>
 				</tr>
 				<%-- cust_Contact ------------------------------------------------- --%>
@@ -60,7 +60,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_Contact}
+							${sessionScope.loginfo.cust_Contact}
 					</td>
 				</tr>
 
@@ -72,7 +72,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_Birth}
+							${sessionScope.loginfo.cust_Birth}
 					</td>
 				</tr>
 				
@@ -84,7 +84,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_Zipcode}
+							${sessionScope.loginfo.cust_Zipcode}
 					</td>
 				</tr>
 
@@ -96,7 +96,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_ADR01}
+							${sessionScope.loginfo.cust_ADR01}
 					</td>
 				</tr>
 
@@ -108,7 +108,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.cust_ADR02}
+							${sessionScope.loginfo.cust_ADR02}
 					</td>
 				</tr>
 
@@ -120,7 +120,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.savepoint}
+							${sessionScope.loginfo.savepoint}
 					</td>
 				</tr>
 			</table>

@@ -53,6 +53,7 @@
 		var url = '<%=contextPath%>/zipcheck.cu'  ;
 		window.open(url, 'mywin', 'height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no') ;
 	}
+	
 
 </script>
 </head>
@@ -68,17 +69,35 @@
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>"/>
-			<form:form modelAttribute="customer" method="post" action="${apppath}/custInsert.cu"
-				class="form-horizontal" role="form" name="myform" > 
+			<form method="post" action="${apppath}/custInsert.cu" enctype="multipart/form-data"
+				 class="form-horizontal" role="form" name="myform">  
 				
 				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
 				<input type="hidden" name="isCheck" value="false">
 				<input type="hidden" name="cust_Join" value="Y">
-				<input type="hidden" name="cust_Pic" value="">
-				<input type="hidden" name="cust_RegDate" value="">
-				<input type="hidden" name="remark" value="">
 				
-				
+				<%-- 프로필사진, cust_Pic ------------------------------------------------- --%>
+			<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
+				<div class="avatar-upload">
+					<div class="avatar-preview">
+						<div id="imagePreview">
+						<c:if test="${empty bean.cust_Pic}">
+							<img src="https://lh3.googleusercontent.com/proxy/zYH-eksbU3mZKwTZh89pj29r8LZ2fY20MOyYE6wohph-Y3qWiIxiGjb7KLtFN4s5BGDMV5vVCjU3O9aXFSrrNWnaXn_p4P5w0pqmnivBe2F5B8nQNbjnroHsYQnqLoqmD3JCm0tqSKx9c1iHaFylSWFjwsGAdJHPSmZhMLSwpq_y4nVBUNdnclMMXLDSs8eokQ" 
+							class="avatar-preview" alt="no image" >
+						</c:if>						
+						<c:if test="${not empty bean.cust_Pic}">
+							<img src="${contextPath}/upload/${bean.cust_Pic}"
+							class="avatar-preview" width="200" height="200" alt="${bean.cust_Pic}">
+						</c:if>
+						</div>
+					</div>
+				     
+				    <div class="avatar-edit">
+						<input type="file" class="imageUpload" name="img" id="img" accept=".png, .jpg, .jpeg"/>
+						<label for="imageUpload"></label>
+					</div>
+				</div>
+			</div>
 				<%-- cust_Email ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Email" class="col-sm-3" style="text-align:right">
@@ -164,13 +183,13 @@
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control" name="fakecust_Zipcode" id="fakecust_Zipcode"
-						value="${cust_Zipcode}" disabled="true">
+						value="${cust_Zipcode}" disabled="disabled">
 						<input type="hidden" name="cust_Zipcode" id="cust_Zipcode" value="${cust_Zipcode}">
 						<form:errors path="cust_Zipcode" cssClass="err" /> 
 					</div>
                     <div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control" name="fakecust_ADR01" id="fakecust_ADR01"
-						value="${cust_ADR01}" disabled="true">
+						value="${cust_ADR01}" disabled="disabled">
 						<input type="hidden" id="cust_ADR01" name="cust_ADR01" style="text-align:left">
 						<form:errors path="cust_ADR01" cssClass="err" /> 
 					</div>
@@ -199,7 +218,7 @@
 						<button type="submit" class="submit">동의하고 가입하기</button>
 					</div>
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</div>
 </div>

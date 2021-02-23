@@ -49,9 +49,10 @@
             </div> -->
             <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
 <!--             <button type="submit">로그인</button>
- -->	         <div class="search">
-	          	<span><a href="<%=contextPath%>/custIdSearch.cu">I forgot my email</a></span>
-				<span><a href="<%=contextPath%>/custPWSearch.cu">I forgot my password</a></span>
+ -->	    <div class="search">
+	           	<span><a href="<%=contextPath%>/custInsert.cu">회원가입</a> ｜</span>
+	          	<span><a href="<%=contextPath%>/custIdSearch.cu">이메일 찾기</a> ｜</span>
+				<span><a href="<%=contextPath%>/custPWSearch.cu">비밀번호 찾기</a></span>
           	</div>
           	<hr>
           	<div class="social"> <span>or sign up with social media</span></div>
@@ -81,9 +82,12 @@
             </div> -->
              <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck_sell();">로그인</button>
 <!--             <button type="submit">로그인</button>
- -->            <br>
-          	<span><a href="<%=contextPath%>/sellIdSearch.se">I forgot my email</a></span>
-			<span><a href="<%=contextPath%>/sellPWSearch.se">I forgot my password</a></span>
+ -->        <br>
+		    <div class="search">
+	           	<span><a href="<%=contextPath%>/sellInsert.se">회원가입</a> ｜</span>
+	          	<span><a href="<%=contextPath%>/sellIdSearch.se">이메일 찾기</a> ｜</span>
+				<span><a href="<%=contextPath%>/sellPWSearch.se">비밀번호 찾기</a></span>
+          	</div>
           </form>
         </li>
       </ul>

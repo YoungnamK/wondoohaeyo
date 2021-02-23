@@ -25,7 +25,7 @@
 		<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
 		data-wow-delay="0.3s">마이페이지</h2>
 		<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.3s">
-			사업자님의 가입 정보입니다.
+			${sessionScope.loginfo_seller.sell_Name}&nbsp;사업자님의 가입 정보입니다.
 		</p>
 		</div>
 		<div class="panel panel-body">
@@ -37,7 +37,7 @@
 						</label>
 						</td>
 						<td width="75%">
-							${bean.sell_Email}
+							${sessionScope.loginfo_seller.sell_Email}
 						</td>
 					</tr>
 
@@ -49,7 +49,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_Name}
+						${sessionScope.loginfo_seller.sell_Name}
 					</td>
 				</tr>
 				<%-- sell_Contact ------------------------------------------------- --%>
@@ -60,7 +60,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_Contact}
+						${sessionScope.loginfo_seller.sell_Contact}
 					</td>
 				</tr>
 
@@ -72,7 +72,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_License}
+						${sessionScope.loginfo_seller.sell_License}
 					</td>
 				</tr>
 				
@@ -84,7 +84,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_Zipcode}
+						${sessionScope.loginfo_seller.sell_Zipcode}
 					</td>
 				</tr>
 
@@ -96,7 +96,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_ADR01}
+						${sessionScope.loginfo_seller.sell_ADR01}
 					</td>
 				</tr>
 
@@ -108,7 +108,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_ADR02}
+						${sessionScope.loginfo_seller.sell_ADR02}
 					</td>
 				</tr>
 
@@ -120,7 +120,7 @@
 					</label>
 					</td>
 					<td width="75%">
-						${bean.sell_Status}
+						${sessionScope.loginfo_seller.sell_Status}
 					</td>
 				</tr>
 			</table>

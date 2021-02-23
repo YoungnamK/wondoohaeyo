@@ -40,10 +40,11 @@ import dao.CustomerDao;
 		
 		@GetMapping(command)
 		public ModelAndView doGet(
-				@RequestParam(value = "cust_Email", required = false) String cust_Email) {
+				@RequestParam(value = "cust_Email", required = true) String cust_Email) {
 			/* 회원 가입과는 달리 수정은 이전에 기입했던 정보를 읽어 들이는 부분이 필요함 */
-			Customer customer = this.cdao.SelectDataByPk(cust_Email);
-			this.mav.addObject("customer", customer);
+			System.out.println("doGet메소드");
+			Customer bean = cdao.SelectDataByPk(cust_Email);
+			this.mav.addObject("bean", bean);
 			this.mav.setViewName(super.getpage); 
 			return this.mav ;
 		}
@@ -52,7 +53,7 @@ import dao.CustomerDao;
 		public ModelAndView doPost(
 			@ModelAttribute("customer") @Valid Customer xxx,
 			BindingResult error) {
-			
+			System.out.println("doPost메소드");
 			if (error.hasErrors()) {
 				System.out.println("유효성 검사 통과");
 				System.out.println(error.toString());

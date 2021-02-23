@@ -76,12 +76,10 @@
 				
 				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
 				<input type="hidden" name="isCheck" value="false">
-				<input type="hidden" name="cust_Pic" value="">
 				<input type="hidden" name="cust_RegDate" value="">
 				<input type="hidden" name="cust_Join" value="Y">
 				<input type="hidden" name="remark" value="">
-				
-				
+
 				<%-- cust_Email ------------------------------------------------- --%>
 				<%-- 중복 체크 기능이 필요없습니다. --%>
 			 	<%-- 이메일은 읽기 전용으로 설정하고, 숨겨서 넘기도록 합니다. --%>
@@ -91,7 +89,7 @@
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control" name="fakecust_Email" id="fakecust_Email"
-						value="${customer.cust_Email}" disabled="disabled"/>
+						value="${bean.cust_Email}" disabled="disabled"/>
 					</div>
 				</div>
 				

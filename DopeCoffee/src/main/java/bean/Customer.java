@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Customer {
 	private final String MUST_INPUT = "필수 입력 사항입니다.";
@@ -39,6 +40,19 @@ public class Customer {
 	private String remark;
 	
 	private int savepoint;
+	
+	private MultipartFile img ;	
+
+	public MultipartFile getImg() {
+		return img;
+	}
+
+	public void setImg(MultipartFile img) {
+		this.img = img;
+		if (this.img != null) {
+			this.cust_Pic = this.img.getOriginalFilename();
+		}
+	}
 	
 	
 	public String getCust_Email() {
