@@ -69,10 +69,11 @@
                                     <div class="contact-form">
                                         <c:set var="contextPath" value="<%=contextPath%>" scope="application" />
                                         <form id="contact-form" method="post" action="${contextPath}/onedayInsert.odc" role="form" enctype="multipart/form-data">
+                                            <input type="text" id="isCheck" class="isCheck" name="isCheck" value="false">
+                                            <input type="hidden" id="sell_email" name="sell_email" value="${sessionScope.loginfo_seller.sell_Email}">
                                             <div class="tab-content">
                                                 <!-- step1 -->
                                                 <div class="tab-pane active  wow fadeInDown"  data-wow-duration="500ms" data-wow-delay="0.6s" role="tabpanel" id="step1">
-                                                	<input type="text" id="isCheck" class="isCheck" name="isCheck" value="false">
                                                     <h4 class="subtitle">기본 정보</h4>
                                                     <!-- ------------------------------------- [주제 type section]--------------------------------------- -->
                                                     <div class="form-group">
@@ -269,7 +270,8 @@
                                                         <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
                                                     </ul>
                                                     <div id="submit">
-                                                    	<input type="submit" id="contact-submit" class="btn btn-default btn-send" value="등록 하기">
+                                                    	<input type="submit" id="contact-submit" class="btn btn-default btn-send" value="등록 하기" 
+                                                    	data-toggle="modal" data-target="#myModal" onclick="return submitCheck();">
                                                     </div>
                                                 </div>
                                                 

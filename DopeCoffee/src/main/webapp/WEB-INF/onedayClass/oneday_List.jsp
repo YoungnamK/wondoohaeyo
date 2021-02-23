@@ -53,7 +53,7 @@
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
-								<img src="images/oneday/${bean.main_image}" class="img-responsive" alt="image">
+								<img src="${contextPath}/images/oneday/${bean.main_image}" class="img-responsive" alt="image">
 								<div class="overlay">
 									<div class="buttons">
 										<a target="_blank" href="">자세히 보기</a>

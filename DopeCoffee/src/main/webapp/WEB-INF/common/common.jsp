@@ -207,7 +207,7 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         <c:if test="${whologin == 2}">
-                       					 <li><a href="${contextPath}/onedayInsert.odc">수업등록</a></li>
+                       						 <li><a href="${contextPath}/onedayInsert.odc" >수업등록</a></li>
                      					</c:if>
                      					<li><a href="${contextPath}/onedayList.odc">수업목록</a></li>
                                     </ul>
@@ -232,6 +232,32 @@
                 </nav>
                 <!-- /main nav -->
             </div>
-        </header>               
+        </header>    
+        <%-- =======================================
+             에러 메세지를 담아주는 Modal 부분 
+        	=========================================     
+        --%>
+        <c:if test="${not empty requestScope.message}">
+	        <div class="container">
+		
+			  <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog modal-sm">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+			        </div>
+			        <div class="modal-body">
+			          <p id="modal-body" style="font-size: 13px">${requestScope.message}</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">닫기</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>   
+		</c:if>      
         </body>
     </html>

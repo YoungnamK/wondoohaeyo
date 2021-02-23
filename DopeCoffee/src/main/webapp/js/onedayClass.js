@@ -1,9 +1,13 @@
 /* ===================
-	원데이 클래스 등록
+	원데이 클래스 등록[시작]
    ===================
 */
 
-/* ----------------- 상단 Step Process Bar --------------------- */
+/* ===================
+	상단 step process bar
+   ===================
+*/
+
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
@@ -38,79 +42,14 @@ $(document).ready(function () {
     });
 });
 
-/* -----------------다음 단계 버튼을 눌렀을 때----------------------------- */
-function next_check1(){
-	var valid_check = $('.valid_check').text();
-	
-	var type = $('#type option:selected').val();
-	var code = $('#code').val();
-	var classname = $('#classname').val();
-	var person = $('#person').val();
-	var oneprice = $('#oneprice').val();
-	var zipcode = $('#zipcode').val();
-	var address1 = $('#address1').val();
-	var address2 = $('#address2').val();
-	
-	// step1 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
-	if(type == '-' || code == '' || classname == '' ||
-	person == '' || oneprice == '' || zipcode == '' ||
-	address1 == '' || address2 == ''){
-		$('#isCheck').val('false');
-		$('button#modalbtn1').attr('data-toggle', 'modal');
-		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-		$('#modal-body').text('입력한 값을 확인하세요!');
-		
-	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
-		$('#isCheck').val('false');
-		$('button#modalbtn1').attr('data-toggle', 'modal');
-		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-		$('#modal-body').text('입력한 값을 확인하세요!');
-	}else{
-		$('#isCheck').val('true');
-		$('button#modalbtn1').removeAttr('data-toggle');
-		var result = nextTab(elem);
-		return result;
-	}
-}
-
-function next_check2(){
-	var enddate = $('#enddate').val();
-	var opentime = $('#opentime').val();
-	var closetime = $('#closetime').val();
-	
-	if(enddate == '' || opentime == '' || closetime == ''){
-		$('#isCheck').val('false');
-		alert($('#isCheck').val());
-		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-		$('#modal-body').text('입력한 값을 확인하세요!');
-	}else{
-		$('#isCheck').val('true');
-		$('button#modalbtn2').removeAttr('data-toggle');
-		var result = nextTab(elem);
-		return result;
-	}
-}
+/* ===============================
+	페이지가 로딩되었을 때 실행되는 함수
+   ===============================
+*/
 
 
-function nextTab(elem) {
-	var isCheck = $('#isCheck').val();
-	if(isCheck == 'true'){
-   		$(elem).next().find('a[data-toggle="tab"]').click();
-	}else{
-		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-		$('#modal-body').text('입력한 값을 확인하세요!');
-	}
-}
-	
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
-
-
-/* --------------------------------------------------------------- */
-
-/* ------------------ 현재 날짜를 구해주는 함수 --------------------------*/
 function today() {
+	// 당일 날짜를 구해서 startdate 파라미터 값으로 넣어줌 
 	var today = new Date();
 	var year = today.getFullYear(); //년도 
 	var _month = today.getMonth() + 1;
@@ -137,53 +76,18 @@ function today() {
 	
 	
 	
-	// 로드 되었을 때 , 추가 부분은 안보이게 처리 
+	// 로드 되었을 때 , 시간 추가 부분 + 세부 사진 부분 + 검색 부분은 안보이게함
 	$('#add1').hide(); // 추가시간
 	$('#add2').hide(); // 세부사진
-	
-	// 로드 되었을 때 , 검색 부분은 안보이게 처리
-	$('#search').hide(); // 검색 부분
+	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
 }
-/* + 버튼을 눌러야지 추가  section 이 보이게 처리 */
-$(document).ready(function(){ 
-	$('.time_add').click(function (){
-		
-		// step 2 
-		var enddate = $('#enddate').val();
-		var opentime = $('#opentime').val();
-		var closetime = $('#closetime').val();
-		
-		
-		if(enddate != '' && opentime != '' && closetime != ''){
-			$('section#add1').toggle();
-			$('p.time_add').removeAttr('data-toggle');
-		}else{
-			$('p.time_add').attr('data-toggle' , 'modal');
-			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-			$('#modal-body').text('기본 수업 정보를 먼저 입력하세요!');
-		}
-	});
-	
-	$('.pic_add').click(function (){
-		
-		// step 3 
-		var main_image = $('#main_image').val();
-		
-		if(main_image != ''){
-			$('section#add2').toggle();
-			$('p.pic_add').removeAttr('data-toggle');
-		}else{
-			$('p.pic_add').attr('data-toggle' , 'modal');
-			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-			$('#modal-body').text('기본 메인 사진을 먼저 업로드하세요!');
-		}
-	});
-});
 
 
+/* ===============================
+	코드 중복 검사 ajax 활용
+   ===============================
+*/
 
-/* --------------------------------------------------------------- */
-/* ------------------- 코드 중복 검사 ajax 활용 ------------------------*/
 function code_ajax() {
 	var code = $('#code').val();
 	//alert(code);
@@ -219,8 +123,12 @@ function code_ajax() {
 
 	});
 }
-/* --------------------------------------------------------------- */
-/* -----------------------우편번호 찾기------------------------------ */
+
+/* ===============================
+	우편번호 찾기
+   ===============================
+*/
+
 function zipCheck(){
 	var width = 500; //팝업의 너비
 	var height = 600; //팝업의 높이
@@ -256,68 +164,19 @@ function zipCheck(){
 	});
 }
 
-/* --------------------------------------------------------------- */
-/* ------------------- pickadate 날짜 지정 / pickatime 시간 지정--------------------------*/
-function date(){
-	$('.datepicker').pickadate({
-		  monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		  weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
-		  format: 'yyyymmdd', // 데이터 형식
-		  min: 1, // 당일 이후 부터 선택 가능
-	      max : false, // 값 선택은 최대로 지정
-		  showMonthsShort: true
-	});
-}
 
-function time(){
-	var from_$input = $('.input_from').pickatime(),
-    from_picker = from_$input.pickatime('picker')
+/* ===============================
+	 유효성 검사
+   ===============================
+*/
 
-	var to_$input = $('.input_to').pickatime({
-        formatLabel: function( timeObject ) {
-            var minObject = this.get( 'min' ),
-                hours = timeObject.hour - minObject.hour,
-                mins = ( timeObject.mins - minObject.mins ) / 60,
-                pluralize = function( number, word ) {
-                    return number + ' ' + ( number === 1 ? word : word + 's' )
-                }
-            return '<b>HH</b>:i <!i>A</!i> '
-        }
-    }),
-	to_picker = to_$input.pickatime('picker')
-	
-	// Check if there’s a “from” or “to” time to start with.
-	if ( from_picker.get('value') ) {
-	  to_picker.set('min', from_picker.get('select'))
-	}
-	if ( to_picker.get('value') ) {
-	  from_picker.set('max', to_picker.get('select') )
-	}
-
-	// When something is selected, update the “from” and “to” limits.
-	from_picker.on('set', function(event) {
-	  if ( event.select ) {
-	    to_picker.set('min', from_picker.get('select'))
-	  }
-	})
-	to_picker.on('set', function(event) {
-	  if ( event.select ) {
-	    from_picker.set('max', to_picker.get('select'))
-	  }
-	})
-	
-}
-
-/* ---------------------- 유효성 검사 --------------------------------*/
 var font_color = '#5080BF';
 var number_check = /^[0-9]*$/; // 숫자만 가능
 var string_check = /^[ㄱ-ㅎㅏ-ㅣ가-힣]$/; // 자음 , 모음으로 들어왔을 경우
 
 /*=====================
-	STEP1
+	유효성 검사 - STEP1
 =======================*/
-   
-
 
 $(document).ready(function(){ 
 	// 주제
@@ -519,7 +378,7 @@ $(document).ready(function(){
 	});
 	
 	/*=====================
-		STEP2
+		유효성 검사 - STEP2
 	=======================*/
    
 	// 수업 마감 일자
@@ -632,7 +491,228 @@ $(document).ready(function(){
 	
 	
 });
-/* -------------------------------------------------------------- */
+
+
+/*=======================================
+		다음 단계 및 최종 등록 버튼을 눌렀을 때
+	======================================*/
+
+//STEP 1 단계 다음 부분
+function next_check1(){
+	var valid_check = $('.valid_check').text();
+	
+	var type = $('#type option:selected').val();
+	var code = $('#code').val();
+	var classname = $('#classname').val();
+	var person = $('#person').val();
+	var oneprice = $('#oneprice').val();
+	var zipcode = $('#zipcode').val();
+	var address1 = $('#address1').val();
+	var address2 = $('#address2').val();
+	
+	// step1 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
+	if(type == '-' || code == '' || classname == '' ||
+	person == '' || oneprice == '' || zipcode == '' ||
+	address1 == '' || address2 == ''){
+		$('#isCheck').val('false');
+		$('button#modalbtn1').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+		
+	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
+		$('#isCheck').val('false');
+		$('button#modalbtn1').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+	}else{
+		$('#isCheck').val('true');
+		$('button#modalbtn1').removeAttr('data-toggle');
+		var result = nextTab(elem);
+		return result;
+	}
+}
+
+//STEP 2 단계 다음 부분
+function next_check2(){
+	var valid_check = $('.valid_check').text();
+	
+	var enddate = $('#enddate').val();
+	var opentime = $('#opentime').val();
+	var closetime = $('#closetime').val();
+	
+	
+	// step2 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
+	if(enddate == '' || opentime == '' || closetime == ''){
+		$('#isCheck').val('false');
+		$('button#modalbtn2').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
+		$('#isCheck').val('false');
+		$('button#modalbtn2').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+	}else{
+		$('#isCheck').val('true');
+		$('button#modalbtn2').removeAttr('data-toggle');
+		var result = nextTab(elem);
+		return result;
+	}
+}
+
+
+function nextTab(elem) {
+	var isCheck = $('#isCheck').val();
+	if(isCheck == 'true'){
+   		$(elem).next().find('a[data-toggle="tab"]').click();
+	}else{
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('입력한 값을 확인하세요!');
+	}
+}
+	
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+
+/*================================
+	유효성 검사 - STEP3 / 최종 등록 단계
+  ================================*/
+function submitCheck(){
+
+	// 메인 이미지가 등록되지 않았을때 , 
+	var main_image = $('#m_img').val();
+	if(main_image == ''){
+		$('#isCheck').val('false');
+		$('#contact-submit').attr('data-toggle', 'modal');
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('메인 화면에 쓰일 사진을 등록하세요!');
+		
+		return false;
+	}else if(main_image != ''){ // 메인 이미지는 등록되어 있고(추가 사진을 등록하려면 메인은 무조건 등록되어야함)
+		// 추가 이미지가 순차적으로 등록되지 않았을 때 
+		var detail_image1 =  $('#d_img1').val(); // 첫번째 추가 이미지 
+		var detail_image2 =  $('#d_img2').val(); // 두번째 추가 이미지
+		
+		if(detail_image1 == '' && detail_image2 != '' ){
+			$('#isCheck').val('false');
+			$('#contact-submit').attr('data-toggle', 'modal');
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('추가 사진은 순차적으로 등록하세요!');
+			
+			return false;
+		}
+
+	}else{
+		$('button#modalbtn2').removeAttr('data-toggle');
+		
+		return true;
+	}
+	
+	
+}
+
+
+/* ===================
+	+ 버튼을 눌러야지 추가  
+	section 이 보이게 처리
+   ===================
+*/
+$(document).ready(function(){ 
+	$('.time_add').click(function (){
+		
+		// step 2 
+		var enddate = $('#enddate').val();
+		var opentime = $('#opentime').val();
+		var closetime = $('#closetime').val();
+		
+		
+		if(enddate != '' && opentime != '' && closetime != ''){
+			$('section#add1').toggle();
+			$('p.time_add').removeAttr('data-toggle');
+		}else{
+			$('p.time_add').attr('data-toggle' , 'modal');
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('기본 수업 정보를 먼저 입력하세요!');
+		}
+	});
+	
+	$('.pic_add').click(function (){
+		
+		// step 3 
+		var main_image = $('#m_img').val();
+		//alert(main_image);
+		
+		if(main_image != ''){
+			$('section#add2').toggle();
+			$('p.pic_add').removeAttr('data-toggle');
+		}else{
+			$('p.pic_add').attr('data-toggle' , 'modal');
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('기본 메인 사진을 먼저 업로드하세요!');
+		}
+	});
+});
+
+
+
+
+/*===========================
+		pickadate 날짜 지정 
+		pickatime 시간 지정
+   ==========================*/
+function date(){
+	$('.datepicker').pickadate({
+		  monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		  weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
+		  format: 'yyyymmdd', // 데이터 형식
+		  min: 1, // 당일 이후 부터 선택 가능
+	      max : false, // 값 선택은 최대로 지정
+		  showMonthsShort: true
+	});
+}
+
+function time(){
+	var from_$input = $('.input_from').pickatime(),
+    from_picker = from_$input.pickatime('picker')
+
+	var to_$input = $('.input_to').pickatime({
+        formatLabel: function( timeObject ) {
+            var minObject = this.get( 'min' ),
+                hours = timeObject.hour - minObject.hour,
+                mins = ( timeObject.mins - minObject.mins ) / 60,
+                pluralize = function( number, word ) {
+                    return number + ' ' + ( number === 1 ? word : word + 's' )
+                }
+            return '<b>HH</b>:i <!i>A</!i> '
+        }
+    }),
+	to_picker = to_$input.pickatime('picker')
+	
+	// Check if there’s a “from” or “to” time to start with.
+	if ( from_picker.get('value') ) {
+	  to_picker.set('min', from_picker.get('select'))
+	}
+	if ( to_picker.get('value') ) {
+	  from_picker.set('max', to_picker.get('select') )
+	}
+
+	// When something is selected, update the “from” and “to” limits.
+	from_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    to_picker.set('min', from_picker.get('select'))
+	  }
+	})
+	to_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    from_picker.set('max', to_picker.get('select'))
+	  }
+	})
+	
+}
+
+
 /* ===================
 	메인 파일 업로드
    ===================
@@ -661,6 +741,7 @@ function readURL_main(input) {
 
 function removeUpload_main() {
   $('#M_image').replaceWith($('#M_image').clone());
+  $('#m_img').val('');
   $('#main_content').hide();
   $('#main_wrap').show();
 }
@@ -700,9 +781,11 @@ function readURL_detail1(input) {
 
 function removeUpload_detail1() {
   $('#D1_image').replaceWith($('#D1_image').clone());
+  $('#d_img1').val('');
   $('#detail1_content').hide();
   $('#detail1_wrap').show();
 }
+
 $('#detail1_wrap').bind('dragover', function () {
 		$('#detail1_wrap').addClass('image-dropping');
 	});
@@ -739,6 +822,7 @@ function readURL_detail2(input) {
 
 function removeUpload_detail2() {
   $('#D2_image').replaceWith($('#D2_image').clone());
+  $('#d_img2').val('');
   $('#detail2_content').hide();
   $('#detail2_wrap').show();
 }
@@ -749,10 +833,14 @@ $('#detail2_wrap').bind('dragover', function () {
 		$('#detail2_wrap').removeClass('image-dropping');
 });
 
+/* ===================
+	원데이 클래스 등록[끝]
+   ===================
+*/
 
 
 /* ===================
-	원데이 클래스 목록
+	원데이 클래스 목록[시작]
    ===================
 */
 
@@ -771,9 +859,6 @@ $(document).ready(function(){
 	// 최종 가격 문장
 	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + oneprice;
 	$('#list_price').html(result_oneprice);
-	
-	 
-		
 	
 	
 });
