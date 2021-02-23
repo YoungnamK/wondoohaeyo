@@ -14,8 +14,6 @@ int formright = twelve - formleft;
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath }/css/adminList-style.css">
 <script type="text/javascript" src="${contextPath}/js/noticedetail.js"></script>
-<link rel="stylesheet" href="/styles/vendor/jquery.fancybox.min.css">
- <script src="/scripts/vendor/jquery.fancybox.min.js"></script>
 <style type="text/css">
 .reply-write-title{
 	padding-top : 40px;
