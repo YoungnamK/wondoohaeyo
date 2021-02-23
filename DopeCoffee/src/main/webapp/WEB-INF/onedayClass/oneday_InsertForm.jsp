@@ -16,11 +16,13 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="block">
-						<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
-							data-wow-delay="0.3s">원데이 클래스 등록</h2>
-						<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.1s">
-							사업자님! 개설할 원데이 클래스를 등록하세요.
-						</p>
+						<div class="top">
+							<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
+								data-wow-delay="0.3s">원데이 클래스 등록</h2>
+							<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.1s">
+								사업자님! 개설할 원데이 클래스를 등록하세요.
+							</p>
+						</div>
 						
 						<div class="container">
 					        <div class="row">

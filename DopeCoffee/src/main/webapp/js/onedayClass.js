@@ -1,6 +1,7 @@
-/*
-원데이 클래스 등록 자바 스크립트 START
- */
+/* ===================
+	원데이 클래스 등록
+   ===================
+*/
 
 /* ----------------- 상단 Step Process Bar --------------------- */
 $(document).ready(function(){
@@ -139,6 +140,9 @@ function today() {
 	// 로드 되었을 때 , 추가 부분은 안보이게 처리 
 	$('#add1').hide(); // 추가시간
 	$('#add2').hide(); // 세부사진
+	
+	// 로드 되었을 때 , 검색 부분은 안보이게 처리
+	$('#search').hide(); // 검색 부분
 }
 /* + 버튼을 눌러야지 추가  section 이 보이게 처리 */
 $(document).ready(function(){ 
@@ -744,6 +748,41 @@ $('#detail2_wrap').bind('dragover', function () {
 	$('#detail2_wrap').bind('dragleave', function () {
 		$('#detail2_wrap').removeClass('image-dropping');
 });
+
+
+
+/* ===================
+	원데이 클래스 목록
+   ===================
+*/
+
+
+// 페이지가 로딩 되면 
+$(document).ready(function(){
+	// 가격 콤마 찍기
+	var oneprice = $('#list_price').text();
+	oneprice = addcomma(oneprice);
+	
+	function addcomma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	// 최종 가격 문장
+	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + oneprice;
+	$('#list_price').html(result_oneprice);
+	
+	 
+		
+	
+	
+});
+
+// 검색 버튼을 누르면 검색 창이 나오게 수정
+function search(){
+	$('#search').toggle();
+}
+
 
 
 

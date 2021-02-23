@@ -1,8 +1,10 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,15 +32,34 @@ public class OnedayClassDao {
 		return cnt;
 
 	}
+	public int SelectTotalCount(String mode, String keyword) {
+		// 원데이 클래스 전체 목록 
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("mode",mode);
+		map.put("keyword", keyword);
+		
+		int cnt = this.sql_session.selectOne(this.namespace + "SelectTotalCount", map);
+		
+		return cnt;
+	}
 
-	public List<OnedayClass> SelectAllData() {
+	public List<OnedayClass> SelectAllData(int offset, int limit, String mode, String keyword) {
 		// 원데이 클래스 목록
-		// rownum 컬럼을 알리아스로 지정해서 조회 했기 때문에 list 구조에 key, value 값 인 map 데이터를 넣어줘야 한다.
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("mode",mode);
+		map.put("keyword", keyword);
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		// key는 컬럼명 String , value는 Object (컬럼 타입은 String , int , date 가 섞여 있기 때문이다)
-		List<OnedayClass> lists = this.sql_session.selectList(this.namespace + "SelectAllData");
+		List<OnedayClass> lists = this.sql_session.selectList(this.namespace + "SelectAllData", map, rowBounds);
+		
+		
 
 		return lists;
 	}
+
 
 }

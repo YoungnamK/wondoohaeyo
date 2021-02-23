@@ -369,7 +369,8 @@ figure figcaption h4 {
   margin: 0;
 }
 figure figcaption h4 a {
-  color: #02bdd5;
+  color: #5080BF;
+  font-weight: bold;
 }
 figure figcaption p {
   font-size: 14px;
