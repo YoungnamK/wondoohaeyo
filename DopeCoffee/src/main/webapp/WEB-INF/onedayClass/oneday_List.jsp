@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="./../common/common.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
-								<img src="${contextPath}/images/oneday/${bean.main_image}" class="img-responsive" alt="image">
+								<img src="${applicationScope.uploadPath}/${bean.main_image}" class="img-responsive" alt="image">
 								<div class="overlay">
 									<div class="buttons">
 										<a target="_blank" href="">자세히 보기</a>

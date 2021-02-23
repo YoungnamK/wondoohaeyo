@@ -33,74 +33,70 @@ public class OnedayClassInsertController extends SuperClass {
 
 	@GetMapping(value = command)
 	public String doGet(HttpServletRequest request) {
-		
-		// 로그인을 한 사업자 정보 가져오기 
-		HttpSession session =  request.getSession();
-		
-		Seller bean = (Seller)session.getAttribute("loginfo_seller");
-		
-		if (bean.getSell_Status().equals("승인")) {
-			
-			System.out.println("승인된 사업자");
-			return get_gotopage; // 등록 화면으로 보냄
-		}else {
-			System.out.println("로그인된 이메일 : " + bean.getSell_Email());
-			System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
-			System.out.println("승인 안된 사업자");
-			// 에러 메세지 바인딩
-			request.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
-			return redirect; // 메인 화면으로 보냄
-		}
-		
-		
+
+		/*
+		 * // 로그인을 한 사업자 정보 가져오기 HttpSession session = request.getSession();
+		 * 
+		 * Seller bean = (Seller) session.getAttribute("loginfo_seller");
+		 * 
+		 * if (bean.getSell_Status().equals("승인")) {
+		 * 
+		 * System.out.println("승인된 사업자"); return get_gotopage; // 등록 화면으로 보냄 } else {
+		 * System.out.println("로그인된 이메일 : " + bean.getSell_Email());
+		 * System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
+		 * System.out.println("승인 안된 사업자"); // 에러 메세지 바인딩
+		 * request.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
+		 * return redirect; // 메인 화면으로 보냄 }
+		 */
+		return get_gotopage;
+
 	}
 
 	// 유효성 검사는 jsp 단 자바스크립트로 진행하였다.
 	@PostMapping(value = command)
-	public ModelAndView doPost(
-			@RequestParam (value = "sell_email" , required = true) String sell_email,
+	public ModelAndView doPost(@RequestParam(value = "sell_email", required = true) String sell_email,
 			OnedayClass oneday, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
-		oneday.setSell_email(sell_email);
-		System.out.println(oneday.toString());
-		
-		int cnt = -1;
-		cnt = this.onedayDao.InsertData(oneday);
-		
-		if (cnt > 0) {
-			System.out.println("원데이 클래스 등록 성공");
-			
-			// 파일 업로드 작업
-			MultipartFile multi_file = oneday.getM_img(); // 메인 이미지 
-			String uploadPath = "/upload";
-			String realPath = request.getRealPath(uploadPath);
-			System.out.println("실제 경로 출력 : " + realPath);
-			
-			// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return 
+
+		// 파일 업로드 작업
+		MultipartFile multi_file = oneday.getM_img(); // 메인 이미지
+		String uploadPath = "/upload"; // 파일이 저장되는 폴더
+		String realPath = request.getRealPath(uploadPath);
+		System.out.println("실제 경로 출력 : " + realPath);
+
+		try {
+			// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
 			File destination = utility.Utility.getUploadedFileInfo(multi_file, realPath);
-			
-			try {
-				multi_file.transferTo(destination);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+			multi_file.transferTo(destination); // 파일 업로드
+
+			System.out.println(this.getClass() + "원데이 클래스 추가 하기");
+
+			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+			oneday.setMain_image(destination.getName());
+			oneday.setSell_email(sell_email);
+			System.out.println(oneday.toString());
+
+			int cnt = -1;
+			cnt = this.onedayDao.InsertData(oneday);
+
+			if (cnt > 0) {
+				System.out.println("원데이 클래스 등록 성공");
+				mav.setViewName(post_gotopage);
+			} else {
+				System.out.println("원데이 클래스 등록 실패");
+				mav.setViewName(get_gotopage);
 			}
-			
-			
-			
-			
-			mav.setViewName(post_gotopage);
-			
-			
-			
-		}else {
-			System.out.println("원데이 클래스 등록 실패");
+
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
 			mav.setViewName(get_gotopage);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			mav.setViewName("redirect:/onedayInsert.odc");
 		}
+
 		return mav;
 	}
 }
