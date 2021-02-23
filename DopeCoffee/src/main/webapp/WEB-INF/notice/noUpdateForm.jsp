@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="${contextPath}/js/noticeupdate.js"></script>
+
 <style type="text/css">
 body {
 	padding-top: 100px;
@@ -36,7 +39,7 @@ body {
 												scope="application" />
 											<form id="noti-form" method="post"
 												action="${contextPath}/noupdate.no" role="form"
-												enctype="multipart/form-data">
+												enctype="multipart/form-data" onsubmit="return chk_submit();">
 												<input type="hidden" name="pageNumber"
 													value="${param.pageNumber}"> <input type="hidden"
 													name="pageSize" value="${param.pageSize}"> <input
@@ -71,7 +74,7 @@ body {
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
 													<div class="form-group">
 														<select class="form-control" name="fix" id="fix">
-															<option class="form-control" value="33">===중요여부를 선택하세요===</option>
+															<option class="form-control" value="">===중요여부를 선택하세요===</option>
 															<option class="form-control" value="0">일반</option>
 															<option class="form-control" value="1">중요</option>
 														</select> <span class="valid_check" id="err_fix"></span>
@@ -87,7 +90,7 @@ body {
 													<ul class="list-inline pull-right">
 														<li class="step-li"><input type="submit"
 															id="noti-submit" class="btn btn-default btn-send"
-															value="등록 하기"></li>
+															value="수정 하기" data-toggle="modal" data-target="#myModal"></li>
 													</ul>
 												</div>
 
@@ -105,73 +108,24 @@ body {
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript">
-		var font_color = '#5080BF';
-
-		$(document).ready(function() {
-			$("#title").keyup(function() {
-				if ($(this).val().length < 3) {
-					$("#err_title").text('3글자 이상 입력하세요!');
-					$("#err_title").css("color", font_color);
-				} else {
-					$("#err_title").text('');
-				}
-
-			});
-			$("#title").blur(function() {
-				var classname = $('#title').val();
-
-				if (classname.length == 0) {
-					$("#err_title").text('제목을 입력하세요!');
-					$("#err_title").css("color", font_color);
-				} else {
-					$("#err_title").text('');
-				}
-			});
-
-			$("#content").keyup(function() {
-				if ($(this).val().length < 10) {
-					$("#err_content").text('내용은 10글자 이상 입력하세요!');
-					$("#err_content").css("color", font_color);
-				} else {
-					$("#err_content").text('');
-				}
-
-			});
-			$("#content").blur(function() {
-				var classname = $('#content').val();
-
-				if (classname.length == 0) {
-					$("#err_content").text('내용을 입력하세요!');
-					$("#err_content").css("color", font_color);
-				} else {
-					$("#err_content").text('');
-				}
-			});
-
-		});
-
-		$("select#fix").click(function() {
-			var fix = $('#fix option:selected').val();
-			if (fix == "33") {
-				$("#err_fix").text('중요도를 선택하세요!');
-				$("#err_fix").css("color", font_color);
-			} else {
-				$("#err_fix").text('');
-			}
-		});
-		
-		
-		function getoption(){
-			var length = document.getElementById("fix").options.length;
-			for(i = 0 ; i < length ; i++){
-				if(document.getElementById("fix").options[i].value == "${bean.fix}"){
-					document.getElementById("fix").options[i].selected = true;
-					break;
-				}
-			}
-		};
-	</script>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+				</div>
+				<div class="modal-body">
+					<p id="modal-body" style="font-size: 13px"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						style="font-size: 13px" id="modal-btn-ok">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
