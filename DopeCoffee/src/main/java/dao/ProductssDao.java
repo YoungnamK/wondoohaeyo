@@ -4,16 +4,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import bean.Product;
+import bean.Products;
 @Component("prdao")
-public class ProductDao {
+public class ProductssDao {
 	private final String namespace = "NsMapperProduct.";
 	
 	@Autowired
 	private SqlSession sql_session;
 
-	public int InsertData(Product product) {
-		// 원데이 클래스 등록
+	public int InsertData(Products product) {
+		
 		int cnt = -1;
 		cnt = this.sql_session.insert(this.namespace + "InsertData", product);
 		return cnt;

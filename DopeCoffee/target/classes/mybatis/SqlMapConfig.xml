@@ -19,7 +19,7 @@
 		<!-- <typeAlias alias="MyShopping" type="bean.Shopping" /> -->
 		<!-- <typeAlias alias="MyOrder" type="bean.Order" /> -->
 		<!-- <typeAlias alias="MyProductPay" type="bean.ProductPay" /> -->
-		 <typeAlias alias="MyProducts" type="bean.Product" /> 
+		 <typeAlias alias="MyProducts" type="bean.Products" /> 
 		 <typeAlias alias="MyCoffee" type="bean.Coffee" />
 		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
 		<!-- <typeAlias alias="MyOnedayorder" type="bean.Onedayorder" /> -->

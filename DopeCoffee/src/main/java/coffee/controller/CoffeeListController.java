@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Coffee;
-import bean.Product;
+import bean.Products;
 import common.controller.SuperClass;
 import dao.CoffeeDao;
 import utility.FlowParameters;

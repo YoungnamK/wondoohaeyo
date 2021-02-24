@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,13 +18,14 @@ public class CoffeeDao {
 	private final String namespace = "MapperCoffee.";
 	
 	@Autowired
-	SqlSessionTemplate cofe;
+	private SqlSession sql_session;
 	
 	 public CoffeeDao() {}
 	
 	public int InsertData(Coffee bean) {
-		System.out.println(this.getClass() + " : 상품을 등록합니다.");
-		return this.cofe.insert(namespace + "InsertData" , bean);		
+		int cnt = -1;
+		cnt = this.sql_session.insert(this.namespace + "InsertData", bean);
+		return cnt;	
 	}
 
 //	public int SelectTotalCount(String mode, String keyword) {

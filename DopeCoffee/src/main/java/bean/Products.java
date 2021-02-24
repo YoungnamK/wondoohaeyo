@@ -1,22 +1,22 @@
 package bean;
 
-public class Product {
+public class Products {
 	private int p_no;							   
 	private int p_type;							   
 	private String p_seller_email;						  
 	private String p_name;						   
-	private String p_price;					  
+	private int p_price;					  
 	private String p_origin;	
-	private String p_qty;							    
+	private int p_qty;							    
 	private String p_image;							   
 	private String p_image2;							    
 	private String p_image3;							   
 	private String remark;
 		
-	public Product() {}
+	public Products() {}
 	
-	public Product(int p_no, int p_type, String p_seller_email, String p_name, String p_price, String p_origin,
-			String p_qty, String p_image, String p_image2, String p_image3, String ramark) {
+	public Products(int p_no, int p_type, String p_seller_email, String p_name, int p_price, String p_origin,
+			int p_qty, String p_image, String p_image2, String p_image3, String remark) {
 		super();
 		this.p_no = p_no;
 		this.p_type = p_type;
@@ -28,7 +28,7 @@ public class Product {
 		this.p_image = p_image;
 		this.p_image2 = p_image2;
 		this.p_image3 = p_image3;
-		this.remark = ramark;
+		this.remark = remark;
 	}
 	@Override
 	public String toString() {
@@ -60,10 +60,10 @@ public class Product {
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
 	}
-	public String getP_price() {
+	public int getP_price() {
 		return p_price;
 	}
-	public void setP_price(String p_price) {
+	public void setP_price(int p_price) {
 		this.p_price = p_price;
 	}
 	public String getP_origin() {
@@ -72,10 +72,10 @@ public class Product {
 	public void setP_origin(String p_origin) {
 		this.p_origin = p_origin;
 	}
-	public String getP_qty() {
+	public int getP_qty() {
 		return p_qty;
 	}
-	public void setP_qty(String p_qty) {
+	public void setP_qty(int p_qty) {
 		this.p_qty = p_qty;
 	}
 	public String getP_image() {

@@ -1,4 +1,4 @@
-package product.controller;
+package products.controller;
 
 
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Coffee;
-import bean.Product;
+import bean.Products;
 import common.controller.SuperClass;
 
-import dao.ProductDao;
+import dao.ProductssDao;
 
 @Controller
 public class ProductInsertController extends SuperClass {
@@ -26,12 +26,18 @@ public class ProductInsertController extends SuperClass {
 	private final String command ="/prInsert.pr";	
 	private final String get_gotopage = "prInsert";
 	private final String post_gotopage = "prList";
+	private ModelAndView mav = null ;
 
 
 	@Autowired
 	@Qualifier("prdao")	//(변경 요망) 여기에 지시한 이름의 빈으로 매칭됨
-	private ProductDao pdao ;
+	private ProductssDao pdao ;
 	
+	@ModelAttribute("product")
+	public Products myproduct() {
+		System.out.println("@ModelAttribute(\"product\")");
+		return new Products();
+	}
 
 
 	@GetMapping(value = command)
@@ -40,18 +46,14 @@ public class ProductInsertController extends SuperClass {
 	}
 	
 	@PostMapping(value = command)
-	public ModelAndView doPost(@Valid Product product, BindingResult errors) {
+	public ModelAndView doPost(@Valid Products product, BindingResult errors) {
 		ModelAndView mav = new ModelAndView();
 
 		System.out.println(product.toString());
 
-		if (errors.hasErrors()) { // 유효성 검사 실패
-			System.out.println("유효성 검사 실패됨");
-			System.out.println(errors.toString());
 
-			mav.setViewName(get_gotopage);
 
-		} else {// 유효성 검사 성공
+		
 			System.out.println("유효성 검사 통과");
 			int cnt = -1;
 			cnt = pdao.InsertData(product);
@@ -64,7 +66,7 @@ public class ProductInsertController extends SuperClass {
 				mav.setViewName(get_gotopage);
 			}
 
-		}
+		
 
 		return mav;
 	}

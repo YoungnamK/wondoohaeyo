@@ -16,7 +16,7 @@ public class Coffee {
 	//@NotEmpty ( message="상품의 이름을 " + MUST_INPUT)
 	private String c_name;					
 	//@NotEmpty (message = "상품의 가격을 " + MUST_INPUT)
-	private String c_price;				
+	private int c_price;				
 	//@NotEmpty (message ="상품의 원산지를 " + MUST_INPUT)
 	private String c_origin;			
 	//@Min(value=234 ,message = "상품의 무게는 최소 235g이상으로 " + MUST_INPUT)
@@ -31,7 +31,8 @@ public class Coffee {
 	private int c_qty;							
 	private String c_image;						  
 	private String c_image2;						 
-	private String c_image3;							
+	private String c_image3;
+	
 	private String ramark;
 	public Coffee() {}
 
@@ -67,7 +68,7 @@ public class Coffee {
 	}
 
 
-	public Coffee(int c_no, int c_type, String c_seller_email, String c_name, String c_price, String c_origin,
+	public Coffee(int c_no, int c_type, String c_seller_email, String c_name, int c_price, String c_origin,
 			int c_weight, String c_roasting, String c_blending, String c_crushing_status, int c_qty, String c_image,
 			String c_image2, String c_image3, String ramark, MultipartFile dope) {
 		super();
@@ -114,10 +115,10 @@ public class Coffee {
 	public void setC_name(String c_name) {
 		this.c_name = c_name;
 	}
-	public String getC_price() {
+	public int getC_price() {
 		return c_price;
 	}
-	public void setC_price(String c_price) {
+	public void setC_price(int c_price) {
 		this.c_price = c_price;
 	}
 	public String getC_origin() {

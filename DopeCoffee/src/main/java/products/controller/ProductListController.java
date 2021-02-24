@@ -1,4 +1,4 @@
-package product.controller;
+package products.controller;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Coffee;
-import bean.Product;
+import bean.Products;
 import common.controller.SuperClass;
 import dao.CoffeeDao;
-import dao.ProductDao;
+import dao.ProductssDao;
 import utility.FlowParameters;
 import utility.Paging;
 
@@ -28,7 +28,7 @@ public class ProductListController extends SuperClass {
 	
 	@Autowired
 	@Qualifier("prdao")	//(변경 요망)
-	private ProductDao pdao ;
+	private ProductssDao pdao ;
 	
 	public ProductListController() {
 		//(변경 요망)
