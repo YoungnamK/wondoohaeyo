@@ -33,6 +33,7 @@ $(document).ready(function(){ // 페이지 로딩 될때
 		
 		
 		if(c_name.length < 4 ){
+			var c_name = $("#c_name").val();
 			$('#err_c_name').text('상품명은 4글자이상으로 해주세요.');
 			$('#err_c_name').css('color' , font_color);
 		}else {
@@ -51,9 +52,6 @@ $(document).ready(function(){ // 페이지 로딩 될때
 			$('#err_c_name').css('color' , font_color);
 		}else if(c_name.length != 0){
 			$('err_c_name').text('');
-		}else if(!c_name_check.test(c_name)){
-			$('#err_c_name').text('상품명은 숫자는 사용할 수 없습니다.');
-			$('#err_c_name').css('color' , font_color);			
 		}
 	});
 	
@@ -66,6 +64,8 @@ $(document).ready(function(){ // 페이지 로딩 될때
 		if(c_price.length == 0){
 			$('#err_c_price').text('상품의 가격을 입력하여 주세요.');
 			$('#err_c_price').css('color' , font_color);
+		}else if(c_price.length != 0){
+			$('#err_c_price').text('');
 		}
 	});
 	
@@ -79,22 +79,26 @@ $(document).ready(function(){ // 페이지 로딩 될때
 	
 	//원산지
 	
-	var c_origin = $('#c_origin').val();
+	
 	
 	$("#c_origin").blur(function(){
+		var c_origin = $('#c_origin').val();
 			if(c_origin.length == 0){
 			$('#err_c_origin').text('원산지를 입력해주세요.');			
 			$('#err_c_origin').css('color' , font_color);
+		}else if(c_qty.length != 0){
+			$('#err_c_origin').text('');
 		}
 	});
 	
 	//무게
-		var c_weight = $('#c_weight').val();
+		
 	$('#c_weight').blur(function(){
+		var c_weight = $('#c_weight').val();
 		if(c_weight.length == 0){
 			$('#err_c_weight').text('재고를 입력해주세요.');			
 			$('#err_c_weight').css('color' , font_color);	
-		}else if(c_qty.length != 0){
+		}else if(c_weight.length != 0){
 			$('#err_c_weight').text('');
 		}
 
@@ -105,9 +109,12 @@ $(document).ready(function(){ // 페이지 로딩 될때
 	var c_roasting = $('#c_roasting').val();
 	
 	$("#c_roasting").blur(function(){
+		var c_roasting = $('#c_roasting').val();
 			if(c_origin.length == 0){
 			$('#err_c_roasting').text('로스팅여부를 입력해주세요.');			
 			$('#err_c_roasting').css('color' , font_color);
+		}else if(c_roasting.length != 0){
+			$('#err_c_roasting').text('');
 		}
 	});
 	
@@ -115,9 +122,12 @@ $(document).ready(function(){ // 페이지 로딩 될때
 	var c_blending = $('#c_blending').val();
 	
 	$("#c_blending").blur(function(){
+		var c_blending = $('#c_blending').val();
 			if(c_blending.length == 0){
 			$('#err_c_blending').text('블렌딩 종류를 입력해주세요.');			
 			$('#err_c_blending').css('color' , font_color);
+		}else if(c_blending.length != 0){
+			$('#err_c_blending').text('');
 		}
 	});
 	//분쇄타입
@@ -134,8 +144,9 @@ $(document).ready(function(){ // 페이지 로딩 될때
 	
 	//재고 수량
 	
-	var c_qty = $('#c_qty').val();
+
 	$('#c_qty').blur(function(){
+			var c_qty = $('#c_qty').val();
 		if(c_qty.length == 0){
 			$('#err_c_qty').text('재고를 입력해주세요.');			
 			$('#err_c_qty').css('color' , font_color);	
@@ -146,6 +157,7 @@ $(document).ready(function(){ // 페이지 로딩 될때
 		});		
 	
 		$('#c_qty').keyup(function(){
+				var c_qty = $('#c_qty').val();
 			if(c_qty < 10){
 			$('#err_c_qty').text('재고수량은 10개이상 입력해주세요.');			
 			$('#err_c_qty').css('color' , font_color);

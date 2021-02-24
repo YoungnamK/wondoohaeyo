@@ -2,6 +2,10 @@ package products.controller;
 
 
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Coffee;
@@ -46,15 +50,24 @@ public class ProductInsertController extends SuperClass {
 	}
 	
 	@PostMapping(value = command)
-	public ModelAndView doPost(@Valid Products product, BindingResult errors) {
+	public ModelAndView doPost(@ModelAttribute("product") @Valid Products product, BindingResult errors,
+			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-
-		System.out.println(product.toString());
-
-
-
 		
-			System.out.println("유효성 검사 통과");
+		// 파일 업로드 작업
+		MultipartFile multi_file = product.getM_img(); // 메인 이미지
+		String uploadPath = "/upload"; // 파일이 저장되는 폴더
+		String realPath = request.getRealPath(uploadPath);
+		System.out.println("실제 경로 출력 : " + realPath);
+
+		try {
+			// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
+			File destination = utility.Utility.getUploadedFileInfo(multi_file, realPath);
+
+			multi_file.transferTo(destination); // 파일 업로드
+			
+		System.out.println(product.toString());
+		
 			int cnt = -1;
 			cnt = pdao.InsertData(product);
 
@@ -66,7 +79,13 @@ public class ProductInsertController extends SuperClass {
 				mav.setViewName(get_gotopage);
 			}
 
-		
+		}catch (IllegalStateException e1) {
+			e1.printStackTrace();
+			mav.setViewName(get_gotopage);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			mav.setViewName("redirect:/prInsert.pr");
+		}
 
 		return mav;
 	}

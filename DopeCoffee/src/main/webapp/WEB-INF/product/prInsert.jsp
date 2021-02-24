@@ -53,13 +53,13 @@
                                         <span class="valid_check" id="err_p_qty"></span>
                                     </div>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="text" placeholder="이미지" class="form-control" name="p_image" id="p_image">                                       
+                                        <input type="file" placeholder="이미지" class="form-control" name="p_image" id="p_image">                                       
                                     </div>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="text" placeholder="이미지" class="form-control" name="p_image2" id="p_image2">
+                                        <input type="file" placeholder="이미지" class="form-control" name="p_image2" id="p_image2">
                                     </div>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="text" placeholder="이미지" class="form-control" name="p_image3" id="p_image3">
+                                        <input type="file" placeholder="이미지" class="form-control" name="p_image3" id="p_image3">
                                     </div>
                                     
                                     <div id="submit" class="wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">

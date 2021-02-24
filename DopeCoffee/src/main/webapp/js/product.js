@@ -49,8 +49,11 @@ $(document).ready(function(){ // 페이지 로딩 될때
 		if(p_name.length == 0){
 			$('#err_p_name').text('상품명을 입력해주세요.');			
 			$('#err_p_name').css('color' , font_color);
-		}else{
+		}else if(p_name.length != 0){
 			$('err_p_name').text('');
+		}else if(!p_name_check.test(p_name)){
+			$('#err_p_name').text('상품명은 숫자는 사용할 수 없습니다.');
+			$('#err_p_name').css('color' , font_color);			
 		}
 	});
 	
@@ -63,13 +66,11 @@ $(document).ready(function(){ // 페이지 로딩 될때
 		if(p_price.length == 0){
 			$('#err_p_price').text('상품의 가격을 입력하여 주세요.');
 			$('#err_p_price').css('color' , font_color);
-		}else if (p_price.length != 0){
-				$('#err_p_price').text('');				
-			}
+		}
 	});
 	
 		$("#p_price").keyup(function(){
-		var p_price = $("#p_price").val();
+		
 		if(p_price.length == 0){
 			$('#err_p_price').text('상품의 가격을 입력하여 주세요.');
 			$('#err_p_price').css('color' , font_color);
@@ -85,7 +86,7 @@ $(document).ready(function(){ // 페이지 로딩 될때
 			if(p_origin.length == 0){
 			$('#err_p_origin').text('원산지를 입력해주세요.');			
 			$('#err_p_origin').css('color' , font_color);			
-			}else if (p_origin.length != 0){
+			}else if (p_qty.length != 0){
 				$('#err_p_origin').text('');				
 			}
 		

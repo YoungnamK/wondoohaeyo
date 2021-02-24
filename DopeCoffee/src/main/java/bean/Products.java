@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Products {
 	private int p_no;							   
 	private int p_type;							   
@@ -30,6 +32,24 @@ public class Products {
 		this.p_image3 = p_image3;
 		this.remark = remark;
 	}
+	
+	private String main_image; // 메인 사진
+
+	private MultipartFile m_img;
+
+	public MultipartFile getM_img() {
+		return m_img;
+	}
+
+	public void setM_img(MultipartFile m_img) {
+		this.m_img = m_img;
+
+		if (this.m_img != null) {
+			this.main_image = this.m_img.getOriginalFilename();
+		}
+
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [p_no=" + p_no + ", p_type=" + p_type + ", p_seller_email=" + p_seller_email + ", p_name="
