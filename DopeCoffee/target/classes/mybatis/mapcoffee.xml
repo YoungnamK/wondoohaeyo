@@ -16,7 +16,7 @@
 		from coffees
 	</sql> 	
 		
-	<!--<select id="SelectTotalCount" resultType="int">
+	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from coffees	
 		<if test="mode == 'c_name'">
 			where c_name like #{keyword}
@@ -29,7 +29,23 @@
 		</if>
 	</select>
 	
-		<select id="SelectDataList" resultType="MyCoffee">
+		<!-- 주제 / 주소 1 / 클래스명으로 목록 조회함 -->
+	<select id="SelectAllData" resultType="MyOnedayclass">
+		<include refid="myselect"/>
+		<if test="mode == type">
+			where c_name like #{keyword}
+		</if>
+		<if test="mode == address1">
+			where c_origin like #{keyword}
+		</if>
+		<if test="classname == address1">
+			where c_blending like #{keyword}
+		</if>
+		order by rownum desc
+	</select>
+	
+	
+	<!--  	<select id="SelectDataList" resultType="MyCoffee">
 		<include refid="myselect" />
 		<if test="mode == 'c_name'">
 			where c_name like #{keyword}
@@ -42,11 +58,6 @@
 		</if>
 		order by c_no desc
 	</select>	  -->	
-<!-- 	<select id="GetList" parameterType="String" resultType="MyCheckes">
-		select *
-		from checkes
-		where module = #{module} and field = #{field} and kind = #{kind}
-		order by mykey asc
-	</select> -->
+
 		
 	</mapper>

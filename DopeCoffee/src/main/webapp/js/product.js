@@ -16,7 +16,7 @@ $(document).ready(function(){ // 페이지 로딩 될때
    	var p_type = $('#p_type option:selected').val(); 
 	// alert(p_type);
 	
-	if(p_type == '-'){
+	if(p_type == 0){
 		$('#err_p_type').text('주제를 선택하세요!');
 		$('#err_p_type').css('color' , font_color);
 	}else{

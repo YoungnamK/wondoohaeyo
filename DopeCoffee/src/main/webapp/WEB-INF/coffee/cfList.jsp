@@ -1,7 +1,7 @@
-<%@page import="utility.Paging"%>
-<%@page import="dao.CoffeeDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      <%@ include file="./../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -15,171 +15,75 @@
 </style>
 
 </head>
-<body>
- <!-- 
-        ================================================== 
-            Global Page Section Start
-        ================================================== -->
-        <section class="global-page-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="block">
-                            <h2>상품 전체목록</h2>
-                            <ol class="breadcrumb">
-                                <li>
-                                    <a href="index.html">
-                                        <i class="ion-ios-home"></i>
-                                        Home
-                                    </a>
-                                </li>
-                                <li class="active">Contact</li>
-                            </ol>
-                        </div>
-                    </div>
+<body onload="today();">
+<section class="works service-page">
+		
+		<div class="container">
+			<div class="top">
+				<h2 class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">coffee bean</h2>
+				<span class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.1s"
+				id="search_btn" data-toggle="tooltip" title="클릭하세요!" onclick="search();">
+					<i class="fas fa-search"></i> 검색
+				</span>
+				<br>
+			</div>
+		
+		
+		   <%-- [검색 모드] 
+		   		==== 시작 ==== 
+		   	--%>	   
+	        <form id="contact-form search" method="get" action="${contextPath}/cfList.cf" role="form">
+	        	<div id="search">
+	               <select class="form-control" name="mode" id="mode" data-toggle="tooltip" title="검색할 조건을 선택하세요!">
+	                      <option class="form-control" value="all">전체</option>
+	                      <option class="form-control" value="c_type">타입</option>
+	                      <option class="form-control" value="c_origin">나라별</option>
+	                      <option class="form-control" value="c_weight">무게</option>
+	               </select>
+	               <input type="text" class="form-control" placeholder="검색할 내용을 입력하세요" id="keyword" name="keyword">
+	               <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
-            </div>   
-        </section><!--/#page-header-->
-        
-      <!-- best_burgers_area_start  -->
-    <div class="best_burgers_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section_title text-center mb-80">
-                        <span>Burger Menu</span>
-                        <h3>Best Ever Burgers</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/1.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Beefy Burgers</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/2.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Burger Boys</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/3.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Burger Bizz</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/4.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Crackles Burger</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/5.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Bull Burgers</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/6.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Rocket Burgers</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/7.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Smokin Burger</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/8.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Delish Burger</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="images/coffee/coffeebean01.jpg" width="10%" height="40" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Crackles Burger</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="img/burger/5.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h3>Bull Burgers</h3>
-                            <p>Great way to make your business appear trust and relevant.</p>
-                            <span>$5</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- best_burgers_area_end  -->
+            </form>
+            <%-- ==== 끝 ==== --%>
+			<p class="list_top">${requestScope.totalCount}개의 수업</p>
+			<c:forEach var="bean" items="${requestScope.lists}">
+				<div class="col">
+					<div class="col-sm-4">
+						<input type="hidden" value="${bean.c_type}"> <!-- 주제 -->
+						<input type="hidden" value="${bean.c_origin}"> <!-- 주소 지역 -->
+						<figure class="wow fadeInLeft animated portfolio-item"
+							data-wow-duration="500ms" data-wow-delay="0ms">
+							<div class="img-wrapper">
+								<img src="${applicationScope.uploadPath}/${bean.c_image}" class="img-responsive" alt="image">
+								<div class="overlay">
+									<div class="buttons">
+										<a target="_blank" href="">자세히 보기</a>
+										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
+											<a target="_blank" href="">관리</a>
+										</c:if>
+									</div>
+								</div>
+							</div>
+							<figcaption>
+								<h4>
+									<a href="#detail.jsp">${bean.c_name}</a>
+								</h4>
+								<div class="list_bottom">
+									<p id="list_price">
+										<i class="fas fa-won-sign"></i>&nbsp;${bean.c_price}
+									</p>
+									
+								</div>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div align="center">
+			<footer>${requestScope.pagingHtml}</footer>
+		</div>	
+	</section>
         
         
 

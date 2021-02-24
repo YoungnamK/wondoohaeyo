@@ -15,41 +15,26 @@ public class Products {
 	private String p_image3;							   
 	private String remark;
 		
-	public Products() {}
-	
-	public Products(int p_no, int p_type, String p_seller_email, String p_name, int p_price, String p_origin,
-			int p_qty, String p_image, String p_image2, String p_image3, String remark) {
-		super();
-		this.p_no = p_no;
-		this.p_type = p_type;
-		this.p_seller_email = p_seller_email;
-		this.p_name = p_name;
-		this.p_price = p_price;
-		this.p_origin = p_origin;
-		this.p_qty = p_qty;
-		this.p_image = p_image;
-		this.p_image2 = p_image2;
-		this.p_image3 = p_image3;
-		this.remark = remark;
-	}
-	
-	private String main_image; // 메인 사진
+	public Products() {}	
 
-	private MultipartFile m_img;
+	
+	
 
-	public MultipartFile getM_img() {
-		return m_img;
+	private MultipartFile p_img;
+
+
+
+	public MultipartFile getP_img() {
+		return p_img;
 	}
 
-	public void setM_img(MultipartFile m_img) {
-		this.m_img = m_img;
-
-		if (this.m_img != null) {
-			this.main_image = this.m_img.getOriginalFilename();
+	public void setP_img(MultipartFile p_img) {
+		if (this.p_img != null) {
+			this.p_image = this.p_img.getOriginalFilename();
 		}
-
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "Product [p_no=" + p_no + ", p_type=" + p_type + ", p_seller_email=" + p_seller_email + ", p_name="

@@ -195,7 +195,7 @@
                                         <c:if test="${whologin == 0 || whologin == 2}">
                         				<li><a href="${contextPath}/cfInsert.cf">상품 등록</a></li>
                      					</c:if>
-					                     <li><a href="${contextPath}/cfList.cf?c_type=1">싱글오리진</a></li>
+					                     <li><a href="${contextPath}/cfList.cf">싱글오리진</a></li>
 					                     <li><a href="${contextPath}/cfList.cf?c_type=2">블랜딩</a></li>
 					                     <li><a href="${contextPath}/cfList.cf?c_type=3">캡슐</a></li>
                                     </ul>

@@ -22,10 +22,12 @@
                             </p>
                             <div class="contact-form">
                              <c:set var="contextPath" value="<%=contextPath%>" scope="application" />
- 							<form id="contact-form" method="post" action="${contextPath}/prInsert.pr" role="form" enctype="multipart/form-data">                       
+ 							<form id="contact-form" method="post" action="${contextPath}/prInsert.pr" role="form" enctype="multipart/form-data">    
+ 							
+ 							<input type="hidden" value="abcd@naver.com" name="p_seller_email">                   
                                             <div class="form-group">
                                           <select class="form-control" name="p_type" id="p_type">
-                                              <option class="form-control" value="-">주제</option>
+                                              <option class="form-control" value="0">주제</option>
                                               <option class="form-control" value="1" >상품</option>
                                               <option class="form-control" value="2">디저트</option>
                                              
@@ -53,7 +55,7 @@
                                         <span class="valid_check" id="err_p_qty"></span>
                                     </div>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="file" placeholder="이미지" class="form-control" name="p_image" id="p_image">                                       
+                                        <input type="file" placeholder="이미지" class="form-control" name="p_img" id="p_img">                                       
                                     </div>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
                                         <input type="file" placeholder="이미지" class="form-control" name="p_image2" id="p_image2">

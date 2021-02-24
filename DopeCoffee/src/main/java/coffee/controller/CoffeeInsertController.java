@@ -27,7 +27,7 @@ public class CoffeeInsertController extends SuperClass {
 	private final String post_gotopage = "cfList";
 	
 	@ModelAttribute("coffee")
-	public Coffee myproduct() {
+	public Coffee mycoffee() {
 		System.out.println("@ModelAttribute(\"coffee\")");
 		return new Coffee();
 	}

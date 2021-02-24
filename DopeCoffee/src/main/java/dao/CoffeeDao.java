@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import bean.Checkes;
 import bean.Coffee;
+import bean.OnedayClass;
 
 @Component("cfdao")
 public class CoffeeDao {
@@ -28,13 +29,31 @@ public class CoffeeDao {
 		return cnt;	
 	}
 
-//	public int SelectTotalCount(String mode, String keyword) {
-//		// 해당 검색 모드(상품명, 제조 회사, 카테고리)에 충족하는 항목들의 갯수를 구해줍니다.
-//		Map<String, String> map = new HashMap<String, String>() ;
-//		map.put("mode", mode) ;
-//		map.put("keyword", "%" + keyword + "%") ;
-//		return this.cofe.selectOne(namespace + "SelectTotalCount", map);
-//	}
+	public List<Coffee> SelectAllData(int offset, int limit, String mode, String keyword) {
+		// 원데이 클래스 목록
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("mode",mode);
+		map.put("keyword", keyword);
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		// key는 컬럼명 String , value는 Object (컬럼 타입은 String , int , date 가 섞여 있기 때문이다)
+		List<Coffee> lists = this.sql_session.selectList(this.namespace + "SelectAllData", map, rowBounds);
+		return lists;
+	}
+
+
+
+	public int SelectTotalCount(String mode, String keyword) {
+		// 해당 검색 모드(상품명, 제조 회사, 카테고리)에 충족하는 항목들의 갯수를 구해줍니다.
+		Map<String, String> map = new HashMap<String, String>() ;
+		map.put("mode", mode) ;
+		map.put("keyword", "%" + keyword + "%") ;
+		 
+			int cnt=	this.sql_session.selectOne(namespace + "SelectTotalCount", map);
+				return cnt ;
+	}
 
 //	public List<Coffee> SelectDataList(int offset, int limit, String mode, String keyword) {
 //		// 페이징 처리와 필드 검색을 통한 상품 목록을 구해줍니다.

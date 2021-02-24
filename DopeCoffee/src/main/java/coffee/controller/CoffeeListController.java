@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Coffee;
+import bean.OnedayClass;
 import bean.Products;
 import common.controller.SuperClass;
 import dao.CoffeeDao;
@@ -22,15 +23,17 @@ import utility.Paging;
 @Controller
 public class CoffeeListController extends SuperClass {
 	
-	private final String command ="/cfList.cf";	// 요청 커맨드(변경 요망)
+	private final String command ="cfList.cf";	// 요청 커맨드(변경 요망)
 	private final String redirect ="redirect:/list.cf";
 	private ModelAndView mav = null;			// mav 객체(변경 요망)
+	
 	@Autowired
 	@Qualifier("cfdao")	//(변경 요망)
 	private CoffeeDao cfdao ;
+	
 	public CoffeeListController() {
 		//(변경 요망)
-		super("cfList","cfList");//super(getpage, postpage);
+		super("cfList",null);//super(getpage, postpage);
 		this.mav = new ModelAndView();
 	}
 	@GetMapping(command)
@@ -43,47 +46,46 @@ public class CoffeeListController extends SuperClass {
 		
 		FlowParameters parameters 
 		= new FlowParameters(pageNumber, pageSize, mode, keyword);
-	
+		int totalCount = cfdao.SelectTotalCount(
+				parameters.getMode(), "%" + parameters.getKeyword() +"%");
+		
+		String contextPath = request.getContextPath() + "/";
+		String myurl = contextPath + this.command;
+		
+		// 페이징 처리 
+		Paging pageInfo = new Paging(
+				parameters.getPageNumber(),
+				parameters.getPageSize(),
+				totalCount, 
+				contextPath,
+				parameters.getMode(), 
+				parameters.getKeyword());
+		
+		// 해당 목록 가져오기 
+		List<Coffee> lists = this.cfdao.SelectAllData(
+				pageInfo.getOffset(),
+				pageInfo.getLimit(),
+				parameters.getMode(),
+				"%" + parameters.getKeyword() + "%");
+		
+		// 목록 갯수 
+		mav.addObject("totalCount", totalCount);
+		
+		// 목록
+		mav.addObject("lists", lists);
+		
+		// 페이징 관력 항목들
+		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
+		
+		// 필드 검색과 관련 항목들
+		mav.addObject("mode", parameters.getMode());
+		mav.addObject("keyword", parameters.getKeyword());
+
+		// 파라미터 리스트 문자열 : 상세보기 , 수정 , 삭제 등에 사용됨
+		mav.addObject("parameters", parameters.toString());
 		System.out.println(this.getClass() + " : " + parameters.toString());
 		
-//	int totalCount 
-//		= cfdao.SelectTotalCount(
-//				parameters.getMode(), 
-//				parameters.getKeyword() + "%");
-//		String contextpath = request.getContextPath() + "/" ;
-//		String myurl = contextpath +  this.command ;
-//		
-//		Paging pageInfo = new Paging(
-//				parameters.getPageNumber(), 
-//				parameters.getPageSize(), 
-//				totalCount, 
-//				myurl, 
-//				parameters.getMode(), 
-//				parameters.getKeyword()) ;
-		
-//		List<Coffee> lists = cfdao.SelectDataList(
-//				pageInfo.getOffset(),
-//				pageInfo.getLimit(),
-//				parameters.getMode(), 
-//				parameters.getKeyword() + "%"); 
-		
-		
-		// 표에 들어갈 목록들
-//		mav.addObject("lists", lists);
-//		
-//		System.out.println("상품 목록 개수 : " + lists.size());
-		
-//		// 페이징 관련 항목들
-//		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
-//		mav.addObject("pagingStatus", pageInfo.getPagingStatus());
-//		
-//		// 필드 검색과 관련된 항목들
-//		mav.addObject("mode", parameters.getMode());
-//		mav.addObject("keyword", parameters.getKeyword());
-//		
-//		// 파라미터 리스트 문자열 : 상세보기, 수정, 삭제, 답글 등에 사용됨
-//		mav.addObject("parameters", parameters.toString());		
-		
+
 		this.mav.setViewName(super.getpage);
 		return this.mav ;
 		
