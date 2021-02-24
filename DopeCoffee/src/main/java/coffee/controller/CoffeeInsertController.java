@@ -3,25 +3,21 @@ package coffee.controller;
 import java.io.File;
 import java.io.IOException;
 
-
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import bean.Coffee;
-
 import common.controller.SuperClass;
 import dao.CoffeeDao;
+import utility.Utility;
 
 @Controller
 public class CoffeeInsertController extends SuperClass {
@@ -49,20 +45,20 @@ public class CoffeeInsertController extends SuperClass {
 	}
 	
 	@PostMapping(value = command)
-	public ModelAndView doPost( @Valid Coffee coffee,BindingResult errors,HttpServletRequest request, MultipartFile img ) {
+	public ModelAndView doPost(Coffee coffee, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// 파일 업로드 작업
-		MultipartFile multi_file = coffee.getCf_image(); // 메인 이미지
+	
 		
+		MultipartFile multi_file = coffee.getCf_image();
+		System.out.println(coffee.getCf_image());
 		String uploadPath = "/upload"; // 파일이 저장되는 폴더
 		String realPath = request.getRealPath(uploadPath);
 		System.out.println("실제 경로 출력 : " + realPath);
 		
-
 		try {
 			// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
-			File destination = utility.Utility.getUploadedFileInfo(multi_file, realPath);
-
+			File destination = Utility.getUploadedFileInfo(multi_file, realPath);
 			multi_file.transferTo(destination); // 파일 업로드
 		
 			System.out.println(coffee.toString());
@@ -88,6 +84,7 @@ public class CoffeeInsertController extends SuperClass {
 			e1.printStackTrace();
 			mav.setViewName("redirect:/cfInsert.cf");
 		}
+		
 		return mav;
 	}
 	

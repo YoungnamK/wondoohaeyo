@@ -12,10 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- AdminList Style CSS -->
 <link rel="stylesheet" href="${contextPath}/css/adminList-style.css">
-<!-- 댓글 모듈 -->
-<script src="/js/reply.js"></script>
 </head>
 <body>
 

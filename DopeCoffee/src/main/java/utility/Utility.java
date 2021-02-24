@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Utility {
 	public static File getUploadedFileInfo(MultipartFile multi, String realPath) {
+		System.out.println(multi);
+		System.out.println(realPath);
 		String pattern = "yyyyMMddhhmmss" ;
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern) ;
 		String now = sdf.format( new Date() ) ;

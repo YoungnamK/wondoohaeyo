@@ -115,7 +115,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>comment</servlet-name>
-		<url-pattern>*.com</url-pattern>
+		<url-pattern>*.cm</url-pattern>
 	</servlet-mapping>
 
 	<!-- onedayclasses section -->

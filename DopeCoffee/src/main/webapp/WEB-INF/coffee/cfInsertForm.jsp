@@ -42,7 +42,7 @@
                                       </div>
                                     <label>상품명</label>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="text" placeholder="상품명" class="form-control" name="c_name" id="c_name" value="부룬디 은고지 무부가 A 풀리 워시드 235g">
+                                        <input type="text" placeholder="상품명" class="form-control" name="c_name" id="c_name" value="부룬디 은고지 무부가  워시드 235g">
                                         <span class="valid_check" id="err_c_name"></span>
                                     </div>
                                     <label>상품 가격</label>
@@ -91,6 +91,7 @@
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
                                         <input type="file" placeholder="메인 이미지" class="form-control" name="cf_image" id="cf_image">                                       
                                     </div>
+                                    
                                     <label>상세 이미지</label>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
                                         <input type="file" placeholder="상세 이미지" class="form-control" name="cf_image2" id="cf_image2">
@@ -101,7 +102,7 @@
                                     </div>
                                     
                                     <div id="submit" class="wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="submit" id="contact-submit" class="btn btn-default btn-send" value="등록" >
+                                        <input type="submit" id="contact-submit" class="btn btn-default btn-send" value="등록">
                                     </div>                      
                                     
                                 </form>
@@ -113,6 +114,5 @@
 
             </div>
         </section>
-
 </body>
 </html>
