@@ -32,34 +32,39 @@ public class OnedayClassDao {
 		return cnt;
 
 	}
+
 	public int SelectTotalCount(String mode, String keyword) {
-		// 원데이 클래스 전체 목록 
+		// 원데이 클래스 전체 목록
 		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("mode",mode);
+
+		map.put("mode", mode);
 		map.put("keyword", keyword);
-		
+
 		int cnt = this.sql_session.selectOne(this.namespace + "SelectTotalCount", map);
-		
+
 		return cnt;
 	}
 
 	public List<OnedayClass> SelectAllData(int offset, int limit, String mode, String keyword) {
 		// 원데이 클래스 목록
 		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("mode",mode);
+
+		map.put("mode", mode);
 		map.put("keyword", keyword);
-		
+
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		// key는 컬럼명 String , value는 Object (컬럼 타입은 String , int , date 가 섞여 있기 때문이다)
 		List<OnedayClass> lists = this.sql_session.selectList(this.namespace + "SelectAllData", map, rowBounds);
-		
-		
 
 		return lists;
 	}
 
+	public OnedayClass SelectOneData(String code) {
+		// 원데이 클래스 상세보기
+		OnedayClass bean = this.sql_session.selectOne(this.namespace + "SelectOneData", code);
+		
+		return bean;
+	}
 
 }

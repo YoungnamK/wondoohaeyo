@@ -59,4 +59,9 @@
 		order by rownum desc
 	</select>
 	
+	<select id="SelectOneData" parameterType="String" resultType="MyOnedayclass">
+		<include refid="basic_select"/>
+		where code=#{code}
+	</select>
+	
 </mapper>

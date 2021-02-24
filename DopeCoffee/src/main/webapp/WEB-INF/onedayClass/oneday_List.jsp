@@ -54,10 +54,10 @@
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
-								<img src="${applicationScope.uploadPath}/${bean.main_image}" class="img-responsive" alt="image">
+								<img src="./upload/${bean.main_image}" class="img-responsive" alt="image">
 								<div class="overlay">
 									<div class="buttons">
-										<a target="_blank" href="">자세히 보기</a>
+										<a href="${contextPath}/onedayDetail.odc?code=${bean.code}">자세히 보기</a>
 										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
 											<a target="_blank" href="">관리</a>
 										</c:if>
