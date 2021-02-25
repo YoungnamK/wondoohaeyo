@@ -67,12 +67,4 @@ public class OnedayClassDao {
 		return bean;
 	}
 
-	public List<OnedayClass> SelectSellListData(String sell_email) {
-		// 사업자 전용 원데이 클래스 목록 보기 
-		// 사업자 자신이 올린 원데이 클래스의 정보를 볼 수 있다.
-		List<OnedayClass> lists = this.sql_session.selectList(this.namespace + "SelectSellListData", sell_email);
-		
-		return lists;
-	}
-
 }

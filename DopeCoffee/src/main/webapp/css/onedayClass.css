@@ -11,9 +11,9 @@ body{
 
 /* 각 input 태그 상단 컬럼 이름 */
 .column_name{
-	font-weight: bold;
-	margin-bottom: 5px;
-	margin-top: 10px;
+	font-weight: bold !important;
+	margin-bottom: 5px !important;
+	margin-top: 10px !important;
 }
 
 .wizard {
@@ -798,7 +798,7 @@ input#fake_person{
       align-items: center;
     }
 
-    input#person{
+    input#fake_person{
        width: 75% !important;
     }
 

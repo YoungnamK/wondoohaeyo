@@ -62,15 +62,11 @@
 		order by rownum desc
 	</select>
 	
-	<!-- 원데이 클래스 상세보기에 활용 -->
+	<!-- 원데이 클래스 상세보기 -->
+	<!-- 원데이 클래스 수정하기 -->
 	<select id="SelectOneData" parameterType="String" resultType="MyOnedayclass">
 		<include refid="basic_select"/>
 		where code=#{code}
 	</select>
 	
-	<!-- 원데이 클래스 사업자용 목록 -->
-	<select id="SelectSellListData" parameterType="String" resultType="MyOnedayclass">
-		<include refid="basic_select"/>
-		where sell_email=#{sell_email}
-	</select>
 </mapper>

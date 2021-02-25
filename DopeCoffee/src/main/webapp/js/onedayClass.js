@@ -882,6 +882,8 @@ function search(){
 */
 
 // 페이지가 로딩 되면 
+
+
 $(document).ready(function(){
 	// 1인 기준 가격 콤마 찍기
 	var oneprice = $('#oneprice').val();
@@ -1043,6 +1045,25 @@ function booking_date(){
 }
 
 
+ /* ===============================  
+		원데이 클래스 수정
+ ==================================*/
+
+	
+function update(){
+	// 페이지가 로드 되었을 때 가격에서 콤마 빼기
+	var oneprice = $('#oneprice').val();
+		
+	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
+		
+	function removecomma(pStr) { 
+		var strCheck = /\,/g; 
+		pStr = pStr.replace(strCheck, ''); 
+		return pStr; 
+	}
+	
+	$('#oneprice').val(oneprice);
+}
 
  
 

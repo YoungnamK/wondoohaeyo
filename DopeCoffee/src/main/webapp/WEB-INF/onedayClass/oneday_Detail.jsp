@@ -139,6 +139,7 @@
                             </div>
                         </div>
                     	
+                    	<%-- ========================== Form 양식 시작 부분 ====================================--%>
                         <form>
                             <div id="form_css"  class="categories widget">
                                 <h3 id="class_css" class="widget-head">수업 신청</h3>

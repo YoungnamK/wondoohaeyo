@@ -59,7 +59,8 @@
 									<div class="buttons">
 										<a href="${contextPath}/onedayDetail.odc?code=${bean.code}">자세히 보기</a>
 										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
-											<a target="_blank" href="">관리</a>
+											<a href="${contextPath}/onedayUpdate.odc?code=${bean.code}">수정</a>
+											<a href="${contextPath}/onedayDelete.odc?code=${bean.code}">삭제</a>
 										</c:if>
 									</div>
 								</div>
