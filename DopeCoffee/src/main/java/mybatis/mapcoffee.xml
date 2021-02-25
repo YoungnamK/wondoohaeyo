@@ -4,45 +4,49 @@
 	
 	<mapper namespace="MapperCoffee">
 		<insert id="InsertData" parameterType="MyCoffee">
-			insert into coffees(c_no, c_type, c_seller_email , c_name, c_price, c_origin, c_weight, c_roasting , 
-			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,ramark)
-			values (seqcoffee.nextval , #{c_type}, #{c_seller_email}, #{c_name}, #{c_price}, #{c_origin}, #{c_weight}, #{c_roasting},
-			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{ramark})
+			insert into coffees(c_no,c_seller_email , c_name, c_price, c_origin, c_weight, c_roasting , 
+			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,ramark, c_type)
+			values (seqcoffee.nextval ,  #{c_seller_email}, #{c_name}, #{c_price}, #{c_origin}, #{c_weight}, #{c_roasting},
+			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{ramark},#{c_type})
 		</insert>
 		
 	<sql id="myselect">
-		select c_no, c_type, c_seller_email, c_name, c_price, c_origin, c_weight, c_roasting, 
-		c_blending, c_crushing_status, c_qty, c_image, c_image2, c_image3, ramark
-		from coffees
+		select * from coffees
 	</sql> 	
 		
-	<select id="SelectTotalCount" resultType="int">
-		select count(*) as cnt from coffees	
-		<if test="mode == 'c_name'">
-			where c_name like #{keyword}
+	<select id="SelectTotalCount" parameterType="String"  resultType="Integer">
+		select count(*) from coffees	
+		<if test="mode == c_type">
+			where c_type like #{keyword}
 		</if>
-		<if test="mode == 'c_origin'">
+		<if test="mode == c_origin">
 			where c_origin like #{keyword}
 		</if>
-		<if test="mode == 'c_blending'">
-			where c_blending like #{keyword}
+		<if test="mode == c_weight">
+			where c_weight like #{keyword}
 		</if>
 	</select>
 	
-		<!-- 주제 / 주소 1 / 클래스명으로 목록 조회함 -->
-	<select id="SelectAllData" resultType="MyOnedayclass">
+		<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
+	<select id="SelectAllData" resultType="MyCoffee">
 		<include refid="myselect"/>
-		<if test="mode == type">
-			where c_name like #{keyword}
+		<if test="mode == c_type">
+			where c_type like #{keyword}
 		</if>
-		<if test="mode == address1">
+		<if test="mode == c_origin">
 			where c_origin like #{keyword}
 		</if>
-		<if test="classname == address1">
-			where c_blending like #{keyword}
+		<if test="mode == c_weight">
+			where c_weight like #{keyword}
 		</if>
 		order by rownum desc
 	</select>
+	
+	<!--	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCoffee">
+		<include refid="myselect" />
+		 where num = #{num}
+	</select>-->
+	
 	
 	
 	<!--  	<select id="SelectDataList" resultType="MyCoffee">

@@ -185,7 +185,43 @@ $(document).ready(function(){ // 페이지 로딩 될때
 function today() {
 	$('#search').hide(); // 검색 부분 (===> 상품 리스트 목록 부분)
 	
+}	
 	
+	
+/* ===================
+	원데이 클래스 목록[시작]
+   ===================
+*/
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+
+
+// 페이지가 로딩 되면 
+$(document).ready(function(){
+	// 가격 콤마 찍기
+	var c_price = $('#list_price').text();
+	c_price = addcomma(c_price);
+	
+	function addcomma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	// 최종 가격 문장
+	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + c_price;
+	$('#list_price').html(result_oneprice);
+	
+	
+});
+
+// 검색 버튼을 누르면 검색 창이 나오게 수정
+function search(){
+	$('#search').toggle();
 }
+
+	
+
 
 

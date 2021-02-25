@@ -622,7 +622,7 @@ function submitCheck(){
 $(document).ready(function(){ 
 	$('.time_add').click(function (){
 		
-		// step 2 
+	5	// step 2 
 		var enddate = $('#enddate').val();
 		var opentime = $('#opentime').val();
 		var closetime = $('#closetime').val();

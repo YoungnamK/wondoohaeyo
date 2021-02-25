@@ -46,6 +46,8 @@ public class CoffeeListController extends SuperClass {
 		
 		FlowParameters parameters 
 		= new FlowParameters(pageNumber, pageSize, mode, keyword);
+		
+		System.out.println(this.getClass() + " : " + parameters.toString());
 		int totalCount = cfdao.SelectTotalCount(
 				parameters.getMode(), "%" + parameters.getKeyword() +"%");
 		
@@ -56,8 +58,8 @@ public class CoffeeListController extends SuperClass {
 		Paging pageInfo = new Paging(
 				parameters.getPageNumber(),
 				parameters.getPageSize(),
-				totalCount, 
-				contextPath,
+				totalCount, 				
+				myurl,
 				parameters.getMode(), 
 				parameters.getKeyword());
 		
@@ -67,6 +69,8 @@ public class CoffeeListController extends SuperClass {
 				pageInfo.getLimit(),
 				parameters.getMode(),
 				"%" + parameters.getKeyword() + "%");
+		
+		System.out.println(lists.toString());
 		
 		// 목록 갯수 
 		mav.addObject("totalCount", totalCount);
@@ -83,7 +87,7 @@ public class CoffeeListController extends SuperClass {
 
 		// 파라미터 리스트 문자열 : 상세보기 , 수정 , 삭제 등에 사용됨
 		mav.addObject("parameters", parameters.toString());
-		System.out.println(this.getClass() + " : " + parameters.toString());
+		
 		
 
 		this.mav.setViewName(super.getpage);

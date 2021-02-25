@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${contextPath}/js/coffee.js"></script>
 <style type="text/css">
 
 
@@ -45,12 +46,12 @@
                 </div>
             </form>
             <%-- ==== 끝 ==== --%>
-			<p class="list_top">${requestScope.totalCount}개의 수업</p>
+			<p class="list_top">${requestScope.totalCount}개의 상품</p>
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<div class="col">
 					<div class="col-sm-4">
-						<input type="hidden" value="${bean.c_type}"> <!-- 주제 -->
-						<input type="hidden" value="${bean.c_origin}"> <!-- 주소 지역 -->
+						<input type="text" value="${bean.c_type}"> <!-- 주제 -->
+						<input type="text" value="${bean.c_origin}"> <!-- 주소 지역 -->
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
