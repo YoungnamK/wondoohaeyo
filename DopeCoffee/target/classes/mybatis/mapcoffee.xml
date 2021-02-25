@@ -28,7 +28,7 @@
 	</select>
 	
 		<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
-	<select id="SelectAllData" parameterType="MAP" resultType="MyCoffee">
+	<select id="SelectAllData" parameterType="String" resultType="MyCoffee">
 		<include refid="myselect"/>
 		<if test="mode == c_type">
 			where c_type like #{keyword}
@@ -42,11 +42,17 @@
 		order by rownum desc
 	</select>
 	<!--  ASDADS -->
-	<!--	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCoffee">
+	<select id="SelectDataByPk" parameterType="int" resultType="MyCoffee">
 		<include refid="myselect" />
-		 where num = #{num}
-	</select>-->
+		 where c_no=#{c_no}
+	</select>
 	
+	<delete id="DeleteData" parameterType="int">
+		delete from coffees where c_no = #{c_no} 
+	</delete>	
+	<!--	<update id="UpdateRemark" parameterType="String">
+		update orderdetails set ramark = #{ramark}
+		</update>	-->	
 	
 	
 	<!--  	<select id="SelectDataList" resultType="MyCoffee">

@@ -267,5 +267,14 @@ button.prev-step{
     cursor: pointer;
 }
 
+/*  사이드 부분 첫번째 원데이 클래스 정보 있는 부분 */
+#content_css {
+    padding-top: 0px !important;
+    border: 0;
+}
+
+#content_css h3 {
+    padding-top: 0px !important;
+}
 
 

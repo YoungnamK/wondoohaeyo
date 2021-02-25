@@ -9,7 +9,7 @@ public class Coffee {
 	private String c_name;
 	private int c_price;
 	private String c_origin;
-	private int c_weight;
+	private String c_weight;
 	private String c_roasting;
 	private String c_blending;
 	private String c_crushing_status;
@@ -109,11 +109,11 @@ public class Coffee {
 		this.c_origin = c_origin;
 	}
 
-	public int getC_weight() {
+	public String getC_weight() {
 		return c_weight;
 	}
 
-	public void setC_weight(int c_weight) {
+	public void setC_weight(String c_weight) {
 		this.c_weight = c_weight;
 	}
 

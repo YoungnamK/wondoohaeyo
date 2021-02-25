@@ -39,7 +39,7 @@ public class CoffeeDao {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		// key는 컬럼명 String , value는 Object (컬럼 타입은 String , int  가 섞여 있기 때문이다)
-		List<Coffee> lists = this.sql_session.selectList(this.namespace + "SelectAllData1", map, rowBounds);
+		List<Coffee> lists = this.sql_session.selectList(this.namespace + "SelectAllData", map, rowBounds);
 		return lists;
 	}
 
@@ -60,13 +60,22 @@ public class CoffeeDao {
 		return this.sql_session.selectOne(namespace + "SelectDataByPk" , num);
 	}
 
+	public int DeleteData(int c_no, String ramark) {
+		
+		
+		// 해당 상품을 삭제합니다.		
+		return this.sql_session.delete(namespace + "DeleteData", c_no);
+	}
+
+
+
 //	public List<Coffee> SelectDataList(int offset, int limit, String mode, String keyword) {
 //		// 페이징 처리와 필드 검색을 통한 상품 목록을 구해줍니다.
 //		RowBounds rowBounds = new RowBounds(offset, limit);
 //		Map<String, String> map = new HashMap<String, String>() ;
 //		map.put("mode", mode) ;
 //		map.put("keyword", "%" + keyword + "%") ;	
-//		return this.cofe.selectList(namespace + "SelectDataList", map, rowBounds);
+//		return this.sql_session.selectList(namespace + "SelectDataList", map, rowBounds);
 //	}
 
 //	public List<Checkes> GetList(String module, String field, String kind) {

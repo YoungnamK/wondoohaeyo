@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,11 +46,11 @@ public class CoffeeInsertController extends SuperClass {
 	}
 	
 	@PostMapping(value = command)
-	public ModelAndView doPost(Coffee coffee, HttpServletRequest request) {
+	public ModelAndView doPost(@RequestParam(value = "c_seller_email" , required = true)String c_seller_email,
+			Coffee coffee, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// 파일 업로드 작업
-	
-		
+
 		MultipartFile multi_file = coffee.getCf_image();
 		System.out.println(coffee.getCf_image());
 		String uploadPath = "/upload"; // 파일이 저장되는 폴더
@@ -61,9 +62,12 @@ public class CoffeeInsertController extends SuperClass {
 			File destination = Utility.getUploadedFileInfo(multi_file, realPath);
 			multi_file.transferTo(destination); // 파일 업로드
 		
-			System.out.println(coffee.toString());
+			
 			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
 			coffee.setC_image(destination.getName());
+			
+			coffee.setC_seller_email(c_seller_email);
+			System.out.println(coffee.toString());
 			
 			int cnt = -1;
 			cnt = cfdao.InsertData(coffee);
@@ -72,17 +76,19 @@ public class CoffeeInsertController extends SuperClass {
 				System.out.println("등록 완료");
 				mav.setViewName(post_gotopage);
 				
+				
 			} else {
 				System.out.println("등록 실패");
+				
 				mav.setViewName(get_gotopage);
 			}
 			
 		}catch (IllegalStateException e1) {
 			e1.printStackTrace();
-			mav.setViewName(get_gotopage);
+			mav.setViewName(post_gotopage);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			mav.setViewName("redirect:/cfInsert.cf");
+			mav.setViewName("redirect:/cfList.cf");
 		}
 		
 		return mav;

@@ -50,18 +50,19 @@
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<div class="col">
 					<div class="col-sm-4">
-						<input type="text" value="${bean.c_type}"> <!-- 주제 -->
-						<input type="text" value="${bean.c_origin}"> <!-- 주소 지역 -->
+						<input type="hidden" value="${bean.c_type}"> <!-- 주제 -->
+						<input type="hidden" value="${bean.c_origin}"> <!-- 주소 지역 -->
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
-								<img src="${applicationScope.uploadPath}/${bean.c_image}" class="img-responsive" alt="image">
+								<img src="./upload/${bean.c_image}" class="img-responsive" alt="image">
 								<div class="overlay">
 									<div class="buttons">
-										<a target="_blank" href="">자세히 보기</a>
-										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
-											<a target="_blank" href="">관리</a>
-										</c:if>
+										<a href="${contextPath}/cfdetailview.cf?c_no=${bean.c_no}">자세히 보기</a>									
+										<a  href="${contextPath}/cfupdate.cf">관리</a>		
+										<a  href="${contextPath}/cfdelete.cf?c_no=${bean.c_no}&${requestScope.parameters}">
+											삭제
+										</a>								
 									</div>
 								</div>
 							</div>
