@@ -8,6 +8,14 @@ body{
 	padding-top: 100px;
 }
 
+
+/* 각 input 태그 상단 컬럼 이름 */
+.column_name{
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
 .wizard {
     margin: 20px auto;
     background: #fff;
@@ -564,6 +572,13 @@ input#keyword{
     이미지 부분
 =======================*/
 
+ /* 클래스 명 */
+h3.widget-head {
+    color: #5080BF;
+    font-family: "맑은 고딕" !important;
+    font-weight: bold !important;
+
+}
 
 /* 부트스트랩 이미지 수정 */
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
@@ -582,35 +597,61 @@ input#keyword{
   
 /* 메인 사진을 감싸고 있는 div 태그 */
 .blog-post-image {
-    height: 500px;
+    height: 350px;
 }
 
-/* div 태그 안에 있는 메인 사진 */
-img#image_part{
-    width: 100% !important;
+.blog-post-image > div.carousel-inner img{
+	width: 100% !important;
     height: 100% !important;
 }
 
-/*  사이드 부분 첫번째 원데이 클래스 정보 있는 부분 */
+/* 사진 밑 부분 원데이 클래스 내용 부분 */
+
+
+
+
+/*  원데이 클래스 내용 있는 부분 */
 #content_css {
     padding-top: 0px !important;
     border: 0;
+    display: flex;
+    justify-content: space-between;
+    
 }
 
-#content_css h3 {
+.blog-meta i{
+	font-size: 25px;
+	color: #222;
+}
+
+#content_css p#frist_content{
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	width: 30%;
+}
+
+#content_css p#second_content{
+	width: 70%;
+	color: #222;
+}
+
+h3.widget-head h3 {
     padding-top: 0px !important;
 }
 
-.sidebar h3{
-    color: #5080BF;
-    font-family: "맑은 고딕";
-    font-weight: bold;
-
+/* 사이드 부분 첫번째 프로필 있는 부분 */
+h3#sellname_css{
+	font-weight: bold;
+	font-size: 20px;
 }
 
+#form_css{
+	margin-top: 0px;
+	
+}
 /* 사이드 부분 두번째 예약 정보  있는 부분*/
 .sidebar .categories ul li {
-    border-bottom: 1px solid #f0f0f0;
     height: 60px;
     padding: 0;
     list-style: none;
@@ -620,7 +661,7 @@ img#image_part{
 h3#class_css{
     text-align: center;
     font-size: 15px;
-    color: #fff;
+    color: #fff !important;
     border-radius: 20px;
     width: 27%;
     height: 30px;
@@ -630,6 +671,8 @@ h3#class_css{
 
 
 /* 전체 input 태그 */
+
+
 input.input_data{
     display: block;
     height: 40px;
@@ -669,9 +712,10 @@ input.input_data{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-input#person{
+input#fake_person{
     width: 75%;
 }
 
@@ -699,8 +743,19 @@ input#person{
 .pmbtn{
     margin: 0 !important;
     width: 10% !important;
+    height: 10%;
     background-color: #84C1D9 !important;
     border: #84C1D9 !important;
+}
+
+
+#plusbtn{
+	margin-top: 20px;
+	border-radius: 50px;
+}
+
+#minusbtn{
+	border-radius: 50px;
 }
 
 /* 반응형으로  적용 */
@@ -740,6 +795,7 @@ input#person{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
     }
 
     input#person{
@@ -753,7 +809,28 @@ input#person{
       background-color: #84C1D9 !important;
       border: #84C1D9 !important;
     }
+    
+    /* 사진 밑에 내용부분  */
+    #content_css {
+    padding-top: 0px !important;
+    border: 0;
+    display: block;
+    
+	}
 
+	/* 사진 밑에 내용부분  */
+	#content_css p#frist_content{
+		font-size: 20px;
+		font-weight: bold;
+		color: black;
+		width: 100%;
+	}
+
+	/* 사진 밑에 내용부분  */
+	#content_css p#second_content{
+		width: 100%;
+		color: #222;
+	}
     
 }
 

@@ -622,7 +622,7 @@ function submitCheck(){
 $(document).ready(function(){ 
 	$('.time_add').click(function (){
 		
-	5	// step 2 
+		// step 2 
 		var enddate = $('#enddate').val();
 		var opentime = $('#opentime').val();
 		var closetime = $('#closetime').val();
@@ -867,6 +867,161 @@ $(document).ready(function(){
 function search(){
 	$('#search').toggle();
 }
+
+
+
+/* ===================
+	원데이 클래스 목록[끝]
+   ===================
+*/
+
+
+/* =========================
+	원데이 클래스 상세 및 결제[시작]
+   =========================
+*/
+
+// 페이지가 로딩 되면 
+$(document).ready(function(){
+	// 1인 기준 가격 콤마 찍기
+	var oneprice = $('#oneprice').val();
+	oneprice = addcomma(oneprice);
+	// 가짜 결제 가격 콤마 찍기
+	var fake_totalprice = $('#fake_totalprice').val();
+	fake_totalprice = addcomma(fake_totalprice);
+	
+	// 진짜 결제 가격 콤마 찍기
+	var totalprice = $('#totalprice').val();
+	totalprice = addcomma(totalprice);
+	
+	function addcomma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	// 최종 가격 문장
+	var result_oneprice = oneprice;
+	var result_fake_totalprice = fake_totalprice;
+	var result_totalprice = totalprice;
+	$('#oneprice').val(result_oneprice);
+	$('#fake_totalprice').val(result_fake_totalprice);
+	$('#totalprice').val(result_totalprice);
+
+
+    /* ===============================  
+		버튼 클릭 시 인원수 , 가격 변동 
+     ==================================*/
+
+
+	// + 버튼을 누르면 인원수 증가 , 결제 금액 증가
+	$('#plusbtn').click(function(){
+		// 사업자가 설정한 최대 인원수
+		var _max_person = $('#max_person').val();
+		var max_person = parseInt(_max_person);
+		
+		// 사용자가 선택하는 인원수
+		var _person = $('#fake_person').val();
+		var person = parseInt(_person);
+		
+		// 사업자가 설정한 1인 기준 가격 
+		var oneprice = $('#oneprice').val();
+		
+		oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
+		
+		function removecomma(pStr) { 
+			var strCheck = /\,/g; 
+			pStr = pStr.replace(strCheck, ''); 
+			return pStr; 
+		}
+		
+		var person_result ; // 사용자가 선택한 총 인원수
+		var totalprice; // 사용자가 선택한 총 가격
+		var fake_totalprice; // 사용자가 선택한 총 가격
+		
+		if(person < max_person){// 사용자가 선택하는 인원수가 사업자가 설정한 인원수 미만이면 + 1 처리 
+			// 인원수 증가
+			person_result = person + 1;
+			
+			// 파라미터로 넘어갈 총 금액
+			totalprice = oneprice * person_result; // 실제 DB로 넘어갈 결제 총 금액
+			totalprice = addcomma(totalprice);
+			
+			// 사용자에게 보여줄 가짜 총 금액
+			fake_totalprice = oneprice * person_result; // 가짜 총 금액(사용자에게 보여줄 용도)
+			fake_totalprice = addcomma(fake_totalprice);
+			
+			$('button#plusbtn').removeAttr('data-toggle', 'modal');
+		}else{//사용자가 선택하는 인원수가 사업자가 설정한 인원수 초과이면 + 0 처리 
+			person_result = person;
+			
+			// 파라미터로 넘어갈 총 금액
+			totalprice = oneprice * person_result; // 실제 DB로 넘어갈 결제 총 금액
+			totalprice = addcomma(totalprice);
+			
+			// 사용자에게 보여줄 가짜 총 금액
+			fake_totalprice = oneprice * person_result; // 가짜 총 금액(사용자에게 보여줄 용도)
+			fake_totalprice = addcomma(fake_totalprice);
+			
+			$('button#plusbtn').attr('data-toggle', 'modal');
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('인원수 초과 입니다!');
+			
+		}
+		
+		$('#fake_person').val(person_result);
+		$('#person').val(person_result);
+		$('#totalprice').val(totalprice);
+		$('#fake_totalprice').val(fake_totalprice);
+	});
+	
+	// - 버튼을 누르면 인원수 감소 , 결제 금액 감소
+	$('#minusbtn').click(function(){
+		var _person = $('#fake_person').val();
+		var person = parseInt(_person);
+		var person_result;
+		
+		// 사업자가 설정한 1인 기준 가격 
+		var oneprice = $('#oneprice').val();
+		
+		oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
+		
+		function removecomma(pStr) { 
+			var strCheck = /\,/g; 
+			pStr = pStr.replace(strCheck, ''); 
+			return pStr; 
+		}
+		
+		var totalprice; // 사용자가 선택한 총 가격
+		var fake_totalprice; // 사용자가 선택한 총 가격
+		
+		if(person >= 2){ // 최소값은 1로 남겨놔야함
+		
+			person_result = person - 1;
+			
+			
+			totalprice = person_result * oneprice;
+			totalprice = addcomma(totalprice);
+			
+			fake_totalprice = person_result * oneprice;
+			fake_totalprice = addcomma(fake_totalprice);
+		}else{
+			person_result = 1
+			
+			
+			totalprice = person_result * oneprice;
+			totalprice = addcomma(totalprice);
+			
+			fake_totalprice = person_result * oneprice;
+			fake_totalprice = addcomma(fake_totalprice);
+		}
+		
+		$('#fake_person').val(person_result);
+		$('#person').val(person_result);
+		
+		$('#totalprice').val(totalprice);
+		$('#fake_totalprice').val(fake_totalprice);
+	});
+});
 
 
 

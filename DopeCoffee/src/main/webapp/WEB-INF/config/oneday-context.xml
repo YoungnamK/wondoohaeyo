@@ -25,9 +25,25 @@
 	</beans:bean>
 	
 	
+	<!-- 파일 업로드 multipartResolver 등록 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <beans:property name="maxUploadSize" value="10485760" />
       <beans:property name="maxInMemorySize" value="10240" />
       <beans:property name="defaultEncoding" value="UTF-8" />
    </beans:bean>   
+   
+   <!-- spring:message 태그를 사용하기 위한 빈 등록  -->
+   <!-- 파일의 수가 여러 개 일 수 있으므로 <list> 태그를 사용 -->
+   <beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   		<beans:property name="basenames">
+   			<beans:list>
+   				<beans:value>
+   					message.onedayclass
+   				</beans:value>
+   			</beans:list>
+   		</beans:property>
+   		<beans:property name="defaultEncoding" value="UTF-8"/>
+   </beans:bean>
+   
+   
 </beans:beans>
