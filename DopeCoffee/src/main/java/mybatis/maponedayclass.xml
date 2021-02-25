@@ -10,6 +10,7 @@
 		select * from onedayclasses
 	</sql>
 
+	<!-- 원데이 클래스 등록하기 -->
 	<insert id="InsertData"  parameterType="MyOnedayclass">
 		insert into onedayclasses
 		(code , sell_email, type, classname
@@ -25,11 +26,13 @@
 		,#{content} ,#{main_image} ,#{detail_image1} ,#{detail_image2})
 	</insert>
 	
+	<!-- 코드 중복 검사 -->
 	<select id="SelectCodeCheck" parameterType="String" resultType="Integer">
 		select count(*) from onedayclasses where code=#{code}
 	</select>
 	
 
+	<!-- 원데이 클래스 목록보기 -->
 	<!-- 검색 , 키워드 별 건수를 조회함 -->
 	<select id="SelectTotalCount" parameterType="String" resultType="Integer">
 		select count(*) from onedayclasses 
@@ -59,9 +62,15 @@
 		order by rownum desc
 	</select>
 	
+	<!-- 원데이 클래스 상세보기에 활용 -->
 	<select id="SelectOneData" parameterType="String" resultType="MyOnedayclass">
 		<include refid="basic_select"/>
 		where code=#{code}
 	</select>
 	
+	<!-- 원데이 클래스 사업자용 목록 -->
+	<select id="SelectSellListData" parameterType="String" resultType="MyOnedayclass">
+		<include refid="basic_select"/>
+		where sell_email=#{sell_email}
+	</select>
 </mapper>

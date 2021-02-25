@@ -1014,7 +1014,6 @@ $(document).ready(function(){
 			fake_totalprice = person_result * oneprice;
 			fake_totalprice = addcomma(fake_totalprice);
 		}
-		
 		$('#fake_person').val(person_result);
 		$('#person').val(person_result);
 		
@@ -1022,6 +1021,32 @@ $(document).ready(function(){
 		$('#fake_totalprice').val(fake_totalprice);
 	});
 });
+
+
+
+ /* ===============================  
+		예약일자 선택 
+ ==================================*/
+
+function booking_date(){
+	var enddate = $('#enddate').val();
+	
+	$('.datepicker').pickadate({
+		  monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		  weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
+		  format: 'yyyymmdd', // 데이터 형식
+		  min: 0, // 오늘날짜 부터
+	      max : enddate, // 사업자가 지정한 enddate 날짜까지 
+		  showMonthsShort: true
+	});
+	
+}
+
+
+
+ 
+
+
 
 
 

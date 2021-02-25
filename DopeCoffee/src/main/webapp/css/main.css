@@ -947,6 +947,7 @@ article {
 }
 .sidebar {
   padding-top: 60px;
+  position: relative;
 }
 .sidebar .widget {
   margin-top: 72px;

@@ -19,7 +19,7 @@
 	<section class="works service-page">
 		
 		<div class="container">
-			<div class="top">
+			<div id="top">
 				<h2 class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">ONEDAY CLASS</h2>
 				<span class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.1s"
 				id="search_btn" data-toggle="tooltip" title="클릭하세요!" onclick="search();">
@@ -45,7 +45,7 @@
                 </div>
             </form>
             <%-- ==== 끝 ==== --%>
-			<p class="list_top">${requestScope.totalCount}개의 수업</p>
+			<p id="list_top">${requestScope.totalCount}개의 수업</p>
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<div class="col">
 					<div class="col-sm-4">
