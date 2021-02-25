@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+  .commentArea{
+  	text-align: left;
+  }
+  </style>
 <script>
-var num = ${bean.num}; //게시글 번호
+
+var num = $("#num").val(); //게시글 번호
  
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
     var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
@@ -12,31 +21,36 @@ $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시
  
 //댓글 목록 
 function commentList(){
-    $.ajax({
-        url : '<%=request.getContextPath()%>/comlist.no',
-        type : 'get',
-      /*   data : {'no':num},
-        datatype : 'JSON', */
+    	console.log(num)
+	$.ajax({
+        url : './comlist.no',
+        type : 'post',
+     	data : {num:num},
         success : function(data){
+        	console.log(data)
             var a =''; 
             $.each(data, function(key, value){ 
-                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+value.cnum+'">'+'댓글번호 : '+value.cnum+' / 작성자 : '+value.writer;
+                a += '<div class="commentArea col-sm-12" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+value.cnum+'">'+'no.'+value.cnum+' / 작성자 : '+value.writer;
                 a += '<a onclick="commentUpdate('+value.cnum+',\''+value.content+'\');"> 수정 </a>';
                 a += '<a onclick="commentDelete('+value.cnum+');"> 삭제 </a> </div>';
-                a += '<div class="commentContent'+value.cnum+'"> <p> 내용 : '+value.content +'</p>';
+                a += '<div class="commentContent'+value.cnum+'"> <p>'+value.content +'</p>';
                 a += '</div></div>';
             });
             console.log(a);
             $(".commentList").html(a);
+        },
+        error : function(error){
+        	console.log(error)
+        	alert(error)
         }
     });
 }
-/*  
+
 //댓글 등록
 function commentInsert(insertData){
     $.ajax({
-        url : '/comment/insert',
+        url : './cominsert.no',
         type : 'post',
         data : insertData,
         success : function(data){
@@ -47,47 +61,53 @@ function commentInsert(insertData){
         }
     });
 }
- 
+  
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-function commentUpdate(cno, content){
+function commentUpdate(cnum, content){
     var a ='';
     
     a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+    a += '<input type="text" class="form-control" name="content_'+cnum+'" value="'+content+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cnum+');">수정</button> </span>';
     a += '</div>';
     
-    $('.commentContent'+cno).html(a);
+    $('.commentContent'+cnum).html(a);
     
 }
  
 //댓글 수정
-function commentUpdateProc(cno){
-    var updateContent = $('[name=content_'+cno+']').val();
+function commentUpdateProc(cnum){
+    var updateContent = $('[name=content_'+cnum+']').val();
     
     $.ajax({
-        url : '/comment/update',
+        url : './comupdate.no',
         type : 'post',
-        data : {'content' : updateContent, 'cno' : cno},
+        data : {'content' : updateContent, 'cnum' : cnum},
         success : function(data){
-            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+            if(data == 1) commentList(num); //댓글 수정후 목록 출력 
         }
     });
 }
- 
+function delcheck(){
+	
+} 
 //댓글 삭제 
-function commentDelete(cno){
-    $.ajax({
-        url : '/comment/delete/'+cno,
-        type : 'post',
+function commentDelete(cnum){
+if('삭제하시겠습니까?'){
+	$.ajax({
+        url : './comdelete.no?cnum='+cnum,
+        type : 'get',
         success : function(data){
-            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
-        }
+            if(data == 1) commentList(num); //댓글 삭제후 목록 출력 
+        },
+    	error: function(error){
+    		console.log(error)
+    	}
     });
+}else{
+	return false;
 }
-  */
- 
- 
+}
  
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 

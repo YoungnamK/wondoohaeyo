@@ -8,7 +8,7 @@
 		select count(*) as cnt from comments
 	</select>
 	<!-- 검색모드, 키워드 별 총 게시물 데이터를 조회합니다. -->
-	<select id="SelectDataList" resultType="MyComment">
+	<select id="SelectDataList" resultType="MyComment" parameterType="Integer">
 		select cnum, no, writer, content, 
 		to_char(regdate,'YYYY-MM-DD') regdate, remark
 		from comments

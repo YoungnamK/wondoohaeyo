@@ -14,6 +14,16 @@ int formright = twelve - formleft;
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath }/css/adminList-style.css">
 <script type="text/javascript" src="${contextPath}/js/noticedetail.js"></script>
+<style type="text/css">
+body{
+	padding-bottom;
+}
+.commentinsert{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+</style>
 </head>
 <body>
 
@@ -73,11 +83,18 @@ int formright = twelve - formleft;
 
 		</div>
 		<!--  댓글  -->
-		<div class="container">
+		<c:if test="${whologin!=0 }">
+		<div class="container col-sm-offset-2 col-sm-8 commentinsert">
 			<label for="content">comment</label>
 			<form name="commentInsertForm">
 				<div class="input-group">
-					<input type="hidden" name="no" value="${bean.num}" /> 
+					<input type="hidden" name="num" value="${bean.num}" /> 
+					<c:if test="${whologin == 2}">
+					<input type="text" name="writer" id="writer" value="${sessionScope.loginfo_seller.sell_Email }">
+					</c:if>
+					<c:if test="${whologin == 1|| whologin==3}">
+					<input type="text" name="writer" id="writer" value="${sessionScope.loginfo.cust_Email }">
+					</c:if>
 					<input type="text" class="form-control" id="content" name="content"
 						placeholder="내용을 입력하세요.">
 						<span class="input-group-btn">
@@ -87,12 +104,13 @@ int formright = twelve - formleft;
 				</div>
 			</form>
 		</div>
-
+		</c:if>
 		<div class="container">
 			<div class="commentList"></div>
 		</div>
+		
 	</div>
-	<%@ include file="commentS.jsp" %>
+	
 
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">
@@ -122,6 +140,6 @@ int formright = twelve - formleft;
 	</div>
 
 </body>
-
+<%@ include file="commentS.jsp" %>
 
 </html>
