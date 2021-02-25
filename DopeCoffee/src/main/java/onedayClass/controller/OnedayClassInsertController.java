@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.OnedayClass;
-import bean.Seller;
 import common.controller.SuperClass;
 import dao.OnedayClassDao;
 
@@ -60,21 +58,58 @@ public class OnedayClassInsertController extends SuperClass {
 		ModelAndView mav = new ModelAndView();
 
 		// 파일 업로드 작업
-		MultipartFile multi_file = oneday.getM_img(); // 메인 이미지
+		MultipartFile multi_file1 = oneday.getM_img(); // 메인 이미지
+		MultipartFile multi_file2 = oneday.getD_img1(); // 세부 이미지 1
+		MultipartFile multi_file3 = oneday.getD_img2(); // 세부 이미지 2
+
+		// File 파일 경로
+		File destination1 = null; // 메인 이미지1
+		File destination2 = null; // 메인 이미지2
+		File destination3 = null; // 메인 이미지3
+
 		String uploadPath = "/upload"; // 파일이 저장되는 폴더
 		String realPath = request.getRealPath(uploadPath);
 		System.out.println("실제 경로 출력 : " + realPath);
 
 		try {
-			// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
-			File destination = utility.Utility.getUploadedFileInfo(multi_file, realPath);
+			// 조건
+			// 1. 메인 이미지는 필수 - 세부 이미지 1 만 들어왔을 때
+			// 2. 메인 이미지는 필수 - 세부 이미지 2 만 들어왔을 때
+			// 세부 이미지가 1은 안들어오고 2는 들어오는 경우는 없음 (===> 자바스크립트 유효성 검사로 걸렀음)
 
-			multi_file.transferTo(destination); // 파일 업로드
+			if (multi_file1 != null) {
+				// 1. 메인 이미지만 들어왔을 때
+				// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
+				destination1 = utility.Utility.getUploadedFileInfo(multi_file1, realPath);
+				multi_file1.transferTo(destination1); // 파일 업로드
+				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+				oneday.setMain_image(destination1.getName());
+
+				if (multi_file2 != null) {
+
+					if (multi_file3 == null) {
+						// 2. 메인 이미지 + 세부이미지 1만 들어왔을 때
+						destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
+						multi_file2.transferTo(destination2); // 파일 업로드
+						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+						oneday.setDetail_image1(destination2.getName());
+					} else {
+						// 2. 메인 이미지 + 세부이미지 1 + 세부 이미지 2 들어왔을 때
+						destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
+						multi_file2.transferTo(destination2); // 파일 업로드
+						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+						oneday.setDetail_image1(destination2.getName());
+						
+						destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
+						multi_file3.transferTo(destination3); // 파일 업로드
+						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+						oneday.setDetail_image2(destination3.getName());
+					}
+				}
+			}
 
 			System.out.println(this.getClass() + "원데이 클래스 추가 하기");
 
-			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-			oneday.setMain_image(destination.getName());
 			oneday.setSell_email(sell_email);
 			System.out.println(oneday.toString());
 

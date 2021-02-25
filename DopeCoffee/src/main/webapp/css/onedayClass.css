@@ -554,7 +554,338 @@ input#keyword{
 
 /* 검색 부분  끝*/
 	
-	
+
+/* ====================
+    원데이클래스 상세보기
+=======================*/
+
+
+/* ====================
+    이미지 부분
+=======================*/
+
+
+/* 부트스트랩 이미지 수정 */
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: 100% !important;
+}
+
+
+
+/* 메인 사진 섬네일 */
+.blog-post-image {
+    margin-top: 30px !important;
+    margin-bottom: 30% !important;
+  }
+  
+/* 메인 사진을 감싸고 있는 div 태그 */
+.blog-post-image {
+    height: 500px;
+}
+
+/* div 태그 안에 있는 메인 사진 */
+img#image_part{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/*  사이드 부분 첫번째 원데이 클래스 정보 있는 부분 */
+#content_css {
+    padding-top: 0px !important;
+    border: 0;
+}
+
+#content_css h3 {
+    padding-top: 0px !important;
+}
+
+.sidebar h3{
+    color: #5080BF;
+    font-family: "맑은 고딕";
+    font-weight: bold;
+
+}
+
+/* 사이드 부분 두번째 예약 정보  있는 부분*/
+.sidebar .categories ul li {
+    border-bottom: 1px solid #f0f0f0;
+    height: 60px;
+    padding: 0;
+    list-style: none;
+}
+
+/* 수업 신청 부분 */
+h3#class_css{
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 20px;
+    width: 27%;
+    height: 30px;
+    background-color: #84C1D9;
+    padding: 6px;
+}
+
+
+/* 전체 input 태그 */
+input.input_data{
+    display: block;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+/* select 이용시간 부분 */
+#time{
+    width: 100%;
+    height: 40px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);	
+}
+
+/* 인원수 + , - 클릭  */
+#person_css{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input#person{
+    width: 75%;
+}
+
+
+
+/* 버튼 */
+.submit_detail{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.btn-send{
+    width: 30% !important;
+	margin-top: 40px !important;
+    color: #fff !important;
+    outline: none !important;
+    background: #5080BF !important;
+    border-radius: 0px;
+    border: #5080BF;
+    height: 40px;
+}
+
+/* + , - 버튼 */
+.pmbtn{
+    margin: 0 !important;
+    width: 10% !important;
+    background-color: #84C1D9 !important;
+    border: #84C1D9 !important;
+}
+
+/* 반응형으로  적용 */
+@media( max-width : 585px ) {
+
+    /* 메인 사진을 감싸고 있는 섬네일 사진임 */
+    article{
+       padding-bottom: 0px !important;
+    }
+
+    .blog-post-image {
+        height: 300px !important;
+        margin-bottom: 10% !important;
+    }
+
+    img#image_part{
+       width: 100%; 
+       height: 300px !important;
+    }
+
+    .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+        display: block;
+        max-width: 100%;
+        height: 300px !important;
+    }
+
+    .sidebar{
+        padding-top: 0px !important;
+    }
+
+    .btn-send{
+        margin-top: 20px !important;
+    }
+
+    /* 인원수 + , - 클릭  */
+    #person_css{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    input#person{
+       width: 75% !important;
+    }
+
+    /* + , - 버튼 */
+   .pmbtn{
+      margin: 0 !important;
+      width: 10% !important;
+      background-color: #84C1D9 !important;
+      border: #84C1D9 !important;
+    }
+
+    
+}
+
+/* ====================
+    코드펜에서 가져온 이미지 
+=======================*/
+
+* CROUSAL-STARTS */
+#sg-carousel {
+    position: relative;
+    height: 100vh;
+}
+#sg-carousel .carousel-inner .item {
+    height: 100vh;
+}
+.carousel-caption{top:50%;}
+.carousel-caption h1 {
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+#sg-carousel .carousel-control.left {
+    top: 48%;
+}
+#sg-carousel .carousel-control.right {
+    top: 48%;
+}
+.uppr-txt {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 35px;
+}
+#sg-carousel .carousel-control.left,
+#sg-carousel .carousel-control.right {
+    background-image: none;
+    background-repeat: no-repeat;
+    opacity: 0;
+    text-shadow: none;
+    transition: all 0.8s ease 0s;
+}
+.carousel-control {
+    bottom: 0;
+    color: #fff;
+    font-size: 20px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    top: 0;
+    width: auto;
+    transition: all 0.8s ease 0s;
+}
+.carousel-inner {
+    box-shadow: 0px;
+}
+.fa-angle-right,
+.fa-angle-left {
+    font-size: 80px;
+}
+#sg-carousel:hover .carousel-control.left {
+    left: 38px;
+    transition: all .2s ease 0;
+}
+#sg-carousel:hover .carousel-control.right {
+    right: 38px;
+    transition: all .2s ease 0;
+}
+#sg-carousel:hover .carousel-control.left,
+#sg-carousel:hover .carousel-control.right {
+    opacity: 1;
+}
+.carousel-inner > .item > a > img,
+.carousel-inner > .item > img,
+.img-responsive,
+.thumbnail a > img,
+.thumbnail > img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+}
+.item.active img {
+    transition: transform 3000ms linear 0s;
+    transform: scale(1.05, 1.05);
+}
+.carousel-fade .carousel-inner .active {
+    opacity: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+}
+.carousel-fade .carousel-control {
+    z-index: 2;
+    font-size: 80px;
+}
+.carousel-caption {
+    left: 60%;
+    padding-bottom: 5%;
+    right: 0;
+    text-align: left;
+}
+
+.carousel-caption h1 {
+    font-family: raavi;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 18px;
+}
+.carousel-caption > p {
+    font-size: 30px;
+    color: #fff;
+}
+.carousel-caption > a {
+    text-transform: uppercase;
+    color: #fff;
+    background: #041132;
+    padding: 6px 12px;
+}
+.button--tamaya {
+    border: 2px solid #40a304 !important;
+    border-radius: 5px;
+    color: #7986cb;
+    min-width: 180px;
+    overflow: hidden;
+}
+    
+
+
+
 	
 
 
