@@ -41,7 +41,7 @@
 		</if>
 		order by rownum desc
 	</select>
-	
+	<!--  ASDADS -->
 	<!--	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCoffee">
 		<include refid="myselect" />
 		 where num = #{num}
