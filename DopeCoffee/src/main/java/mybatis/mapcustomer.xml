@@ -57,6 +57,18 @@
 		where cust_Email = #{cust_Email} and cust_PW = #{cust_PW}
 	</select>
 	
+	<!-- 이메일 찾기 시 기존 데이터에서 이름, 연락처, 생년월일 일치하는지 조회 -->
+	<select id="SelectEmail" resultType="MyCustomer">
+		select cust_Email, cust_Name from customers
+		where cust_Name = #{cust_Name} and cust_Contact = #{cust_Contact}
+	</select>
+	
+	<!-- 비밀번호 찾기 시 기존 데이터에서 메일, 이름, 연락처 일치하는지 조회 -->
+	<select id="SelectPW" resultType="MyCustomer">
+		select cust_PW, cust_Name from customers
+		where cust_Email = #{cust_Email} and cust_Name = #{cust_Name} and cust_Contact = #{cust_Contact}
+	</select>
+
 	<!-- 기존 회원 데이터 수정 관련 항목 -->
 	<update id="UpdateData" parameterType="MyCustomer">
 		update customers set
@@ -74,5 +86,5 @@
 		savepoint = #{savepoint}
 		where cust_Email = #{cust_Email}
 	</update>
-
+	
 </mapper>

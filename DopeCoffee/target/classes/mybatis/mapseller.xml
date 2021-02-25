@@ -55,6 +55,18 @@
 		where sell_Email = #{sell_Email} and sell_PW = #{sell_PW}
 	</select>
 
+	<!-- 이메일 찾기 시 기존 데이터에서 이름, 연락처, 생년월일 일치하는지 조회 -->
+	<select id="SelectEmail" resultType="MySeller">
+		select sell_Email, sell_Name from sellers
+		where sell_Name = #{sell_Name} and sell_Contact = #{sell_Contact}
+	</select>
+	
+	<!-- 비밀번호 찾기 시 기존 데이터에서 메일, 이름, 연락처 일치하는지 조회 -->
+	<select id="SelectPW" resultType="MySeller">
+		select sell_PW, sell_Name from sellers
+		where sell_Email = #{sell_Email} and sell_Name = #{sell_Name} and sell_Contact = #{sell_Contact}
+	</select>
+
 	<!-- 기존 회원 데이터 수정 관련 항목 -->
 	<update id="UpdateData" parameterType="MySeller">
 		update sellers set

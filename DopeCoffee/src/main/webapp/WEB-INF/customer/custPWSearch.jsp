@@ -22,11 +22,17 @@ int formright = twelve - formleft;
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<div class="panel">
 			<div class="panel" align="center">
-				<h1 class="subtitle wow fadeInDown" data-wow-delay="0.3s">이메일 찾기</h1>
-				<p class="subtitle-des wow fadeInDown"><strong>이메일 주소가 기억나지 않아 답답하셨나요?</strong><br>아래 정보를 입력하시면, 이메일 주소를 알려드려요.</p>
+				<h1 class="subtitle wow fadeInDown" data-wow-delay="0.3s">비밀번호 찾기</h1>
+				<p class="subtitle-des wow fadeInDown"><strong>비밀번호가 기억나지 않아 답답하셨나요?</strong><br>아래 정보를 입력하시면, 비밀번호를 알려드려요.</p>
 			</div>
-			<form name="login-form" action="<%=contextPath%>/custIdSearch.cu"
-				method="post" onsubmit="return id_search();">
+			<form name="login-form" action="<%=contextPath%>/custPWSearch.cu"
+				method="post">
+				<!-- cust_Email 이름 입력 -->
+				<div class="form-fild">
+					<input type="text" placeholder="Email Address" class="input"
+						name="cust_Email" id="cust_Email" data-toggle="tooltip"
+						data-placement="top">
+				</div>
 				<!-- cust_Name 이름 입력 -->
 				<div class="form-fild">
 					<input type="text" placeholder="Name" class="input"
@@ -43,7 +49,7 @@ int formright = twelve - formleft;
 				<button type="button" id="searchbtn" onclick="history.back();"
 					class="btn btn-primary">뒤로가기</button>
 				<button type="submit" id="searchbtn" class="btn btn-primary"
-					data-toggle="modal" data-target="#myModal" onclick="return idcheck();">찾기</button>
+					data-toggle="modal" data-target="#myModal" onclick="return pwcheck();">찾기</button>
 			</form>
 		</div>
 	</div>

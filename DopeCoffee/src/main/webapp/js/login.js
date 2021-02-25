@@ -16,6 +16,18 @@
 			}
 	}
 	
+	function logincheck_sell(){
+		var sell_Email = $('#sell_Email').val();
+		var sell_PW = $('#sell_PW').val();
+		if(sell_Email == '' || sell_PW == ''){
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+			$('#modal-body').text('입력한 값을 확인하세요!');
+			return false;
+		} else {
+			return true;
+			}
+	}	
+	
 	
 	
 /* -------------------------------- 

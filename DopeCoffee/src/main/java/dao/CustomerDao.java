@@ -63,10 +63,27 @@ public class CustomerDao {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	public int UpdateData(Customer bean) {
 		return this.abcd.update(namespace + "UpdateData", bean);
+	}
+	
+	// email 찾기
+	public Customer SelectEmail(String cust_Name, String cust_Contact) {
+		System.out.println( "dao의 selectData 출력 : " + "(1)이름 : " + cust_Name + "\t" + "(2)연락처 : " + cust_Contact);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cust_Name", cust_Name);
+		map.put("cust_Contact", cust_Contact);
+		return this.abcd.selectOne(namespace + "SelectEmail", map);
+	}
+
+	// PW 찾기, 추후 메일 인증으로 비밀번호 변경
+	public Customer SelectPW(String cust_Email, String cust_Name, String cust_Contact) {
+		System.out.println( "dao의 selectData 출력 : " + "(1)이메일 : " + cust_Email + "\t" + "(2)이름 : " + cust_Name + "\t" + "(3)연락처 : " + cust_Contact);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("cust_Email", cust_Email);
+		map.put("cust_Name", cust_Name);
+		map.put("cust_Contact", cust_Contact);
+		return this.abcd.selectOne(namespace + "SelectPW", map);
 	}
 
 

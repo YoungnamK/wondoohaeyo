@@ -18,7 +18,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 <script type="text/javascript" src="${contextPath}/js/login.js"></script>
-<script type="text/javascript" src="${contextPath}/js/login_seller.js"></script>
 </head>
 <body>
 <div align="center" class="container col-md-12">
@@ -47,20 +46,17 @@
 				<input type="checkbox" id="remember">
 	            <label for="remember">이메일 저장</label>
             </div> -->
-            <button type="submit"  data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
+            <button type="submit" data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
 <!--             <button type="submit">로그인</button>
  -->	    <div class="search">
+ 	          	<span><a href="<%=contextPath%>/custIdSearch.cu">이메일 찾기</a> ｜</span>
 	           	<span><a href="<%=contextPath%>/custInsert.cu">회원가입</a> ｜</span>
-	          	<span><a href="<%=contextPath%>/custIdSearch.cu">이메일 찾기</a> ｜</span>
 				<span><a href="<%=contextPath%>/custPWSearch.cu">비밀번호 찾기</a></span>
           	</div>
           	<hr>
-          	<div class="social"> <span>or sign up with social media</span></div>
-          	<div class="buttons">
-			    <button class="facebook"><i class="fa fa-facebook"></i>Facebook</button>
-			    <button class="kakao"><i class="fa fa-comments-o"></i>Kakao</button>
-			    <button class="google"><i class="fa fa-google-plus"></i>Google</button>
-			 </div>
+          	<div class="social"><span>SNS계정으로 간편 로그인/회원가입</span></div>
+          		<button type="button" class="kakao btn-lg">카카오로 시작하기</button>
+			<!--<button type="button" class="kakao btn-lg" onclick="location.href='<%=contextPath%>/kakaoLogin.cu'">카카오로 시작하기</button> -->
           </form>
         </li>
         <%-- 사헙자회원 로그인 ------------------------------------------------------- --%>
@@ -84,8 +80,8 @@
 <!--             <button type="submit">로그인</button>
  -->       
 		    <div class="search">
+			    <span><a href="<%=contextPath%>/sellIdSearch.se">이메일 찾기</a> ｜</span>
 	           	<span><a href="<%=contextPath%>/sellInsert.se">회원가입</a> ｜</span>
-	          	<span><a href="<%=contextPath%>/sellIdSearch.se">이메일 찾기</a> ｜</span>
 				<span><a href="<%=contextPath%>/sellPWSearch.se">비밀번호 찾기</a></span>
           	</div>
           </form>

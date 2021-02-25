@@ -16,35 +16,24 @@ int formright = twelve - formleft;
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
-<script type="text/javascript" src="${contextPath}/js/custSearch.js"></script>
+<script type="text/javascript" src="${contextPath}/js/sellSearch.js"></script>
 </head>
 <body style="padding-top: 100px;">
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<div class="panel">
 			<div class="panel" align="center">
-				<h1 class="subtitle wow fadeInDown" data-wow-delay="0.3s">이메일 찾기</h1>
-				<p class="subtitle-des wow fadeInDown"><strong>이메일 주소가 기억나지 않아 답답하셨나요?</strong><br>아래 정보를 입력하시면, 이메일 주소를 알려드려요.</p>
+				<h2 class="subtitle wow fadeInDown" data-wow-delay="0.3s">이메일 찾기</h2>
+				<p class="subtitle-des wow fadeInDown"><b>${bean.sell_Name}</b>님의 이메일 주소는 아래와 같습니다.</p>
 			</div>
-			<form name="login-form" action="<%=contextPath%>/custIdSearch.cu"
-				method="post" onsubmit="return id_search();">
-				<!-- cust_Name 이름 입력 -->
-				<div class="form-fild">
-					<input type="text" placeholder="Name" class="input"
-						name="cust_Name" id="cust_Name" data-toggle="tooltip"
-						data-placement="top">
-				</div>
-				<!-- cust_Contact 휴대폰번호 입력 -->
-				<div class="form-fild">
-					<input type="text" placeholder="Contact" class="input"
-						name="cust_Contact" id="cust_Contact" data-toggle="tooltip"
-						data-placement="top">
-				</div>
-				<!-- 하단 버튼 -->
-				<button type="button" id="searchbtn" onclick="history.back();"
-					class="btn btn-primary">뒤로가기</button>
-				<button type="submit" id="searchbtn" class="btn btn-primary"
-					data-toggle="modal" data-target="#myModal" onclick="return idcheck();">찾기</button>
-			</form>
+			<!-- sell_Email 이메일 주소 결과 출력 -->
+			<div class="form-result">
+				<span>${bean.sell_Email}</span>
+			</div>
+			<!-- 하단 버튼 -->
+			<button type="button" id="loginGo_btn"
+				class="loginGo_btn btn-primary btn-lg"
+				onclick="location.href='<%=contextPath%>/custLog.cu'">로그인하러 가기</button>
+
 		</div>
 	</div>
 
@@ -62,8 +51,8 @@ int formright = twelve - formleft;
 						<p id="modal-body" style="font-size: 13px"></p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px">닫기</button>
+						<button type="button" class="loginGo_btn btn-default"
+							data-dismiss="modal" style="font-size: 13px">닫기</button>
 					</div>
 				</div>
 			</div>

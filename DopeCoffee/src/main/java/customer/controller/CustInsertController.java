@@ -22,7 +22,7 @@ import dao.CustomerDao;
 import utility.Utility;
 
 
-@Controller // 관리자가 회원들의 목록을 조회하는 컨트롤러
+@Controller
 public class CustInsertController extends SuperClass{
 	private final String command = "/custInsert.cu" ; // 요청 커맨드(변경 요망)
 	private final String redirect = "redirect:/main.co" ; // 리다이렉션(변경 요망)

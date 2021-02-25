@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Customer;
 import bean.Seller;
 
 
@@ -67,6 +68,25 @@ public class SellerDao {
 	// 회원 정보 수정
 	public int UpdateData(Seller bean) {
 		return this.abcd.update(namespace + "UpdateData", bean);
+	}
+	
+	// email 찾기
+	public Seller SelectEmail(String sell_Name, String sell_Contact) {
+		System.out.println( "dao의 selectData 출력 : " + "(1)상호명 : " + sell_Name + "\t" + "(2)연락처 : " + sell_Contact);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sell_Name", sell_Name);
+		map.put("sell_Contact", sell_Contact);
+		return this.abcd.selectOne(namespace + "SelectEmail", map);
+	}
+
+	// PW 찾기, 추후 메일 인증으로 비밀번호 변경
+	public Seller SelectPW(String sell_Email, String sell_Name, String sell_Contact) {
+		System.out.println( "dao의 selectData 출력 : " + "(1)이메일 : " + sell_Email + "\t" + "(2)상호명 : " + sell_Name + "\t" + "(3)연락처 : " + sell_Contact);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sell_Email", sell_Email);
+		map.put("sell_Name", sell_Name);
+		map.put("sell_Contact", sell_Contact);
+		return this.abcd.selectOne(namespace + "SelectPW", map);
 	}
 	
 }
