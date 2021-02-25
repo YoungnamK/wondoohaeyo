@@ -28,7 +28,7 @@
 	</select>
 	
 		<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
-	<select id="SelectAllData" resultType="MyCoffee">
+	<select id="SelectAllData" parameterType="MAP" resultType="MyCoffee">
 		<include refid="myselect"/>
 		<if test="mode == c_type">
 			where c_type like #{keyword}
