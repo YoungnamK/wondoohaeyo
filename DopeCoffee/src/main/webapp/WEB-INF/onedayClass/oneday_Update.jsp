@@ -51,8 +51,8 @@
 					                            </a>
 					                        </li>
 					                        <li role="presentation" class="disabled">
-					                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="03. 
-					                            <spring:message code="oneday.step3_title"/>">
+					                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" 
+					                            title="03. <spring:message code="oneday.step3_title"/>">
 					                                <span class="round-tab">
 					                                    <i class="fas fa-images"></i>
 					                                </span>
@@ -60,8 +60,8 @@
 					                        </li>
 					    
 					                        <li role="presentation" class="disabled">
-					                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="04. 
-					                            <spring:message code="oneday.Update_step4_title"/>">
+					                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" 
+					                            title="04. <spring:message code="oneday.Update_step4_title"/>">
 					                                <span class="round-tab">
 					                                    <i class="fas fa-check"></i>
 					                                </span>
@@ -74,7 +74,7 @@
                                     <div class="contact-form">
                                         <c:set var="contextPath" value="<%=contextPath%>" scope="application" />
                                         <form id="contact-form" method="post" action="${contextPath}/onedayUpdate.odc" role="form" enctype="multipart/form-data">
-                                            <input type="text" id="isCheck" class="isCheck" name="isCheck" value="false">
+                                            <input type="hidden" id="isCheck" class="isCheck" name="isCheck" value="false">
                                             <input type="hidden" id="sell_email" name="sell_email" value="${sessionScope.loginfo_seller.sell_Email}">
                                             <div class="tab-content">
                                                 <!-- step1 -->
@@ -283,7 +283,7 @@
                                                     <!-- ------------------------------------- [메인 사진  main_image section]--------------------------------------- -->
                                                     <%-- ======================구분선===================== --%>
                                                     <div class="file-upload">
-												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="메인 사진을 업로드 해주세요!" onclick="$('#m_img').trigger( 'click' )">
+												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="썸네일 사진을 업로드 해주세요!" onclick="$('#m_img').trigger( 'click' )">
 												        	<spring:message code="oneday.main_image"/>
 												        </button>
 												
@@ -303,15 +303,8 @@
 												            </div>
 												        </div>
 												    </div>
-                                                      <!-- ------------------------------------- [★★★★사진 추가★★★★]--------------------------------------- -->
-                                                     
-                                                     <div class="col-md-2 add_btn">
-                                                     	 <p class="pic_add btn_icon" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i>  사진</p>
-                                                     </div>
-                                                     
-                                                     <section id="add2"> 
-	                                                    <!-- ------------------------------------- [상세 사진 1  detail_image1 section]--------------------------------------- -->
-	                                                    <div class="file-upload">
+                                                    <!-- ------------------------------------- [상세 사진 1  detail_image1 section]--------------------------------------- -->
+                                                    <div class="file-upload">
 												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#d_img1').trigger( 'click' )">
 												        	<spring:message code="oneday.detail_image1"/>
 												        </button>
@@ -331,10 +324,10 @@
 													            </button>
 												            </div>
 												        </div>
-													    </div>
+												    </div>
 	                                                    
-	                                                    <!-- ------------------------------------- [상세 사진 2  detail_image2 section]--------------------------------------- -->
-	                                                   <div class="file-upload">
+                                                    <!-- ------------------------------------- [상세 사진 2  detail_image2 section]--------------------------------------- -->
+                                                   <div class="file-upload">
 												        <button class="file-upload-btn" type="button" data-toggle="tooltip" title="세부 사진을 업로드 해주세요!" onclick="$('#d_img2').trigger( 'click' )">
 												        	<spring:message code="oneday.detail_image2"/>
 												        </button>
@@ -354,8 +347,7 @@
 													            </button>
 												            </div>
 												        </div>
-													    </div>
-	                                                </section>
+												    </div>
                                                     <ul class="list-inline pull-right">
                                                         <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
                                                     </ul>

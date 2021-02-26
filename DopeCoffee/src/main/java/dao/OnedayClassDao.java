@@ -74,4 +74,11 @@ public class OnedayClassDao {
 		return cnt;
 	}
 
+	public int DeleteData(String code) {
+		// 원데이 클래스 삭제
+		int cnt = -1;
+		cnt = this.sql_session.delete(this.namespace + "DeleteData", code);
+		return cnt;
+	}
+
 }

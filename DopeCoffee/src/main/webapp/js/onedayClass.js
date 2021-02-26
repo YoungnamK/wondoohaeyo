@@ -76,9 +76,8 @@ function today() {
 	
 	
 	
-	// 로드 되었을 때 , 시간 추가 부분 + 세부 사진 부분 + 검색 부분은 안보이게함
+	// 로드 되었을 때 , 시간 추가 부분은 안보이게함
 	$('#add1').hide(); // 추가시간
-	$('#add2').hide(); // 세부사진
 	
 }
 
@@ -90,32 +89,15 @@ function today() {
 
 function code_ajax() {
 	var code = $('#code').val();
-	//alert(code);
+	alert(code);
 	$.ajax({
 		type: "GET",
 		url: "onedayCodeCheck.odc",
 		data: { "code": code },
-		dataType: "json",          // ajax 통신으로 받는 타입
-        contentType: "application/json",  // ajax 통신으로 보내는 타입
 		success: function(data) { // OnedayClassCodeCheckController 컨트롤러 cnt 값
 			console.log("1 = 중복 O / 0 = 중복X : " + data);
 			if (data == 1) {
-				// 1 : 코드가 중복 되는 문구 
-				$('#code_check').text('사용중인 코드입니다.');
-				$('#code_check').css('color', 'red');
-				$('#contact-submit').attr("disabled", true);
-			} else {
-
-				if (codeJ.test(code)) {
-					// 0 : 코드 길이 / 문자열 검사 
-					$('#code_check').text('코드를 입력해주세요.');
-					$('#code_check').css('color', 'red');
-					$('#contact-submit').attr("disabled", false);
-				} else {
-					$('#code_check').text('코드는 소문자와 숫자 4~12자리만 가능합니다');
-					$('#code_check').css('color', 'red');
-					$('#contact-submit').attr("disabled", false);
-				}
+				alert("통신 성공")
 			}
 		}, error: function() {
 			alert("통신 실패")
@@ -581,29 +563,17 @@ function prevTab(elem) {
   ================================*/
 function submitCheck(){
 
-	// 메인 이미지가 등록되지 않았을때 , 
+	// 사진이 등록되지 않았을때 , 
 	var main_image = $('#m_img').val();
-	if(main_image == ''){
+	var detail_image1 = $('#d_img1').val();
+	var detail_image2 = $('#d_img2').val();
+	if(main_image == '' || detail_image1 == '' || detail_image2 == ''){
 		$('#isCheck').val('false');
 		$('#contact-submit').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-		$('#modal-body').text('메인 화면에 쓰일 사진을 등록하세요!');
+		$('#modal-body').html('원데이 클래스 상세보기에 쓰일 <br>사진을 등록하세요!');
 		
 		return false;
-	}else if(main_image != ''){ // 메인 이미지는 등록되어 있고(추가 사진을 등록하려면 메인은 무조건 등록되어야함)
-		// 추가 이미지가 순차적으로 등록되지 않았을 때 
-		var detail_image1 =  $('#d_img1').val(); // 첫번째 추가 이미지 
-		var detail_image2 =  $('#d_img2').val(); // 두번째 추가 이미지
-		
-		if(detail_image1 == '' && detail_image2 != '' ){
-			$('#isCheck').val('false');
-			$('#contact-submit').attr('data-toggle', 'modal');
-			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-			$('#modal-body').text('추가 사진은 순차적으로 등록하세요!');
-			
-			return false;
-		}
-
 	}else{
 		$('button#modalbtn2').removeAttr('data-toggle');
 		
@@ -638,21 +608,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('.pic_add').click(function (){
-		
-		// step 3 
-		var main_image = $('#m_img').val();
-		//alert(main_image);
-		
-		if(main_image != ''){
-			$('section#add2').toggle();
-			$('p.pic_add').removeAttr('data-toggle');
-		}else{
-			$('p.pic_add').attr('data-toggle' , 'modal');
-			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-			$('#modal-body').text('기본 메인 사진을 먼저 업로드하세요!');
-		}
-	});
 });
 
 
@@ -1051,5 +1006,20 @@ function booking_date(){
  /* ===============================  
 		원데이 클래스 수정
  ==================================*/
+
+ /* ===============================  
+		원데이 클래스 삭제
+ ==================================*/
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
+
+function delete_check(){
+	var code=$('#code').val();
+	location.href = getContextPath() + "/onedayDelete.odc?code="+code;
+}
+
 
 	

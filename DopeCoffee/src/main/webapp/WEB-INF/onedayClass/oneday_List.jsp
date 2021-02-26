@@ -51,6 +51,7 @@
 					<div class="col-sm-4">
 						<input type="hidden" value="${bean.type}"> <!-- 주제 -->
 						<input type="hidden" value="${bean.address1}"> <!-- 주소 지역 -->
+						<input type="hidden" id="code" value="${bean.code}"> <!-- 코드  -->
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
@@ -60,7 +61,7 @@
 										<a href="${contextPath}/onedayDetail.odc?code=${bean.code}">자세히 보기</a>
 										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
 											<a href="${contextPath}/onedayUpdate.odc?code=${bean.code}">수정</a>
-											<a href="${contextPath}/onedayDelete.odc?code=${bean.code}">삭제</a>
+											<a data-toggle="modal" data-target="#myModal">삭제</a>
 										</c:if>
 									</div>
 								</div>
@@ -85,5 +86,31 @@
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>	
 	</section>
+	
+	
+	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
+	<div class="container">
+	
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 id="modal-title" class="modal-title" style="font-size: 35px"><i class="fas fa-exclamation-circle"></i></h4>
+	        </div>
+	        <div class="modal-body">
+	          <p id="modal-body" style="font-size: 13px">정말 삭제 하시겠습니까?</p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" onclick="delete_check();">
+	          	 예 
+	          </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">아니오</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </body>
 </html>

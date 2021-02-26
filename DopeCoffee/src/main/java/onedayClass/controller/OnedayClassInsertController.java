@@ -1,3 +1,4 @@
+
 package onedayClass.controller;
 
 import java.io.File;
@@ -62,6 +63,7 @@ public class OnedayClassInsertController extends SuperClass {
 		MultipartFile multi_file2 = oneday.getD_img1(); // 세부 이미지 1
 		MultipartFile multi_file3 = oneday.getD_img2(); // 세부 이미지 2
 
+
 		// File 파일 경로
 		File destination1 = null; // 메인 이미지1
 		File destination2 = null; // 메인 이미지2
@@ -73,39 +75,23 @@ public class OnedayClassInsertController extends SuperClass {
 
 		try {
 			// 조건
-			// 1. 메인 이미지는 필수 - 세부 이미지 1 만 들어왔을 때
-			// 2. 메인 이미지는 필수 - 세부 이미지 2 만 들어왔을 때
-			// 세부 이미지가 1은 안들어오고 2는 들어오는 경우는 없음 (===> 자바스크립트 유효성 검사로 걸렀음)
+			// 3개의 사진이 모두 등록되어야함
 
-			if (multi_file1 != null) {
-				// 1. 메인 이미지만 들어왔을 때
-				// 이미지 파일의 이름을 날짜가 들어가게끔 지정해서 return
+			if (multi_file1 != null && multi_file2 != null && multi_file3 != null) {
 				destination1 = utility.Utility.getUploadedFileInfo(multi_file1, realPath);
 				multi_file1.transferTo(destination1); // 파일 업로드
 				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
 				oneday.setMain_image(destination1.getName());
 
-				if (multi_file2 != null) {
+				destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
+				multi_file2.transferTo(destination2); // 파일 업로드
+				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+				oneday.setDetail_image1(destination2.getName());
 
-					if (multi_file3 == null) {
-						// 2. 메인 이미지 + 세부이미지 1만 들어왔을 때
-						destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
-						multi_file2.transferTo(destination2); // 파일 업로드
-						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-						oneday.setDetail_image1(destination2.getName());
-					} else {
-						// 2. 메인 이미지 + 세부이미지 1 + 세부 이미지 2 들어왔을 때
-						destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
-						multi_file2.transferTo(destination2); // 파일 업로드
-						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-						oneday.setDetail_image1(destination2.getName());
-						
-						destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
-						multi_file3.transferTo(destination3); // 파일 업로드
-						// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-						oneday.setDetail_image2(destination3.getName());
-					}
-				}
+				destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
+				multi_file3.transferTo(destination3); // 파일 업로드
+				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+				oneday.setDetail_image2(destination3.getName());
 			}
 
 			System.out.println(this.getClass() + "원데이 클래스 추가 하기");

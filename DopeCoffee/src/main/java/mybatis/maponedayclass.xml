@@ -95,4 +95,9 @@
 		where code=#{code} 
 	</update>
 	
+	<!-- 원데이 클래스 삭제하기 -->
+	<delete id="DeleteData" parameterType="String">
+		delete from onedayclasses where code=#{code}
+	</delete>
+	
 </mapper>
