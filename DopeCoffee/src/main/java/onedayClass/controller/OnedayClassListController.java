@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import bean.OnedayClass;
 import common.controller.SuperClass;
 import dao.OnedayClassDao;
-import utility.FlowParameters;
-import utility.Paging;
+import utility.FlowParameters2;
+import utility.Paging2;
 
 // 원데이 클래스 목록 담당 컨트롤러
 @Controller
@@ -44,31 +44,31 @@ public class OnedayClassListController extends SuperClass {
 			@RequestParam(value = "keyword", required = false)String keyword			
 			) {
 		
-		FlowParameters parameters = new FlowParameters(pageNumber, pageSize, mode, keyword);
+		FlowParameters2 param = new FlowParameters2(pageNumber, pageSize, mode, keyword);
 		
-		System.out.println(this.getClass() + " : " + parameters.toString());
+		System.out.println(this.getClass() + " : " + param.toString());
 		
 		int totalCount = onedayDao.SelectTotalCount(
-				parameters.getMode(), "%" + parameters.getKeyword() +"%");
+				param.getMode(), "%" + param.getKeyword() +"%");
 		
 		String contextPath = request.getContextPath() + "/";
 		String myurl = contextPath + this.command;
 		
 		// 페이징 처리 
-		Paging pageInfo = new Paging(
-				parameters.getPageNumber(),
-				parameters.getPageSize(),
+		Paging2 pageInfo = new Paging2(
+				param.getPageNumber(),
+				param.getPageSize(),
 				totalCount, 
 				contextPath,
-				parameters.getMode(), 
-				parameters.getKeyword());
+				param.getMode(), 
+				param.getKeyword());
 		
 		// 해당 목록 가져오기 
 		List<OnedayClass> lists = this.onedayDao.SelectAllData(
 				pageInfo.getOffset(),
 				pageInfo.getLimit(),
-				parameters.getMode(),
-				"%" + parameters.getKeyword() + "%");
+				param.getMode(),
+				"%" + param.getKeyword() + "%");
 		
 		// 목록 갯수 
 		mav.addObject("totalCount", totalCount);
@@ -80,11 +80,11 @@ public class OnedayClassListController extends SuperClass {
 		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
 		
 		// 필드 검색과 관련 항목들
-		mav.addObject("mode", parameters.getMode());
-		mav.addObject("keyword", parameters.getKeyword());
+		mav.addObject("mode", param.getMode());
+		mav.addObject("keyword", param.getKeyword());
 
 		// 파라미터 리스트 문자열 : 상세보기 , 수정 , 삭제 등에 사용됨
-		mav.addObject("parameters", parameters.toString());
+		mav.addObject("parameters", param.toString());
 		
 		this.mav.setViewName(super.getpage);
 		return this.mav;

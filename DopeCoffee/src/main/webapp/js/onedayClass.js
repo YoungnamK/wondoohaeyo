@@ -89,13 +89,14 @@ function today() {
 
 function code_ajax() {
 	var code = $('#code').val();
-	alert(code);
+	//alert(code);
+	
 	$.ajax({
-		type: "GET",
-		url: "onedayCodeCheck.odc",
-		data: { "code": code },
+		url: './onedayCodeCheck.odc',
+		type: 'post',
+		data : {"code" : code},
 		success: function(data) { // OnedayClassCodeCheckController 컨트롤러 cnt 값
-			console.log("1 = 중복 O / 0 = 중복X : " + data);
+			console.log(data);
 			if (data == 1) {
 				alert("통신 성공")
 			}
@@ -838,8 +839,8 @@ function search(){
    =========================
 */
 
-// 페이지가 로딩 되면 
-function detail_loading(){
+
+$(document).ready(function(){
 	// 1인 기준 가격 콤마 찍기
 	var oneprice = $('#oneprice').val();
 	oneprice = addcomma(oneprice);
@@ -863,11 +864,8 @@ function detail_loading(){
 	$('#oneprice').val(result_oneprice);
 	$('#fake_totalprice').val(result_fake_totalprice);
 	$('#totalprice').val(result_totalprice);
-
-}
-
-
-$(document).ready(function(){
+	
+	
     /* ===============================  
 		버튼 클릭 시 인원수 , 가격 변동 
      ==================================*/

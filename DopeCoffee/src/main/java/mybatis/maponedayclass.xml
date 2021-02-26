@@ -36,27 +36,27 @@
 	<!-- 검색 , 키워드 별 건수를 조회함 -->
 	<select id="SelectTotalCount" parameterType="String" resultType="Integer">
 		select count(*) from onedayclasses 
-		<if test="mode == type">
-			where type like #{keyword}
-		</if>
-		<if test="mode == address1">
+		<if test="mode == 'address1'">
 			where address1 like #{keyword}
 		</if>
-		<if test="classname == address1">
+		<if test="mode == 'sell_email'">
+			where sell_email like #{keyword}
+		</if>
+		<if test="mode == 'classname'">
 			where classname like #{keyword}
 		</if>
 	</select>
 	
-	<!-- 주제 / 주소 1 / 클래스명으로 목록 조회함 -->
+	<!-- 주제 / 이메일 / 지역 / 클래스명으로 목록 조회함 -->
 	<select id="SelectAllData" resultType="MyOnedayclass">
 		<include refid="basic_select"/>
-		<if test="mode == type">
-			where type like #{keyword}
-		</if>
-		<if test="mode == address1">
+		<if test="mode == 'address1'">
 			where address1 like #{keyword}
 		</if>
-		<if test="classname == address1">
+		<if test="mode == 'sell_email'">
+			where sell_email like #{keyword}
+		</if>
+		<if test="mode == 'classname'">
 			where classname like #{keyword}
 		</if>
 		order by rownum desc

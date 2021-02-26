@@ -73,7 +73,7 @@
                                     <!-- =============================================[Form 양식 시작]============================================= -->
                                     <div class="contact-form">
                                         <c:set var="contextPath" value="<%=contextPath%>" scope="application" />
-                                        <form id="contact-form" method="post" action="${contextPath}/onedayUpdate.odc" role="form" enctype="multipart/form-data">
+                                        <form id="contact-form" method="post" action="${contextPath}/onedayInsert.odc" role="form" enctype="multipart/form-data">
                                             <input type="hidden" id="isCheck" class="isCheck" name="isCheck" value="false">
                                             <input type="hidden" id="sell_email" name="sell_email" value="${sessionScope.loginfo_seller.sell_Email}">
                                             <div class="tab-content">

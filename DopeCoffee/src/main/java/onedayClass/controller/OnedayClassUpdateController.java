@@ -94,7 +94,7 @@ public class OnedayClassUpdateController extends SuperClass {
 
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 수정 성공");
-				mav.setViewName(super.postpage);
+				mav.setViewName("redirect:/onedayList.odc");
 			} else {
 				System.out.println("원데이 클래스 수정 실패");
 				mav.setViewName(super.getpage);

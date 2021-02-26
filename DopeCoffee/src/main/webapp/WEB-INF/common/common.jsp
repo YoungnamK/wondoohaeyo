@@ -117,6 +117,11 @@
 	    
 	    <!-- 아이콘 사용 -->
 	    <script src="https://kit.fontawesome.com/0bccbc6608.js" crossorigin="anonymous"></script>
+	    
+	    
+	    <!-- 에러 메세지를 담을 모달 띄우기 -->
+	    <script type="text/javascript">
+	    </script>
     </head>
     <body>
         <!--
@@ -218,7 +223,7 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         <c:if test="${whologin == 2}">
-                       						 <li><a href="${contextPath}/onedayInsert.odc" >수업등록</a></li>
+                       						 <li><a href="${contextPath}/onedayInsert.odc">수업등록</a></li>
                      					</c:if>
                      					<li><a href="${contextPath}/onedayList.odc">수업목록</a></li>
                                     </ul>

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.OnedayClass;
+import bean.Seller;
 import common.controller.SuperClass;
 import dao.OnedayClassDao;
 
@@ -23,8 +25,7 @@ import dao.OnedayClassDao;
 public class OnedayClassInsertController extends SuperClass {
 	private final String command = "/onedayInsert.odc";
 	private final String get_gotopage = "oneday_InsertForm";
-	private final String post_gotopage = "oneday_List";
-	private final String redirect = "redirect:/main.co";
+	private final String redirect = "redirect:/onedayList.odc";
 
 	@Autowired
 	@Qualifier("onedayDao")
@@ -33,22 +34,25 @@ public class OnedayClassInsertController extends SuperClass {
 	@GetMapping(value = command)
 	public String doGet(HttpServletRequest request) {
 
-		/*
-		 * // 로그인을 한 사업자 정보 가져오기 HttpSession session = request.getSession();
-		 * 
-		 * Seller bean = (Seller) session.getAttribute("loginfo_seller");
-		 * 
-		 * if (bean.getSell_Status().equals("승인")) {
-		 * 
-		 * System.out.println("승인된 사업자"); return get_gotopage; // 등록 화면으로 보냄 } else {
-		 * System.out.println("로그인된 이메일 : " + bean.getSell_Email());
-		 * System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
-		 * System.out.println("승인 안된 사업자"); // 에러 메세지 바인딩
-		 * request.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
-		 * return redirect; // 메인 화면으로 보냄 }
-		 */
-		return get_gotopage;
+		// 로그인을 한 사업자 정보 가져오기
+		HttpSession session = request.getSession();
 
+		Seller bean = (Seller) session.getAttribute("loginfo_seller");
+
+		if (bean.getSell_Status().equals("승인")) {
+
+			System.out.println("승인된 사업자");
+			return get_gotopage;
+
+		} else {
+			System.out.println("로그인된 이메일 : " + bean.getSell_Email());
+			System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
+			System.out.println("승인 안된 사업자"); 
+			// 에러 메세지 바인딩
+			request.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
+			
+			return redirect;
+		}
 	}
 
 	// 유효성 검사는 jsp 단 자바스크립트로 진행하였다.
@@ -62,7 +66,6 @@ public class OnedayClassInsertController extends SuperClass {
 		MultipartFile multi_file1 = oneday.getM_img(); // 메인 이미지
 		MultipartFile multi_file2 = oneday.getD_img1(); // 세부 이미지 1
 		MultipartFile multi_file3 = oneday.getD_img2(); // 세부 이미지 2
-
 
 		// File 파일 경로
 		File destination1 = null; // 메인 이미지1
@@ -104,7 +107,7 @@ public class OnedayClassInsertController extends SuperClass {
 
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 등록 성공");
-				mav.setViewName(post_gotopage);
+				mav.setViewName(redirect);
 			} else {
 				System.out.println("원데이 클래스 등록 실패");
 				mav.setViewName(get_gotopage);

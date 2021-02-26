@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
 <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
 </head>
-<body onload="list_loading();">
+<body onload="list_loading();" class="top">
 	<!-- 
         ================================================== 
             사진 Section Start
@@ -36,7 +36,9 @@
 	        	<div id="search">
 	               <select class="form-control" name="mode" id="mode" data-toggle="tooltip" title="검색할 조건을 선택하세요!">
 	                      <option class="form-control" value="all">전체</option>
-	                      <option class="form-control" value="type">주제</option>
+	                      <c:if test="${not empty sessionScope.loginfo_seller}">
+	                      	<option class="form-control" value="sell_email">이메일</option>
+	                      </c:if>
 	                      <option class="form-control" value="address1">지역</option>
 	                      <option class="form-control" value="classname">클래스명</option>
 	               </select>
@@ -49,8 +51,10 @@
 			<c:forEach var="bean" items="${requestScope.lists}">
 				<div class="col">
 					<div class="col-sm-4">
-						<input type="hidden" value="${bean.type}"> <!-- 주제 -->
+					<!-- 검색 모드에서 활용 [시작]-->
 						<input type="hidden" value="${bean.address1}"> <!-- 주소 지역 -->
+						<input type="hidden" value="${bean.sell_email}"> <!-- 사업자 이메일 -->
+					<!-- 검색 모드에서 활용 [끝] -->
 						<input type="hidden" id="code" value="${bean.code}"> <!-- 코드  -->
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
