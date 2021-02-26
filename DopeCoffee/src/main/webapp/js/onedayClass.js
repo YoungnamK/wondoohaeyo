@@ -79,7 +79,7 @@ function today() {
 	// 로드 되었을 때 , 시간 추가 부분 + 세부 사진 부분 + 검색 부분은 안보이게함
 	$('#add1').hide(); // 추가시간
 	$('#add2').hide(); // 세부사진
-	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
+	
 }
 
 
@@ -846,7 +846,7 @@ $('#detail2_wrap').bind('dragover', function () {
 
 
 // 페이지가 로딩 되면 
-$(document).ready(function(){
+function list_loading(){
 	// 가격 콤마 찍기
 	var oneprice = $('#list_price').text();
 	oneprice = addcomma(oneprice);
@@ -860,8 +860,10 @@ $(document).ready(function(){
 	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + oneprice;
 	$('#list_price').html(result_oneprice);
 	
+	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
 	
-});
+}
+
 
 // 검색 버튼을 누르면 검색 창이 나오게 수정
 function search(){
@@ -882,9 +884,7 @@ function search(){
 */
 
 // 페이지가 로딩 되면 
-
-
-$(document).ready(function(){
+function detail_loading(){
 	// 1인 기준 가격 콤마 찍기
 	var oneprice = $('#oneprice').val();
 	oneprice = addcomma(oneprice);
@@ -909,7 +909,10 @@ $(document).ready(function(){
 	$('#fake_totalprice').val(result_fake_totalprice);
 	$('#totalprice').val(result_totalprice);
 
+}
 
+
+$(document).ready(function(){
     /* ===============================  
 		버튼 클릭 시 인원수 , 가격 변동 
      ==================================*/
@@ -1050,28 +1053,3 @@ function booking_date(){
  ==================================*/
 
 	
-function update(){
-	// 페이지가 로드 되었을 때 가격에서 콤마 빼기
-	var oneprice = $('#oneprice').val();
-		
-	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
-		
-	function removecomma(pStr) { 
-		var strCheck = /\,/g; 
-		pStr = pStr.replace(strCheck, ''); 
-		return pStr; 
-	}
-	
-	$('#oneprice').val(oneprice);
-	
-	// 원데이 클래스 수정 부분에서 step 2 추가 시간 부분 안보이게 처리 
-	$('select#add1').val();
-}
-
- 
-
-
-
-
-
-

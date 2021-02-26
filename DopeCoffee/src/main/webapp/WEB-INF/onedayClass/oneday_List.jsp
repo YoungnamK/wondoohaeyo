@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
 <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
 </head>
-<body onload="today();">
+<body onload="list_loading();">
 	<!-- 
         ================================================== 
             사진 Section Start

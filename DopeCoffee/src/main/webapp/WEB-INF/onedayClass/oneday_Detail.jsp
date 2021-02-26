@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
     
 </head>
-<body class="top">
+<body class="top" onload="detail_loading();">
 	 <section id="blog-full-width">
         <div class="container">
             <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">ONEDAY CLASS</h2>

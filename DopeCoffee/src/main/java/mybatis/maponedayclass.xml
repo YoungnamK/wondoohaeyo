@@ -70,7 +70,7 @@
 	</select>
 	
 	<!-- 원데이 클래스 수정하기 -->
-	<update id="UpdateData" parameterType="String">
+	<update id="UpdateData" parameterType="MyOnedayclass">
 		update onedayclasses set
 		type=#{type} , 
 		classname=#{classname} ,

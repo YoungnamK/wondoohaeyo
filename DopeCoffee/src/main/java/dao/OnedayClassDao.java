@@ -67,10 +67,10 @@ public class OnedayClassDao {
 		return bean;
 	}
 
-	public int UpdateData(String code) {
+	public int UpdateData(OnedayClass oneday) {
 		// 원데이 클래스 수정
 		int cnt = -1;
-		cnt = this.sql_session.update(this.namespace + "UpdateData", code);
+		cnt = this.sql_session.update(this.namespace + "UpdateData", oneday);
 		return cnt;
 	}
 

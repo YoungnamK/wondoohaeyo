@@ -47,7 +47,7 @@ public class OnedayClassUpdateController extends SuperClass {
 
 	// 유효성 검사는 jsp 단 자바스크립트로 진행하였다.
 	@PostMapping(value = command)
-	public ModelAndView doPost(@RequestParam(value = "code", required = true) String code, OnedayClass oneday,
+	public ModelAndView doPost(OnedayClass oneday,
 			HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
@@ -110,7 +110,7 @@ public class OnedayClassUpdateController extends SuperClass {
 			System.out.println(oneday.getOneprice());
 
 			int cnt = -1;
-			cnt = this.onedayDao.UpdateData(code);
+			cnt = this.onedayDao.UpdateData(oneday);
 
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 수정 성공");
