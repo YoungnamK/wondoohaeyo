@@ -16,7 +16,7 @@ public class Utility {
 		
 		String somefile = multi.getOriginalFilename() ;
 		int dot = somefile.indexOf(".") ;
-		String filename = somefile.substring(1, dot) ;
+		String filename = somefile.substring(0, dot) ;
 		String fileext = somefile.substring(dot) ;
 		String newfile = filename + now + fileext ; 
 		

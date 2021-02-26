@@ -1063,6 +1063,9 @@ function update(){
 	}
 	
 	$('#oneprice').val(oneprice);
+	
+	// 원데이 클래스 수정 부분에서 step 2 추가 시간 부분 안보이게 처리 
+	$('select#add1').val();
 }
 
  

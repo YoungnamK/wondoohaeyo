@@ -77,9 +77,9 @@
                                                     <h4 class="subtitle">기본 정보</h4>
                                                     <!-- ------------------------------------- [주제 type section]--------------------------------------- -->
                                                     <div class="form-group">
-                                                        <select class="form-control" name="p_type" id="p_type">
+                                                        <select class="form-control" name="type" id="type">
                                                             <option class="form-control" value="-">주제</option>
-                                                            <option class="form-control" value="coffee" selected="selected">커피</option>
+                                                            <option class="form-control" value="coffee">커피</option>
                                                             <option class="form-control" value="pottery">도자기</option>
                                                         </select>
                                                         <span class="valid_check" id="err_type"></span>

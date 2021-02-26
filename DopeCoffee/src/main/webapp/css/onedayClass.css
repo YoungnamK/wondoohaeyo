@@ -831,6 +831,11 @@ input#fake_person{
 		width: 100%;
 		color: #222;
 	}
+
+	/* 원데이 클래스 등록 및 수정 step title */	
+	.sub_steptitle{
+	margin-bottom: 20px !important;
+}
     
 }
 
@@ -966,6 +971,13 @@ input#fake_person{
 	margin-top: 100px;
 }
 
+
+/* =======================
+	원데이 클래스 수정 및 등록
+========================== */
+.sub_steptitle{
+	margin-bottom: 70px;
+}
 
 	
 

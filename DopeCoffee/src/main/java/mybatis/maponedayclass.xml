@@ -69,4 +69,30 @@
 		where code=#{code}
 	</select>
 	
+	<!-- 원데이 클래스 수정하기 -->
+	<update id="UpdateData" parameterType="String">
+		update onedayclasses set
+		type=#{type} , 
+		classname=#{classname} ,
+		instructor=#{instructor} ,
+		person=#{person} ,
+		oneprice=#{oneprice} ,
+		startdate=#{startdate}  ,
+		enddate=#{enddate} ,
+		opentime=#{opentime} ,
+		closetime=#{closetime} ,
+		add_opentime1=#{add_opentime1} ,
+		add_closetime1=#{add_closetime1} ,
+		add_opentime2=#{add_opentime2} ,
+		add_closetime2=#{add_closetime2} ,
+		zipcode=#{zipcode} ,
+		address1=#{address1} ,
+		address2=#{address2} ,
+		content=#{content} ,
+		main_image=#{main_image} ,
+		detail_image1=#{detail_image1}  ,
+		detail_image2=#{detail_image2}
+		where code=#{code} 
+	</update>
+	
 </mapper>

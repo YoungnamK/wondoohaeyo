@@ -67,4 +67,11 @@ public class OnedayClassDao {
 		return bean;
 	}
 
+	public int UpdateData(String code) {
+		// 원데이 클래스 수정
+		int cnt = -1;
+		cnt = this.sql_session.update(this.namespace + "UpdateData", code);
+		return cnt;
+	}
+
 }
