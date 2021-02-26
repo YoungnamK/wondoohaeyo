@@ -118,6 +118,7 @@ span.round-tab:hover {
     margin-top: 0;
 }
 
+/* 반응형 */
 @media( max-width : 585px ) {
 
     .wizard {
@@ -142,6 +143,10 @@ span.round-tab:hover {
         content: " ";
         position: absolute;
         left: 35%;
+    }
+    
+    .full_css{
+    	width: 100%;
     }
 }
 
@@ -267,14 +272,49 @@ button.prev-step{
     cursor: pointer;
 }
 
-/*  사이드 부분 첫번째 원데이 클래스 정보 있는 부분 */
-#content_css {
-    padding-top: 0px !important;
-    border: 0;
+
+/* 커피 상세 보기 사진 부분 */
+.subtitle_css h2{
+	margin-top: 100px !important;
 }
 
-#content_css h3 {
-    padding-top: 0px !important;
+/* 상품 사이드바  */
+#item_price1 p{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;	
+	
+	
 }
+
+#item_price1 p{
+
+	margin:10px; 
+}
+
+#item_price1{
+	padding:7px;
+	margin :7px;
+	word-break: break-word;
+}
+
+.span1{
+	margin : 10px;
+	width:300px; height:20px;
+	 padding: 10px;
+	 text-align: left;
+	
+}
+.span2{
+	position: left; 
+	margin : 20px;
+	width:300px; height:20px;
+	padding:10px;
+
+	
+}
+
+
+
 
 

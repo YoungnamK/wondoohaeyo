@@ -58,11 +58,11 @@
 								<img src="./upload/${bean.c_image}" class="img-responsive" alt="image">
 								<div class="overlay">
 									<div class="buttons">
-										<a href="${contextPath}/cfdetailview.cf?c_no=${bean.c_no}">자세히 보기</a>									
+										<a href="${contextPath}/cfdetailview.cf?c_no=${bean.c_no}">상품 보기</a>		
+										<c:if test="${bean.c_seller_email eq sessionScope.loginfo_seller.c_seller_email}"> 							
 										<a  href="${contextPath}/cfupdate.cf">관리</a>		
-										<a  href="${contextPath}/cfdelete.cf?c_no=${bean.c_no}&${requestScope.parameters}">
-											삭제
-										</a>								
+										<a  href="${contextPath}/cfdelete.cf?c_no=${bean.c_no}&${requestScope.parameters}">삭제</a>	
+										</c:if>							
 									</div>
 								</div>
 							</div>

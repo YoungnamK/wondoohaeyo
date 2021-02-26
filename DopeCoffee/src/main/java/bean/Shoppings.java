@@ -1,17 +1,18 @@
 package bean;
-
-public class Shopcart {
-	private String cust_email ;
-	private int	 sb_no; 
-	private int  sb_product;
-	private int	 sb_qty;
-	private int	 sb_totalpay; 
-	private String ramark;
+	//장바구니 
+public class Shoppings {
+	
+	private String cust_email ; //구매자 아이디 
+	private int	 sb_no; //
+	private int  sb_product; //상품 정보
+	private int	 sb_qty; //상품 수량
+	private int	 sb_totalpay; //총금액
+	private String ramark; //비고
 	
 	
-	public Shopcart() {}
+	public Shoppings() {}
 	
-	public Shopcart(String cust_email, int sb_no, int sb_product, int sb_qty, int sb_totalpay, String ramark) {
+	public Shoppings(String cust_email, int sb_no, int sb_product, int sb_qty, int sb_totalpay, String ramark) {
 		super();
 		this.cust_email = cust_email;
 		this.sb_no = sb_no;

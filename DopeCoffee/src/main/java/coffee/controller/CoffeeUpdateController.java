@@ -40,13 +40,13 @@ public class CoffeeUpdateController extends SuperClass {
 		this.mav = new ModelAndView();
 	}
 	@GetMapping(command)
-	public ModelAndView doGet(@RequestParam(value="c_no" , required =  true) int num) {
+	public ModelAndView doGet() {//@RequestParam(value="c_no" , required =  true) int num
 		
 		// coffe 수정하고자 하는 이전에 기입했던 게시물 1건 의미.
 		
-		Coffee coff = cfdao.SelectDataByPk(num);
-		
-		this.mav.addObject("bean" , coff);
+//		Coffee coff = cfdao.SelectDataByPk(num);
+//		
+//		this.mav.addObject("bean" , coff);
 		
 		this.mav.setViewName(super.getpage);
 		return this.mav;
