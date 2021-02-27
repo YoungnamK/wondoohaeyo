@@ -1,4 +1,4 @@
-package shopcart;
+package shopping;
 
 import java.util.HashMap;
 import java.util.Map;

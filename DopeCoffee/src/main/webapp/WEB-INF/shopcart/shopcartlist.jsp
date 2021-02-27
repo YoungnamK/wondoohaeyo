@@ -32,7 +32,6 @@
 						<th class="text-center">상품명</th>
 						<th class="text-center">수량</th>
 						<th class="text-center">단가</th>
-						<th class="text-center">포인트</th>
 						<th class="text-center">금액</th>
 						<th class="text-center">누적 포인트</th>
 						<th class="text-center">삭제</th>
@@ -68,8 +67,7 @@
 			</td>
 			<td colspan="4" align="center">
 				총 금액 : <fmt:formatNumber value="${sessionScope.totalAmount}" pattern="###,###"/> 원
-				&nbsp;
-				총 누적 포인트 : <fmt:formatNumber value="${sessionScope.totalPoint}" pattern="###,###"/> 원
+
 			</td>
 		</tr>
 			</table>

@@ -222,8 +222,39 @@ function search(){
 }
 
 
-//
+// 
+ function plus(){
+	var qty = $('#c_qty').val();
+	
+	var totalqty = $('#total_qty').val();
+	
+	qty = parseInt(qty);
+		
+	var total = qty + 1;
+	$('#c_qty').val(total);
+	
+	if(totalqty < qty ){
+	$('#c_qty').val(total);
+	}
+	
+	return false;
+}
 
+ function minus(){
+	
+	var qty = $('#c_qty').val();
+	
+		qty = parseInt(qty);
+		
+	var total = qty - 1;
+	if(qty == 1){
+		total = qty;
+	}
+	$('#c_qty').val(total);
+	
+	return false;
+	
+}
 	
 
 
