@@ -5,7 +5,7 @@
    ==================================  */
 
 body{
-	padding-top: 100px; 
+	padding-top: 100px ;
 }
 
 
@@ -695,7 +695,7 @@ input.input_data{
 }
 
 /* select 이용시간 부분 */
-#time{
+#booktime{
     width: 100%;
     height: 40px;
     font-size: 13px;
@@ -977,6 +977,20 @@ input#fake_person{
 ========================== */
 .sub_steptitle{
 	margin-bottom: 70px;
+}
+
+
+/* =======================
+	원데이 클래스 예약하기
+========================== */
+#payment_css{
+	padding-top: 0px !important;
+	
+}
+
+#author_widget{
+	margin-top: 10px !important;
+	height: 150px !important;
 }
 
 	

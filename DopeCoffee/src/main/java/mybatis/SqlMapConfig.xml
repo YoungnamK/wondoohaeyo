@@ -22,7 +22,7 @@
 		<typeAlias alias="MyProducts" type="bean.Products" /> 
 		<typeAlias alias="MyCoffee" type="bean.Coffee" />
 		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
-		<!-- <typeAlias alias="MyOnedayorder" type="bean.Onedayorder" /> -->
+		<typeAlias alias="MyOnedayorder" type="bean.OnedayOrder" />
 		<typeAlias alias="MyPostcode" type="bean.Postcode" />
 		
 		
@@ -43,7 +43,7 @@
 	<!-- 	<mapper resource="mybatis/mapproductpay.xml" /> -->
 	<!-- 	<mapper resource="mybatis/mapshopping.xml" /> -->
 			<mapper resource="mybatis/maponedayclass.xml" />
-	<!-- 	<mapper resource="mybatis/maponedayorder.xml" /> -->
+			<!-- <mapper resource="mybatis/maponedayorder.xml" /> --> 
 			<mapper resource="mybatis/mapcomposite.xml" />
 	
 	</mappers>

@@ -13,13 +13,13 @@
 	<!-- 원데이 클래스 등록하기 -->
 	<insert id="InsertData"  parameterType="MyOnedayclass">
 		insert into onedayclasses
-		(code , sell_email, type, classname
+		(oneday_seq, code , sell_email, type, classname
 		,instructor ,person ,oneprice ,startdate 
 		,enddate ,opentime ,closetime ,add_opentime1 ,add_closetime1 
 		,add_opentime2 ,add_closetime2 ,zipcode ,address1 ,address2 
 		,content ,main_image ,detail_image1 ,detail_image2) 
 		values
-		(#{code} ,#{sell_email} ,#{type} , #{classname}
+		(oneday_seq.nextval, #{code} ,#{sell_email} ,#{type} , #{classname}
 		,#{instructor} ,#{person} ,#{oneprice} ,#{startdate} 
 		,#{enddate} ,#{opentime} ,#{closetime} ,#{add_opentime1} ,#{add_closetime1}
 		,#{add_opentime2} ,#{add_closetime2} ,#{zipcode} ,#{address1} ,#{address2} 
@@ -59,7 +59,7 @@
 		<if test="mode == 'classname'">
 			where classname like #{keyword}
 		</if>
-		order by rownum desc
+		order by oneday_seq desc
 	</select>
 	
 	<!-- 원데이 클래스 상세보기 -->
@@ -72,6 +72,7 @@
 	<!-- 원데이 클래스 수정하기 -->
 	<update id="UpdateData" parameterType="MyOnedayclass">
 		update onedayclasses set
+		oneday_seq=#{oneday_seq} ,
 		type=#{type} , 
 		classname=#{classname} ,
 		instructor=#{instructor} ,

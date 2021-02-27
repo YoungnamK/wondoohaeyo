@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dao.OnedayClassDao;
 
-//@restcontroller는 순수한 데이터를 전달할때 사용한다. 
 @RestController
 public class OnedayClassCodeCheckController {
 	private final String command = "/onedayCodeCheck.odc";
@@ -22,6 +21,7 @@ public class OnedayClassCodeCheckController {
 	
 	// code 중복 체크 컨트롤러
 	@RequestMapping(value = command, method = RequestMethod.POST)
+	@ResponseBody
 	public int doPost(@RequestParam("code") String code) {
 		int cnt = -1;
 		cnt = this.onedayDao.SelectCodeCheck(code);

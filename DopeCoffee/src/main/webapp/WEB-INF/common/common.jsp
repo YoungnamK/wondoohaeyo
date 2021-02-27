@@ -123,7 +123,7 @@
 	    <script type="text/javascript">
 	    </script>
     </head>
-    <body>
+    <body onload="modal_popup();">
         <!--
         ==================================================
         Header Section Start
@@ -250,22 +250,23 @@
             </div>
         </header>    
         <%-- =======================================
-             에러 메세지를 담아주는 Modal 부분 
+              에러 메세지를 담아주는 modal 부분 [시작]
         	=========================================     
         --%>
-        <c:if test="${not empty requestScope.message}">
-	        <div class="container">
 		
+		  <c:if test="${not empty sessionScope.message}">
+			<div class="container">
+			  <input type="hidden" id="modal_popup" value="${sessionScope.message}">
 			  <!-- Modal -->
-			  <div class="modal fade" id="myModal" role="dialog">
+			  <div class="modal fade" id="modal_pop" role="dialog">
 			    <div class="modal-dialog modal-sm">
 			      <div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+			          <h4 id="modal-title" class="modal-title" style="font-size: 35px"><i class="fas fa-exclamation-circle"></i></h4>
 			        </div>
 			        <div class="modal-body">
-			          <p id="modal-body" style="font-size: 13px">${requestScope.message}</p>
+			          <p id="modal-body" style="font-size: 13px">${sessionScope.message}</p>
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">닫기</button>
@@ -273,7 +274,28 @@
 			      </div>
 			    </div>
 			  </div>
-			</div>   
-		</c:if>      
+			</div>      
+		</c:if>
+		
+		
+		
         </body>
+        
+        <script type="text/javascript">
+        	/* 페이지가 열렸을 때 에러메세지를 담고있는 모달을 보여줘야함 */ 
+        	function modal_popup() {
+				var modal_popup = $('#modal_popup').val();
+				
+				if (modal_popup != '') {
+					$('#modal_pop').modal();
+				}
+				<% session.removeAttribute("message") ; %>
+			}
+        	
+        </script>
+        
+        <%-- =======================================
+             에러 메세지를 담아주는 modal 부분 [끝]
+        	=========================================     
+        --%>
     </html>

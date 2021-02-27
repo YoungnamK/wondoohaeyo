@@ -79,6 +79,24 @@ function today() {
 	// 로드 되었을 때 , 시간 추가 부분은 안보이게함
 	$('#add1').hide(); // 추가시간
 	
+	
+ 	/* ===============================  
+		원데이 클래스 수정
+	 ==================================*/
+	// 사업자가 설정한 1인 기준 가격 
+	var oneprice = $('#oneprice').val();
+	
+	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
+	
+	function removecomma(pStr) { 
+		var strCheck = /\,/g; 
+		pStr = pStr.replace(strCheck, ''); 
+		return pStr; 
+	}
+	
+	$('#oneprice').val(oneprice);
+
+	
 }
 
 
@@ -585,6 +603,29 @@ function submitCheck(){
 }
 
 
+/*=========================================
+	유효성 검사 - 결제하기버튼 / 최종 결제처리 전 단계
+  =========================================*/
+function payment_check(){
+	// 원데이 클래스 예약 할 때의 유효성 검사
+	var bookdate = $('#bookdate').val(); // 예약일자
+	var booktime = $('#booktime').val();// 이용시간
+	
+	if(bookdate == '' || booktime == '-'){
+		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+		$('#modal-body').text('예약 정보를 입력하세요!');
+		$('#myModal').modal();
+		return false;
+	}else{
+		return true;
+	}
+
+}
+
+
+
+
+
 /* ===================
 	+ 버튼을 눌러야지 추가  
 	section 이 보이게 처리
@@ -1001,9 +1042,7 @@ function booking_date(){
 }
 
 
- /* ===============================  
-		원데이 클래스 수정
- ==================================*/
+
 
  /* ===============================  
 		원데이 클래스 삭제

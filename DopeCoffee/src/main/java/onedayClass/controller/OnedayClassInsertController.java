@@ -49,7 +49,7 @@ public class OnedayClassInsertController extends SuperClass {
 			System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
 			System.out.println("승인 안된 사업자"); 
 			// 에러 메세지 바인딩
-			request.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
+			session.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
 			
 			return redirect;
 		}

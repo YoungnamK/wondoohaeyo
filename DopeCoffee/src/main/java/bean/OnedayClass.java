@@ -2,7 +2,10 @@ package bean;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
+// 사업자가 등록한 원데이 클래스의 정보를 저장하는 빈 클래스
 public class OnedayClass {
+	private int oneday_seq; // 시퀀스
 	private String code; // 등록 코드
 	private String sell_email; // 사업자 이메일
 	private String type; // 등록 타입 (ex. 커피 , 도자기)
@@ -75,6 +78,14 @@ public class OnedayClass {
 	}
 
 	public OnedayClass() {
+	}
+
+	public int getOneday_seq() {
+		return oneday_seq;
+	}
+
+	public void setOneday_seq(int oneday_seq) {
+		this.oneday_seq = oneday_seq;
 	}
 
 	public String getCode() {
@@ -263,14 +274,15 @@ public class OnedayClass {
 
 	@Override
 	public String toString() {
-		return "OnedayClass [code=" + code + ", sell_email=" + sell_email + ", type=" + type + ", classname="
-				+ classname + ", instructor=" + instructor + ", person=" + person + ", oneprice=" + oneprice
-				+ ", startdate=" + startdate + ", enddate=" + enddate + ", opentime=" + opentime + ", closetime="
-				+ closetime + ", add_opentime1=" + add_opentime1 + ", add_closetime1=" + add_closetime1
-				+ ", add_opentime2=" + add_opentime2 + ", add_closetime2=" + add_closetime2 + ", zipcode=" + zipcode
-				+ ", address1=" + address1 + ", address2=" + address2 + ", content=" + content + ", main_image="
-				+ main_image + ", detail_image1=" + detail_image1 + ", detail_image2=" + detail_image2 + ", remark="
-				+ remark + "]";
+		return "OnedayClass [oneday_seq=" + oneday_seq + ", code=" + code + ", sell_email=" + sell_email + ", type="
+				+ type + ", classname=" + classname + ", instructor=" + instructor + ", person=" + person
+				+ ", oneprice=" + oneprice + ", startdate=" + startdate + ", enddate=" + enddate + ", opentime="
+				+ opentime + ", closetime=" + closetime + ", add_opentime1=" + add_opentime1 + ", add_closetime1="
+				+ add_closetime1 + ", add_opentime2=" + add_opentime2 + ", add_closetime2=" + add_closetime2
+				+ ", zipcode=" + zipcode + ", address1=" + address1 + ", address2=" + address2 + ", content=" + content
+				+ ", remark=" + remark + ", main_image=" + main_image + ", m_img=" + m_img + ", detail_image1="
+				+ detail_image1 + ", d_img1=" + d_img1 + ", detail_image2=" + detail_image2 + ", d_img2=" + d_img2
+				+ "]";
 	}
 
 }

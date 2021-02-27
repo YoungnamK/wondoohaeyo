@@ -83,9 +83,11 @@
                         </div>
                     	
                     	<%-- ========================== Form 양식 시작 부분 ====================================--%>
-                        <form>
+                    	<c:set var="contextPath" value="<%=contextPath%>" scope="application" />
+                        <form method="get" action="${contextPath}/onedayPayment.odc">
+                        	<input type="hidden" id="" name="code" value="${bean.code}">
                             <div id="form_css"  class="categories widget">
-                                <h3 id="class_css" class="widget-head">수업 신청</h3>
+                                <h3 id="class_css" class="widget-head"><spring:message code="oneday.Detail_title"/></h3>
                                 <ul>
                                     <li>
                                         <div class="form-group">
@@ -102,7 +104,7 @@
                                             <div class="column_name">
                                             	<spring:message code="oneday.time"/>
                                             </div>
-                                            <select class="form-control" name="time" id="time">
+                                            <select class="form-control" name="booktime" id="booktime">
                                                 <option class="form-control" value="-">이용 시간</option>
                                                 <option class="form-control" value="${requestScope.opentime}">${requestScope.opentime}</option>
                                                 <c:if test="${requestScope.add_opentime1 ne 'null ~ null'}">
@@ -129,7 +131,7 @@
                                         <div id="person_css" class="form-group">
                                             <input type="hidden" disabled="disabled" class="input_data form-control" value="${bean.person}" id="max_person" name="max_person">
                                             <input type="text" disabled="disabled" class="input_data form-control" value="1" id="fake_person" name="fake_person">
-                                            <input type="hidden" class="input_data form-control" id="person" name="person">
+                                            <input type="hidden" class="input_data form-control" id="person" name="person" value="1">
                                            	<button id="plusbtn" type="button" class="btn-send pmbtn" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></button>
                                            	<button id="minusbtn" type="button" class="btn-send pmbtn"><i class="fas fa-minus"></i></button>
                                             
@@ -148,7 +150,7 @@
                             </div>
                         
                             <div class="submit_detail">
-                                <input type="submit" id="contact-submit" class="btn-send" value="결제 하기">
+                                <input type="submit" id="contact-submit" class="btn-send" value='<spring:message code="oneday.Paymentbtn"/>' onclick="return payment_check();">
                                 <input type="submit" id="contact-submit" class="btn-send" value="카카오 API">
                                 <input type="submit" id="contact-submit" class="btn-send" value="네이버 API">
                             </div>
