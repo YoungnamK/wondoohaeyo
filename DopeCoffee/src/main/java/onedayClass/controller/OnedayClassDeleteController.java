@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import common.controller.SuperClass;
 import dao.OnedayClassDao;
+import dao.OnedayOrderDao;
 
 @Controller
 public class OnedayClassDeleteController extends SuperClass{
@@ -22,6 +23,10 @@ public class OnedayClassDeleteController extends SuperClass{
 	@Qualifier(value = "onedayDao")
 	private OnedayClassDao onedayDao;
 	
+	@Autowired
+	@Qualifier(value = "orderDao")
+	private OnedayOrderDao  orderDao;
+	
 	public OnedayClassDeleteController() {
 		super("oneday_List", ""); // super(getpage , postpage)
 		this.mav = new ModelAndView();
@@ -33,7 +38,13 @@ public class OnedayClassDeleteController extends SuperClass{
 		System.out.println("나 호출됨");
 		
 		int cnt = -1; 
-		cnt = this.onedayDao.DeleteData(code);
+		cnt = this.orderDao.UpdateRemarkData(code); // 원데이 클래스 결제 테이블 remark 수정 
+		
+		if (cnt > 0) {
+			System.out.println("원데이 결제 테이블 비고 컬럼 수정 성공");
+			cnt = -1; // 초기화
+			cnt = this.onedayDao.DeleteData(code); // 원데이 클래스 테이블 삭제
+		}
 		
 		if (cnt > 0) {
 			System.out.println("원데이 클래스 삭제 성공");

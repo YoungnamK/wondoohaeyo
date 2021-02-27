@@ -558,6 +558,7 @@ input#keyword{
 		width: 10%;
 	}
 	
+	
 }
 
 /* 검색 부분  끝*/
@@ -566,6 +567,9 @@ input#keyword{
 /* ====================
     원데이클래스 상세보기
 =======================*/
+#contact-submit{
+	width: 100% !important;
+}
 
 
 /* ====================
@@ -722,11 +726,7 @@ input#fake_person{
 
 
 /* 버튼 */
-.submit_detail{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
+
 
 .btn-send{
     width: 30% !important;
@@ -983,14 +983,158 @@ input#fake_person{
 /* =======================
 	원데이 클래스 예약하기
 ========================== */
-#payment_css{
+.payment_css{
 	padding-top: 0px !important;
 	
 }
 
+/* 수업 정보 및 예약 정보 부분 */
+.payment_css h3{
+	text-align: center;
+    font-size: 15px;
+    color: #fff !important;
+    border-radius: 20px;
+    width: 10%;
+    height: 30px;
+    background-color: #84C1D9;
+    padding: 6px;
+	
+}
+
+
 #author_widget{
 	margin-top: 10px !important;
-	height: 150px !important;
+	height: 200px ;
+	padding: 0px;
+	display: flex;
+	flex-direction: row;
+}
+
+/* 사진 부분 */
+
+#author_img_css img{
+	margin-top: 52px !important;
+	margin-left: 166px;
+}
+
+#author_css{
+	width: 20%;
+	margin: 0px;
+	padding-top: 10px;
+}
+
+/* 사진 옆 클래스 네임 */
+#author_pont_css p{
+	color:  #5080BF ;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top:70px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dedede;
+	
+}
+
+/* 예약 정보를 나타내는 부분 */
+.payment_input{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	
+}
+
+.payment_input input{
+	width: 70%;
+	text-align: center;
+}
+
+.final_payment{
+	margin-top: 20px;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.final_payment p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.final_payment p#price{
+	color:  #5080BF ;
+}
+
+.submit_detail{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+#kakaopay{
+	background-color: #F7E600 !important;
+}
+
+#naverpay{
+	background-color: #00C43B !important;
+}
+
+
+@media( max-width : 585px  ) {
+	/* 제목 부분 */
+	.subtitle_css{
+		font-size: 20px !important;
+	}
+	
+	
+	/* 수업 정보 및 예약 정보 부분 */
+	.payment_css h3{
+	    width: 30% ;
+	
+	}
+	
+	.author-bio{
+		width: 50% !important;
+	}
+	
+	#author_css img{
+		width: 150px;
+		height: 180px;
+	}
+	
+	#author_img_css img{
+	margin-top: 52px !important;
+	margin-left : 0px;
+	}
+	
+	
+	/* 사진 옆 클래스 네임 */
+	#author_pont_css{
+		width: 80%;
+	}
+	
+	.final_payment p{
+	font-size: 18px !important;
+	font-weight: bold;
+}
+	
+	
+	#author_pont_css p{
+	font-size: 13px;
+	font-weight: bold;
+	margin-top:10px;
+	width: 200%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dedede;
+	
+	}
+	
+	#p_css{
+		font-size: 9px;
+	}
+
+
+	
 }
 
 	

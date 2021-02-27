@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Customer;
 import bean.OnedayClass;
+import bean.OnedayOrder;
 import bean.Seller;
 import common.controller.SuperClass;
 import dao.OnedayClassDao;
@@ -83,9 +84,44 @@ public class OnedayClassPaymentController extends SuperClass {
 	}
 
 	@PostMapping(value = command)
-	public ModelAndView doPost() {
+	public ModelAndView doPost(
+			@RequestParam(value = "code")String code,
+			@RequestParam(value = "cust_email")String cust_email,
+			@RequestParam(value = "sell_email")String sell_email,
+			@RequestParam(value = "bookdate")String bookdate,
+			@RequestParam(value = "booktime")String booktime,
+			@RequestParam(value = "person") String person,
+			@RequestParam(value = "totalprice") String totalprice
+			) {
+		OnedayOrder bean = new OnedayOrder();
+		
+		
+		bean.setBookdate(bookdate);
+		bean.setBooktime(booktime);
+		bean.setCode(code);
+		bean.setCust_email(cust_email);
+		bean.setSell_email(sell_email);
+		
+		bean.setPerson(Integer.parseInt(person));
+		
 
-		this.mav.setViewName(super.postpage);
+		String _totalprice = totalprice.replace(",", "");
+		//System.out.println("금액 확인 ==> " + _totalprice);
+		
+		bean.setTotalprice(Integer.parseInt(_totalprice));
+		
+		
+		int cnt = -1;
+		cnt = this.orderDao.InsertData(bean);
+		
+		if (cnt > 0) {
+			System.out.println("원데이 클래스 결제 성공");
+			// 결제 내역 페이지로 이동해야함
+		}else {
+			System.out.println("원데이 클래스 결제 실패");
+			mav.setViewName(super.getpage);
+		}
+		
 		return this.mav;
 	}
 }

@@ -49,6 +49,22 @@ $(document).ready(function () {
 
 
 function today() {
+	/* ===============================  
+		원데이 클래스 수정
+	 ==================================*/
+	// 사업자가 설정한 1인 기준 가격 
+	var oneprice = $('#oneprice').val();
+	
+	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
+	
+	function removecomma(pStr) { 
+		var strCheck = /\,/g; 
+		pStr = pStr.replace(strCheck, ''); 
+		return pStr; 
+	}
+	
+	$('#oneprice').val(oneprice);
+	
 	// 당일 날짜를 구해서 startdate 파라미터 값으로 넣어줌 
 	var today = new Date();
 	var year = today.getFullYear(); //년도 
@@ -80,21 +96,7 @@ function today() {
 	$('#add1').hide(); // 추가시간
 	
 	
- 	/* ===============================  
-		원데이 클래스 수정
-	 ==================================*/
-	// 사업자가 설정한 1인 기준 가격 
-	var oneprice = $('#oneprice').val();
-	
-	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
-	
-	function removecomma(pStr) { 
-		var strCheck = /\,/g; 
-		pStr = pStr.replace(strCheck, ''); 
-		return pStr; 
-	}
-	
-	$('#oneprice').val(oneprice);
+ 	
 
 	
 }
@@ -1059,4 +1061,7 @@ function delete_check(){
 }
 
 
-	
+
+ /* ===============================  
+		원데이 클래스 결제
+ ==================================*/

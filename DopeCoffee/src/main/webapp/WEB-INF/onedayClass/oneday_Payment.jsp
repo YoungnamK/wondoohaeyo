@@ -18,31 +18,32 @@
 				<div class="col-md-12">
 					<div class="block">
 						<div class="top">
-							<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
-								data-wow-delay="0.3s">원데이 클래스 예약 정보</h2>
+							<h2 class="subtitle subtitle_css wow fadeInDown" data-wow-duration="500ms"
+								data-wow-delay="0.3s">원데이 클래스 수업 신청</h2>
 							<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
-								data-wow-delay="0.1s">${customer.cust_Name}님의 원데이 클래스 예약 정보입니다!</p>
+								data-wow-delay="0.6s">${customer.cust_Name}님의 수업 신청 내역을 확인하세요!</p>
 						</div>
 						<%-- =========================
 									상단 부분 						
 						==============================
 						--%>
-						<div class="col-md-12">
-							<div class="sidebar" id="payment_css">
-								<h3 id="class_css" class="widget-head">
-									상품 정보
+						<section class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.8s">
+						<div class="col-md-12 subtitle_css ">
+							<div class="sidebar payment_css" >
+								<h3 class="widget-head">
+									수업 정보
 								</h3>
 								<div class="author widget col-md-12" id="author_widget">
-									<div class="author-body text-center col-md-6">
-										<div class="author-bio">
-											<img alt="image" src="./upload/${bean.main_image}" width="150px" height="150px">
+									<div class="author-body text-center col-md-4">
+										<div class="author-bio " id="author_css">
+											<img alt="image" src="./upload/${bean.main_image}" width="300px" height="180px">
 										</div>
 									</div>
-									<div class="author-body text-center col-md-6">
-										<div class="author-bio">
-											<p> 상품 정보</p>
-											<p> DOPE COFFEE 는 사용자에게<br> 다양한 콘텐츠를 전달합니다.</p>
+									<div class="author-body text-center col-md-8">
+										<div class="author-bio " id="author_pont_css">
+											<p>${bean.classname}</p>
 										</div>
+										<p id="p_css"><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;${bean.zipcode}&nbsp;${bean.address1}&nbsp;${bean.address2}</p>
 									</div>
 								</div>
 							</div>
@@ -52,113 +53,85 @@
 									하단 부분 						
 						==============================--%>
 						
+						
 						<div class="col-md-12">
-							<div class="sidebar">
+							
+							<div class="sidebar payment_css">
+								<h3 class="widget-head">
+									예약 정보
+								</h3>
 								<%-- ========================== Form 양식 시작 부분 ====================================--%>
-								<c:set var="contextPath" value="<%=contextPath%>"
-									scope="application" />
-								<form method="get" action="${contextPath}/onedayPayment.odc">
-									<input type="hidden" id="" name="code" value="${bean.code}">
+								<c:set var="contextPath" value="<%=contextPath%>" scope="application" />
+								<form method="post" action="${contextPath}/onedayPayment.odc">
+									<input type="hidden" id="code" name="code" value="${bean.code}"><!-- 상품코드 -->
+									<input type="hidden" id="cust_email" name="cust_email" value="${sessionScope.loginfo.cust_Email}"><!-- 로그인 정보 -->
+									<input type="hidden" id="sell_email" name="sell_email" value="${bean.sell_email}"><!-- 사업자 이메일 정보 -->
 									<div id="form_css" class="categories widget">
-										<h3 id="class_css" class="widget-head">
-											<spring:message code="oneday.Detail_title" />
-										</h3>
 										<ul>
 											<li>
-												<div class="form-group">
+												<div class="form-group payment_input">
 													<div class="column_name">
 														<spring:message code="oneday.bookdate" />
 													</div>
-													<input type="hidden" class="input_data form-control"
-														disabled="disabled" id="enddate" name="enddate"
-														value="${bean.enddate}"> <input type="text"
-														class="input_data form-control datepicker"
-														placeholder="예약 일자" id="bookdate" name="bookdate"
-														onclick="booking_date();">
+													<input type="text" class="input_data form-control" disabled="disabled" id="fake_bookdate" name="fake_bookdate"
+														value="${bookdate}">
+													<input type="hidden" class="input_data form-control" id="bookdate" name="bookdate"
+														value="${bookdate}">
 												</div>
 											</li>
 											<li>
-												<div class="form-group">
+												<div class="form-group payment_input">
 													<!-- 파라미터 이름은 수정 할 것  -->
-													<div class="column_name">
+													<div class="column_name ">
 														<spring:message code="oneday.time" />
 													</div>
-													<select class="form-control" name="booktime" id="booktime">
-														<option class="form-control" value="-">이용 시간</option>
-														<option class="form-control"
-															value="${requestScope.opentime}">${requestScope.opentime}</option>
-														<c:if
-															test="${requestScope.add_opentime1 ne 'null ~ null'}">
-															<option class="form-control"
-																value="${requestScope.add_opentime1}">${requestScope.add_opentime1}</option>
-														</c:if>
-														<c:if
-															test="${requestScope.add_opentime2 ne 'null ~ null'}">
-															<option class="form-control"
-																value="${requestScope.add_opentime2}">${requestScope.add_opentime2}</option>
-														</c:if>
-													</select>
+													<input type="text" class="input_data form-control" disabled="disabled" id="fake_booktime" name="fake_booktime"
+														value="${booktime}">
+													<input type="hidden" class="input_data form-control" id="booktime" name="booktime"
+														value="${booktime}">
 												</div>
 											</li>
 											<li>
-												<div class="form-group">
+												<div class="form-group payment_input">
 													<div class="column_name">
-														<spring:message code="oneday.oneprice" />
+														신청인원
 													</div>
-													<input type="text" disabled="disabled"
-														class="input_data form-control" id="oneprice"
-														name="oneprice" value="${bean.oneprice}">
+													<input type="text" class="input_data form-control" disabled="disabled" id="person_fk" name="person_fk"
+													value="${person}">
+													<input type="hidden" class="input_data form-control" id="person" name="person"
+													value="${person}">
 												</div>
 											</li>
 											<li>
-												<div class="column_name">
-													<spring:message code="oneday.person" />
-												</div>
-												<div id="person_css" class="form-group">
-													<input type="hidden" disabled="disabled"
-														class="input_data form-control" value="${bean.person}"
-														id="max_person" name="max_person"> <input
-														type="text" disabled="disabled"
-														class="input_data form-control" value="1" id="fake_person"
-														name="fake_person"> <input type="hidden"
-														class="input_data form-control" id="person" name="person"
-														value="1">
-													<button id="plusbtn" type="button" class="btn-send pmbtn"
-														data-toggle="modal" data-target="#myModal">
-														<i class="fas fa-plus"></i>
-													</button>
-													<button id="minusbtn" type="button" class="btn-send pmbtn">
-														<i class="fas fa-minus"></i>
-													</button>
-
-												</div>
-											</li>
-											<li>
-												<div class="form-group">
+												<div class="form-group payment_input">
 													<div class="column_name">
-														<spring:message code="oneday.totalprice" />
+														결제금액
 													</div>
-													<input type="text" disabled="disabled"
-														class="input_data form-control" value="${bean.oneprice}"
-														id="fake_totalprice" name="fake_totalprice"> <input
-														type="hidden" class="input_data form-control"
-														value="${bean.oneprice}" id="totalprice" name="totalprice">
+													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
+													value="${totalprice}">
+													<input type="hidden" class="input_data form-control" id="totalprice" name="totalprice"
+													value="${totalprice}">
 												</div>
 											</li>
 										</ul>
 									</div>
-
+									<hr>
+									<h3 class="widget-head">
+										결제 정보
+									</h3>
+									<div class="final_payment">
+										<p>최종 결제 금액</p>
+										<p id="price"><i class="fas fa-won-sign"></i>&nbsp;${totalprice}원</p>
+									</div>
 									<div class="submit_detail">
-										<input type="submit" id="contact-submit" class="btn-send"
-											value='<spring:message code="oneday.Paymentbtn"/>'
-											onclick="return payment_check();"> <input
-											type="submit" id="contact-submit" class="btn-send"
-											value="카카오 API"> <input type="submit"
-											id="contact-submit" class="btn-send" value="네이버 API">
+										<input type="submit" id="pay" class="btn-send" value="결제 하기">
+										<input type="submit" id="kakaopay" class="btn-send" value="KAKAO PAY"> 
+										<input type="submit" id="naverpay" class="btn-send" value="NAVER PAY">
 									</div>
 								</form>
 							</div>
 						</div>
+					</section>
 					</div>
 				</div>
 			</div>
@@ -174,14 +147,18 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+						<h4 id="modal-title" class="modal-title" style="font-size: 35px">
+						</h4>
 					</div>
 					<div class="modal-body">
-						<p id="modal-body" style="font-size: 13px"></p>
+						<p id="modal-body" style="font-size: 13px">
+						</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px">닫기</button>
+							style="font-size: 13px">예</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							style="font-size: 13px">아니오</button>
 					</div>
 				</div>
 			</div>

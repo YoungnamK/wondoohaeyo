@@ -151,8 +151,6 @@
                         
                             <div class="submit_detail">
                                 <input type="submit" id="contact-submit" class="btn-send" value='<spring:message code="oneday.Paymentbtn"/>' onclick="return payment_check();">
-                                <input type="submit" id="contact-submit" class="btn-send" value="카카오 API">
-                                <input type="submit" id="contact-submit" class="btn-send" value="네이버 API">
                             </div>
                         </form>
                     </div>
