@@ -39,5 +39,10 @@ public class CommentDao {
 	    public int DeleteData(int cnum) {
 	    	return this.sst.delete(namespace+"DeleteData", cnum);
 	    }
+	    
+	    //댓글 작성자 체크
+	    public String CommentWriterCheck(int cnum) {
+	    	return this.sst.selectOne(namespace+"CommentWriterCheck",cnum);
+	    }
 
 	}

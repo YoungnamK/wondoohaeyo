@@ -6,9 +6,6 @@
 	<!-- 검색모드, 키워드 별 게시물 건수 조회  -->
 	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from notice
-		<if test="mode == 'writer'">
-			where writer like #{keyword}
-		</if>
 		<if test="mode == 'title'">
 			where title like #{keyword}
 		</if>
@@ -22,9 +19,6 @@
 		to_char(regdate,'YYYY-MM-DD') regdate, fix,
 		remark
 		from notice 
-		<if test="mode == 'writer'">
-			where writer like #{keyword} 
-		</if>
 		<if test="mode == 'title'">
 			where title like #{keyword} 
 		</if>

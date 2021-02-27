@@ -30,7 +30,7 @@ body{
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<input type="hidden" value="${bean.num }" name="num" id="num">
 		<h2 align="left">공지사항</h2>
-		<div class="row">
+		<div class="row" style="padding-bottom:30px;">
 			<table class="table table-bordered table-hover dt-responsive">
 				<c:if test="${whologin != 1}">
 					<tr>
@@ -47,7 +47,7 @@ body{
 				</c:if>
 				<tr>
 					<td colspan="1" align="center">작성자</td>
-					<td colspan="3" align="left">${bean.writer }</td>
+					<td colspan="3" align="left">관리자</td>
 				</tr>
 				<tr>
 					<td width="10%" align="center">조회수</td>
@@ -80,20 +80,22 @@ body{
 			</table>
 			<a type="button" class="btn btn-primary"
 				href="<%=contextPath%>/nolist.no">목록으로</a>
-
 		</div>
-		<!--  댓글  -->
-		<c:if test="${whologin!=0 }">
+		
+		
+	
+	<!--  댓글  -->
+	<c:if test="${whologin!=0 }">
 		<div class="container col-sm-offset-2 col-sm-8 commentinsert">
 			<label for="content">comment</label>
 			<form name="commentInsertForm">
 				<div class="input-group">
 					<input type="hidden" name="num" value="${bean.num}" /> 
 					<c:if test="${whologin == 2}">
-					<input type="text" name="writer" id="writer" value="${sessionScope.loginfo_seller.sell_Email }">
+					<input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo_seller.sell_Name }">
 					</c:if>
 					<c:if test="${whologin == 1|| whologin==3}">
-					<input type="text" name="writer" id="writer" value="${sessionScope.loginfo.cust_Email }">
+					<input type="hidden" name="writer" id="writer" value="${sessionScope.loginfo.cust_Name}">
 					</c:if>
 					<input type="text" class="form-control" id="content" name="content"
 						placeholder="내용을 입력하세요.">
@@ -108,10 +110,7 @@ body{
 		<div class="container">
 			<div class="commentList"></div>
 		</div>
-		
-	</div>
-	
-
+		</div>
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">
 
@@ -141,5 +140,4 @@ body{
 
 </body>
 <%@ include file="commentS.jsp" %>
-
 </html>

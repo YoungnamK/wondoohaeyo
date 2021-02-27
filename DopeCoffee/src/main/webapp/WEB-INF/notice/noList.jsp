@@ -13,36 +13,112 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/adminList-style.css">
+<style type="text/css">
+.table{
+	margin-top : 30px;
+}
+/* 검색 부분  시작*/
+#search_btn{
+	cursor: pointer;
+}
+
+
+#search {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+	margin: 10px 0px 10px 0px;
+}
+
+
+select#mode{
+	width: 10%;
+    height: 40px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);	
+}
+
+input#keyword{
+	display: block !important;
+	width: 20%;
+    height: 40px !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.428571429 !important;
+    background-color: #fff !important;
+    background-image: none !important;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s !important;
+    border-radius: 1px !important;
+    border: 1px solid rgba(111, 121, 122, 0.3) !important;
+    -webkit-box-shadow: none !important;
+}
+
+#search button{
+	height: 40px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);	
+}
+
+@media( max-width : 585px ) {
+	select#mode{
+		width: 30%;
+	} 
+	
+	input#keyword{
+		width: 60%;
+	}
+	
+	button {
+		width: 10%;
+	}
+	
+}
+
+/* 검색 부분  끝*/
+</style>
 </head>
-<body>
+<body onload="list_load();">
 
 <div align="center" class="container col-sm-offset-2 col-sm-8">
-	<h2 align="left">공지사항목록</h2>
-		<div class="row">
 			<%-- 상단 페이지 수 show ---------------------------------------------------%>
-		    <div class="col-sm-6">
-		        <div class="dataTables_length" id="DataTables_Table_0_length">
-		            <label>
-		                Show 
-		                <select class="form-control input-sm" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
-			                <option value="10">10</option>
-			                <option value="25">25</option>
-			                <option value="50">50</option>
-			                <option value="100">100</option>
-		            	</select>
-		            </label>
-		        </div>
-		    </div>
-			<%-- 상단 검색 search ---------------------------------------------------%>
-		    <div class="col-sm-6">
-		        <div class="dataTables_filter" id="DataTables_Table_0_filter">
-		            <label>
-		                Search:
-		                <input type="search" class="form-control input-sm" 
-		                placeholder="" aria-controls="DataTables_Table_0">
-		            </label>
-		        </div>
-		    </div>
+		   <div class="container" align="left">
+			<div id="top">
+				<h2 class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">공지사항목록</h2>
+				<span class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="0.1s"
+				id="search_btn" data-toggle="tooltip" title="클릭하세요!" onclick="search();">
+					<i class="fas fa-search" ></i> 검색
+				</span>
+				<br>
+			</div>
+		
+		
+		   <%-- [검색 모드] 
+		   		==== 시작 ==== 
+		   	--%>	   
+	        <form id="contact-form search" method="get" action="${contextPath}/nolist.no" role="form">
+	        	<div id="search">
+	               <select class="form-control" name="mode" id="mode" data-toggle="tooltip" title="검색할 조건을 선택하세요!">
+	                      <option class="form-control" value="all">전체</option>
+	                      <option class="form-control" value="title">제목</option>
+	                      <option class="form-control" value="content">내용</option>
+	               </select>
+	               <input type="text" class="form-control" placeholder="검색할 내용을 입력하세요" id="keyword" name="keyword">
+	               <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <%-- ==== 끝 ==== --%>
 		</div>
 	
 	  	<div class="row">
@@ -68,7 +144,7 @@
 		                    	<c:if test="${bean.fix==1 }"><div style="color:red;">${bean.title }</div></c:if>
 		                    </a>
 	                    </td>
-	                    <td>${bean.writer}</td>
+	                    <td>관리자</td>
 	                    <td>${bean.readhit}</td>
 	                    <td>${bean.regdate}</td>
 	                </tr>
@@ -91,5 +167,16 @@
 	  </div>
 	  </c:if>
 </div>
+<script type="text/javascript">
+function search(){
+	$('#search').toggle();
+}
+function list_load(){
+	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
+}
+$(document).ready(function(){
+	  $('[data-toggle="tooltip"]').tooltip();   
+	});
+</script>
 </body>
 </html>

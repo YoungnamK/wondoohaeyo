@@ -27,17 +27,16 @@ function commentList(){
         type : 'post',
      	data : {num:num},
         success : function(data){
-        	console.log(data)
             var a =''; 
             $.each(data, function(key, value){ 
-                a += '<div class="commentArea col-sm-12" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+value.cnum+'">'+'no.'+value.cnum+' / 작성자 : '+value.writer;
+                a += '<div class="commentArea col-sm-11" style="border-bottom:1px dotted darkgray; margin-bottom: 5px;">';
+                a += '<div class="commentInfo'+value.cnum+'" style="margin-bottom:5px;">' + value.writer+'   ('+value.regdate+')   ';
                 a += '<a onclick="commentUpdate('+value.cnum+',\''+value.content+'\');"> 수정 </a>';
-                a += '<a onclick="commentDelete('+value.cnum+');"> 삭제 </a> </div>';
-                a += '<div class="commentContent'+value.cnum+'"> <p>'+value.content +'</p>';
+                a += '<a onclick="commentDelete('+value.cnum+');"> 삭제 </a>'; 
+                a += '</div>';
+                a += '<div class="commentContent'+value.cnum+'" style="margin-bottom:5px;">'+value.content;
                 a += '</div></div>';
             });
-            console.log(a);
             $(".commentList").html(a);
         },
         error : function(error){
@@ -93,26 +92,29 @@ function delcheck(){
 } 
 //댓글 삭제 
 function commentDelete(cnum){
-if('삭제하시겠습니까?'){
+	if(confirm("삭제하시겠습니까?")){
 	$.ajax({
         url : './comdelete.no?cnum='+cnum,
         type : 'get',
         success : function(data){
-            if(data == 1) commentList(num); //댓글 삭제후 목록 출력 
+            if(data == 1) {
+            	commentList(num); //댓글 삭제후 목록 출력 
+            }else {
+            	alert('작성자 본인만 삭제 가능합니다.');
+            }
         },
     	error: function(error){
     		console.log(error)
     	}
     });
-}else{
-	return false;
-}
+	}else{
+		return false;
+	}
+	
 }
  
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
 });
- 
- 
  
 </script>
