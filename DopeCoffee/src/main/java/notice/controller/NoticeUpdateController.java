@@ -93,6 +93,7 @@ public class NoticeUpdateController extends SuperClass{
 				this.mav.setViewName(this.redirect);
 			}
 			}else {
+				notice.setImage(oldimg);
 				int cnt =-999999;
 				cnt = this.dao.UpdateData(notice) ;
 				

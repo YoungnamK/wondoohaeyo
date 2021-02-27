@@ -67,17 +67,9 @@
 					fixcheck = true;
 				}
 			});
+			
 		});
 		
-		function getoption(){
-			var length = document.getElementById("fix").options.length;
-			for(i = 0 ; i < length ; i++){
-				if(document.getElementById("fix").options[i].value == "${bean.fix}"){
-					document.getElementById("fix").options[i].selected = true;
-					break;
-				}
-			}
-		};
 		
 		function chk_submit() {
 			if (titlecheck == false || contentcheck == false
