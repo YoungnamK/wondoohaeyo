@@ -42,13 +42,8 @@
                             data-toggle="tooltip" data-placement="top" title="비밀번호를 입력해주세요." value="">                     
             	<span class="err">${errpassword}</span>           
             </div>
-<!--             <div class="keepcheck">
-				<input type="checkbox" id="remember">
-	            <label for="remember">이메일 저장</label>
-            </div> -->
             <button type="submit" data-toggle="modal" data-target="#myModal" onclick="return logincheck();">로그인</button>
-<!--             <button type="submit">로그인</button>
- -->	    <div class="search">
+		    <div class="search">
  	          	<span><a href="<%=contextPath%>/custIdSearch.cu">이메일 찾기</a> ｜</span>
 	           	<span><a href="<%=contextPath%>/custInsert.cu">회원가입</a> ｜</span>
 				<span><a href="<%=contextPath%>/custPWSearch.cu">비밀번호 찾기</a></span>
@@ -56,7 +51,6 @@
           	<hr>
           	<div class="social"><span>SNS계정으로 간편 로그인/회원가입</span></div>
           		<button type="button" class="kakao btn-lg">카카오로 시작하기</button>
-			<!--<button type="button" class="kakao btn-lg" onclick="location.href='<%=contextPath%>/kakaoLogin.cu'">카카오로 시작하기</button> -->
           </form>
         </li>
         <%-- 사헙자회원 로그인 ------------------------------------------------------- --%>

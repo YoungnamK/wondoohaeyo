@@ -34,7 +34,7 @@ public class CustInsertController extends SuperClass{
 	private CustomerDao cdao;
 	
 	public CustInsertController() {
-		super("custInsert", "custUpdate");
+		super("custInsert", null);
 		this.mav = new ModelAndView();
 	}
 	
@@ -68,23 +68,22 @@ public class CustInsertController extends SuperClass{
 			MultipartFile multi = customer.getImg();
 			String uploadPath = "/upload";
 			String realPath = request.getRealPath(uploadPath);
-			try {
-				File target = Utility.getUploadedFileInfo(multi, realPath);
-				multi.transferTo(target);
-				mav.setViewName(this.redirect);
-
-				customer.setCust_Pic(target.getName());
-
-				int cnt = -99999;
-				// Bean 객체를 이용하여 해당 게시물을 추가한다.
-				cnt = cdao.InsertData(customer);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-				mav.setViewName("");
-			} catch (Exception e) {
-				e.printStackTrace();
-				this.mav.setViewName(this.redirect);
-			}
+			
+				try {
+					File target = Utility.getUploadedFileInfo(multi, realPath);
+					multi.transferTo(target);
+					mav.setViewName(this.redirect);
+					customer.setCust_Pic(target.getName());
+					int cnt = -99999;
+					// Bean 객체를 이용하여 해당 게시물을 추가한다.
+					cnt = cdao.InsertData(customer);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+					mav.setViewName("");
+				} catch (Exception e) {
+					e.printStackTrace();
+					this.mav.setViewName(this.redirect);
+				}
 			}else {
 				int cnt = -99999;
 				// Bean 객체를 이용하여 해당 게시물을 추가한다.
@@ -92,9 +91,7 @@ public class CustInsertController extends SuperClass{
 				System.out.println();
 				this.mav.setViewName(this.redirect);
 			}
-			
 		}
-
 		return this.mav;
 	}
 }

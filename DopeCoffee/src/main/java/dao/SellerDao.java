@@ -88,5 +88,14 @@ public class SellerDao {
 		map.put("sell_Contact", sell_Contact);
 		return this.abcd.selectOne(namespace + "SelectPW", map);
 	}
+
+	public int InsertAppInfo(Seller seller) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
 	
 }

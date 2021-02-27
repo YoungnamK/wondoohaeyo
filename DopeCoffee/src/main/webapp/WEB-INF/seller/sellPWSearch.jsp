@@ -46,7 +46,7 @@ int formright = twelve - formleft;
 				</div>
 				<!-- 하단 버튼 -->
 				<button type="button" id="searchbtn" onclick="history.back();"
-					class="btn btn-primary">뒤로가기</button>
+					class="btn btn-default">뒤로가기</button>
 				<button type="submit" id="searchbtn" class="btn btn-primary"
 					data-toggle="modal" data-target="#myModal" onclick="return pwcheck();">찾기</button>
 			</form>
@@ -74,3 +74,5 @@ int formright = twelve - formleft;
 			</div>
 		</div>
 	</div>
+	</body>
+</html>	

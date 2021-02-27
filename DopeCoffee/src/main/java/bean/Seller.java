@@ -1,22 +1,15 @@
 package bean;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Seller {
-	private final String MUST_INPUT = "필수 입력 사항입니다.";
 
-	@Length(min=8, max=50, message="이메일 주소는 최소 8자리 이상입니다.")
 	private String sell_Email;
 	
-	@Length(min=8, max=20, message="비밀번호는 최소 8자리 이상입니다.")
 	private String sell_PW;
 	
-	@Length(min=2, max=20, message="이름은 최소 2자리 이상입니다.")		
 	private String sell_Name;
 	
-	@Length(min=11, max=20, message="휴대폰번호는 최소 11자리 이상입니다.")	
 	private String sell_Contact;
 	
 	private String sell_Zipcode;
@@ -27,7 +20,6 @@ public class Seller {
 	
 	private String sell_Pic;
 
-	@NotNull(message="가입정보 동의는 반드시 체크가 되어야 합니다.")	
 	private String sell_Join;
 	
     private int sell_License;
@@ -35,6 +27,19 @@ public class Seller {
     private String sell_Status;
     
     private String remark;
+    
+	private MultipartFile img ;	
+
+	public MultipartFile getImg() {
+		return img;
+	}
+
+	public void setImg(MultipartFile img) {
+		this.img = img;
+		if (this.img != null) {
+			this.sell_Pic = this.img.getOriginalFilename();
+		}
+	}
     
 	public String getSell_Email() {
 		return sell_Email;
@@ -114,13 +119,12 @@ public class Seller {
 		return "Seller [sell_Email=" + sell_Email + ", sell_PW=" + sell_PW + ", sell_Name=" + sell_Name
 				+ ", sell_Contact=" + sell_Contact + ", sell_Zipcode=" + sell_Zipcode + ", sell_ADR01=" + sell_ADR01
 				+ ", sell_ADR02=" + sell_ADR02 + ", sell_Pic=" + sell_Pic + ", sell_Join=" + sell_Join
-				+ ", sell_License=" + sell_License + ", sell_Status=" + sell_Status + ", remark=" + remark + "]";
+				+ ", sell_License=" + sell_License + ", sell_Status=" + sell_Status + ", remark=" + remark + ", img="
+				+ img + "]";
 	}
 	
     public Seller() {
 		// TODO Auto-generated constructor stub
 	}
     
-    
-
 }

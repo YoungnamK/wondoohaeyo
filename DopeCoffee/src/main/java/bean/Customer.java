@@ -54,7 +54,6 @@ public class Customer {
 		}
 	}
 	
-	
 	public String getCust_Email() {
 		return cust_Email;
 	}

@@ -60,7 +60,7 @@
 		<div class="panel panel-default panel-primary">
 			<div class="panel-heading">우편 번호 검색</div>
 			<div class="panel-body">
-				<form name="myform" class="form-inline" role="form" method="get" action="<%=contextPath%>/zipcheck.cu" >
+				<form name="myform" class="form-inline" role="form" method="get" action="<%=contextPath%>/zipcheck.se" >
 					<table class="table table-striped table-hover table-condensed">
 						<tr>
 							<td colspan="2" align="center">
