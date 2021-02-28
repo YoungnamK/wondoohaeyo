@@ -24,7 +24,7 @@ import utility.Utility;
 	@Controller 
 	public class CustUpdateController extends SuperClass{
 		private final String command = "/custUpdate.cu"; 
-		private final String redirect = "redirect:/custDetail.cu";
+		private final String redirect = "redirect:/custUpdate.cu";
 		
 		// 뷰에 넘겨줄 ModelAndView 객체
 		private ModelAndView mav = null ; 
@@ -95,7 +95,7 @@ import utility.Utility;
 				}
 				}else {
 					int cnt =-999999;
-					cnt = this.cdao.UpdateData(customer) ;
+					cnt = this.cdao.UpdateData(customer);
 					mav.setViewName(this.redirect);
 				}
 			}			

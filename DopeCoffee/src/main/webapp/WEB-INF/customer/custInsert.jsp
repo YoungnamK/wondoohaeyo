@@ -9,7 +9,6 @@ int mywidth = twelve - 2 * myoffset;
 int formleft = 3;
 int formright = twelve - formleft;
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,26 +20,27 @@ int formright = twelve - formleft;
 <script type="text/javascript" src="${contextPath}/js/custInsert.js"></script>
 <script type="text/javascript">
 function checkDuplicateId(){ /* 아이디 중복 체크 */	
-	var cust_Email = document.myform.cust_Email.value ;
+	var cust_Email = document.myform.cust_Email.value;
 	if(cust_Email.length < 8){
-		alert('이메일은 최소 8자리 이상이어야 합니다.') ;
+		alert('이메일은 최소 8자리 이상이어야 합니다.');
 		document.myform.cust_Email.focus();
-		return false ;
+		return false;
 	}
-	var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email  ;
-	window.open(url, 'mywin', 'height=150,widht=300') ;			
+	var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email ;
+	window.open(url, 'mywin', 'height=150,widht=300');			
 };
 
 function findZipcode(){ /* 우편 번호 찾기 */
 	// alert('우편 번호 찾기') ;
-	var url = '<%=contextPath%>/zipcheck.cu';
-	window.open(url, 'mywin','height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
+	var url = '<%=contextPath%>
+	/zipcheck.cu';
+		window.open(url, 'mywin','height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
 	};
 
 	function checkForm() { /* 회원 가입 버튼 클릭*/
 		var isCheck = document.myform.isCheck.value;
 		if (isCheck == 'false') {
-			alert('아이디 중복 체크를 해주세요.');
+			alert('이메일을 중복 체크를 해주세요.');
 			return false;
 		}
 	};
@@ -51,6 +51,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 	};
 </script>
 </head>
+
 <body style="padding-bottom: 150px;">
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<div class="panel" align="center">
@@ -61,6 +62,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>" />
+			<%-- form태그 시작 ------------------------------------------------- --%>
 			<form enctype="multipart/form-data" method="post"
 				action="${apppath}/custInsert.cu" class="form-horizontal"
 				role="form" name="myform" onsubmit="return chk_submit();">
@@ -103,8 +105,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control"
 							name="cust_Email" id="cust_Email" value="${cust_Email}"
-							onkeyup="isCheckFalse();" /> <span class="valid_check"
-							id="err_custEmail"></span>
+							onkeyup="isCheckFalse();" /> 
+							<span class="valid_check" id="err_custEmail"></span>
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -122,8 +124,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="cust_PW" id="cust_PW"
-							value="${cust_PW}"> <span class="valid_check"
-							id="err_custPW"></span>
+							value="${cust_PW}"> 
+							<span class="valid_check" id="err_custPW"></span>
 					</div>
 				</div>
 
@@ -135,8 +137,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="cust_Name" id="cust_Name" value="${cust_Name}"> <span
-							class="valid_check" id="err_custName"></span>
+							name="cust_Name" id="cust_Name" value="${cust_Name}"> 
+							<span class="valid_check" id="err_custName"></span>
 					</div>
 				</div>
 
@@ -177,15 +179,15 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakecust_Zipcode" id="fakecust_Zipcode"
-							value="${cust_Zipcode}" disabled="disabled"> <input
-							type="hidden" name="cust_Zipcode" id="cust_Zipcode"
+							value="${cust_Zipcode}" disabled="disabled"> 
+							<input type="hidden" name="cust_Zipcode" id="cust_Zipcode"
 							value="${cust_Zipcode}">
 					</div>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakecust_ADR01" id="fakecust_ADR01" value="${cust_ADR01}"
-							disabled="disabled"> <input type="hidden" id="cust_ADR01"
-							name="cust_ADR01" style="text-align: left">
+							disabled="disabled"> 
+							<input type="hidden" id="cust_ADR01" name="cust_ADR01" style="text-align: left">
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -206,18 +208,19 @@ function findZipcode(){ /* 우편 번호 찾기 */
 							value="${cust_ADR02}">
 					</div>
 				</div>
+				<%-- 하단 버튼------------------------------------------------- --%>
+				<div class="submit_btn col-sm-offset-3 col-sm-6">
+					<p style="font-size: 10px; line-height: 12px;">
+						<i class="fas fa-check-circle"></i>&nbsp;가입 시, 구매 이용약관, 원두 전자금융거래
+						이용약관, <br />구매자 개인정보 수집 및 이용 동의에 대해 동의합니다.
+					</p>
+					<button type="submit" id="submit" class="submit"
+						data-toggle="modal" data-target="#myModal"
+						onclick="return checkForm();">동의하고 가입하기</button>
+				</div>
 			</form>
+			<%-- form태그 시작 ------------------------------------------------- --%>
 		</div>
-		<%-- 하단 버튼------------------------------------------------- --%>
-			<div class="submit_btn col-sm-offset-3 col-sm-6">
-				<p style="font-size: 10px; line-height: 12px;">
-					<i class="fas fa-check-circle"></i>&nbsp;가입 시, 구매 이용약관, 원두 전자금융거래
-					이용약관, <br />구매자 개인정보 수집 및 이용 동의에 대해 동의합니다.
-				</p>
-				<button type="submit" id="submit" class="submit" data-toggle="modal"
-					data-target="#myModal" onclick="return checkForm();">동의하고
-					가입하기</button>
-			</div>
 	</div>
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">
@@ -240,6 +243,6 @@ function findZipcode(){ /* 우편 번호 찾기 */
 			</div>
 		</div>
 	</div>
-
 </body>
+
 </html>

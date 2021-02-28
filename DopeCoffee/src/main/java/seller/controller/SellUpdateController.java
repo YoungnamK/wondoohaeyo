@@ -25,7 +25,7 @@ import utility.Utility;
 	@Controller 
 	public class SellUpdateController extends SuperClass{
 		private final String command = "/sellUpdate.se" ; // 요청 커맨드(변경 요망)
-		private final String redirect = "redirect:/sellDetail.se" ; // 리다이렉션(변경 요망)
+		private final String redirect = "redirect:/sellUpdate.se" ; // 리다이렉션(변경 요망)
 		
 		// 뷰에 넘겨줄 ModelAndView 객체
 		private ModelAndView mav = null ; 
@@ -70,7 +70,7 @@ import utility.Utility;
 				this.mav.setViewName(super.getpage);
 			} else {
 				System.out.println("유효성 검사 통과");
-				// 회원정보수정 완료 후, 마이페이지로 이동
+				// 회원정보수정 완료 후, 다시 회원정보수정 페이지로 이동
 				this.sdao.UpdateData(seller);
 				this.mav.setViewName(this.redirect);
 			} 

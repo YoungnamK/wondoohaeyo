@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="./../common/common.jsp"%>
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
@@ -11,7 +9,6 @@ int mywidth = twelve - 2 * myoffset;
 int formleft = 3;
 int formright = twelve - formleft;
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +17,6 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript" src="${contextPath}/js/custUpdate.js"></script>
 <script type="text/javascript">
-
 	/* 우편 번호 찾기 */
 	function findZipcode(){ 
 		// alert('우편 번호 찾기') ;
@@ -30,6 +26,7 @@ int formright = twelve - formleft;
 	};
 </script>
 </head>
+
 <body style="padding-bottom: 150px;">
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<div class="panel" align="center">
@@ -40,13 +37,14 @@ int formright = twelve - formleft;
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>" />
+			<%-- form태그 시작 ------------------------------------------------- --%>
 			<form method="post" enctype="multipart/form-data"
 				action="${apppath}/custUpdate.cu" class="form-horizontal"
 				role="form" name="myform" onsubmit="return chk_submit();">
 
-				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
-				<input type="hidden" name="isCheck" value="false"> <input
-					type="hidden" name="cust_Join" value="Y">
+				<!-- hidden으로 넘길 데이터 ------------------------------------------------- -->
+				<input type="hidden" name="isCheck" value="false"> 
+				<input type="hidden" name="cust_Join" value="Y">
 
 				<%-- 프로필사진, cust_Pic ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
@@ -65,11 +63,12 @@ int formright = twelve - formleft;
 						</div>
 
 						<div class="avatar-edit">
-							<input name="cust_Pic" type="hidden" value="${bean.cust_Pic}" > 
-							기존 이미지 : <input type="text" name="oldimg" value="${bean.cust_Pic}" > 
-							<input type="file" class="imageUpload" name="img" id="img"
-								placeholder="파일을 선택하지 않으면 기존 이미지가 유지됩니다."> 
-								<label for="imageUpload"></label>
+							<input name="cust_Pic" type="hidden" value="${bean.cust_Pic}">
+							기존 이미지 : <input type="text" name="oldimg"
+								value="${bean.cust_Pic}"> <input type="file"
+								class="imageUpload" name="img" id="img"
+								placeholder="파일을 선택하지 않으면 기존 이미지가 유지됩니다."> <label
+								for="imageUpload"></label>
 						</div>
 					</div>
 				</div>
@@ -85,8 +84,8 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="fakecust_Email"
 							id="fakecust_Email" value="${bean.cust_Email}"
-							disabled="disabled" /> <input type="hidden" name="cust_Email"
-							id="cust_Email" value="${bean.cust_Email}">
+							disabled="disabled" /> 
+							<input type="hidden" name="cust_Email" id="cust_Email" value="${bean.cust_Email}">
 					</div>
 				</div>
 
@@ -99,8 +98,8 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="cust_PW" id="cust_PW"
-							value="${bean.cust_PW}"> <span class="valid_check"
-							id="err_custPW"></span>
+							value="${bean.cust_PW}"> 
+							<span class="valid_check" id="err_custPW"></span>
 					</div>
 				</div>
 
@@ -127,8 +126,8 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
 							name="cust_Contact" id="cust_Contact"
-							value="${bean.cust_Contact}"> <span class="valid_check"
-							id="err_custContact"></span>
+							value="${bean.cust_Contact}"> 
+							<span class="valid_check" id="err_custContact"></span>
 					</div>
 				</div>
 
@@ -149,21 +148,21 @@ int formright = twelve - formleft;
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Zipcode" class="col-sm-3"
-						style="text-align: right"> <spring:message
-							code="customer.cust_ADR01" />
+						style="text-align: right"> 
+						<spring:message code="customer.cust_ADR01" />
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakecust_Zipcode" id="fakecust_Zipcode"
-							value="${bean.cust_Zipcode}" disabled="disabled"> <input
-							type="hidden" name="cust_Zipcode" id="cust_Zipcode"
+							value="${bean.cust_Zipcode}" disabled="disabled"> 
+							<input type="hidden" name="cust_Zipcode" id="cust_Zipcode"
 							value="${customer.cust_Zipcode}">
 					</div>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakecust_ADR01" id="fakecust_ADR01"
-							value="${bean.cust_ADR01}" disabled="disabled"> <input
-							type="hidden" id="cust_ADR01" name="cust_ADR01"
+							value="${bean.cust_ADR01}" disabled="disabled"> 
+							<input type="hidden" id="cust_ADR01" name="cust_ADR01"
 							style="text-align: left">
 					</div>
 					<div class="col-sm-3" align="left">
@@ -185,14 +184,15 @@ int formright = twelve - formleft;
 							value="${bean.cust_ADR02}">
 					</div>
 				</div>
+				<%-- 하단 버튼------------------------------------------------- --%>
+				<div class="submit_btn col-sm-offset-3 col-sm-6">
+					<button type="submit" class="submit" id="cust-submit"
+						data-toggle="modal" data-target="#myModal">수정 완료</button>
+				</div>
 			</form>
+			<%-- form태그 끝 ------------------------------------------------- --%>
 		</div>
-		<%-- 하단 버튼------------------------------------------------- --%>
-			<div class="submit_btn col-sm-offset-3 col-sm-6">
-				<button type="submit" class="submit" id="submit">수정 완료</button>
-			</div>
-		</div>
-
+	</div>
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">
 		<!-- Modal -->
@@ -214,6 +214,6 @@ int formright = twelve - formleft;
 			</div>
 		</div>
 	</div>
-
 </body>
+
 </html>

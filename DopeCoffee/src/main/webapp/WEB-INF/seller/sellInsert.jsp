@@ -21,26 +21,26 @@ int formright = twelve - formleft;
 <script type="text/javascript" src="${contextPath}/js/sellInsert.js"></script>
 <script type="text/javascript">
 function checkDuplicateId(){ /* 아이디 중복 체크 */	
-	var sell_Email = document.myform.sell_Email.value ;
+	var sell_Email = document.myform.sell_Email.value;
 	if(sell_Email.length < 8){
-		alert('이메일은 최소 8자리 이상이어야 합니다.') ;
+		alert('이메일은 최소 8자리 이상이어야 합니다.');
 		document.myform.sell_Email.focus();
-		return false ;
+		return false;
 	}
-	var url = '<%=contextPath%>/idcheck.se?sell_Email=' + sell_Email  ;
-	window.open(url, 'mywin', 'height=150,widht=300') ;			
+	var url = '<%=contextPath%>/idcheck.se?sell_Email=' + sell_Email;
+	window.open(url, 'mywin', 'height=150,widht=300');			
 };
 
 function findZipcode(){ /* 우편 번호 찾기 */
 	// alert('우편 번호 찾기') ;
 	var url = '<%=contextPath%>/zipcheck.se';
-		window.open(url, 'mywin', 'height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
+		window.open(url, 'mywin','height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
 	};
 
 	function checkForm() { /* 회원 가입 버튼 클릭*/
 		var isCheck = document.myform.isCheck.value;
 		if (isCheck == 'false') {
-			alert('아이디 중복 체크를 해주세요.');
+			alert('이메일 중복 체크를 해주세요.');
 			return false;
 		}
 	};
@@ -61,6 +61,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>" />
+			<%-- form태그 시작 ------------------------------------------------- --%>			
 			<form method="post" action="${apppath}/sellInsert.se"
 				class="form-horizontal" role="form" name="myform"
 				onsubmit="return chk_submit();">
@@ -69,8 +70,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 				<input type="text" name="isCheck" value="false">
 
 				<!-- hidden으로 변경할 데이터 -->
-				<input type="text" name="sell_Status" value="신청전"> <input
-					type="text" name="sell_Join" value="Y">
+				<input type="text" name="sell_Status" value="신청전"> 
+				<input type="text" name="sell_Join" value="Y">
 
 				<%-- sell_Email ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
@@ -81,8 +82,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control"
 							name="sell_Email" id="sell_Email" value="${sell_Email}"
-							onkeyup="isCheckFalse();" /> <span class="valid_check"
-							id="err_sellEmail"></span>
+							onkeyup="isCheckFalse();" /> 
+							<span class="valid_check" id="err_sellEmail"></span>
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -100,8 +101,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="sell_PW" id="sell_PW"
-							value="${sell_PW}"> <span class="valid_check"
-							id="err_sellPW"></span>
+							value="${sell_PW}"> 
+							<span class="valid_check" id="err_sellPW"></span>
 					</div>
 				</div>
 
@@ -113,8 +114,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="sell_Name" id="sell_Name" value="${sell_Name}"> <span
-							class="valid_check" id="err_sellName"></span>
+							name="sell_Name" id="sell_Name" value="${sell_Name}"> 
+							<span class="valid_check" id="err_sellName"></span>
 					</div>
 				</div>
 
@@ -136,21 +137,20 @@ function findZipcode(){ /* 우편 번호 찾기 */
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="sell_Zipcode" class="col-sm-3"
-						style="text-align: right"> <spring:message
-							code="seller.sell_ADR01" />
+						style="text-align: right"> 
+						<spring:message code="seller.sell_ADR01" />
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakesell_Zipcode" id="fakesell_Zipcode"
-							value="${sell_Zipcode}" disabled="disabled"> <input
-							type="hidden" name="sell_Zipcode" id="sell_Zipcode"
-							value="${sell_Zipcode}">
+							value="${sell_Zipcode}" disabled="disabled"> 
+							<input type="hidden" name="sell_Zipcode" id="sell_Zipcode" value="${sell_Zipcode}">
 					</div>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakesell_ADR01" id="fakesell_ADR01" value="${sell_ADR01}"
-							disabled="disabled"> <input type="hidden" id="sell_ADR01"
-							name="sell_ADR01" style="text-align: left">
+							disabled="disabled"> 
+							<input type="hidden" id="sell_ADR01" name="sell_ADR01" style="text-align: left">
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -171,18 +171,21 @@ function findZipcode(){ /* 우편 번호 찾기 */
 							value="${sell_ADR02}">
 					</div>
 				</div>
+				<%-- 하단 버튼------------------------------------------------- --%>
+				<div class="col-sm-offset-3 col-sm-6">
+					<p style="font-size: 10px; line-height: 12px;">
+						<i class="fas fa-check-circle"></i>&nbsp;가입 시, 판매 이용약관, 원두 전자금융거래
+						이용약관, <br />판매자 개인정보 수집 및 이용 동의에 대해 동의합니다.
+					</p>
+					<button type="submit" id="sell-submit" class="submit"
+						data-toggle="modal" data-target="#myModal"
+						onclick="return checkForm();">동의하고 가입하기</button>
+				</div>
 			</form>
+			<%-- form태그 끝 ------------------------------------------------- --%>
+
 		</div>
-		<%-- 하단 버튼------------------------------------------------- --%>
-		<div class="col-sm-offset-3 col-sm-6">
-			<p style="font-size: 10px; line-height: 12px;">
-				<i class="fas fa-check-circle"></i>&nbsp;가입 시, 판매 이용약관, 원두 전자금융거래
-				이용약관, <br />판매자 개인정보 수집 및 이용 동의에 대해 동의합니다.
-			</p>
-			<button type="submit" id="submit" class="submit" data-toggle="modal"
-				data-target="#myModal" onclick="return checkForm();">동의하고
-				가입하기</button>
-		</div>
+
 	</div>
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">

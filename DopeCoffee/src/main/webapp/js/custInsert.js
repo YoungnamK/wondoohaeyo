@@ -1,4 +1,7 @@
-
+/* ===============================
+	개인회원 가입 시 유효성
+   ===============================
+*/
 		var font_color = '#5080BF';
 		var custEmailCheck = false;
 		var custPWCheck = false;
@@ -106,7 +109,10 @@
 			});						
 		});
 
-
+/* ===============================
+	개인회원 가입 시 등록 버튼
+   ===============================
+*/
 		function chk_submit() {
 			if (custEmailCheck == false || custPWCheck == false
 					|| custNameCheck == false || custContactCheck == false || custBirthCheck == false) {
