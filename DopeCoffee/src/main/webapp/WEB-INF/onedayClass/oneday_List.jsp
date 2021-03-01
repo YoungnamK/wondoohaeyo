@@ -78,7 +78,7 @@
 									<p id="list_price">
 										<i class="fas fa-won-sign"></i>&nbsp;${bean.oneprice}
 									</p>
-									<p class="list_person">${bean.person}개 남음</p>
+									<p class="list_person">최대 ${bean.person}명</p>
 								</div>
 							</figcaption>
 						</figure>

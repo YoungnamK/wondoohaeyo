@@ -19,7 +19,25 @@
 	<!-- 원데이 클래스 결제 테이블 remark 컬럼 업데이트 -->
 	<update id="UpdateRemarkData" parameterType="java.util.HashMap">
 		update onedayorders set remark=#{remark} where code=#{code}
-		
 	</update>
 	
+	<!-- 원데이 클래스 결제 중복 체크 -->
+	<!-- 해당 조건에 맞는 인원수를 체크하여 중복을 판단한다. -->
+	<!-- 조건 1. 클래스 코드 && 예약 일자 && 예약 시간   -->
+	<!-- 조건 2. 초기 설정 인원수의 값 - 결제 테이블에 조건 1을 만족하는 인원수의 sum 값 -->
+	<select id="DuplicationCheck" parameterType="MyOnedayorder" resultType="Integer">
+		select count(*) from onedayorders 
+		where code=#{code} and bookdate=#{bookdate} and booktime=#{booktime}
+		and #{person} <![CDATA[ <= ]]>
+	    (select person from onedayclasses where code=#{code}) <![CDATA[ - ]]> 
+	    (select sum(person) from onedayorders where code=#{code} and bookdate=#{bookdate} and booktime=#{booktime})
+	</select>
+	
+	<!-- 원데이 클래스 결제 중복 체크 -->
+	<!-- 해당 조건에 맞는 예약일자를 체크하여 중복을 판단한다. -->
+	<!-- 조건 1. 클래스 코드 && 예약일자 -->
+	<select id="DuplDateCheck" parameterType="MyOnedayorder" resultType="Integer">
+		select count(*) from onedayorders
+		where code=#{code} and bookdate=#{bookdate}
+	</select>
 </mapper>

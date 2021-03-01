@@ -656,7 +656,7 @@ h3#sellname_css{
 }
 /* 사이드 부분 두번째 예약 정보  있는 부분*/
 .sidebar .categories ul li {
-    height: 60px;
+    height: 80px;
     padding: 0;
     list-style: none;
 }

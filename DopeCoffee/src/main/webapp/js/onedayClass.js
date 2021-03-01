@@ -8,38 +8,38 @@
    ===================
 */
 
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
+$(document).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip();
 });
 
 
-$(document).ready(function () {
-    //Initialize tooltips
-    $('.nav-tabs > li a[title]').tooltip();
-    
-    //Wizard
-    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+$(document).ready(function() {
+	//Initialize tooltips
+	$('.nav-tabs > li a[title]').tooltip();
 
-        var $target = $(e.target);
-    
-        if ($target.parent().hasClass('disabled')) {
-            return false;
-        }
-    });
+	//Wizard
+	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
 
-    $(".next-step").click(function (e) {
+		var $target = $(e.target);
 
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
+		if ($target.parent().hasClass('disabled')) {
+			return false;
+		}
+	});
 
-    });
-    $(".prev-step").click(function (e) {
+	$(".next-step").click(function(e) {
 
-        var $active = $('.wizard .nav-tabs li.active');
-        prevTab($active);
+		var $active = $('.wizard .nav-tabs li.active');
+		$active.next().removeClass('disabled');
+		nextTab($active);
 
-    });
+	});
+	$(".prev-step").click(function(e) {
+
+		var $active = $('.wizard .nav-tabs li.active');
+		prevTab($active);
+
+	});
 });
 
 /* ===============================
@@ -54,17 +54,17 @@ function today() {
 	 ==================================*/
 	// 사업자가 설정한 1인 기준 가격 
 	var oneprice = $('#oneprice').val();
-	
+
 	oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
-	
-	function removecomma(pStr) { 
-		var strCheck = /\,/g; 
-		pStr = pStr.replace(strCheck, ''); 
-		return pStr; 
+
+	function removecomma(pStr) {
+		var strCheck = /\,/g;
+		pStr = pStr.replace(strCheck, '');
+		return pStr;
 	}
-	
+
 	$('#oneprice').val(oneprice);
-	
+
 	// 당일 날짜를 구해서 startdate 파라미터 값으로 넣어줌 
 	var today = new Date();
 	var year = today.getFullYear(); //년도 
@@ -89,16 +89,16 @@ function today() {
 	//alert(startdate);
 	$('#fake-startdate').val(startdate);
 	$('#startdate').val(startdate);
-	
-	
-	
+
+
+
 	// 로드 되었을 때 , 시간 추가 부분은 안보이게함
 	$('#add1').hide(); // 추가시간
-	
-	
- 	
 
-	
+
+
+
+
 }
 
 
@@ -110,11 +110,11 @@ function today() {
 function code_ajax() {
 	var code = $('#code').val();
 	//alert(code);
-	
+
 	$.ajax({
 		url: './onedayCodeCheck.odc',
 		type: 'post',
-		data : {"code" : code},
+		data: { "code": code },
 		success: function(data) { // OnedayClassCodeCheckController 컨트롤러 cnt 값
 			console.log(data);
 			if (data == 1) {
@@ -132,38 +132,38 @@ function code_ajax() {
    ===============================
 */
 
-function zipCheck(){
+function zipCheck() {
 	var width = 500; //팝업의 너비
 	var height = 600; //팝업의 높이
 	new daum.Postcode({
 		width: width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
-  		height: height,
-        oncomplete: function(data) {
-        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		height: height,
+		oncomplete: function(data) {
+			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
+			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var addr = ''; // 주소 변수
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
+			//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				addr = data.roadAddress;
+			} else { // 사용자가 지번 주소를 선택했을 경우(J)
+				addr = data.jibunAddress;
+			}
 
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('zipcode').value = data.zonecode;
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('zipcode').value = data.zonecode;
 			document.getElementById('fakezipcode').value = data.zonecode;
-            document.getElementById("address1").value = addr;
-            document.getElementById("fakeaddress1").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("address2").focus();
-        }
-    }).open({
+			document.getElementById("address1").value = addr;
+			document.getElementById("fakeaddress1").value = addr;
+			// 커서를 상세주소 필드로 이동한다.
+			document.getElementById("address2").focus();
+		}
+	}).open({
 		left: (window.screen.width / 2) - (width / 2),
-    	top: (window.screen.height / 2) - (height / 2)
+		top: (window.screen.height / 2) - (height / 2)
 	});
 }
 
@@ -181,318 +181,318 @@ var string_check = /^[ㄱ-ㅎㅏ-ㅣ가-힣]$/; // 자음 , 모음으로 들어�
 	유효성 검사 - STEP1
 =======================*/
 
-$(document).ready(function(){ 
+$(document).ready(function() {
 	// 주제
-	$("#type").click(function(){
+	$("#type").click(function() {
 		var type = $('#type option:selected').val();
-		
-		if(type == 'coffee'){
-			$('#code').val( type + '_');
+
+		if (type == 'coffee') {
+			$('#code').val(type + '_');
 			$("#err_type").text('');
-		}else if(type == 'pottery'){
-			$('#code').val( type + '_');
+		} else if (type == 'pottery') {
+			$('#code').val(type + '_');
 			$("#err_type").text('');
-		}else{
-			if(type == '-'){
+		} else {
+			if (type == '-') {
 				$('#code').val('');
 				$("#err_type").text('주제를 선택하세요!');
-				$("#err_type").css("color" , font_color);		
-			}else{
+				$("#err_type").css("color", font_color);
+			} else {
 				$("#err_type").text('');
 			}
 		}
 	});
-	
-	
+
+
 	// 클래스 코드 
-	$("#code").blur(function(){
+	$("#code").blur(function() {
 		var code = $('#code').val();
-		
-		if(code.length == 0){
+
+		if (code.length == 0) {
 			$("#err_code").text('클래스 코드를 입력하세요!');
-			$("#err_code").css("color" , font_color);
-		}else if(code.length > 0){
-			if(code.indexOf('coffee_') == 0 || code.indexOf('pottery_') == 0){
+			$("#err_code").css("color", font_color);
+		} else if (code.length > 0) {
+			if (code.indexOf('coffee_') == 0 || code.indexOf('pottery_') == 0) {
 				$("#err_code").text('');
-			}else{
+			} else {
 				$("#err_code").text('언더바 다음부터 입력이 가능합니다! 주제를 다시 선택하세요.');
 			}
-		}else{
+		} else {
 			$("#err_code").text('');
 		}
-		
-		
-		
+
+
+
 	});
-	
-	$("#code").keyup(function(){
+
+	$("#code").keyup(function() {
 		var code = $('#code').val();
-		if(code.length > 0){
+		if (code.length > 0) {
 			$("#err_code").text('반드시 클래스 코드를 기억해주세요! 코드는 중복 불가합니다.');
-			$("#err_code").css("color" , font_color);
+			$("#err_code").css("color", font_color);
 		}
-		
+
 	});
-	
+
 
 	// 클래스명
-	$("#classname").keyup(function(){
-		if($(this).val().length < 4){
+	$("#classname").keyup(function() {
+		if ($(this).val().length < 4) {
 			$("#err_classname").text('4글자 이상 입력하세요!');
-			$("#err_classname").css("color" , font_color);
-		}else{
+			$("#err_classname").css("color", font_color);
+		} else {
 			$("#err_classname").text('');
 		}
-		
+
 	});
-	
-	
-	$("#classname").blur(function(){
+
+
+	$("#classname").blur(function() {
 		var classname = $('#classname').val();
 
-		if(classname.length == 0){
+		if (classname.length == 0) {
 			$("#err_classname").text('클래스 명을 입력하세요!');
-			$("#err_classname").css("color" , font_color);
-		}else if(classname.length < 4){
+			$("#err_classname").css("color", font_color);
+		} else if (classname.length < 4) {
 			$("#err_classname").text('4글자 이상 입력하세요!');
-			$("#err_classname").css("color" , font_color);
-		}else{
+			$("#err_classname").css("color", font_color);
+		} else {
 			$("#err_classname").text('');
 		}
-		
-		
+
+
 	});
-	
-	
-	
+
+
+
 	// 수강 인원	
-	$("#person").blur(function(){
+	$("#person").blur(function() {
 		var person = $('#person').val();
-		
-	
-		if(person.length >= 2){
-			if(person.charAt(0) == '0'){
+
+
+		if (person.length >= 2) {
+			if (person.charAt(0) == '0') {
 				$("#err_person").text('인원수를 확인해주세요!');
-				$("#err_person").css("color" , font_color);
-			}else{
+				$("#err_person").css("color", font_color);
+			} else {
 				$("#err_person").text('');
 			}
-		}else if(person.length == 1){
-			if(person.charAt(0) == '0'){
+		} else if (person.length == 1) {
+			if (person.charAt(0) == '0') {
 				$("#err_person").text('1명 이상만 입력 가능합니다!');
-				$("#err_person").css("color" , font_color);
-			}else{
+				$("#err_person").css("color", font_color);
+			} else {
 				$("#err_person").text('');
 			}
-		}else if(person.length == 0){
+		} else if (person.length == 0) {
 			$("#err_person").text('수업에 참여 가능한 최대 인원수를 입력하세요!');
-			$("#err_person").css("color" , font_color);
-		}else{
+			$("#err_person").css("color", font_color);
+		} else {
 			$("#err_person").text('');
-		}	
-		
-		if(!number_check.test(person)){	
+		}
+
+		if (!number_check.test(person)) {
 			$("#err_person").text('숫자만 입력하세요!');
-			$("#err_person").css("color" , font_color);
+			$("#err_person").css("color", font_color);
 		}
-		
+
 	});
-	
+
 	// 가격	
-	$("#oneprice").keyup(function(){
-		if($(this).val().length < 4){
+	$("#oneprice").keyup(function() {
+		if ($(this).val().length < 4) {
 			$("#err_oneprice").text('1000원 단위부터 입력 가능합니다!');
-			$("#err_oneprice").css("color" , font_color);
-		}else{
+			$("#err_oneprice").css("color", font_color);
+		} else {
 			$("#err_oneprice").text('');
 		}
-		
-		if(!number_check.test($(this).val())){	
+
+		if (!number_check.test($(this).val())) {
 			$("#err_oneprice").text('숫자만 입력하세요!');
-			$("#err_oneprice").css("color" , font_color);
+			$("#err_oneprice").css("color", font_color);
 		}
-		
+
 	});
-	
-	
-	$("#oneprice").blur(function(){
+
+
+	$("#oneprice").blur(function() {
 		var oneprice = $('#oneprice').val();
-		
-		if(oneprice.length < 4){
+
+		if (oneprice.length < 4) {
 			$("#err_oneprice").text('1000원 단위부터 입력 가능합니다!');
-			$("#err_oneprice").css("color" , font_color);	
-			
-			if(oneprice.charAt(0) == '0'){
+			$("#err_oneprice").css("color", font_color);
+
+			if (oneprice.charAt(0) == '0') {
 				$("#err_oneprice").text('가격을 확인해주세요!');
-				$("#err_oneprice").css("color" , font_color);
-			}	
-			if(oneprice.length == 0){
+				$("#err_oneprice").css("color", font_color);
+			}
+			if (oneprice.length == 0) {
 				$("#err_oneprice").text('1인 기준 가격을 입력하세요!');
-				$("#err_oneprice").css("color" , font_color);
+				$("#err_oneprice").css("color", font_color);
 			}
-		}else if(oneprice.length >= 4){
-			if(oneprice.charAt(0) == '0'){
+		} else if (oneprice.length >= 4) {
+			if (oneprice.charAt(0) == '0') {
 				$("#err_oneprice").text('가격을 확인해주세요!');
-				$("#err_oneprice").css("color" , font_color);
+				$("#err_oneprice").css("color", font_color);
 			}
-		}else{
+		} else {
 			$("#err_oneprice").text('');
-		}		
-		
-		
-		if(!number_check.test($(this).val())){	
-			$("#err_oneprice").text('숫자만 입력하세요!');
-			$("#err_oneprice").css("color" , font_color);
 		}
-		
+
+
+		if (!number_check.test($(this).val())) {
+			$("#err_oneprice").text('숫자만 입력하세요!');
+			$("#err_oneprice").css("color", font_color);
+		}
+
 	});
-	
+
 	// 상세 주소
-	$("#address2").blur(function(){
+	$("#address2").blur(function() {
 		var address2 = $('#address2').val();
 
-		if(address2.length == 0){
+		if (address2.length == 0) {
 			$("#err_address2").text('상세 주소를 입력하세요!');
-			$("#err_address2").css("color" , font_color);
-		}else{
+			$("#err_address2").css("color", font_color);
+		} else {
 			$("#err_address2").text('');
 		}
-		
-		
+
+
 	});
-	
+
 	// 상품 설명
-	$("#content").keyup(function(){
-		if($(this).val().length > 0){
+	$("#content").keyup(function() {
+		if ($(this).val().length > 0) {
 			$("#err_content").text('해당 내용은 원데이 클래스 세부 목록에 기재됩니다.');
-			$("#err_content").css("color" , font_color);
-		}else{
+			$("#err_content").css("color", font_color);
+		} else {
 			$("#err_content").text('');
 		}
-		
+
 	});
-	
-	$("#content").blur(function(){
+
+	$("#content").blur(function() {
 		var content = $('#content').val();
 
-		if(content.length > 0){
+		if (content.length > 0) {
 			$("#err_content").text('');
 		}
 	});
-	
+
 	/*=====================
 		유효성 검사 - STEP2
 	=======================*/
-   
+
 	// 수업 마감 일자
-	$("#enddate").mouseleave(function(){
+	$("#enddate").mouseleave(function() {
 		var enddate = $('#enddate').val();
 
-		if(enddate == ''){
+		if (enddate == '') {
 			$("#err_enddate").text('클래스 개설 마감 일자를 선택하세요!');
 			$("#err_enddate").css('color', font_color);
-		}else{
+		} else {
 			$("#err_enddate").text('');
 		}
 	});
-	
+
 	// 수업 오픈 시간 
-	$("#opentime").mouseleave(function(){
+	$("#opentime").mouseleave(function() {
 		var opentime = $('#opentime').val();
 
-		if(opentime == ''){
+		if (opentime == '') {
 			$("#err_opentime").text('클래스 개설 오픈 시간을 선택하세요!');
 			$("#err_opentime").css('color', font_color);
-		}else{
+		} else {
 			$("#err_opentime").text('');
 		}
 	});
-	
+
 	// 수업 마감 시간 
-	$("#closetime").mouseleave(function(){
+	$("#closetime").mouseleave(function() {
 		var opentime = $('#opentime').val();
 		var closetime = $('#closetime').val();
-		
-		if(closetime == ''){
+
+		if (closetime == '') {
 			$("#err_closetime").text('클래스 개설 마감 시간을 선택하세요!');
 			$("#err_closetime").css('color', font_color);
-		}else if(opentime == closetime){
+		} else if (opentime == closetime) {
 			$("#err_closetime").text('오픈시간보다 크게 선택하세요!');
 			$("#err_closetime").css('color', font_color);
-		}else{
+		} else {
 			$("#err_closetime").text('');
 		}
 	});
-	
+
 	// 추가 오픈 시간 1
-	$("#add_opentime1").mouseleave(function(){
+	$("#add_opentime1").mouseleave(function() {
 		var add_opentime1 = $('#add_opentime1').val();
 		var add_closetime1 = $('#add_closetime1').val();
-		
-		if(add_opentime1 == '' && add_closetime1 != ''){
+
+		if (add_opentime1 == '' && add_closetime1 != '') {
 			$("#err_add_opentime1").text('추가 클래스 개설 오픈 시간을 확인하세요!');
 			$("#err_add_opentime1").css('color', font_color);
-		}else if(add_opentime1 != '' && add_closetime1 == ''){
+		} else if (add_opentime1 != '' && add_closetime1 == '') {
 			$("#err_add_closetime1").text('추가 클래스 개설 마감 시간을 확인하세요!');
 			$("#err_add_closetime1").css('color', font_color);
-		}else{
+		} else {
 			$("#err_add_opentime1").text('');
 			$("#err_add_closetime1").text('');
 		}
 	});
-	
+
 	// 추가 마감 시간 1
-	$("#add_closetime1").mouseleave(function(){
+	$("#add_closetime1").mouseleave(function() {
 		var add_opentime1 = $('#add_opentime1').val();
 		var add_closetime1 = $('#add_closetime1').val();
-		
-		if(add_opentime1 == '' && add_closetime1 != ''){
+
+		if (add_opentime1 == '' && add_closetime1 != '') {
 			$("#err_add_opentime1").text('추가 클래스 개설 오픈 시간을 확인하세요!');
 			$("#err_add_opentime1").css('color', font_color);
-		}else if(add_opentime1 != '' && add_closetime1 == ''){
+		} else if (add_opentime1 != '' && add_closetime1 == '') {
 			$("#err_add_closetime1").text('추가 클래스 개설 마감 시간을 확인하세요!');
 			$("#err_add_closetime1").css('color', font_color);
-		}else{
+		} else {
 			$("#err_add_opentime1").text('');
 			$("#err_add_closetime1").text('');
 		}
 	});
-	
+
 	// 추가 오픈 시간 2
-	$("#add_opentime2").mouseleave(function(){
+	$("#add_opentime2").mouseleave(function() {
 		var add_opentime2 = $('#add_opentime2').val();
 		var add_closetime2 = $('#add_closetime2').val();
-		
-		if(add_opentime2 == '' && add_closetime2 != ''){
+
+		if (add_opentime2 == '' && add_closetime2 != '') {
 			$("#err_add_opentime2").text('추가 클래스 개설 오픈 시간을 확인하세요!');
 			$("#err_add_opentime2").css('color', font_color);
-		}else if(add_opentime2 != '' && add_closetime2 == ''){
+		} else if (add_opentime2 != '' && add_closetime2 == '') {
 			$("#err_add_closetime2").text('추가 클래스 개설 마감 시간을 확인하세요!');
 			$("#err_add_closetime2").css('color', font_color);
-		}else{
+		} else {
 			$("#err_add_opentime2").text('');
 			$("#err_add_closetime2").text('');
 		}
 	});
-	
+
 	// 추가 마감 시간 2
-	$("#add_closetime2").mouseleave(function(){
+	$("#add_closetime2").mouseleave(function() {
 		var add_opentime2 = $('#add_opentime2').val();
 		var add_closetime2 = $('#add_closetime2').val();
-		
-		if(add_opentime2 == '' && add_closetime2 != ''){
+
+		if (add_opentime2 == '' && add_closetime2 != '') {
 			$("#err_add_opentime2").text('추가 클래스 개설 오픈 시간을 확인하세요!');
 			$("#err_add_opentime2").css('color', font_color);
-		}else if(add_opentime2 != '' && add_closetime2 == ''){
+		} else if (add_opentime2 != '' && add_closetime2 == '') {
 			$("#err_add_closetime2").text('추가 클래스 개설 마감 시간을 확인하세요!');
 			$("#err_add_closetime2").css('color', font_color);
-		}else{
+		} else {
 			$("#err_add_opentime2").text('');
 			$("#err_add_closetime2").text('');
 		}
 	});
-	
-	
+
+
 });
 
 
@@ -501,9 +501,9 @@ $(document).ready(function(){
 	======================================*/
 
 //STEP 1 단계 다음 부분
-function next_check1(){
+function next_check1() {
 	var valid_check = $('.valid_check').text();
-	
+
 	var type = $('#type option:selected').val();
 	var code = $('#code').val();
 	var classname = $('#classname').val();
@@ -512,22 +512,22 @@ function next_check1(){
 	var zipcode = $('#zipcode').val();
 	var address1 = $('#address1').val();
 	var address2 = $('#address2').val();
-	
+
 	// step1 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
-	if(type == '-' || code == '' || classname == '' ||
-	person == '' || oneprice == '' || zipcode == '' ||
-	address1 == '' || address2 == ''){
+	if (type == '-' || code == '' || classname == '' ||
+		person == '' || oneprice == '' || zipcode == '' ||
+		address1 == '' || address2 == '') {
 		$('#isCheck').val('false');
 		$('button#modalbtn1').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
-		
-	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
+
+	} else if (valid_check != '') {// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
 		$('#isCheck').val('false');
 		$('button#modalbtn1').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
-	}else{
+	} else {
 		$('#isCheck').val('true');
 		$('button#modalbtn1').removeAttr('data-toggle');
 		var result = nextTab(elem);
@@ -536,26 +536,26 @@ function next_check1(){
 }
 
 //STEP 2 단계 다음 부분
-function next_check2(){
+function next_check2() {
 	var valid_check = $('.valid_check').text();
-	
+
 	var enddate = $('#enddate').val();
 	var opentime = $('#opentime').val();
 	var closetime = $('#closetime').val();
-	
-	
+
+
 	// step2 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
-	if(enddate == '' || opentime == '' || closetime == ''){
+	if (enddate == '' || opentime == '' || closetime == '') {
 		$('#isCheck').val('false');
 		$('button#modalbtn2').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
-	}else if(valid_check != ''){// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
+	} else if (valid_check != '') {// 유효성 에러가 담기는 <span> 태그에 값이 들어 있어도 modal 팝업 기능 추가 
 		$('#isCheck').val('false');
 		$('button#modalbtn2').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
-	}else{
+	} else {
 		$('#isCheck').val('true');
 		$('button#modalbtn2').removeAttr('data-toggle');
 		var result = nextTab(elem);
@@ -566,59 +566,59 @@ function next_check2(){
 
 function nextTab(elem) {
 	var isCheck = $('#isCheck').val();
-	if(isCheck == 'true'){
-   		$(elem).next().find('a[data-toggle="tab"]').click();
-	}else{
+	if (isCheck == 'true') {
+		$(elem).next().find('a[data-toggle="tab"]').click();
+	} else {
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('입력한 값을 확인하세요!');
 	}
 }
-	
+
 function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
+	$(elem).prev().find('a[data-toggle="tab"]').click();
 }
 
 
 /*================================
 	유효성 검사 - STEP3 / 최종 등록 단계
   ================================*/
-function submitCheck(){
+function submitCheck() {
 
 	// 사진이 등록되지 않았을때 , 
 	var main_image = $('#m_img').val();
 	var detail_image1 = $('#d_img1').val();
 	var detail_image2 = $('#d_img2').val();
-	if(main_image == '' || detail_image1 == '' || detail_image2 == ''){
+	if (main_image == '' || detail_image1 == '' || detail_image2 == '') {
 		$('#isCheck').val('false');
 		$('#contact-submit').attr('data-toggle', 'modal');
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').html('원데이 클래스 상세보기에 쓰일 <br>사진을 등록하세요!');
-		
+
 		return false;
-	}else{
+	} else {
 		$('button#modalbtn2').removeAttr('data-toggle');
-		
+
 		return true;
 	}
-	
-	
+
+
 }
 
 
 /*=========================================
 	유효성 검사 - 결제하기버튼 / 최종 결제처리 전 단계
   =========================================*/
-function payment_check(){
+function payment_check() {
 	// 원데이 클래스 예약 할 때의 유효성 검사
 	var bookdate = $('#bookdate').val(); // 예약일자
 	var booktime = $('#booktime').val();// 이용시간
-	
-	if(bookdate == '' || booktime == '-'){
+
+	if (bookdate == '' || booktime == '-') {
 		$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 		$('#modal-body').text('예약 정보를 입력하세요!');
 		$('#myModal').modal();
 		return false;
-	}else{
+	} else {
 		return true;
 	}
 
@@ -633,25 +633,25 @@ function payment_check(){
 	section 이 보이게 처리
    ===================
 */
-$(document).ready(function(){ 
-	$('.time_add').click(function (){
-		
+$(document).ready(function() {
+	$('.time_add').click(function() {
+
 		// step 2 
 		var enddate = $('#enddate').val();
 		var opentime = $('#opentime').val();
 		var closetime = $('#closetime').val();
-		
-		
-		if(enddate != '' && opentime != '' && closetime != ''){
+
+
+		if (enddate != '' && opentime != '' && closetime != '') {
 			$('section#add1').toggle();
 			$('p.time_add').removeAttr('data-toggle');
-		}else{
-			$('p.time_add').attr('data-toggle' , 'modal');
+		} else {
+			$('p.time_add').attr('data-toggle', 'modal');
 			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 			$('#modal-body').text('기본 수업 정보를 먼저 입력하세요!');
 		}
 	});
-	
+
 });
 
 
@@ -661,54 +661,54 @@ $(document).ready(function(){
 		pickadate 날짜 지정 
 		pickatime 시간 지정
    ==========================*/
-function date(){
+function date() {
 	$('.datepicker').pickadate({
-		  monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		  weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
-		  format: 'yyyymmdd', // 데이터 형식
-		  min: 1, // 당일 이후 부터 선택 가능
-	      max : false, // 값 선택은 최대로 지정
-		  showMonthsShort: true
+		monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
+		format: 'yyyymmdd', // 데이터 형식
+		min: 1, // 당일 이후 부터 선택 가능
+		max: false, // 값 선택은 최대로 지정
+		showMonthsShort: true
 	});
 }
 
-function time(){
+function time() {
 	var from_$input = $('.input_from').pickatime(),
-    from_picker = from_$input.pickatime('picker')
+		from_picker = from_$input.pickatime('picker')
 
 	var to_$input = $('.input_to').pickatime({
-        formatLabel: function( timeObject ) {
-            var minObject = this.get( 'min' ),
-                hours = timeObject.hour - minObject.hour,
-                mins = ( timeObject.mins - minObject.mins ) / 60,
-                pluralize = function( number, word ) {
-                    return number + ' ' + ( number === 1 ? word : word + 's' )
-                }
-            return '<b>HH</b>:i <!i>A</!i> '
-        }
-    }),
-	to_picker = to_$input.pickatime('picker')
-	
+		formatLabel: function(timeObject) {
+			var minObject = this.get('min'),
+				hours = timeObject.hour - minObject.hour,
+				mins = (timeObject.mins - minObject.mins) / 60,
+				pluralize = function(number, word) {
+					return number + ' ' + (number === 1 ? word : word + 's')
+				}
+			return '<b>HH</b>:i <!i>A</!i> '
+		}
+	}),
+		to_picker = to_$input.pickatime('picker')
+
 	// Check if there’s a “from” or “to” time to start with.
-	if ( from_picker.get('value') ) {
-	  to_picker.set('min', from_picker.get('select'))
+	if (from_picker.get('value')) {
+		to_picker.set('min', from_picker.get('select'))
 	}
-	if ( to_picker.get('value') ) {
-	  from_picker.set('max', to_picker.get('select') )
+	if (to_picker.get('value')) {
+		from_picker.set('max', to_picker.get('select'))
 	}
 
 	// When something is selected, update the “from” and “to” limits.
 	from_picker.on('set', function(event) {
-	  if ( event.select ) {
-	    to_picker.set('min', from_picker.get('select'))
-	  }
+		if (event.select) {
+			to_picker.set('min', from_picker.get('select'))
+		}
 	})
 	to_picker.on('set', function(event) {
-	  if ( event.select ) {
-	    from_picker.set('max', to_picker.get('select'))
-	  }
+		if (event.select) {
+			from_picker.set('max', to_picker.get('select'))
+		}
 	})
-	
+
 }
 
 
@@ -718,37 +718,37 @@ function time(){
 */
 
 function readURL_main(input) {
-  if (input.files && input.files[0]) {
+	if (input.files && input.files[0]) {
 
-    var reader = new FileReader();
+		var reader = new FileReader();
 
-    reader.onload = function(e) {
-      $('#main_wrap').hide();
+		reader.onload = function(e) {
+			$('#main_wrap').hide();
 
-      $('#M_image').attr('src', e.target.result);
-      $('#main_content').show();
+			$('#M_image').attr('src', e.target.result);
+			$('#main_content').show();
 
-      $('#main_title').html(input.files[0].name);
-    };
+			$('#main_title').html(input.files[0].name);
+		};
 
-    reader.readAsDataURL(input.files[0]);
+		reader.readAsDataURL(input.files[0]);
 
-  } else {
-    removeUpload();
-  }
+	} else {
+		removeUpload();
+	}
 }
 
 function removeUpload_main() {
-  $('#M_image').replaceWith($('#M_image').clone());
-  $('#m_img').val('');
-  $('#main_content').hide();
-  $('#main_wrap').show();
+	$('#M_image').replaceWith($('#M_image').clone());
+	$('#m_img').val('');
+	$('#main_content').hide();
+	$('#main_wrap').show();
 }
-$('#main_wrap').bind('dragover', function () {
-		$('#main_wrap').addClass('image-dropping');
-	});
-	$('#main_wrap').bind('dragleave', function () {
-		$('#main_wrap').removeClass('image-dropping');
+$('#main_wrap').bind('dragover', function() {
+	$('#main_wrap').addClass('image-dropping');
+});
+$('#main_wrap').bind('dragleave', function() {
+	$('#main_wrap').removeClass('image-dropping');
 });
 
 /* ===================
@@ -758,38 +758,38 @@ $('#main_wrap').bind('dragover', function () {
 
 
 function readURL_detail1(input) {
-  if (input.files && input.files[0]) {
+	if (input.files && input.files[0]) {
 
-    var reader = new FileReader();
+		var reader = new FileReader();
 
-    reader.onload = function(e) {
-      $('#detail1_wrap').hide();
+		reader.onload = function(e) {
+			$('#detail1_wrap').hide();
 
-      $('#D1_image').attr('src', e.target.result);
-      $('#detail1_content').show();
+			$('#D1_image').attr('src', e.target.result);
+			$('#detail1_content').show();
 
-      $('#detail1_title').html(input.files[0].name);
-    };
+			$('#detail1_title').html(input.files[0].name);
+		};
 
-    reader.readAsDataURL(input.files[0]);
+		reader.readAsDataURL(input.files[0]);
 
-  } else {
-    removeUpload();
-  }
+	} else {
+		removeUpload();
+	}
 }
 
 function removeUpload_detail1() {
-  $('#D1_image').replaceWith($('#D1_image').clone());
-  $('#d_img1').val('');
-  $('#detail1_content').hide();
-  $('#detail1_wrap').show();
+	$('#D1_image').replaceWith($('#D1_image').clone());
+	$('#d_img1').val('');
+	$('#detail1_content').hide();
+	$('#detail1_wrap').show();
 }
 
-$('#detail1_wrap').bind('dragover', function () {
-		$('#detail1_wrap').addClass('image-dropping');
-	});
-	$('#detail1_wrap').bind('dragleave', function () {
-		$('#detail1_wrap').removeClass('image-dropping');
+$('#detail1_wrap').bind('dragover', function() {
+	$('#detail1_wrap').addClass('image-dropping');
+});
+$('#detail1_wrap').bind('dragleave', function() {
+	$('#detail1_wrap').removeClass('image-dropping');
 });
 
 /* ===================
@@ -799,37 +799,37 @@ $('#detail1_wrap').bind('dragover', function () {
 
 
 function readURL_detail2(input) {
-  if (input.files && input.files[0]) {
+	if (input.files && input.files[0]) {
 
-    var reader = new FileReader();
+		var reader = new FileReader();
 
-    reader.onload = function(e) {
-      $('#detail2_wrap').hide();
+		reader.onload = function(e) {
+			$('#detail2_wrap').hide();
 
-      $('#D2_image').attr('src', e.target.result);
-      $('#detail2_content').show();
+			$('#D2_image').attr('src', e.target.result);
+			$('#detail2_content').show();
 
-      $('#detail2_title').html(input.files[0].name);
-    };
+			$('#detail2_title').html(input.files[0].name);
+		};
 
-    reader.readAsDataURL(input.files[0]);
+		reader.readAsDataURL(input.files[0]);
 
-  } else {
-    removeUpload();
-  }
+	} else {
+		removeUpload();
+	}
 }
 
 function removeUpload_detail2() {
-  $('#D2_image').replaceWith($('#D2_image').clone());
-  $('#d_img2').val('');
-  $('#detail2_content').hide();
-  $('#detail2_wrap').show();
+	$('#D2_image').replaceWith($('#D2_image').clone());
+	$('#d_img2').val('');
+	$('#detail2_content').hide();
+	$('#detail2_wrap').show();
 }
-$('#detail2_wrap').bind('dragover', function () {
-		$('#detail2_wrap').addClass('image-dropping');
-	});
-	$('#detail2_wrap').bind('dragleave', function () {
-		$('#detail2_wrap').removeClass('image-dropping');
+$('#detail2_wrap').bind('dragover', function() {
+	$('#detail2_wrap').addClass('image-dropping');
+});
+$('#detail2_wrap').bind('dragleave', function() {
+	$('#detail2_wrap').removeClass('image-dropping');
 });
 
 /* ===================
@@ -845,27 +845,27 @@ $('#detail2_wrap').bind('dragover', function () {
 
 
 // 페이지가 로딩 되면 
-function list_loading(){
+function list_loading() {
 	// 가격 콤마 찍기
 	var oneprice = $('#list_price').text();
 	oneprice = addcomma(oneprice);
-	
+
 	function addcomma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 	}
-	
+
 	// 최종 가격 문장
 	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + oneprice;
 	$('#list_price').html(result_oneprice);
-	
+
 	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
-	
+
 }
 
 
 // 검색 버튼을 누르면 검색 창이 나오게 수정
-function search(){
+function search() {
 	$('#search').toggle();
 }
 
@@ -883,23 +883,23 @@ function search(){
 */
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 	// 1인 기준 가격 콤마 찍기
 	var oneprice = $('#oneprice').val();
 	oneprice = addcomma(oneprice);
 	// 가짜 결제 가격 콤마 찍기
 	var fake_totalprice = $('#fake_totalprice').val();
 	fake_totalprice = addcomma(fake_totalprice);
-	
+
 	// 진짜 결제 가격 콤마 찍기
 	var totalprice = $('#totalprice').val();
 	totalprice = addcomma(totalprice);
-	
+
 	function addcomma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 	}
-	
+
 	// 최종 가격 문장
 	var result_oneprice = oneprice;
 	var result_fake_totalprice = fake_totalprice;
@@ -907,117 +907,118 @@ $(document).ready(function(){
 	$('#oneprice').val(result_oneprice);
 	$('#fake_totalprice').val(result_fake_totalprice);
 	$('#totalprice').val(result_totalprice);
-	
-	
-    /* ===============================  
+
+
+	/* ===============================  
 		버튼 클릭 시 인원수 , 가격 변동 
-     ==================================*/
+	 ==================================*/
 
 
 	// + 버튼을 누르면 인원수 증가 , 결제 금액 증가
-	$('#plusbtn').click(function(){
+	$('#plusbtn').click(function() {
 		// 사업자가 설정한 최대 인원수
 		var _max_person = $('#max_person').val();
 		var max_person = parseInt(_max_person);
-		
+
 		// 사용자가 선택하는 인원수
 		var _person = $('#fake_person').val();
 		var person = parseInt(_person);
-		
+
 		// 사업자가 설정한 1인 기준 가격 
 		var oneprice = $('#oneprice').val();
-		
+
 		oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
-		
-		function removecomma(pStr) { 
-			var strCheck = /\,/g; 
-			pStr = pStr.replace(strCheck, ''); 
-			return pStr; 
+
+		function removecomma(pStr) {
+			var strCheck = /\,/g;
+			pStr = pStr.replace(strCheck, '');
+			return pStr;
 		}
-		
-		var person_result ; // 사용자가 선택한 총 인원수
+
+		var person_result; // 사용자가 선택한 총 인원수
 		var totalprice; // 사용자가 선택한 총 가격
 		var fake_totalprice; // 사용자가 선택한 총 가격
-		
-		if(person < max_person){// 사용자가 선택하는 인원수가 사업자가 설정한 인원수 미만이면 + 1 처리 
+
+		if (person < max_person) {// 사용자가 선택하는 인원수가 사업자가 설정한 인원수 미만이면 + 1 처리 
 			// 인원수 증가
 			person_result = person + 1;
-			
+
 			// 파라미터로 넘어갈 총 금액
 			totalprice = oneprice * person_result; // 실제 DB로 넘어갈 결제 총 금액
 			totalprice = addcomma(totalprice);
-			
+
 			// 사용자에게 보여줄 가짜 총 금액
 			fake_totalprice = oneprice * person_result; // 가짜 총 금액(사용자에게 보여줄 용도)
 			fake_totalprice = addcomma(fake_totalprice);
-			
+
 			$('button#plusbtn').removeAttr('data-toggle', 'modal');
-		}else{//사용자가 선택하는 인원수가 사업자가 설정한 인원수 초과이면 + 0 처리 
+		} else {//사용자가 선택하는 인원수가 사업자가 설정한 인원수 초과이면 + 0 처리 
 			person_result = person;
-			
+
 			// 파라미터로 넘어갈 총 금액
 			totalprice = oneprice * person_result; // 실제 DB로 넘어갈 결제 총 금액
 			totalprice = addcomma(totalprice);
-			
+
 			// 사용자에게 보여줄 가짜 총 금액
 			fake_totalprice = oneprice * person_result; // 가짜 총 금액(사용자에게 보여줄 용도)
 			fake_totalprice = addcomma(fake_totalprice);
-			
-			$('button#plusbtn').attr('data-toggle', 'modal');
+
+
 			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 			$('#modal-body').text('인원수 초과 입니다!');
-			
+			$('#myModal').modal();
+
 		}
-		
+
 		$('#fake_person').val(person_result);
 		$('#person').val(person_result);
 		$('#totalprice').val(totalprice);
 		$('#fake_totalprice').val(fake_totalprice);
 	});
-	
+
 	// - 버튼을 누르면 인원수 감소 , 결제 금액 감소
-	$('#minusbtn').click(function(){
+	$('#minusbtn').click(function() {
 		var _person = $('#fake_person').val();
 		var person = parseInt(_person);
 		var person_result;
-		
+
 		// 사업자가 설정한 1인 기준 가격 
 		var oneprice = $('#oneprice').val();
-		
+
 		oneprice = removecomma(oneprice); // 페이징 로딩 될때 설정했던 콤마 제거
-		
-		function removecomma(pStr) { 
-			var strCheck = /\,/g; 
-			pStr = pStr.replace(strCheck, ''); 
-			return pStr; 
+
+		function removecomma(pStr) {
+			var strCheck = /\,/g;
+			pStr = pStr.replace(strCheck, '');
+			return pStr;
 		}
-		
+
 		var totalprice; // 사용자가 선택한 총 가격
 		var fake_totalprice; // 사용자가 선택한 총 가격
-		
-		if(person >= 2){ // 최소값은 1로 남겨놔야함
-		
+
+		if (person >= 2) { // 최소값은 1로 남겨놔야함
+
 			person_result = person - 1;
-			
-			
+
+
 			totalprice = person_result * oneprice;
 			totalprice = addcomma(totalprice);
-			
+
 			fake_totalprice = person_result * oneprice;
 			fake_totalprice = addcomma(fake_totalprice);
-		}else{
+		} else {
 			person_result = 1
-			
-			
+
+
 			totalprice = person_result * oneprice;
 			totalprice = addcomma(totalprice);
-			
+
 			fake_totalprice = person_result * oneprice;
 			fake_totalprice = addcomma(fake_totalprice);
 		}
 		$('#fake_person').val(person_result);
 		$('#person').val(person_result);
-		
+
 		$('#totalprice').val(totalprice);
 		$('#fake_totalprice').val(fake_totalprice);
 	});
@@ -1025,43 +1026,183 @@ $(document).ready(function(){
 
 
 
- /* ===============================  
-		예약일자 선택 
- ==================================*/
 
-function booking_date(){
+
+
+/* ===============================  
+	   원데이 클래스 삭제
+==================================*/
+function getContextPath() {
+	var offset = location.href.indexOf(location.host) + location.host.length;
+	var ctxPath = location.href.substring(offset, location.href.indexOf('/', offset + 1));
+	return ctxPath;
+}
+
+function delete_check() {
+	var code = $('#code').val();
+	location.href = getContextPath() + "/onedayDelete.odc?code=" + code;
+}
+
+
+
+/* ===============================  
+	   원데이 클래스 결제
+==================================*/
+
+
+
+// pickadate API
+
+function booking_date() {
+
+	
+
 	var enddate = $('#enddate').val();
-	
+
 	$('.datepicker').pickadate({
-		  monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-		  weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
-		  format: 'yyyymmdd', // 데이터 형식
-		  min: 0, // 오늘날짜 부터
-	      max : enddate, // 사업자가 지정한 enddate 날짜까지 
-		  showMonthsShort: true
+		monthsShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		weekdaysShort: ['일', '월', '화', '수', '목', '금', '토'],
+		format: 'yyyymmdd', // 데이터 형식
+		min: 0, // 오늘날짜 부터
+		max: enddate, // 사업자가 지정한 enddate 날짜까지 
+		showMonthsShort: true
 	});
-	
+
+
 }
 
 
+/* ===============================
+	 유효성 검사
+   ===============================
+*/
+
+var font_color = '#5080BF';
+
+// 이용 일자 선택 
+function myBookdateCheck(){
+	var bookdate = $('#bookdate').val();
+
+	var bookdate = $('#bookdate').val();
+
+	if (bookdate == '') { // 예약일자가 선택이 안되었으면
+		$('#err_bookdate').text('예약일자를 선택하세요!');
+		$("#err_bookdate").css('color', font_color);
+	} else { // 예약일자가 선택이 되었으면
+		$('#err_bookdate').text('');
+
+		//현재 시각을 구해주는 함수
+		let today = new Date();
+
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+
+		if (month < 10) {
+			month = "0" + month;
+		} else {
+			month = month;
+		}
+
+		let day = today.getDate();  // 날짜
+
+		if (day < 10) {
+			day = "0" + day;
+		} else {
+			day = day;
+		}
 
 
- /* ===============================  
-		원데이 클래스 삭제
- ==================================*/
-function getContextPath(){
-    var offset=location.href.indexOf(location.host)+location.host.length;
-    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
-    return ctxPath;
+		let date = "" + year + month + day; // 현재 날짜
+
+		let hours = today.getHours(); // 시
+
+		var booktime = $('#booktime').val();
+
+		booktime = booktime.substring(0, 8);
+
+		if (booktime.includes('PM')) {// 오후이면
+			booktime = parseInt(booktime.substring(0, 2));
+			booktime += 12;
+
+			if (date == bookdate && booktime < hours) {
+				$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+				$('#modal-body').html('이미 마감된 수업입니다.<br>이용 시간을 확인하세요!');
+				$('#myModal').modal();
+				$('#booktime').val('-');
+			}
+		} else {// 오전이면
+			booktime = parseInt(booktime.substring(0, 2));
+
+			if (date == bookdate && booktime < hours) {
+				$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+				$('#modal-body').html('이미 마감된 수업입니다.<br>이용 시간을 확인하세요!');
+				$('#myModal').modal();
+			}
+		}
+	}
 }
 
-function delete_check(){
-	var code=$('#code').val();
-	location.href = getContextPath() + "/onedayDelete.odc?code="+code;
+// 이용 시간 선택
+function myBooktimeCheck() {
+
+	var bookdate = $('#bookdate').val();
+
+	if (bookdate == '') { // 예약일자가 선택이 안되었으면
+		$('#err_bookdate').text('예약일자를 선택하세요!');
+		$("#err_bookdate").css('color', font_color);
+	} else { // 예약일자가 선택이 되었으면
+		$('#err_bookdate').text('');
+
+		//현재 시각을 구해주는 함수
+		let today = new Date();
+
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+
+		if (month < 10) {
+			month = "0" + month;
+		} else {
+			month = month;
+		}
+
+		let day = today.getDate();  // 날짜
+
+		if (day < 10) {
+			day = "0" + day;
+		} else {
+			day = day;
+		}
+
+
+		let date = "" + year + month + day; // 현재 날짜
+
+		let hours = today.getHours(); // 시
+
+		var booktime = $('#booktime').val();
+
+		booktime = booktime.substring(0, 8);
+
+		if (booktime.includes('PM')) {// 오후이면
+			booktime = parseInt(booktime.substring(0, 2));
+			booktime += 12;
+
+			if (date == bookdate && booktime < hours) {
+				$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+				$('#modal-body').html('이미 마감된 수업입니다.<br>이용 시간을 확인하세요!');
+				$('#myModal').modal();
+				$('#booktime').val('-');
+			}
+		} else {// 오전이면
+			booktime = parseInt(booktime.substring(0, 2));
+
+			if (date == bookdate && booktime < hours) {
+				$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
+				$('#modal-body').html('이미 마감된 수업입니다.<br>이용 시간을 확인하세요!');
+				$('#myModal').modal();
+			}
+		}
+	}
+
+
 }
 
-
-
- /* ===============================  
-		원데이 클래스 결제
- ==================================*/

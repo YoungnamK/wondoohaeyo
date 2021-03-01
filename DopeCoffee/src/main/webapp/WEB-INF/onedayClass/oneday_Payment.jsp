@@ -36,14 +36,14 @@
 								<div class="author widget col-md-12" id="author_widget">
 									<div class="author-body text-center col-md-4">
 										<div class="author-bio " id="author_css">
-											<img alt="image" src="./upload/${bean.main_image}" width="300px" height="180px">
+											<img alt="image" src="./upload/${onedayclass.main_image}" width="300px" height="180px">
 										</div>
 									</div>
 									<div class="author-body text-center col-md-8">
 										<div class="author-bio " id="author_pont_css">
-											<p>${bean.classname}</p>
+											<p>${onedayclass.classname}</p>
 										</div>
-										<p id="p_css"><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;${bean.zipcode}&nbsp;${bean.address1}&nbsp;${bean.address2}</p>
+										<p id="p_css"><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;${onedayclass.zipcode}&nbsp;${onedayclass.address1}&nbsp;${onedayclass.address2}</p>
 									</div>
 								</div>
 							</div>
@@ -63,9 +63,9 @@
 								<%-- ========================== Form 양식 시작 부분 ====================================--%>
 								<c:set var="contextPath" value="<%=contextPath%>" scope="application" />
 								<form method="post" action="${contextPath}/onedayPayment.odc">
-									<input type="hidden" id="code" name="code" value="${bean.code}"><!-- 상품코드 -->
+									<input type="hidden" id="code" name="code" value="${onedayclass.code}"><!-- 상품코드 -->
 									<input type="hidden" id="cust_email" name="cust_email" value="${sessionScope.loginfo.cust_Email}"><!-- 로그인 정보 -->
-									<input type="hidden" id="sell_email" name="sell_email" value="${bean.sell_email}"><!-- 사업자 이메일 정보 -->
+									<input type="hidden" id="sell_email" name="sell_email" value="${onedayclass.sell_email}"><!-- 사업자 이메일 정보 -->
 									<div id="form_css" class="categories widget">
 										<ul>
 											<li>

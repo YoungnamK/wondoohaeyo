@@ -95,7 +95,8 @@
                                         		<spring:message code="oneday.bookdate"/>
                                         	</div>
                                         	<input type="hidden" class="input_data form-control"  disabled="disabled" id="enddate" name="enddate" value="${bean.enddate}">
-                                            <input type="text" class="input_data form-control datepicker"  placeholder="예약 일자" id="bookdate" name="bookdate" onclick="booking_date();">
+                                            <input type="text" class="input_data form-control datepicker"  placeholder="예약 일자" id="bookdate" name="bookdate" onclick="booking_date();" onmouseleave="myBookdateCheck();">
+                                            <span class="valid_check" id="err_bookdate"></span>
                                         </div>
                                     </li>
                                     <li>
@@ -104,14 +105,14 @@
                                             <div class="column_name">
                                             	<spring:message code="oneday.time"/>
                                             </div>
-                                            <select class="form-control" name="booktime" id="booktime">
+                                            <select class="form-control" name="booktime" id="booktime" onclick="myBooktimeCheck();">
                                                 <option class="form-control" value="-">이용 시간</option>
                                                 <option class="form-control" value="${requestScope.opentime}">${requestScope.opentime}</option>
                                                 <c:if test="${requestScope.add_opentime1 ne 'null ~ null'}">
                                                 	<option class="form-control" value="${requestScope.add_opentime1}">${requestScope.add_opentime1}</option>
                                                 </c:if>
                                                 <c:if test="${requestScope.add_opentime2 ne 'null ~ null'}">
-                                                	<option class="form-control" value="${requestScope.add_opentime2}">${requestScope.add_opentime2}</option>
+                                                	<option class="form-control" value="${requestScope.add_opentime2}">${requestScope.add_opentime2}</>
                                                 </c:if>
                                             </select>
                                         </div>
