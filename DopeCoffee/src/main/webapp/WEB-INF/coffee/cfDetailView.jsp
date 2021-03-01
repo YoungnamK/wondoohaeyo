@@ -42,7 +42,7 @@
 							
 				
 							<div class="categories widget">
-						<form class="form-inline" role="form" method="post" action="${contextPath}/insert.sc">
+						<form class="form-inline" role="form" method="post" action="${contextPath}/cfdetailview.cf">
 								<div >
 									<div id="item_price1">
 										<span class=span1>금액</span>
@@ -95,19 +95,18 @@
 	
 								</div>
 								<div class="option_total_display_area item_choice_list">
-	
+	 
 									<div class="item_price_cont">
 										<div class="end_price item_tatal_box" style="">
+									
 								<div >
 									<div id="item_price1">
-										<span class=span1>총 상품금액</span>
-										<span class=span1>${bean.c_price}원</span>
+										<span class=span1>상품금액</span>
+										<span id="c_price" class=span1>${bean.c_price}원</span>
 									</div>
-								</div>										
-								<div >
 									<div id="item_price1">
-										<span class=span1>총 합계금액</span>
-										<span class=span1>${bean.c_price}원</span>
+										<span class=span1>합계금액</span>
+										<span id="totalprice" class=span1>${bean.c_price}원</span>
 									</div>
 								</div>												
 

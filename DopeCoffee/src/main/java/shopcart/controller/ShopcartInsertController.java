@@ -56,7 +56,7 @@ public class ShopcartInsertController extends common.controller.SuperClass{
 				mycart.AddOrder(c_no, qty); // 카트에 담기
 				session.setAttribute("mycart", mycart);
 				//new list.mallController().doGet(request, response);
-				this.mav.setViewName("redirect:/insert.sc"); 
+				this.mav.setViewName("redirect:/list.sc"); 
 			}
 		}
 		

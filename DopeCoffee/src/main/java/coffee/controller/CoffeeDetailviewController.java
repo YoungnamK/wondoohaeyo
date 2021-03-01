@@ -16,7 +16,7 @@ import dao.CoffeeDao;
 public class CoffeeDetailviewController extends SuperClass {
 	
 	private final String command ="/cfdetailview.cf";	// 요청 커맨드(변경 요망)
-	private final String redirect ="redirect:/main.co";
+	private final String redirect ="redirect:/payment.pm";
 	private ModelAndView mav = null;			// mav 객체(변경 요망)
 	@Autowired
 	@Qualifier("cfdao")	//(변경 요망)
@@ -24,7 +24,7 @@ public class CoffeeDetailviewController extends SuperClass {
 	
 	public CoffeeDetailviewController() {
 		//(변경 요망)
-		super("cfDetailView","");//super(getpage, postpage);
+		super("cfDetailView","Payment");//super(getpage, postpage);
 		this.mav = new ModelAndView();
 	}
 	

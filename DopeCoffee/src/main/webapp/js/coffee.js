@@ -224,34 +224,49 @@ function search(){
 
 // 
  function plus(){
+	//선택한 수량
 	var qty = $('#c_qty').val();
-	
-	var totalqty = $('#total_qty').val();
-	
 	qty = parseInt(qty);
-		
-	var total = qty + 1;
-	$('#c_qty').val(total);
+	// 현재 재고
+	var totalqty = $('#total_qty').val();
+	qty = parseInt(qty);
+	// 커피상품1개의 가격
+	var c_price = $('#c_price').text();	
+	 c_price = parseInt(c_price);
+
+	var totalprice = '';			
+	var total = '';
 	
-	if(totalqty < qty ){
-	$('#c_qty').val(total);
+	if( qty < totalqty ){
+		total = qty + 1;
+		totalprice = c_price * total ;				
+	}else{
+		total = qty; 				
 	}
+	$('#c_qty').val(total);
+	$("#totalprice").text(totalprice + '원');
 	
 	return false;
 }
 
  function minus(){
-	
-	var qty = $('#c_qty').val();
-	
+	//선택한 수량
+	var qty = $('#c_qty').val();	
 		qty = parseInt(qty);
 		
-	var total = qty - 1;
+		
+	var c_price = $('#c_price').text();	
+	 c_price = parseInt(c_price);
+
+	var total = '';
 	if(qty == 1){
 		total = qty;
+	}else{
+		total = qty - 1;
+		totalprice = c_price * total;
 	}
 	$('#c_qty').val(total);
-	
+	$("#totalprice").text(totalprice + '원');
 	return false;
 	
 }

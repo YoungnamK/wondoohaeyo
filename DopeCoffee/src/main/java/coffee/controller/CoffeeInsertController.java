@@ -25,7 +25,7 @@ public class CoffeeInsertController extends SuperClass {
 	
 	private final String command ="/cfInsert.cf";	
 	private final String get_gotopage = "cfInsertForm";
-	private final String post_gotopage = "cfList";
+	private final String redirect = "redirect:/cfInsert.cf";
 	
 	@ModelAttribute("coffee")
 	public Coffee mycoffee() {
@@ -74,7 +74,7 @@ public class CoffeeInsertController extends SuperClass {
 
 			if (cnt > 0) {
 				System.out.println("등록 완료");
-				mav.setViewName(post_gotopage);
+				mav.setViewName(redirect);
 				
 				
 			} else {
@@ -85,7 +85,7 @@ public class CoffeeInsertController extends SuperClass {
 			
 		}catch (IllegalStateException e1) {
 			e1.printStackTrace();
-			mav.setViewName(post_gotopage);
+			mav.setViewName(get_gotopage);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			mav.setViewName("redirect:/cfList.cf");
