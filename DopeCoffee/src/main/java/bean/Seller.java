@@ -22,7 +22,7 @@ public class Seller {
 
 	private String sell_Join;
 	
-    private int sell_License;
+    private long sell_License;
     
     private String sell_Status;
     
@@ -95,11 +95,11 @@ public class Seller {
 	public void setSell_Join(String sell_Join) {
 		this.sell_Join = sell_Join;
 	}
-	public int getSell_License() {
+	public long getSell_License() {
 		return sell_License;
 	}
-	public void setSell_License(int sell_License) {
-		this.sell_License = sell_License;
+	public void setSell_License(long sell_License) {
+		this.sell_License = (long) sell_License;
 	}
 	public String getSell_Status() {
 		return sell_Status;

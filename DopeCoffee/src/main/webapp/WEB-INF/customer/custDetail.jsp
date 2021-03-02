@@ -21,12 +21,10 @@ int formright = twelve - formleft;
 			<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
 				data-wow-delay="0.3s">마이페이지</h2>
 			<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
-				data-wow-delay="0.3s">
-				${sessionScope.loginfo.cust_Name}&nbsp;님의 가입 정보입니다.</p>
+				data-wow-delay="0.3s">${sessionScope.loginfo.cust_Name}&nbsp;님의
+				가입 정보입니다.</p>
 		</div>
-
 		<div class="panel panel-body">
-
 			<%-- cust_Email ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -35,13 +33,11 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="fakecust_Email"
-						id="fakecust_Email"
-						value="${sessionScope.loginfo.cust_Email}"
+						id="fakecust_Email" value="${sessionScope.loginfo.cust_Email}"
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- cust_PW ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -54,8 +50,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- cust_Name ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -64,13 +59,11 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="fakecust_Name"
-						id="fakecust_Name"
-						value="${sessionScope.loginfo.cust_Name}"
+						id="fakecust_Name" value="${sessionScope.loginfo.cust_Name}"
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- cust_Contact ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -79,13 +72,11 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="fakecust_Contact"
-						id="fakecust_Contact"
-						value="${sessionScope.loginfo.cust_Contact}"
+						id="fakecust_Contact" value="${sessionScope.loginfo.cust_Contact}"
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- cust_Birth ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -94,13 +85,11 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="fakecust_Contact"
-						id="fakecust_Contact"
-						value="${sessionScope.loginfo.cust_Birth}"
+						id="fakecust_Contact" value="${sessionScope.loginfo.cust_Birth}"
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>			
+			<br> <br>
 			<%-- cust_Zipcode & cust_ADR01------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -109,19 +98,16 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" name="fakecust_Zipcode"
-						id="fakecust_Zipcode"
-						value="${sessionScope.loginfo.cust_Zipcode}"
+						id="fakecust_Zipcode" value="${sessionScope.loginfo.cust_Zipcode}"
 						disabled="disabled" />
 				</div>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" name="fakecust_ADR01"
-						id="fakecust_ADR01"
-						value="${sessionScope.loginfo.cust_ADR01}"
+						id="fakecust_ADR01" value="${sessionScope.loginfo.cust_ADR01}"
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- cust_ADR02 ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -130,21 +116,17 @@ int formright = twelve - formleft;
 				</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="fakecust_ADR02"
-						id="fakecust_ADR02"
-						value="${sessionScope.loginfo.cust_ADR02}"
+						id="fakecust_ADR02" value="${sessionScope.loginfo.cust_ADR02}"
 						disabled="disabled" />
 				</div>
 			</div>
 		</div>
-
 		<%-- 하단 버튼------------------------------------------------- --%>
 		<div class="submit_btn col-sm-offset-3 col-sm-6">
 			<button class="submit"
 				onclick="location.href='${contextPath}/custUpdate.cu?cust_Email=${sessionScope.loginfo.cust_Email}' ">회원정보
 				수정하기</button>
 		</div>
-
 	</div>
-
 </body>
 </html>

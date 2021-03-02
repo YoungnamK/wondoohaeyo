@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Customer;
+import bean.Notice;
 import bean.Seller;
 import common.controller.SuperClass;
 import dao.SellerDao;
@@ -58,48 +59,54 @@ public class SellAppController extends SuperClass{
 	
 	@PostMapping(command)
 	public ModelAndView doPost(
-		@ModelAttribute("seller") Seller seller, HttpServletRequest request,
-		BindingResult errors, @RequestParam(value = "img", required = false) MultipartFile img) {
+			@ModelAttribute("seller") Seller seller,
+			BindingResult errors, HttpServletRequest request,
+			@RequestParam(value = "oldimg", required = false) String oldimg){
 		
-		System.out.println("doPost메소드");
+		System.out.println(this.getClass() + " doPost 메소드");
+		System.out.println("빈 객체 정보");
 		System.out.println(seller.toString());
+		System.out.println("지울 이미지 : " + oldimg); //지워야 할 이미지 정보
 		
-		if (errors.hasErrors()) {
+		if ( errors.hasErrors() ) {
 			System.out.println("유효성 검사 실패.");
-			System.out.println(errors);
-			this.mav.addObject("bean", seller);
+			System.out.println( errors );
+			this.mav.addObject("bean", seller);	
 			this.mav.setViewName(super.getpage);
-
+			
 		} else {
 			if(seller.getImg().isEmpty()==false) {
 			System.out.println("유효성 검사 통과");
-			System.out.println(seller.getImg());
 			MultipartFile multi = seller.getImg();
-			String uploadPath = "/upload";
+			String uploadPath ="/upload";
 			String realPath = request.getRealPath(uploadPath);
 			try {
+				String del_img = realPath+"/"+oldimg;
+				new File(del_img).delete();
+				
 				File target = Utility.getUploadedFileInfo(multi, realPath);
 				multi.transferTo(target);
-				mav.setViewName(this.redirect);
+				
 				seller.setSell_Pic(target.getName());
-				int cnt = -99999;
-				// Bean 객체를 이용하여 해당 내용을 수정한다.
-				cnt = sdao.InsertAppInfo(seller);
+				int cnt =-999999;
+				cnt = this.sdao.UpdateSellApp(seller) ;
+				
+				mav.setViewName(this.redirect);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 				mav.setViewName("");
-			} catch (Exception e) {
+			}catch (Exception e) {
 				e.printStackTrace();
 				this.mav.setViewName(this.redirect);
 			}
 			}else {
-				int cnt = -99999;
-				// Bean 객체를 이용하여 해당 내용을 수정한다.
-				cnt = sdao.UpdateData(seller);
-				System.out.println();
-				this.mav.setViewName(this.redirect);
+				seller.setSell_Pic(oldimg);
+				int cnt =-999999;
+				cnt = this.sdao.UpdateSellApp(seller) ;
+				mav.setViewName(this.redirect);
 			}
-		}
-		return this.mav;
+		}			
+		return this.mav ;
 	}
+
 }

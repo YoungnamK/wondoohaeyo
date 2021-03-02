@@ -1,3 +1,4 @@
+
 /* ===============================
 	개인회원 가입 시 유효성
    ===============================
@@ -116,7 +117,7 @@
 		function chk_submit() {
 			if (custEmailCheck == false || custPWCheck == false
 					|| custNameCheck == false || custContactCheck == false || custBirthCheck == false) {
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -124,7 +125,7 @@
 				return false;
 			} 
 			if($('#cust_Email').val().length < 8){
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -132,7 +133,7 @@
 				return false;
 			} 
 			if($('#cust_PW').val().length < 8){
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -140,7 +141,7 @@
 				return false;
 			} 
 			if($('#cust_Name').val().length < 1){
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -148,7 +149,7 @@
 				return false;
 			} 			
 			if($('#cust_Contact').val().length < 6){
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -156,7 +157,7 @@
 				return false;
 			} 					
 			if($('#cust_Birth').val().length < 6){
-				$('#submit').effect("shake");
+				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(
 						'<i class="fas fa-exclamation-circle"></i>');
@@ -166,45 +167,40 @@
 			return true;
 		};
 		
-		
 /* ===============================
-	우편번호 찾기
+	프로필사진 업로드 관련 
    ===============================
 */
+function readURL(input) {
+	if (input.files && input.files[0]) {
 
-function zipCheck(){
-	var width = 500; //팝업의 너비
-	var height = 600; //팝업의 높이
-	new daum.Postcode({
-		width: width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
-  		height: height,
-        oncomplete: function(data) {
-        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		var reader = new FileReader();
 
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
+		reader.onload = function(e) {
+			$('.image-upload-wrap').hide();
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
+			$('.file-upload-image').attr('src', e.target.result);
+			$('.file-upload-content').show();
 
+			$('.image-title').html(input.files[0].name);
+		};
 
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('zipcode').value = data.zonecode;
-			document.getElementById('fakezipcode').value = data.zonecode;
-            document.getElementById("address1").value = addr;
-            document.getElementById("fakeaddress1").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("address2").focus();
-        }
-    }).open({
-		left: (window.screen.width / 2) - (width / 2),
-    	top: (window.screen.height / 2) - (height / 2)
-	});
+		reader.readAsDataURL(input.files[0]);
+
+	} else {
+		removeUpload();
+	}
 }
-		
+
+function removeUpload() {
+	$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+	$('.file-upload-content').hide();
+	$('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function() {
+	$('.image-upload-wrap').addClass('image-dropping');
+});
+$('.image-upload-wrap').bind('dragleave', function() {
+	$('.image-upload-wrap').removeClass('image-dropping');
+});
 		

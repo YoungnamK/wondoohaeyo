@@ -21,6 +21,10 @@ public class SellerDao {
 	@Autowired
 	SqlSessionTemplate abcd;
 	
+	public int DeleteData(Seller bean) {
+		return this.abcd.delete(namespace + "DeleteData", bean.getSell_Email());
+	}
+	
 	// 총 회원 수 조회 : 파라미터 mode와 keyword를 이용
 	public int SelectTotalCount(String mode, String keyword) {
 		Map<String, String> map = new HashMap<String, String>() ;
@@ -93,9 +97,11 @@ public class SellerDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
-
+	
+	//사업자 승인 신청
+	public int UpdateSellApp(Seller bean) {
+		return this.abcd.update(namespace + "UpdateSellApp", bean);
+	}
 
 	
 }

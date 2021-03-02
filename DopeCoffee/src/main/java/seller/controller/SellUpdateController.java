@@ -24,8 +24,8 @@ import utility.Utility;
 
 	@Controller 
 	public class SellUpdateController extends SuperClass{
-		private final String command = "/sellUpdate.se" ; // 요청 커맨드(변경 요망)
-		private final String redirect = "redirect:/sellUpdate.se" ; // 리다이렉션(변경 요망)
+		private final String command = "/sellUpdate.se"; // 요청 커맨드(변경 요망)
+		private final String redirect = "redirect:/main.co"; // 리다이렉션(변경 요망)
 		
 		// 뷰에 넘겨줄 ModelAndView 객체
 		private ModelAndView mav = null ; 

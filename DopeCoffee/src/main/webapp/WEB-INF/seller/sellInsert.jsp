@@ -9,7 +9,6 @@ int mywidth = twelve - 2 * myoffset;
 int formleft = 3;
 int formright = twelve - formleft;
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +32,9 @@ function checkDuplicateId(){ /* 아이디 중복 체크 */
 
 function findZipcode(){ /* 우편 번호 찾기 */
 	// alert('우편 번호 찾기') ;
-	var url = '<%=contextPath%>/zipcheck.se';
-		window.open(url, 'mywin','height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
+	var url = '<%=contextPath%>
+	/zipcheck.se';
+		window.open(url, 'mywin', 'height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
 	};
 
 	function checkForm() { /* 회원 가입 버튼 클릭*/
@@ -61,7 +61,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>" />
-			<%-- form태그 시작 ------------------------------------------------- --%>			
+			<%-- form태그 시작 ------------------------------------------------- --%>
 			<form method="post" action="${apppath}/sellInsert.se"
 				class="form-horizontal" role="form" name="myform"
 				onsubmit="return chk_submit();">
@@ -70,8 +70,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 				<input type="text" name="isCheck" value="false">
 
 				<!-- hidden으로 변경할 데이터 -->
-				<input type="text" name="sell_Status" value="신청전"> 
-				<input type="text" name="sell_Join" value="Y">
+				<input type="text" name="sell_Status" value="신청전"> <input
+					type="text" name="sell_Join" value="Y">
 
 				<%-- sell_Email ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
@@ -82,8 +82,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control"
 							name="sell_Email" id="sell_Email" value="${sell_Email}"
-							onkeyup="isCheckFalse();" /> 
-							<span class="valid_check" id="err_sellEmail"></span>
+							onkeyup="isCheckFalse();" /> <span class="valid_check"
+							id="err_sellEmail"></span>
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -91,7 +91,6 @@ function findZipcode(){ /* 우편 번호 찾기 */
 							onclick="return checkDuplicateId();">
 					</div>
 				</div>
-
 				<%-- sell_PW ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -101,11 +100,10 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="sell_PW" id="sell_PW"
-							value="${sell_PW}"> 
-							<span class="valid_check" id="err_sellPW"></span>
+							value="${sell_PW}"> <span class="valid_check"
+							id="err_sellPW"></span>
 					</div>
 				</div>
-
 				<%-- sell_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -114,11 +112,10 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="sell_Name" id="sell_Name" value="${sell_Name}"> 
-							<span class="valid_check" id="err_sellName"></span>
+							name="sell_Name" id="sell_Name" value="${sell_Name}"> <span
+							class="valid_check" id="err_sellName"></span>
 					</div>
 				</div>
-
 				<%-- sell_Contact ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -132,25 +129,25 @@ function findZipcode(){ /* 우편 번호 찾기 */
 						<span class="valid_check" id="err_sellContact"></span>
 					</div>
 				</div>
-
 				<%-- sell_Zipcode & sell_ADR01------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="sell_Zipcode" class="col-sm-3"
-						style="text-align: right"> 
-						<spring:message code="seller.sell_ADR01" />
+						style="text-align: right"> <spring:message
+							code="seller.sell_ADR01" />
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakesell_Zipcode" id="fakesell_Zipcode"
-							value="${sell_Zipcode}" disabled="disabled"> 
-							<input type="hidden" name="sell_Zipcode" id="sell_Zipcode" value="${sell_Zipcode}">
+							value="${sell_Zipcode}" disabled="disabled"> <input
+							type="hidden" name="sell_Zipcode" id="sell_Zipcode"
+							value="${sell_Zipcode}">
 					</div>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakesell_ADR01" id="fakesell_ADR01" value="${sell_ADR01}"
-							disabled="disabled"> 
-							<input type="hidden" id="sell_ADR01" name="sell_ADR01" style="text-align: left">
+							disabled="disabled"> <input type="hidden" id="sell_ADR01"
+							name="sell_ADR01" style="text-align: left">
 					</div>
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
@@ -158,7 +155,6 @@ function findZipcode(){ /* 우편 번호 찾기 */
 							onclick="javascript:findZipcode();">
 					</div>
 				</div>
-
 				<%-- sell_ADR02 ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -183,9 +179,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 				</div>
 			</form>
 			<%-- form태그 끝 ------------------------------------------------- --%>
-
 		</div>
-
 	</div>
 	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
 	<div class="container">
@@ -208,6 +202,5 @@ function findZipcode(){ /* 우편 번호 찾기 */
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

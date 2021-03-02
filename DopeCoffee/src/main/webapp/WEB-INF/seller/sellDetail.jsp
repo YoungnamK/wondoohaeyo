@@ -38,8 +38,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- sell_PW ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -52,8 +51,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- sell_Name ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -67,8 +65,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- sell_Contact ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -82,8 +79,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- sell_Zipcode & sell_ADR01------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -103,8 +99,7 @@ int formright = twelve - formleft;
 						disabled="disabled" />
 				</div>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 			<%-- sell_ADR02 ------------------------------------------------- --%>
 			<div class="form-group wow fadeInDown animated"
 				data-wow-duration="500ms" data-wow-delay=".6s">
@@ -125,7 +120,6 @@ int formright = twelve - formleft;
 				onclick="location.href='${contextPath}/sellUpdate.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}' ">사업자정보
 				수정하기</button>
 		</div>
-
 	</div>
 
 </body>

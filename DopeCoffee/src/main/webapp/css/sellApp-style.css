@@ -60,19 +60,6 @@ body {
   font-weight: 700;
 }
 
-/*
-.file-upload-btn:hover {
-  background: #5080BF;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.file-upload-btn:active {
-  border: 0;
-  transition: all .2s ease;
-}*/
-
 .file-upload-content {
   display: none;
   text-align: center;

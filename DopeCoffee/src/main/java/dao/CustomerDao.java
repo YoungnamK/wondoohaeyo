@@ -86,6 +86,10 @@ public class CustomerDao {
 		return this.abcd.selectOne(namespace + "SelectPW", map);
 	}
 
+	public int DeleteData(Customer bean) {
+		return this.abcd.delete(namespace + "DeleteData", bean.getCust_Email());
+	}
+
 
 
 	

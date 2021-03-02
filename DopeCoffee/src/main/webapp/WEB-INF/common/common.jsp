@@ -188,7 +188,7 @@
                                         <li><a href="${contextPath}/sellUpdate.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}">회원정보수정</a></li>
                                         <li><a href="${contextPath}/sellorderlist.pm">상품관리</a></li>
                                         <li><a href="${contextPath}/sellOnedayList.odc?sell_email=${sessionScope.loginfo_seller.sell_Email}">수업관리</a></li>
-                                        <li><a href="${contextPath}/sellApp.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}"">사업승인신청</a></li>
+                                        <li><a href="${contextPath}/sellApp.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}">사업승인신청</a></li>
                                     </ul>
                                 </div>
                                 </c:if>

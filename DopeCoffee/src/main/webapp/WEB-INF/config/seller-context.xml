@@ -32,14 +32,13 @@
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 	</beans:bean>
 	
-	<!-- 로그인 인터셉터 -->
-	<!-- <beans:bean id="loignInterceptor" class="utility.Interceptor01"/>
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/insert.se"/>
-			<beans:ref bean="loignInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+	<!-- 파일 업로드를 위한 빈 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />
+		<beans:property name="maxInMemorySize" value="10240" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
 		
 	
 			

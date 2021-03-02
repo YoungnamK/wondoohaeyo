@@ -8,31 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import bean.Customer;
+import bean.Seller;
 import common.controller.SuperClass;
-import dao.CustomerDao;
+import dao.SellerDao;
 import utility.FlowParameters;
 import utility.Paging;
 
 @Controller // 관리자가 회원들의 목록을 조회하는 컨트롤러
-public class AdminListController extends SuperClass{
-	private final String command = "/adminList.cu" ; // 요청 커맨드(변경 요망)
-	private final String redirect = "redirect:/adminList.cu" ; // 리다이렉션(변경 요망)
+public class AdminAppController extends SuperClass{
+	private final String command = "/adminApp.cu" ; // 요청 커맨드(변경 요망)
+	private final String redirect = "redirect:/adminApp.cu" ; // 리다이렉션(변경 요망)
 	
 	// 뷰에 넘겨줄 ModelAndView 객체
 	private ModelAndView mav = null ; 
 	
 	@Autowired
-	@Qualifier("cdao") // (변경 요망)
-	private CustomerDao cdao ;// (변경 요망)
+	@Qualifier("sdao") // (변경 요망)
+	private SellerDao sdao ;// (변경 요망)
 	
-	public AdminListController() {
+	public AdminAppController() {
 		// (변경 요망)
-		super("adminList", "adminList"); // super(getpage, postpage)  
+		super("adminApp", "adminApp"); // super(getpage, postpage)  
 		this.mav = new ModelAndView();
 	}
 	
@@ -48,7 +47,7 @@ public class AdminListController extends SuperClass{
 		
 		System.out.println(this.getClass() + " : " + parameters.toString());
 		
-		int totalCount = this.cdao.SelectTotalCount(parameters.getMode(), parameters.getKeyword());
+		int totalCount = this.sdao.SelectTotalCount(parameters.getMode(), parameters.getKeyword());
 	
 	System.out.println("totalCount : " + totalCount);
 	
@@ -62,7 +61,7 @@ public class AdminListController extends SuperClass{
 		= new Paging(parameters.getPageNumber(), parameters.getPageSize(), totalCount, myurl, parameters.getMode(),
 				parameters.getKeyword()); 
 	
-	List<Customer> lists = this.cdao.SelectDataList(
+	List<Seller> lists = this.sdao.SelectDataList(
 							pageInfo.getOffset(), 
 							pageInfo.getLimit(), 
 							parameters.getMode(),

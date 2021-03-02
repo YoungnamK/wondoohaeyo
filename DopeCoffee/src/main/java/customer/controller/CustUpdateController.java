@@ -24,7 +24,7 @@ import utility.Utility;
 	@Controller 
 	public class CustUpdateController extends SuperClass{
 		private final String command = "/custUpdate.cu"; 
-		private final String redirect = "redirect:/custUpdate.cu";
+		private final String redirect = "redirect:/main.co";
 		
 		// 뷰에 넘겨줄 ModelAndView 객체
 		private ModelAndView mav = null ; 

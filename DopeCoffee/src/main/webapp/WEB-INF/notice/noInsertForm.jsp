@@ -83,10 +83,9 @@ body {
 													</div>
 
 													<ul class="list-inline pull-right">
-														<li class="step-li"><input type="submit"
-															id="noti-submit" class="btn btn-default btn-send"
-															value="등록 하기" data-toggle="modal" data-target="#myModal"
-															></li>
+														<li class="step-li">
+														<input type="submit" id="noti-submit" class="btn btn-default btn-send"
+															value="등록 하기" data-toggle="modal" data-target="#myModal"></li>
 													</ul>
 												</div>
 

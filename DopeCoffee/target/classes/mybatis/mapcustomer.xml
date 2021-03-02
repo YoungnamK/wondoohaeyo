@@ -13,11 +13,25 @@
 		from customers
 	</sql>
 	
+	<!-- 회원 탈퇴와 관련된 항목들 -->
+<!-- 	<update id="UpdateBoardRemark" parameterType="String">
+		update boards set remark = #{remark} 
+		where writer = #{writer}
+	</update>
+	<update id="UpdateOrderRemark" parameterType="String">
+		update orders set remark = #{remark} 
+		where mid = #{mid}
+	</update>	 -->
+	<delete id="DeleteData" parameterType="String">
+		delete from customers
+	 	where cust_Email = #{cust_Email}
+	</delete>	
+	
 	<!-- 개인회원 조회 -->
 	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from customers
-		<if test="mode == 'cust_Name'">
-			where cust_Name like #{keyword}
+		<if test="mode == 'cust_Contact'">
+			where cust_Contact like #{keyword}
 		</if>
 		<if test="mode == 'cust_Email'">
 			where cust_Email like #{keyword}
@@ -29,12 +43,13 @@
 		select cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
 		cust_Pic, to_char(cust_RegDate, 'yyyy/MM/dd') as cust_RegDate, cust_Join, remark, savepoint
 		from customers
-		<if test="mode == 'cust_Name'">
-			where cust_Name like #{keyword}
+		<if test="mode == 'cust_Contact'">
+			where cust_Contact like #{keyword}
 		</if>
 		<if test="mode == 'cust_Email'">
 			where cust_Email like #{keyword}
 		</if>
+		order by cust_Name desc, cust_Email desc
 	</select>
 	
 	<!-- 회원가입시 데이터 추가 -->
@@ -42,7 +57,7 @@
 		insert into customers(cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
 		cust_Pic, cust_RegDate, cust_Join, remark, savepoint) 
 		values(#{cust_Email}, #{cust_PW}, #{cust_Name}, #{cust_Contact}, #{cust_Birth}, #{cust_Zipcode}, #{cust_ADR01}, 
-		#{cust_ADR02}, #{cust_Pic}, to_date(#{cust_RegDate}, 'yyyy/MM/dd'), #{cust_Join}, #{remark}, #{savepoint})
+		#{cust_ADR02}, #{cust_Pic}, sysdate, #{cust_Join}, #{remark}, #{savepoint})
 	</insert>
 	
 	<!-- 이메일 주소로 동일한 메일 주소 조회 -->
@@ -80,7 +95,6 @@
 		cust_ADR01 = #{cust_ADR01},
 		cust_ADR02 = #{cust_ADR02},
 		cust_Pic = #{cust_Pic},
-		cust_RegDate = #{cust_RegDate},	
 		cust_Join = #{cust_Join},
 		remark = #{remark},
 		savepoint = #{savepoint}

@@ -20,8 +20,7 @@ int formright = twelve - formleft;
 	/* 우편 번호 찾기 */
 	function findZipcode(){ 
 		// alert('우편 번호 찾기') ;
-		var url = '<%=contextPath%>
-	/zipcheck.cu';
+		var url = '<%=contextPath%>/zipcheck.cu';
 		window.open(url, 'mywin','height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no');
 	};
 </script>
@@ -34,6 +33,11 @@ int formright = twelve - formleft;
 				data-wow-delay="0.3s">회원 정보 수정</h2>
 			<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
 				data-wow-delay="0.3s">회원 정보 수정 페이지입니다.</p>
+			<!-- 회원탈퇴 ----------------------------------------------------- -->
+			<div class="delete">
+				<a href="${contextPath}/custDel.cu?cust_Email=${bean.cust_Email}">
+					회원탈퇴</a>
+			</div>
 		</div>
 		<div class="panel panel-body">
 			<c:set var="apppath" value="<%=contextPath%>" />
@@ -41,22 +45,21 @@ int formright = twelve - formleft;
 			<form method="post" enctype="multipart/form-data"
 				action="${apppath}/custUpdate.cu" class="form-horizontal"
 				role="form" name="myform" onsubmit="return chk_submit();">
-
 				<!-- hidden으로 넘길 데이터 ------------------------------------------------- -->
-				<input type="hidden" name="isCheck" value="false"> 
-				<input type="hidden" name="cust_Join" value="Y">
+				<input type="hidden" name="isCheck" value="false"> <input
+					type="hidden" name="cust_Join" value="Y">
 
 				<%-- 프로필사진, cust_Pic ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<div class="avatar-upload">
 						<div id="imagePreview">
-							<c:if test="${empty cust_Pic}">
+							<c:if test="${empty bean.cust_Pic}">
 								<img src="https://2runcoffee.com/common/img/default_profile.png"
 									class="avatar-preview" alt="no image">
 							</c:if>
-							<c:if test="${not empty cust_Pic}">
-								<img src="${contextPath}/upload/${cust_Pic}"
+							<c:if test="${not empty bean.cust_Pic}">
+								<img src="${contextPath}/upload/${bean.cust_Pic}"
 									class="avatar-preview" width="200" height="200"
 									alt="${cust_Pic}">
 							</c:if>
@@ -72,7 +75,6 @@ int formright = twelve - formleft;
 						</div>
 					</div>
 				</div>
-
 				<%-- cust_Email ------------------------------------------------- --%>
 				<%-- 중복 체크 기능이 필요없습니다. --%>
 				<%-- 이메일은 읽기 전용으로 설정하고, 숨겨서 넘기도록 합니다. --%>
@@ -84,11 +86,10 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="fakecust_Email"
 							id="fakecust_Email" value="${bean.cust_Email}"
-							disabled="disabled" /> 
-							<input type="hidden" name="cust_Email" id="cust_Email" value="${bean.cust_Email}">
+							disabled="disabled" /> <input type="hidden" name="cust_Email"
+							id="cust_Email" value="${bean.cust_Email}">
 					</div>
 				</div>
-
 				<%-- cust_PW ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -98,11 +99,10 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="cust_PW" id="cust_PW"
-							value="${bean.cust_PW}"> 
-							<span class="valid_check" id="err_custPW"></span>
+							value="${bean.cust_PW}"> <span class="valid_check"
+							id="err_custPW"></span>
 					</div>
 				</div>
-
 				<%-- cust_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -115,7 +115,6 @@ int formright = twelve - formleft;
 						<span class="valid_check" id="err_custName"></span>
 					</div>
 				</div>
-
 				<%-- cust_Contact ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -126,11 +125,10 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
 							name="cust_Contact" id="cust_Contact"
-							value="${bean.cust_Contact}"> 
-							<span class="valid_check" id="err_custContact"></span>
+							value="${bean.cust_Contact}"> <span class="valid_check"
+							id="err_custContact"></span>
 					</div>
 				</div>
-
 				<%-- cust_Birth ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -143,26 +141,25 @@ int formright = twelve - formleft;
 						<span class="valid_check" id="err_custBirth"></span>
 					</div>
 				</div>
-
 				<%-- cust_Zipcode & cust_ADR01------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Zipcode" class="col-sm-3"
-						style="text-align: right"> 
-						<spring:message code="customer.cust_ADR01" />
+						style="text-align: right"> <spring:message
+							code="customer.cust_ADR01" />
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakecust_Zipcode" id="fakecust_Zipcode"
-							value="${bean.cust_Zipcode}" disabled="disabled"> 
-							<input type="hidden" name="cust_Zipcode" id="cust_Zipcode"
-							value="${customer.cust_Zipcode}">
+							value="${bean.cust_Zipcode}" disabled="disabled"> <input
+							type="hidden" name="cust_Zipcode" id="cust_Zipcode"
+							value="${bean.cust_Zipcode}">
 					</div>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakecust_ADR01" id="fakecust_ADR01"
-							value="${bean.cust_ADR01}" disabled="disabled"> 
-							<input type="hidden" id="cust_ADR01" name="cust_ADR01"
+							value="${bean.cust_ADR01}" disabled="disabled"> <input
+							type="hidden" id="cust_ADR01" value="${bean.cust_ADR01}" name="cust_ADR01"
 							style="text-align: left">
 					</div>
 					<div class="col-sm-3" align="left">
@@ -171,7 +168,6 @@ int formright = twelve - formleft;
 							onclick="javascript:findZipcode();">
 					</div>
 				</div>
-
 				<%-- cust_ADR02 ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -215,5 +211,4 @@ int formright = twelve - formleft;
 		</div>
 	</div>
 </body>
-
 </html>

@@ -42,16 +42,17 @@ public class CustIdcheckController extends SuperClass{
 			if (bean.getCust_Email().equalsIgnoreCase("admin@gmail.com")) { // 관리자인 경우
 				this.mav.addObject("message", "admin은(는) <font color='red'><b>사용 불가능</b></font>한 아이디입니다.<br><font color='red'><b>관리자</b></font>를 위한 아이디입니다.");
 				this.mav.addObject("isCheck", false) ;
-			
-			} else {
-				this.mav.addObject("message", cust_Email + "은(는) 이미 <font color='red'><b>사용중</b></font>인 아이디입니다.") ;
+			} else if(bean.getCust_Email().equalsIgnoreCase("admin")) { // 관리자 admin이 포함된 경우
+				this.mav.addObject("message", "admin은(는) <font color='red'><b>사용 불가능</b></font>한 아이디입니다.<br><font color='red'><b>관리자</b></font>를 위한 아이디입니다.");
 				this.mav.addObject("isCheck", false) ;
+			}	else {
+				this.mav.addObject("message", cust_Email + "은(는) 이미 <font color='red'><b>사용중</b></font>인 아이디입니다.");
+				this.mav.addObject("isCheck", false);
 			}
 		} else { // 존재하지 않는 회원
-			this.mav.addObject("message", cust_Email + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디입니다.") ;
-			this.mav.addObject("isCheck", true) ;
+			this.mav.addObject("message", cust_Email + "은(는) <font color='blue'><b>사용 가능</b></font>한 아이디입니다.");
+			this.mav.addObject("isCheck", true);
 		}
-		
 		this.mav.setViewName(super.getpage); 
 		return this.mav ;
 	}
