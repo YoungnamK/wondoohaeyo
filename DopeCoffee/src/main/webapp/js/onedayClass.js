@@ -112,12 +112,14 @@ function code_ajax() {
 	//alert(code);
 
 	$.ajax({
-		url: './onedayCodeCheck.odc',
+		url: '/onedayCodeCheck.odc',
 		type: 'post',
-		data: { "code": code },
+		dataType: "json",
+		contentType: "application/json; charset=UTF-8",
+		data: code, // 1. {code : code } code=code 형식 , 2. String 으로 받을 수 있음..  
 		success: function(data) { // OnedayClassCodeCheckController 컨트롤러 cnt 값
-			console.log(data);
-			if (data == 1) {
+			console.log("1 = 중복o / 0 = 중복x : "+ data);         
+			if (data == '1') {
 				alert("통신 성공")
 			}
 		}, error: function() {
@@ -1205,4 +1207,9 @@ function myBooktimeCheck() {
 
 
 }
+
+/*============================
+	원데이 클래스 회원용 결제 상세
+================================*/
+
 

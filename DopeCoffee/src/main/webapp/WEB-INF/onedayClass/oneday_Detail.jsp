@@ -151,7 +151,7 @@
                             </div>
                         
                             <div class="submit_detail">
-                                <input type="submit" id="contact-submit" class="btn-send" value='<spring:message code="oneday.Paymentbtn"/>' onclick="return payment_check();">
+                                <input type="submit" id="contact-submit" class="btn-send" value="수업 신청하기" onclick="return payment_check();">
                             </div>
                         </form>
                     </div>

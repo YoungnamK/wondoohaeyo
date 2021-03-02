@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>원데이 클래스 예약 정보</title>
+	<title>원데이 클래스 결제 정보</title>
 	<script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
 	<link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
 </head>
@@ -19,9 +19,9 @@
 					<div class="block">
 						<div class="top">
 							<h2 class="subtitle subtitle_css wow fadeInDown" data-wow-duration="500ms"
-								data-wow-delay="0.3s">원데이 클래스 수업 신청</h2>
+								data-wow-delay="0.3s">원데이 클래스 수업 상세 내역</h2>
 							<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
-								data-wow-delay="0.6s">${customer.cust_Name}님의 수업 신청 내역을 확인하세요!</p>
+								data-wow-delay="0.6s">${customer.cust_Name}님의 수업 상세 내역을 확인하세요!</p>
 						</div>
 						<%-- =========================
 									상단 부분 						
@@ -36,14 +36,14 @@
 								<div class="author widget col-md-12" id="author_widget">
 									<div class="author-body text-center col-md-4">
 										<div class="author-bio " id="author_css">
-											<img alt="image" src="./upload/${onedayclass.main_image}" width="300px" height="180px">
+											<img alt="image" src="./upload/${oneday_bean.main_image}" width="300px" height="180px">
 										</div>
 									</div>
 									<div class="author-body text-center col-md-8">
 										<div class="author-bio " id="author_pont_css">
-											<p>${onedayclass.classname}</p>
+											<p>${oneday_bean.classname}</p>
 										</div>
-										<p id="p_css"><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;${onedayclass.zipcode}&nbsp;${onedayclass.address1}&nbsp;${onedayclass.address2}</p>
+										<p id="p_css"><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;${oneday_bean.zipcode}&nbsp;${oneday_bean.address1}&nbsp;${oneday_bean.address2}</p>
 									</div>
 								</div>
 							</div>
@@ -61,22 +61,24 @@
 									예약 정보
 								</h3>
 								<%-- ========================== Form 양식 시작 부분 ====================================--%>
-								<c:set var="contextPath" value="<%=contextPath%>" scope="application" />
-								<form method="post" action="${contextPath}/onedayPayment.odc">
-									<input type="hidden" id="code" name="code" value="${onedayclass.code}"><!-- 상품코드 -->
-									<input type="hidden" id="cust_email" name="cust_email" value="${sessionScope.loginfo.cust_Email}"><!-- 로그인 정보 -->
-									<input type="hidden" id="sell_email" name="sell_email" value="${onedayclass.sell_email}"><!-- 사업자 이메일 정보 -->
 									<div id="form_css" class="categories widget categories_css">
 										<ul>
+											<li>
+												<div class="form-group payment_input">
+													<div class="column_name">
+														예약자명
+													</div>
+													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
+													value="${customer.cust_Name}">
+												</div>
+											</li>
 											<li>
 												<div class="form-group payment_input">
 													<div class="column_name">
 														<spring:message code="oneday.bookdate" />
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="fake_bookdate" name="fake_bookdate"
-														value="${bookdate}">
-													<input type="hidden" class="input_data form-control" id="bookdate" name="bookdate"
-														value="${bookdate}">
+														value="${bean.bookdate}">
 												</div>
 											</li>
 											<li>
@@ -86,9 +88,7 @@
 														<spring:message code="oneday.time" />
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="fake_booktime" name="fake_booktime"
-														value="${booktime}">
-													<input type="hidden" class="input_data form-control" id="booktime" name="booktime"
-														value="${booktime}">
+														value="${bean.booktime}">
 												</div>
 											</li>
 											<li>
@@ -97,9 +97,16 @@
 														신청인원
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="person_fk" name="person_fk"
-													value="${person}">
-													<input type="hidden" class="input_data form-control" id="person" name="person"
-													value="${person}">
+													value="${bean.person}">
+												</div>
+											</li>
+											<li>
+												<div class="form-group payment_input">
+													<div class="column_name">
+														결제일자
+													</div>
+													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
+													value="${bean.realtime}">
 												</div>
 											</li>
 											<li>
@@ -108,27 +115,16 @@
 														결제금액
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
-													value="${totalprice}">
-													<input type="hidden" class="input_data form-control" id="totalprice" name="totalprice"
-													value="${totalprice}">
+													value="${bean.totalprice}">
 												</div>
 											</li>
 										</ul>
 									</div>
 									<hr>
-									<h3 class="widget-head">
-										결제 정보
-									</h3>
-									<div class="final_payment">
-										<p>최종 결제 금액</p>
-										<p id="price"><i class="fas fa-won-sign"></i>&nbsp;${totalprice}원</p>
+									<div class="detail_css">
+										<button id="btn_detail" class="btn-send" onclick="history.back();"> 목록 </button>
+										<button id="btn_detail" class="btn-send" onclick="onedayCancle();"> 수업 취소 </button>
 									</div>
-									<div class="submit_detail">
-										<input type="submit" id="pay" class="btn-send" value="결제 하기">
-										<input type="submit" id="kakaopay" class="btn-send" value="KAKAO PAY"> 
-										<input type="submit" id="naverpay" class="btn-send" value="NAVER PAY">
-									</div>
-								</form>
 							</div>
 						</div>
 					</section>

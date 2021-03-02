@@ -175,7 +175,7 @@
                                         <li><a href="${contextPath}/custDetail.cu">마이페이지</a></li>
                                         <li><a href="${contextPath}/custUpdate.cu?cust_Email=${sessionScope.loginfo.cust_Email}">회원정보수정</a></li>
                                         <li><a href="${contextPath}/pmorderlist.pm">나의 구매내역</a></li>
-                                        <li><a href="${contextPath}/custorderlist.odc">나의 수업내역</a></li>
+                                        <li><a href="${contextPath}/onedayCustOrderList.odc?cust_email=${sessionScope.loginfo.cust_Email}">나의 수업내역</a></li>
                                         <li><a href="${contextPath}/cplist.cp">내 쿠폰함</a></li>
                                     </ul>
                                 </div>
@@ -188,7 +188,7 @@
                                         <li><a href="${contextPath}/sellUpdate.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}">회원정보수정</a></li>
                                         <li><a href="${contextPath}/sellorderlist.pm">상품관리</a></li>
                                         <li><a href="${contextPath}/sellOnedayList.odc?sell_email=${sessionScope.loginfo_seller.sell_Email}">수업관리</a></li>
-                                        <li><a href="${contextPath}/sellApp.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}">사업승인신청</a></li>
+                                        <li><a href="${contextPath}/sellApp.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}"">사업승인신청</a></li>
                                     </ul>
                                 </div>
                                 </c:if>

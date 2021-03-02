@@ -14,7 +14,27 @@ public class OnedayOrder {
 	private String realtime; // 실 결제 시간
 	private String remark; // 비고
 
+	// 회원용 결제 내역에 보여주는 변수
+	private String main_image; // 메인 이미지
+	private String classname; // 클래스 이름
+
 	public OnedayOrder() {
+	}
+
+	public String getMain_image() {
+		return main_image;
+	}
+
+	public void setMain_image(String main_image) {
+		this.main_image = main_image;
+	}
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
 	}
 
 	public int getOnedayorder_seq() {
@@ -99,9 +119,10 @@ public class OnedayOrder {
 
 	@Override
 	public String toString() {
-		return "OnedayOrders [onedayorder_seq=" + onedayorder_seq + ", cust_email=" + cust_email + ", code=" + code
+		return "OnedayOrder [onedayorder_seq=" + onedayorder_seq + ", cust_email=" + cust_email + ", code=" + code
 				+ ", sell_email=" + sell_email + ", bookdate=" + bookdate + ", booktime=" + booktime + ", person="
-				+ person + ", totalprice=" + totalprice + ", realtime=" + realtime + ", remark=" + remark + "]";
+				+ person + ", totalprice=" + totalprice + ", realtime=" + realtime + ", remark=" + remark
+				+ ", main_image=" + main_image + ", classname=" + classname + "]";
 	}
 
 }

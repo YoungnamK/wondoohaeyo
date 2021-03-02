@@ -481,6 +481,8 @@ figure figcaption p {
 	padding-left: 15px !important;
 }
 
+
+
 .top, #top{ /* .top 은 list.jsp 를 제외한 헤더부분 , #top은 list.jsp 에서만 해당하는 헤더부분임 */
 	padding-top: 100px;
 	margin-bottom: 50px;
@@ -501,8 +503,8 @@ figure figcaption p {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	padding-left: 15px !important;
-	padding-right: 15px !important;
+	padding-left: 15px ;
+	padding-right: 15px ;
 	margin: 10px 0px 10px 0px;
 }
 
@@ -1137,6 +1139,66 @@ input#fake_person{
 	
 }
 
+
+/* 원데이 클래스 결제 내역 (회원용) - 검색 모드*/
+table{
+	text-align: center;
+}
+
+table th{
+	text-align: center;
+	background-color: #5080BF;
+	color: #fff;
+}
+
+table td{
+	vertical-align: middle !important;
 	
+}
+
+table td img{
+	border-radius: 4px;
+}
+
+table td a , table td a:hover{
+	text-decoration: none;
+	color: #222;
+}
 
 
+#list_top_css{
+	padding: 0px;
+}
+
+
+.search_css{
+	padding: 0px !important;
+}
+
+
+/* 원데이 클래스 결제 상세(회원용) */
+.categories_css ul li{
+	height: 65px !important;
+    padding: 0;
+    list-style: none;
+}
+
+.detail_css{
+	display: flex;
+	flex-direction: row;
+	width: 100%;	
+	justify-content: flex-end;
+}
+
+#btn_detail{
+	margin-left: 10px;
+	width: 10% !important;
+}
+
+@media (max-width : 585px) {
+	
+	#btn_detail{
+		width: 30% !important;
+	}
+	
+}

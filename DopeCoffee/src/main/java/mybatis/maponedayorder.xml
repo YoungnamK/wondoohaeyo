@@ -6,6 +6,11 @@
 <!-- maponedayorder.xml 파일 -->
 
 <mapper namespace="NsOnedayOrder">
+	<sql id="basic_select">
+		select * from onedayorders
+	</sql>
+
+
 	<!-- 원데이 클래스 결제 등록 -->
 	<insert id="InsertData" parameterType="MyOnedayorder">
 		insert into onedayorders
@@ -39,5 +44,30 @@
 	<select id="DuplDateCheck" parameterType="MyOnedayorder" resultType="Integer">
 		select count(*) from onedayorders
 		where code=#{code} and bookdate=#{bookdate}
+	</select>
+	
+	<!-- 회원 이메일로 원데이 클래스 결제 내역 담기 -->
+	<select id="SelectAllData" parameterType="String" resultType="MyOnedayorder">
+		<include refid="basic_select"/>
+		where cust_email=#{cust_email}
+		<if test="mode == 'bookdate'">
+			and bookdate like #{keyword}
+		</if>
+		order by bookdate asc , booktime asc
+	</select>
+	
+	
+	<!-- 회원별 결제 목록의 총 갯수 구하기 -->
+	<select id="SelectTotalCount" parameterType="String" resultType="Integer">
+		select count(*) from onedayorders
+		<if test="mode == 'bookdate'">
+			where bookdate like #{keyword}
+		</if>
+	</select>
+	
+	<!-- 회원용 결제 상세보기 -->
+	<select id="SelectOneData" resultType="MyOnedayorder" parameterType="Integer">
+		<include refid="basic_select"/>
+		where onedayorder_seq=#{onedayorder_seq}
 	</select>
 </mapper>

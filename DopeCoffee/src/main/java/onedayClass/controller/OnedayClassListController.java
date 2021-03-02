@@ -59,7 +59,7 @@ public class OnedayClassListController extends SuperClass {
 				param.getPageNumber(),
 				param.getPageSize(),
 				totalCount, 
-				contextPath,
+				myurl,
 				param.getMode(), 
 				param.getKeyword());
 		

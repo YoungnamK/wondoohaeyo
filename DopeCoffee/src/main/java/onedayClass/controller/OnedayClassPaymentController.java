@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -187,7 +186,9 @@ public class OnedayClassPaymentController extends SuperClass {
 		if (cnt > 0) {
 			System.out.println("원데이 클래스 결제 성공");
 			session.setAttribute("message", "원데이 클래스 수업이 결제 되었습니다!");
-			// 결제 내역 페이지로 이동해야함
+			
+			// 결제 내역 확인 페이지로 이동
+			mav.setViewName("redirect:/onedayCustOrderList.odc?cust_email=" + cust_email);
 		} else {
 			System.out.println("원데이 클래스 결제 실패");
 			session.setAttribute("message", "원데이 클래스 수업 결제가 실패되었습니다!");
