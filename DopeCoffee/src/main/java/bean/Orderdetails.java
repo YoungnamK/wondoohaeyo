@@ -19,6 +19,8 @@ public Orderdetails(int odid, int oid, int cfno, int qty, String remark) {
 	this.qty = qty;
 	this.remark = remark;
 }
+public Orderdetails() {}
+
 @Override
 public String toString() {
 	return "Orderdetails [odid=" + odid + ", oid=" + oid + ", cfno=" + cfno + ", qty=" + qty + ", remark=" + remark

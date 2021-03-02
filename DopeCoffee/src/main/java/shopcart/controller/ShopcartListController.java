@@ -31,7 +31,7 @@ public class ShopcartListController extends common.controller.SuperClass{
 	private CoffeeDao cfdao ;
 	
 	public ShopcartListController() {
-		super("MallList", null);
+		super("shopcartlist", null);
 		this.mav = new ModelAndView();
 	}
 	
@@ -42,9 +42,10 @@ public class ShopcartListController extends common.controller.SuperClass{
 			this.mav.setViewName("redirect:/custLog.cu"); 
 		} else {
 			MyCartList mycart = (MyCartList)session.getAttribute("mycart") ;
+			
 			if (mycart==null) {
-				String errmsg = "쇼핑 내역이 없어서 상품 목록으로 이동합니다." ;
-				this.mav.addObject("errmsg", errmsg );
+				
+				
 				this.mav.setViewName("redirect:/list.sc");
 			}else {
 				Map<Integer, Integer> maplists =  mycart.GetAllOrderLists() ;
@@ -59,11 +60,11 @@ public class ShopcartListController extends common.controller.SuperClass{
 				int totalAmount = 0 ; // 총 판매 금액
 			
 				
-				for(Integer pnum :  keylist){  // pnum : 상품 번호
-					Integer qty = maplists.get(pnum) ;// 구매 수량
+				for(Integer cfno :  keylist){  // pnum : 상품 번호
+					Integer qty = maplists.get(cfno) ;// 구매 수량
 					
 					// 상품 번호 pnum에 대한 Bean 정보				 				
-					Coffee bean = cfdao.SelectDataByPk(pnum) ;
+					Coffee bean = cfdao.SelectDataByPk(cfno) ;
 					
 					ShoppingInfo shopinfo = new ShoppingInfo() ;
 					
@@ -75,7 +76,7 @@ public class ShopcartListController extends common.controller.SuperClass{
 					
 					shopinfo.setImage(bean.getC_image());
 					shopinfo.setCfname(bean.getC_name()); 
-					shopinfo.setCfno(pnum);
+					shopinfo.setCfno(cfno);
 					shopinfo.setPrice(price); 
 					shopinfo.setQty(qty);  
 					
@@ -83,7 +84,6 @@ public class ShopcartListController extends common.controller.SuperClass{
 				}
 				
 				session.setAttribute("totalAmount", totalAmount) ;
-
 				
 				// 이번에 구매할 총 목록
 				session.setAttribute("shoplists", shoplists) ;

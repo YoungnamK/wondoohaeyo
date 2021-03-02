@@ -188,19 +188,7 @@
 		<url-pattern>*.sc</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
-		<servlet-name>coupon </servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/coupon-context.xml</param-value>
-		</init-param>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>coupon </servlet-name>
-		<url-pattern>*.cp</url-pattern>
-	</servlet-mapping>
+
 	
 
 

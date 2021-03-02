@@ -1,4 +1,4 @@
-package payment.controller;
+package coffee.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,12 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import bean.Payment;
+import dao.PaymentDao;
 
 @Controller
-public class paymentInsertConroller {
-	private final String command ="/payment.pm";	
+public class CoffeepaymentConroller {
+	private final String command ="/payment.cf";	
 	private final String get_gotopage = "Payment";
-	private final String redirect = "redirect:/payment.pm";
+	private final String redirect = "redirect:/payment.cf";
 	
 	@ModelAttribute("coffee")
 	public Payment mycoffee() {
@@ -31,8 +32,8 @@ public class paymentInsertConroller {
 
 
 	@Autowired
-	@Qualifier("pmdao")	//(변경 요망) 여기에 지시한 이름의 빈으로 매칭됨
-	private Payment pmdao ;
+	@Qualifier("pmdao")	
+	private PaymentDao pmdao ;
 	
 
 
@@ -46,22 +47,18 @@ public class paymentInsertConroller {
 			Payment payment, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// 파일 업로드 작업
-		
-		
 
 			int cnt = -1;
 			cnt = pmdao.InsertData(payment);
 
 			if (cnt > 0) {
 				System.out.println("등록 완료");
-				mav.setViewName(redirect);								
+				mav.setViewName(get_gotopage);								
 			} else {
 				System.out.println("등록 실패");
 				
-				mav.setViewName(get_gotopage);
-			}
-			
-
+				mav.setViewName(redirect);
+			}			
 		return mav;
 	}
 }

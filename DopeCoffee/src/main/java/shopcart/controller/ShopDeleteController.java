@@ -15,12 +15,12 @@ import shopping.MyCartList;
 
 @Controller
 public class ShopDeleteController extends common.controller.SuperClass{
-	private final String command = "/delete.mall" ; 
+	private final String command = "/delete.sc" ; 
 	private ModelAndView mav = null ;
 	//private String redirect = "redirect:/delete.mall" ;
 	
 	@Autowired
-	@Qualifier("cdao")
+	@Qualifier("cpdao")
 	private CompositeDao dao ;
 	
 	public ShopDeleteController() {
@@ -30,7 +30,7 @@ public class ShopDeleteController extends common.controller.SuperClass{
 	
 	@GetMapping(command)
 	public ModelAndView doGet(
-			@RequestParam(value = "c_no", required = true) int c_no,
+			@RequestParam(value = "cfno", required = true) int c_no,
 			HttpSession session){
 		if (session.getAttribute("loginfo") == null) {
 			this.mav.setViewName("redirect:/custLog.cu");

@@ -7,13 +7,6 @@
 
 
 
-
-
-
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
-
 /*===========================
 	유효성 검사  
 ==============================*/
@@ -225,7 +218,7 @@ function search(){
 // 
  function plus(){
 	//선택한 수량
-	var qty = $('#c_qty').val();
+	var qty = $('#qty').val();
 	qty = parseInt(qty);
 	// 현재 재고
 	var totalqty = $('#total_qty').val();
@@ -243,7 +236,7 @@ function search(){
 	}else{
 		total = qty; 				
 	}
-	$('#c_qty').val(total);
+	$('#qty').val(total);
 	$("#totalprice").text(totalprice + '원');
 	
 	return false;
@@ -251,7 +244,7 @@ function search(){
 
  function minus(){
 	//선택한 수량
-	var qty = $('#c_qty').val();	
+	var qty = $('#qty').val();	
 		qty = parseInt(qty);
 		
 		
@@ -265,12 +258,41 @@ function search(){
 		total = qty - 1;
 		totalprice = c_price * total;
 	}
-	$('#c_qty').val(total);
+	$('#qty').val(total);
 	$("#totalprice").text(totalprice + '원');
 	return false;
 	
 }
+	/* ===============================  
+	   커피원두 삭제
+==================================*/
+function getContextPath() {
+	var offset = location.href.indexOf(location.host) + location.host.length;
+	var ctxPath = location.href.substring(offset, location.href.indexOf('/', offset + 1));
+	return ctxPath;
+}
+
+function delete_check() {
+	var c_no = $('#c_no').val();
+	location.href = getContextPath() + "/cfdelete.cf?c_no=" + c_no;
+}
+
+
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
 	
+		/* ===============================  
+	   장바구니 이동
+==================================*/
+
+function shop_cart(){
+	var c_no = $('#c_no').val();
+	var c_qty = $('#c_qty').val();
+	var qty = $('#qty').val();	
+	location.href = getContextPath() + "/insert.sc?c_no=" + c_no  + "&qty=" + qty;
+};
 
 
 

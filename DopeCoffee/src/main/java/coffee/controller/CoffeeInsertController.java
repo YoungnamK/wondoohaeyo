@@ -25,7 +25,7 @@ public class CoffeeInsertController extends SuperClass {
 	
 	private final String command ="/cfInsert.cf";	
 	private final String get_gotopage = "cfInsertForm";
-	private final String redirect = "redirect:/cfInsert.cf";
+	private final String redirect = "redirect:/cfList.cf";
 	
 	@ModelAttribute("coffee")
 	public Coffee mycoffee() {

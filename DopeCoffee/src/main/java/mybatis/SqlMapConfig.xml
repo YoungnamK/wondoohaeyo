@@ -16,23 +16,27 @@
 		<typeAlias alias="MyComment" type="bean.Comment" />
 		<typeAlias alias="MyCustomer" type="bean.Customer" />
 		<typeAlias alias="MySeller" type="bean.Seller" />
-		<!-- <typeAlias alias="MyShopping" type="bean.Shopping" /> -->
-		<!-- <typeAlias alias="MyOrder" type="bean.Order" /> -->
-		<!-- <typeAlias alias="MyProductPay" type="bean.ProductPay" /> -->
+		<typeAlias alias="MyShopping" type="bean.Shoppings" /> 
+		 
+		 <typeAlias alias="MyPayment" type="bean.Payment" /> 
 		<typeAlias alias="MyProducts" type="bean.Products" /> 
 		<typeAlias alias="MyCoffee" type="bean.Coffee" />
 		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
 		<typeAlias alias="MyOnedayorder" type="bean.OnedayOrder" />
 		<typeAlias alias="MyPostcode" type="bean.Postcode" />
 		
+		<typeAlias alias="MyCarousel" type="bean.Carousel" />
+		<typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" />
+		<typeAlias alias="MyOrder" type="bean.Orders" /> 
+		<typeAlias alias="MyOrderDetail" type="bean.Orderdetails" />
 		
 		
-		 <typeAlias alias="MyCheckes" type="bean.Checkes" /> 
 		
 	</typeAliases>	
 
 	<!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->
 	<mappers>
+			<mapper resource="mybatis/mappayment.xml" /> 
 		 	<mapper resource="mybatis/mapnotice.xml" />
 			<mapper resource="mybatis/mapcomment.xml" />
 	 		<mapper resource="mybatis/mapcustomer.xml" />
@@ -45,7 +49,7 @@
 			<mapper resource="mybatis/maponedayclass.xml" />
 			<mapper resource="mybatis/maponedayorder.xml" />
 			<mapper resource="mybatis/mapcomposite.xml" />
-	
+			<mapper resource="mybatis/mapshopcart.xml" />
 	</mappers>
 	
 	

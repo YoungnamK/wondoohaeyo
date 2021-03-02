@@ -42,7 +42,9 @@
 							
 				
 							<div class="categories widget">
-						<form class="form-inline" role="form" method="post" action="${contextPath}/cfdetailview.cf">
+						<form name=form1 class="form-inline" role="form" method="post" action="${contextPath}/payment.cf">
+						<input type="hidden" id="c_no" name="c_no" value="${bean.c_no}">
+						<input type="hidden" id="c_qty" name="c_qty" value="${bean.c_qty}">
 								<div >
 									<div id="item_price1">
 										<span class=span1>금액</span>
@@ -78,13 +80,14 @@
 										<span class=span1>분쇄여부</span>
 										<span class=span2>${bean.c_crushing_status}</span>
 									</div>
-								</div>								
+								</div>	
+														
 								<div class="item_price1">		
 									<span class=span1>수량</span>									
 									<span class=span2>										
 										<input type="hidden" name="c_no" value="${bean.c_no}">
 										<input type="hidden" id="total_qty" name="c_qty" value="${bean.c_qty}">
-										<input type="text" class="form-control" name="c_qty" id="c_qty"
+										<input type="number" class="form-control" name="qty" id="qty"
 											data-toggle="popover" title="수량 입력란"
 											data-trigger="hover" data-placement="auto top"
 											data-content="구매하시고자 하는 수량을 정수로 입력하세요^^"
@@ -117,7 +120,8 @@
 									<div class="btn_choice_box">
 										<div>
 											<!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-											<button id="cartBtn" type="button" class="btn_add_cart">장바구니 담기</button>
+											<button id="cartBtn" type="button" class="btn add_cart" data-toggle="modal" data-target="#myModal">장바구니 담기</button>
+											
 											<button type="submit" class="btn_add_order">바로 구매</button>
 										</div>
 									</div>
@@ -156,6 +160,29 @@
 
 			</div>
 	</section>
-
+        	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
+	<div class="container">
+	
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 id="modal-title" class="modal-title" style="font-size: 35px"><i class="fas fa-exclamation-circle"></i></h4>
+	        </div>
+	        <div class="modal-body">
+	          <p id="modal-body" style="font-size: 13px">장바구니에 담으시겠습니까?</p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" onclick="shop_cart();">
+	          	 예 
+	          </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">아니오</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </body>
 </html>

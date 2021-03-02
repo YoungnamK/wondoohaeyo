@@ -16,6 +16,7 @@ import dao.CoffeeDao;
 public class CoffeeDetailviewController extends SuperClass {
 	
 	private final String command ="/cfdetailview.cf";	// 요청 커맨드(변경 요망)
+	private final String post = "/cfPayment";
 	private final String redirect ="redirect:/payment.pm";
 	private ModelAndView mav = null;			// mav 객체(변경 요망)
 	@Autowired
@@ -24,14 +25,14 @@ public class CoffeeDetailviewController extends SuperClass {
 	
 	public CoffeeDetailviewController() {
 		//(변경 요망)
-		super("cfDetailView","Payment");//super(getpage, postpage);
+		super("cfDetailView","shopcartlist");//super(getpage, postpage);
 		this.mav = new ModelAndView();
 	}
 	
 	@GetMapping(command)
 	public ModelAndView doGet(
-			@RequestParam(value="c_no" , required = true) int num) {
-		Coffee bean = this.cfdao.SelectDataByPk(num);
+			@RequestParam(value="c_no" , required = true) int c_no) {//재고
+		Coffee bean = this.cfdao.SelectDataByPk(c_no);
 		
 		if ( bean != null) {//상세 보기로 이동
 			System.out.println("상품발견 ");
@@ -47,7 +48,7 @@ public class CoffeeDetailviewController extends SuperClass {
 
 	@PostMapping(value = command)
 	public ModelAndView doPost() {
-		this.mav.setViewName(super.postpage);
+		this.mav.setViewName(post);
 		return this.mav;
 	}
 }

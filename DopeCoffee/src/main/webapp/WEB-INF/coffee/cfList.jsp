@@ -9,14 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${contextPath}/js/coffee.js"></script>
-<style type="text/css">
-
-
-
-</style>
+<link rel="stylesheet" href="${contextPath}/css/coffee.css">
 
 </head>
-<body onload="today();">
+<body >
 <section class="works service-page">
 		
 		<div class="container">
@@ -51,7 +47,8 @@
 				<div class="col">
 					<div class="col-sm-4">
 						<input type="hidden" value="${bean.c_type}"> <!-- 주제 -->
-						<input type="hidden" value="${bean.c_origin}"> <!-- 주소 지역 -->
+						<input type="hidden" value="${bean.c_origin}"> <!-- 지역 -->
+						<input type="hidden" id="c_no" value="${bean.c_no}"> <!-- 코드  -->
 						<figure class="wow fadeInLeft animated portfolio-item"
 							data-wow-duration="500ms" data-wow-delay="0ms">
 							<div class="img-wrapper">
@@ -59,10 +56,9 @@
 								<div class="overlay">
 									<div class="buttons">
 										<a href="${contextPath}/cfdetailview.cf?c_no=${bean.c_no}">상품 보기</a>		
-										<c:if test="${bean.c_seller_email eq sessionScope.loginfo_seller.c_seller_email}"> 							
+																
 										<a  href="${contextPath}/cfupdate.cf">관리</a>		
-										<a  href="${contextPath}/cfdelete.cf?c_no=${bean.c_no}&${requestScope.parameters}">삭제</a>	
-										</c:if>							
+										<a  data-toggle="modal" data-target="#myModal">삭제</a>																	
 									</div>
 								</div>
 							</div>
@@ -87,7 +83,30 @@
 		</div>	
 	</section>
         
-        
+        	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
+	<div class="container">
+	
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-sm">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 id="modal-title" class="modal-title" style="font-size: 35px"><i class="fas fa-exclamation-circle"></i></h4>
+	        </div>
+	        <div class="modal-body">
+	          <p id="modal-body" style="font-size: 13px">정말 삭제 하시겠습니까?</p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" onclick="delete_check();">
+	          	 예 
+	          </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">아니오</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
         

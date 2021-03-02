@@ -31,9 +31,9 @@ public class MyCartList {
 	}
 	
 	// 장바구니에 들어 있는 해당 상품을 삭제합니다.
-	public void DeleteOrder(int pnum) {
-		// pnum는 삭제될 상품 번호
-		this.orderlists.remove(pnum) ;
+	public void DeleteOrder(int cfno) {
+		// cfno는 삭제될 상품 번호
+		this.orderlists.remove(cfno) ;
 	}
 	
 	// 장바구니에 상품을 추가합니다.

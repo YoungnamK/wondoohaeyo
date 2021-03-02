@@ -19,7 +19,7 @@ public class CoffeeDeleteController extends SuperClass {
 	
 	private final String command = "/cfdelete.cf" ; 
 	private ModelAndView mav = null ;
-	private String redirect = "redirect:/cflist.cf" ;
+	private String redirect = "redirect:/cfList.cf" ;
 	
 	@Autowired
 	@Qualifier("cfdao")

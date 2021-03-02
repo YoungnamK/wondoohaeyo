@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${contextPath}/js/coffee.js"></script>
+<link rel="stylesheet" href="${contextPath}/css/coffee.css">
 </head>
 <body>
 <section id="contact-section">

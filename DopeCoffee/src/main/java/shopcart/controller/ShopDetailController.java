@@ -29,7 +29,7 @@ public class ShopDetailController extends common.controller.SuperClass{
 	private ShopDao shopdao ;
 	
 	public ShopDetailController() {
-		super("ShopResult", null);
+		super("orderdetail", null);
 		this.mav = new ModelAndView();
 	}
 	
@@ -39,7 +39,7 @@ public class ShopDetailController extends common.controller.SuperClass{
 			HttpSession session){
 		
 		if (session.getAttribute("loginfo") == null) {
-			this.mav.setViewName("redirect:/login.me");
+			this.mav.setViewName("redirect:/custLog.cu");
 		} else {			
 			//Order 주문 정보 가져 오기
 			Orders order = shopdao.SelectDataByPk(oid) ;

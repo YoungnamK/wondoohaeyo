@@ -3,5 +3,34 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="MapperShopcart">
-		
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyOrder">
+		 select * from orders
+		 where oid = #{oid}  
+	</select>	
+		<insert id="InsertOrder" parameterType="MyOrder">
+		insert into orders(oid, custid, ,cfimg, orderdate, remark)
+		values(seqoid.nextval, #{custid}, #{cfimg}, sysdate,  #{remark})
+	</insert>	
+	
+		<insert id="InsertOrderDetail" parameterType="MyOrderDetail">
+		insert into orderdetails(odid, oid, cfno, qty, remark)
+		values(seqodid.nextval, #{oid}, #{cfno}, #{qty}, #{remark})
+	</insert>	
+		<update id="UpdateStock">
+		update coffees set c_qty = c_qty - #{c_qty}
+		where c_no = #{c_no}
+	</update>
+	
+	<select id="OrderMall" parameterType="String" resultType="MyOrder">
+		select * from orders
+		where custid = #{custid}
+		order by orderdate desc  
+	</select>
+	
+		<select id="ShowDetail" parameterType="Integer" resultType="MyShoppingInfo">
+		select c.c_no c_no, c.c_name c_name, od.qty, c.c_price, c.c_image 
+		from (orders o inner join orderdetails od
+		on o.oid=od.oid) inner join coffees c
+		on od.cfno = c.c_no and o.oid = #{oid}
+	</select>
 </mapper>
