@@ -46,6 +46,7 @@ public class NoticeUpdateController extends SuperClass{
 		Notice bean = dao.SelectDataByPk(num);
 		this.mav.addObject("bean",bean);
 		this.mav.setViewName(super.getpage);
+		System.out.println(bean);
 		return this.mav ;
 	}
 	

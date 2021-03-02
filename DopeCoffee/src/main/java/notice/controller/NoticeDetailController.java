@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Customer;
 import bean.Notice;
+import bean.Seller;
 import common.controller.SuperClass;
 import dao.NoticeDao;
 import utility.FlowParameters;
@@ -45,10 +46,12 @@ public class NoticeDetailController extends SuperClass{
 		if(bean!=null) {
 			
 			Customer customer = (Customer)session.getAttribute("loginfo");
-			
+			Seller seller = (Seller)session.getAttribute("loginfo_seller");
 			if(session.getAttribute("loginfo")==null) {
 				ndao.UpdateReadhit(num);
 			}else if(!bean.getWriter().equals(customer.getCust_Email())){
+				ndao.UpdateReadhit(num);
+			}else if (seller!=null) {
 				ndao.UpdateReadhit(num);
 			}
 			mav.addObject("bean",bean);

@@ -243,6 +243,27 @@
                                 </div>
                             </li>
                              </c:if>
+                             <c:if test="${whologin==0 }">
+                             <li>
+                             <a href="${contextPath}/custLog.cu">
+                             <i class="fa fa-user-circle-o" style="font-size:15px"></i> login
+                             </a>
+                             </li>
+                             </c:if>
+                             <c:if test="${whologin==1||whologin==3 }">
+                             <li>
+                             <a href="${contextPath}/custLogout.cu">
+                             <i class="fa fa-sign-out" style="font-size:15px"></i> logout
+                             </a>
+                             </li>
+                             </c:if>
+                             <c:if test="${whologin==2 }">
+                             <li>
+                             <a href="${contextPath}/sellLogout.se">
+                             <i class="fa fa-sign-out" style="font-size:15px"></i> logout
+                             </a>
+                             </li>
+                             </c:if>
                         </ul>
                     </div>
                 </nav>

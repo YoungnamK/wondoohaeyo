@@ -9,15 +9,13 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${contextPath}/js/noticeupdate.js"></script>
 <script type="text/javascript">
-function getoption(){
-	var length = document.getElementById("fix").options.length;
-	for(i = 0 ; i < length ; i++){
-		if(document.getElementById("fix").options[i].value == "${bean.fix}"){
-			document.getElementById("fix").options[i].selected = true;
-			break;
-		}
-	}
-};
+	$(document).ready(function(){
+		$("#fix  option").each(function(){
+			if($(this).val()=="${bean.fix}"){
+				$(this).attr("selected", "selected");
+			}
+		});
+	});
 </script>
 
 <style type="text/css">
@@ -26,7 +24,7 @@ body {
 }
 </style>
 </head>
-<body onload="getoption();">
+<body>
 	<section id="notice-section">
 		<div class="container">
 			<div class="row">
@@ -50,7 +48,8 @@ body {
 												scope="application" />
 											<form id="noti-form" method="post"
 												action="${contextPath}/noupdate.no" role="form"
-												enctype="multipart/form-data" onsubmit="return chk_submit();">
+												enctype="multipart/form-data"
+												onsubmit="return chk_submit();">
 												<input type="hidden" name="pageNumber"
 													value="${param.pageNumber}"> <input type="hidden"
 													name="pageSize" value="${param.pageSize}"> <input
@@ -79,14 +78,15 @@ body {
 													<!-- ------------------------------------- [내용]--------------------------------------- -->
 													<div class="form-group">
 														<textarea class="form-control" id="content" name="content"
-															placeholder="내용 입력" >${bean.content }</textarea>
+															placeholder="내용 입력">${bean.content }</textarea>
 														<span class="valid_check" id="err_content"></span>
 													</div>
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
 													<div class="form-group">
-														<input type="hidden" value="${bean.fix }">
-														<select class="form-control" name="fix" id="fix">
-															<option class="form-control">===중요여부를 선택하세요===</option>
+														<input type="hidden" value="${bean.fix }" id="fixvalue"> <select
+															class="form-control" name="fix" id="fix">
+															<option class="form-control" value="">===중요여부를
+																선택하세요===</option>
 															<option class="form-control" value="0">일반</option>
 															<option class="form-control" value="1">중요</option>
 														</select> <span class="valid_check" id="err_fix"></span>
@@ -94,10 +94,11 @@ body {
 													<!-- ------------------------------------- [사진]--------------------------------------- -->
 													<div class="form-group">
 														<input name="image" type="hidden" value="${bean.image}">
-														기존 이미지 : <input name="oldimg" type="text" value="${bean.image}">
-														<input type="file" class="form-control" name="img"
-															id="img" placeholder="파일을 선택하지 않으면 기존 이미지가 유지됩니다.">
-															<p style="color: red;">변경할 파일을 선택하지 않으면 기존이미지가 유지됩니다.</p>
+														기존 이미지 : <input name="oldimg" type="text"
+															value="${bean.image}"> <input type="file"
+															class="form-control" name="img" id="img"
+															placeholder="파일을 선택하지 않으면 기존 이미지가 유지됩니다.">
+														<p style="color: red;">변경할 파일을 선택하지 않으면 기존이미지가 유지됩니다.</p>
 													</div>
 
 													<ul class="list-inline pull-right">

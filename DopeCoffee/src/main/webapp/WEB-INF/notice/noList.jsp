@@ -85,6 +85,10 @@ input#keyword{
 	}
 	
 }
+th{
+	background-color: #5080bf;
+	color:white;
+}
 
 /* 검색 부분  끝*/
 </style>
