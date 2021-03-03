@@ -17,6 +17,10 @@ public class OnedayOrder {
 	// 회원용 결제 내역에 보여주는 변수
 	private String main_image; // 메인 이미지
 	private String classname; // 클래스 이름
+	
+	// 사업자용 결제 상세에 보여주는 변수 
+	private String cust_name; // 회원 이름 
+	private String cust_contact; // 회원 연락처 
 
 	public OnedayOrder() {
 	}

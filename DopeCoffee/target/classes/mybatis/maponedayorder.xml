@@ -95,4 +95,39 @@
 		delete from onedayorders 
 		where onedayorder_seq=#{onedayorder_seq}
 	</delete>	
+	
+	<!-- 사업자용 결제 목록 총 갯수 구하기 -->
+	<select id="SelectSellTotalCount" parameterType="String" resultType="Integer">
+		select count(*) from onedayorders
+		where sell_email=#{sell_email}
+		<if test="mode == 'bookdate'">
+			and bookdate like #{keyword}
+		</if>
+	</select>
+	
+	<!-- 사업자용 이메일로 원데이 클래스 결제 내역 담기 -->
+	<select id="SelectSellAllData" parameterType="String" resultType="MyOnedayorder">
+		<include refid="basic_select"/>
+		where sell_email=#{sell_email}
+		<if test="mode == 'bookdate'">
+			and bookdate like #{keyword}
+		</if>
+		order by bookdate asc , booktime asc
+	</select>
+	
+	<!-- 원데이 클래스 사업자용 결제 상세 테이블 갯수 구하기 -->
+	<!-- 검색 조건은 결제 일자 , 회원 이메일 -->
+	<select id="SelectSellDetailCount" parameterType="String" resultType="Integer">
+	  	select count(*) from onedayorders
+		where code=#{code} and bookdate=#{bookdate}
+		<if test="mode == 'cust_email'">
+			and cust_email=#{keyword}
+		</if>
+		<if test="mode == 'realtime'">
+			and realtime=#{realtime}
+		</if>
+	</select>
+	
+	
+	
 </mapper>
