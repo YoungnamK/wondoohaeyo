@@ -22,6 +22,7 @@
 								data-wow-delay="0.3s">원데이 클래스 수업 상세 내역</h2>
 							<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
 								data-wow-delay="0.6s">${customer.cust_Name}님의 수업 상세 내역을 확인하세요!</p>
+							
 						</div>
 						<%-- =========================
 									상단 부분 						
@@ -121,9 +122,16 @@
 										</ul>
 									</div>
 									<hr>
+									<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
+									data-wow-delay="1.2s">※ 당일 예약인 경우 수업 1시간전에만 취소가 가능합니다.</p>
+									<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
+									data-wow-delay="1.2s">※ 날짜가 경과된 예약은 취소가 불가능합니다.</p>
 									<div class="detail_css">
 										<button id="btn_detail" class="btn-send" onclick="history.back();"> 목록 </button>
-										<button id="btn_detail" class="btn-send" onclick="onedayCancle();"> 수업 취소 </button>
+										
+										<!-- input 태그에 시퀀스 담아 놓기  -->
+										<input type="hidden" id="onedayorder_seq" name="onedayorder_seq" value="${bean.onedayorder_seq}">
+										<button id="btn_detail" class="btn-send" data-toggle="modal" data-target="#myModal"> 수업 취소 </button>
 									</div>
 							</div>
 						</div>
@@ -144,15 +152,17 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 id="modal-title" class="modal-title" style="font-size: 35px">
+							<i class="fas fa-exclamation-circle"></i>
 						</h4>
 					</div>
 					<div class="modal-body">
 						<p id="modal-body" style="font-size: 13px">
+							정말 취소 하시겠습니까?
 						</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px">예</button>
+							style="font-size: 13px" onclick="onedayCancle();">예</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							style="font-size: 13px">아니오</button>
 					</div>

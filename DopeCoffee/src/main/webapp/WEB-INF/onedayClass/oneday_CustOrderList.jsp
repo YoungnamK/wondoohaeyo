@@ -59,7 +59,7 @@
 	      						<table class="table table-bordered table-hover dt-responsive">
 	        
 							        <%-- 결제 목록의 header 부분 -------------------------------------------------------%>
-							        <thead>
+							        <thead class="thead_css">
 						                <tr>
 						                	
 						                    <th><spring:message code="oneday.bookdate"/></th>

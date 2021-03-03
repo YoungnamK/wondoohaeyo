@@ -27,6 +27,15 @@
 	</update>
 	
 	<!-- 원데이 클래스 결제 중복 체크 -->
+	<!-- 해당 조건에 맞는 클래스 코드를 체크하여 중복을 판단한다. -->
+	<!-- 조건 1. 같은 클래스 코드가 있는지 체크   -->
+	<select id="DuplCodeCheck" parameterType="MyOnedayorder" resultType="Integer">
+		select count(*) from onedayorders 
+		where code=#{code} 
+	</select>
+	
+	
+	<!-- 원데이 클래스 결제 중복 체크 -->
 	<!-- 해당 조건에 맞는 인원수를 체크하여 중복을 판단한다. -->
 	<!-- 조건 1. 클래스 코드 && 예약 일자 && 예약 시간   -->
 	<!-- 조건 2. 초기 설정 인원수의 값 - 결제 테이블에 조건 1을 만족하는 인원수의 sum 값 -->
@@ -46,6 +55,15 @@
 		where code=#{code} and bookdate=#{bookdate}
 	</select>
 	
+	<!-- 원데이 클래스 결제 중복 체크 -->
+	<!-- 해당 조건에 맞는 예약 시간을 체크하여 중복을 판단한다. -->
+	<!-- 조건 1. 클래스 코드 && 예약일자 && 예약시간 -->
+	<select id="DuplTimeCheck" parameterType="MyOnedayorder" resultType="Integer">
+		select count(*) from onedayorders
+		where code=#{code} and bookdate=#{bookdate} and booktime=#{booktime}
+	</select>
+	
+	
 	<!-- 회원 이메일로 원데이 클래스 결제 내역 담기 -->
 	<select id="SelectAllData" parameterType="String" resultType="MyOnedayorder">
 		<include refid="basic_select"/>
@@ -60,8 +78,9 @@
 	<!-- 회원별 결제 목록의 총 갯수 구하기 -->
 	<select id="SelectTotalCount" parameterType="String" resultType="Integer">
 		select count(*) from onedayorders
+		where cust_email=#{cust_email}
 		<if test="mode == 'bookdate'">
-			where bookdate like #{keyword}
+			and bookdate like #{keyword}
 		</if>
 	</select>
 	
@@ -70,4 +89,10 @@
 		<include refid="basic_select"/>
 		where onedayorder_seq=#{onedayorder_seq}
 	</select>
+	
+	<!-- 회원용 결제 취소하기 -->
+	<delete id="DeleteData" parameterType="Integer">
+		delete from onedayorders 
+		where onedayorder_seq=#{onedayorder_seq}
+	</delete>	
 </mapper>

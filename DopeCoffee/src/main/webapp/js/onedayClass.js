@@ -1209,7 +1209,21 @@ function myBooktimeCheck() {
 }
 
 /*============================
-	원데이 클래스 회원용 결제 상세
+	원데이 클래스 회원용 결제 취소 
 ================================*/
+function getContextPath() {
+	var offset = location.href.indexOf(location.host) + location.host.length;
+	var ctxPath = location.href.substring(offset, location.href.indexOf('/', offset + 1));
+	return ctxPath;
+}
+
+function onedayCancle(){
+	var onedayorder_seq = $('#onedayorder_seq').val();
+	
+	console.log(onedayorder_seq);
+	
+	location.href = getContextPath() + "/onedayCustCancle.odc?onedayorder_seq=" + onedayorder_seq;
+}
+
 
 

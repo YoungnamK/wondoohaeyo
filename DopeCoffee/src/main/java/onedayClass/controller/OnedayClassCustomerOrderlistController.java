@@ -62,6 +62,7 @@ public class OnedayClassCustomerOrderlistController extends SuperClass {
 		System.out.println(this.getClass() + " : " + parameter.toString());
 		
 		int totalCount = orderDao.SelectTotalCount(
+				cust_email,
 				parameter.getMode(),
 				"%" + parameter.getKeyword() +"%");
 		

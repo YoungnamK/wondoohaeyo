@@ -1145,7 +1145,7 @@ table{
 	text-align: center;
 }
 
-table th{
+.thead_css th{
 	text-align: center;
 	background-color: #5080BF;
 	color: #fff;

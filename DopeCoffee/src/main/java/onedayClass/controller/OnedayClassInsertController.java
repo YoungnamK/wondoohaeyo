@@ -51,7 +51,7 @@ public class OnedayClassInsertController extends SuperClass {
 			// 에러 메세지 바인딩
 			session.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
 			
-			return redirect;
+			return "redirect:/sellApp.se?sell_Email=" + bean.getSell_Email();
 		}
 	}
 
