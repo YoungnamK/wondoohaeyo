@@ -1202,3 +1202,18 @@ table td a , table td a:hover{
 	}
 	
 }
+
+/* 원데이 클래스 결제 상세(사업자용) */
+.management_css {
+	font-size: 13px !important;
+	border-radius: 20px;
+    background-color: #84C1D9;
+	padding: 5px 10px 5px 10px;
+	color: #fff;
+	font-weight: bold !important;
+	margin-top: 10px !important;
+}
+
+.management_css:hover{
+	color: #fff;
+}

@@ -79,7 +79,7 @@
 						                     			${bean.code}
 						                     		</td>
 						                  			<td>
-						                  				<a href="${contextPath}/onedaySellOrderdetail.odc?code=${bean.code}&bookdate=${bookdate}">
+						                  				<a href="${contextPath}/onedaySellOrderdetail.odc?code=${bean.code}&bookdate=${bean.bookdate}">
 						                  					${bean.classname}
 						                  				</a>
 						                  			</td>

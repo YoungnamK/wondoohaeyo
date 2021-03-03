@@ -121,13 +121,20 @@
 	  	select count(*) from onedayorders
 		where code=#{code} and bookdate=#{bookdate}
 		<if test="mode == 'cust_email'">
-			and cust_email=#{keyword}
-		</if>
-		<if test="mode == 'realtime'">
-			and realtime=#{realtime}
+			and cust_email like #{keyword}
 		</if>
 	</select>
 	
 	
+	<!-- 원데이 클래스 사업자용 결제 상세 세부 내역 보기 -->
+	<!-- 검색 조건은 결제 일자 , 회원 이메일 -->
+	<select id="SelectSellDetailAllData" parameterType="String" resultType="MyOnedayorder">
+		<include refid="basic_select"/>
+		where code=#{code} and bookdate=#{bookdate}
+		<if test="mode == 'cust_email'">
+			and cust_email like #{keyword}
+		</if>
+		order by booktime asc
+	</select>
 	
 </mapper>

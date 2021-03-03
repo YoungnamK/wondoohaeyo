@@ -17,10 +17,10 @@ public class OnedayOrder {
 	// 회원용 결제 내역에 보여주는 변수
 	private String main_image; // 메인 이미지
 	private String classname; // 클래스 이름
-	
-	// 사업자용 결제 상세에 보여주는 변수 
-	private String cust_name; // 회원 이름 
-	private String cust_contact; // 회원 연락처 
+
+	// 사업자용 결제 상세에 보여주는 변수
+	private String cust_name; // 회원 이름
+	private String cust_contact; // 회원 연락처
 
 	public OnedayOrder() {
 	}
@@ -39,6 +39,22 @@ public class OnedayOrder {
 
 	public void setClassname(String classname) {
 		this.classname = classname;
+	}
+
+	public String getCust_name() {
+		return cust_name;
+	}
+
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
+	}
+
+	public String getCust_contact() {
+		return cust_contact;
+	}
+
+	public void setCust_contact(String cust_contact) {
+		this.cust_contact = cust_contact;
 	}
 
 	public int getOnedayorder_seq() {

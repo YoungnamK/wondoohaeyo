@@ -1225,5 +1225,3 @@ function onedayCancle(){
 	location.href = getContextPath() + "/onedayCustCancle.odc?onedayorder_seq=" + onedayorder_seq;
 }
 
-
-
