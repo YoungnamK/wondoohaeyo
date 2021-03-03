@@ -22,7 +22,9 @@ body{
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
-
+#innettable{
+	border-style: hidden;
+}
 </style>
 </head>
 <body>
@@ -31,7 +33,7 @@ body{
 		<input type="hidden" value="${bean.num }" name="num" id="num">
 		<h2 align="left">공지사항</h2>
 		<div class="row" style="padding-bottom:30px;">
-			<table class="table table-bordered table-hover dt-responsive">
+			<table class="table table-bordered dt-responsive" style="word-wrap:break-word; white-space: pre-line; table-layout: fixed;">
 				<c:if test="${whologin != 1}">
 					<tr>
 						<th colspan="4" align="left">${bean.title }</th>
@@ -57,25 +59,21 @@ body{
 				</tr>
 				<c:if test="${not empty bean.image}">
 					<tr>
-						<td colspan="4">
-							<table>
-								<tr>
-									<td colspan="1" align="center"><a
+						<td colspan="4" align="center"><a
 										href="./upload/${bean.image}" data-fancybox data-caption="캡션"
 										class="fancybox-img"> <img src="./upload/${bean.image}"
 											class="img-responsive" width="200" height="200"
 											alt="${bean.image}">
-									</a></td>
-									<td colspan="8" align="center">${bean.content}</td>
+									</a>
+									${bean.content}<br><br></td>
+									
 								</tr>
-							</table>
-						</td>
-					</tr>
+								<br><br>
 				</c:if>
 				<c:if test="${empty bean.image}">
 					<tr height="350px">
-						<td colspan="4" align="center">${bean.content}</td>
-					</tr>
+						<td colspan="4" align="left">${bean.content}<br><br></td>
+					</tr><br><br>
 				</c:if>
 			</table>
 			<a type="button" class="btn btn-primary"

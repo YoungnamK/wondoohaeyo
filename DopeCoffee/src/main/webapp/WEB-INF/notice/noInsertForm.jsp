@@ -70,8 +70,8 @@ body {
 													<!-- ------------------------------------- [중요도]--------------------------------------- -->
 													<div class="form-group">
 														<select class="form-control" name="fix" id="fix">
-															<option class="form-control"
-																selected="selected">===중요여부를 선택하세요===</option>
+															<option class="form-control" selected="selected">===중요여부를
+																선택하세요===</option>
 															<option class="form-control" value="0">일반</option>
 															<option class="form-control" value="1">중요</option>
 														</select> <span class="valid_check" id="err_fix"></span>
@@ -83,8 +83,8 @@ body {
 													</div>
 
 													<ul class="list-inline pull-right">
-														<li class="step-li">
-														<input type="submit" id="noti-submit" class="btn btn-default btn-send"
+														<li class="step-li"><input type="submit"
+															id="noti-submit" class="btn btn-default btn-send"
 															value="등록 하기" data-toggle="modal" data-target="#myModal"></li>
 													</ul>
 												</div>
