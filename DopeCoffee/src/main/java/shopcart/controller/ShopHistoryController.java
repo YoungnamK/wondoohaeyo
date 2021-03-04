@@ -1,5 +1,6 @@
 package shopcart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -45,7 +46,7 @@ public class ShopHistoryController extends SuperClass{
 			this.mav.setViewName("redirect:/custLog.cu");
 		}else{ 
 			//orderlists : 로그인 된 사람의 이전 쇼핑 내역을 저장하고 있는 컬렉션
-//			List<Order> orderlists = new ArrayList<Order>() ;
+			//List<Orders> orderlists = new ArrayList()<Order> ;
 			
 			// lists : 현재 로그인 한 사람의 쇼핑 주문 내역들을 담고 있는 컬렉션(최근 주문 내역이 먼저 나옴)
 			List<Orders> lists = shopdao.OrderMall(loginfo.getCust_Email()) ;

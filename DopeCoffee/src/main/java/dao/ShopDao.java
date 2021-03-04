@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Coffee;
 import bean.Customer;
 
 import bean.Orderdetails;
@@ -84,6 +85,13 @@ public class ShopDao {
 		
 		return this.session.selectList(namespace + "OrderMall", cust_Email);
 	}
+	
+//	public int InsertData(Coffee bean) {
+//		
+//		int cnt = -1;
+//		cnt = this.session.insert(namespace + "InsertData" , bean);
+//		return cnt ;
+//	}
 
 	
 

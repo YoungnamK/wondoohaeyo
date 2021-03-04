@@ -180,11 +180,11 @@ int twelve = 12;
 										<li><a href="${contextPath}/custDetail.cu">마이페이지</a></li>
 										<li><a
 											href="${contextPath}/custUpdate.cu?cust_Email=${sessionScope.loginfo.cust_Email}">회원정보수정</a></li>
-										<li><a href="${contextPath}/pmorderlist.pm">나의 구매내역</a></li>
+										<li><a href="${contextPath}/history.sc">나의 구매내역</a></li>
 										<li>
 											<a href="${contextPath}/onedayCustOrderList.odc?cust_email=${sessionScope.loginfo.cust_Email}">나의 수업내역</a>
 										</li>
-										<li><a href="${contextPath}/cplist.cp">내 쿠폰함</a></li>
+										<li><a href="${contextPath}/list.sc">나의 장바구니</a></li>
 									</ul>
 								</div>
 							</c:if> <c:if test="${whologin == 2}">
@@ -206,25 +206,13 @@ int twelve = 12;
 							data-toggle="dropdown">커피 <span class="caret"></span></a>
 							<div class="dropdown-menu">
 								<ul>
-									<c:if test="${whologin == 0 || whologin == 2}">
+									<c:if test="${ whologin == 2}">
 										<li><a href="${contextPath}/cfInsert.cf">상품 등록</a></li>
 									</c:if>
-									<li><a href="${contextPath}/cfList.cf">싱글오리진</a></li>
-									<li><a href="${contextPath}/cfList.cf?c_type=2">블랜딩</a></li>
-									<li><a href="${contextPath}/cfList.cf?c_type=3">캡슐</a></li>
+									<li><a href="${contextPath}/cfList.cf">원두 목록</a></li>
 								</ul>
 							</div></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">용품&디저트 <span class="caret"></span></a>
-							<div class="dropdown-menu">
-								<ul>
-									<c:if test="${whologin == 0}">
-										<li><a href="${contextPath}/prInsert.pr">상품 등록</a></li>
-									</c:if>
-									<li><a href="${contextPath}/prList.pr?p_type=1">커피 용품</a></li>
-									<li><a href="${contextPath}/prList.pr?p_type=2">쿠키</a></li>
-								</ul>
-							</div></li>
+
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">원데이클래스 <span class="caret"></span></a>
 							<div class="dropdown-menu">

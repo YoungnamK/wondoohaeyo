@@ -3,6 +3,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="MapperShopcart">
+	
+ 	<insert id="InsertData" parameterType="MyShoppingInfo">
+ 		insert into shoppinginfos(custid, cfno, ,cfname, qty, price, image)
+		values(#{custid},seqoid.nextval, , #{cfname}, #{qty},#{price},#{image}  )
+	</insert> 
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyOrder">
 		 select * from orders
 		 where oid = #{oid}  

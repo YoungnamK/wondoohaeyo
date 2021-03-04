@@ -1,5 +1,6 @@
 package shopcart.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import bean.Coffee;
 import dao.CoffeeDao;
 import dao.CompositeDao;
+import dao.ShopDao;
 import oracle.jdbc.proxy.annotation.Post;
 import shopping.MyCartList;
 
@@ -30,26 +32,36 @@ public class ShopcartInsertController extends common.controller.SuperClass{
 	@Qualifier("cfdao")
 	private CoffeeDao cfdao;
 	
+	@Autowired
+	@Qualifier("shopdao")
+	private ShopDao sdao;
+	
 	public ShopcartInsertController() {
 		super("shopcartlist", null);
 		this.mav = new ModelAndView();
 	}	
 	
-	@GetMapping(command)
+	@PostMapping(command)
 	public ModelAndView doPost(
-			@RequestParam(value = "c_no", required = true) int c_no,
+			@RequestParam(value = "c_no", required = true) int c_no, // 시퀀스 
 			@RequestParam(value = "qty", required = true) int qty, //수량
-			HttpSession session){
+			HttpServletRequest request){
 		
-		
-		if (session.getAttribute("loginfo") == null) {
-				
+		// 에러 메세지를 담을 세션 영역 및 로그인 정보를 가져올 때 사용
+		HttpSession session = request.getSession();// 에러 메세지를 담을 세션 영역
+		if (session.getAttribute("loginfo") == null ) {
+			session.setAttribute("message","로그인이 필요합니다.");
 			// 로그인 하지 않았다면 로그인 페이지로 이동
 			this.mav.setViewName("redirect:/custLog.cu");
+
 		} else { // 누군가 로그인 한 상태입니다.
 			// c_qty : 재고, qty : 구매 수량		
 			
-			Coffee bean = cfdao.SelectDataByPk(c_no);
+			Coffee bean = cfdao.SelectDataByPk(c_no); // 상품정보 
+			
+//			int cnt = -1; // dml 을 실행했을 떄 값이 1로 되기떄문에 구별하기 위해서 -로 지정 
+//			cnt = sdao.InsertData(bean);
+			
 			
 			if (bean.getC_qty() < qty) { //재고 수량 초과				
 				String message = "재고 수량이 부족합니다." ;

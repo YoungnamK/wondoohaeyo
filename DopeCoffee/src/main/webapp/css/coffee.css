@@ -279,10 +279,11 @@ button.prev-step{
 }
 
 /* 상품 사이드바  */
-#item_price1 p{
+#item_price1 {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;	
+	height: 20%;
 	
 	
 }
@@ -314,7 +315,64 @@ button.prev-step{
 	
 }
 
+/* 결제 부분 */
+.final_payment{
+	margin-top: 20px;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 
+.final_payment p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.final_payment p#price{
+	color:  #5080BF ;
+}
+
+.submit_detail{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+#kakaopay{
+	background-color: #F7E600 !important;
+}
+
+#naverpay{
+	background-color: #00C43B !important;
+}
+table{
+	border-collapse: separate;
+	border-spacing: 0 20px; 
+}
+
+
+th{
+		background-color: #f0f0f0;
+}
+td{
+	border-bottom: 1px solid #f0f0f0;
+	
+}
+
+/*결제 */
+
+
+/* 상품 목록 */
+.overlay{
+	width: 100%;
+}
+
+
+.overlay .buttons{
+	width: 100%;
+}
 
 
 

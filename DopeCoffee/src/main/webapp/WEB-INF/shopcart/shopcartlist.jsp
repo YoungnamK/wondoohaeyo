@@ -21,7 +21,7 @@
 	   <h2  class="subtitle wow fadeInDown" data-wow-duration="500ms"data-wow-delay=".3s">장바구니</h2>	
 	
 	<hr>
-	<table class="table table-striped table-hover">
+	<table class="table  table-hover">
 		<thead>
 			<tr>
 				<th class="text-center">번호</th>

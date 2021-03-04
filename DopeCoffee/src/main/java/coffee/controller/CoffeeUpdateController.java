@@ -24,8 +24,7 @@ import utility.Utility;
 public class CoffeeUpdateController extends SuperClass {
 	
 
-	private final String get_gotopage = "cfUpdate";
-	private final String post_gotopage = "cfList";
+	
 	
 	private final String command ="/cfupdate.cf";	// 요청 커맨드(변경 요망)
 	private final String redirect ="redirect:/cflist.cf";
@@ -40,20 +39,20 @@ public class CoffeeUpdateController extends SuperClass {
 		this.mav = new ModelAndView();
 	}
 	@GetMapping(command)
-	public ModelAndView doGet() {//@RequestParam(value="c_no" , required =  true) int num
+	public ModelAndView doGet(@RequestParam(value="c_no" , required =  true) String c_no) {
 		
 		// coffe 수정하고자 하는 이전에 기입했던 게시물 1건 의미.
 		
-//		Coffee coff = cfdao.SelectDataByPk(num);
+		Coffee coff = cfdao.SelectDataByPk(Integer.parseInt(c_no));
 //		
-//		this.mav.addObject("bean" , coff);
+		this.mav.addObject("bean" , coff);
 		
 		this.mav.setViewName(super.getpage);
 		return this.mav;
 	}
 	@PostMapping(command)
 	public ModelAndView doPost(
-			@RequestParam(value="c_no" , required =  true) int num,
+			@RequestParam(value="c_no" , required =  true) int c_no,
 			@RequestParam(value = "c_seller_email" , required = true)String c_seller_email,
 			Coffee coffee,HttpServletRequest request ) {
 		
@@ -80,7 +79,7 @@ public class CoffeeUpdateController extends SuperClass {
 			
 			int cnt = -1;
 			cnt = cfdao.InsertData(coffee);
-			Coffee coff = cfdao.SelectDataByPk(num);
+			Coffee coff = cfdao.SelectDataByPk(c_no);
 			
 			this.mav.addObject("bean" , coff);
 			if (cnt > 0) {
@@ -91,15 +90,15 @@ public class CoffeeUpdateController extends SuperClass {
 			} else {
 				System.out.println("수정 실패");
 				
-				mav.setViewName(get_gotopage);
+				mav.setViewName(super.getpage);
 			}
 			
 		}catch (IllegalStateException e1) {
 			e1.printStackTrace();
-			mav.setViewName(post_gotopage);
+			mav.setViewName(super.getpage);
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			mav.setViewName("redirect:/cfList.cf");
+			mav.setViewName(redirect);
 		}
 		
 		return mav;

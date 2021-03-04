@@ -20,12 +20,13 @@ $(document).ready(function(){ // 페이지 로딩 될때
    	var c_type = $('#c_type option:selected').val(); 
 	// alert(c_type);
 	
-	if(c_type == '-'){
+	if(c_type == '0'){
 		$('#err_c_type').text('주제를 선택하세요!');
 		$('#err_c_type').css('color' , font_color);
 	}else{
 		$('#err_c_type').text('');
 	}
+	
 	
 
   });
@@ -165,14 +166,42 @@ $(document).ready(function(){ // 페이지 로딩 될때
 			if(c_qty < 10){
 			$('#err_c_qty').text('재고수량은 10개이상 입력해주세요.');			
 			$('#err_c_qty').css('color' , font_color);
-			}else if (c_qty.length != 0){
+			}else if (c_qty >= 10){
 				$('#err_c_qty').text('');				
 			}
 
 		});		
+		//이미지
+	
 	
 	
 });
+
+function insertcheck(){
+		var image1 = $('#cf_image').val();
+		var valid_check = $('#valid_check').text();
+		
+		if(image1 == ''){
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>'); // 느낌표 아이콘
+			$('#modal-body').text('메인 이미지를 등록하세요.');
+			$('#myModal').modal();
+			
+			return false;
+		}else if(valid_check != ''){
+			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>'); // 느낌표 아이콘
+			$('#modal-body').text('입력 값을 확인하세요.');
+			$('#myModal').modal();			
+			return false;
+		}else{
+			return true;
+			
+			
+		}
+		
+		
+		
+}
+
 
 // 페이지가 로딩되었을 때 실행되는 함수 //
 function today() {
@@ -239,18 +268,20 @@ function search(){
 	$('#qty').val(total);
 	$("#totalprice").text(totalprice + '원');
 	
+	
 	return false;
 }
 
  function minus(){
 	//선택한 수량
+	
 	var qty = $('#qty').val();	
 		qty = parseInt(qty);
 		
 		
 	var c_price = $('#c_price').text();	
 	 c_price = parseInt(c_price);
-
+	var totalprice = '';
 	var total = '';
 	if(qty == 1){
 		total = qty;

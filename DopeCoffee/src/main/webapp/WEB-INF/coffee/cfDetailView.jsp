@@ -42,41 +42,41 @@
 							
 				
 							<div class="categories widget">
-						<form name=form1 class="form-inline" role="form" method="post" action="${contextPath}/payment.cf">
+						<form name=form1 class="form-inline" role="form" method="post" action="${contextPath}/insert.sc">
 						<input type="hidden" id="c_no" name="c_no" value="${bean.c_no}">
 						<input type="hidden" id="c_qty" name="c_qty" value="${bean.c_qty}">
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>금액</span>
 										<span class=span1>${bean.c_price}원</span>
 									</div>
 								</div>
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>원산지</span>
 										<span class=span2>${bean.c_origin}</span>
 									</div>
 								</div>
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1 >무게</span>
 										<span class=span2>${bean.c_weight}</span>
 									</div>
 								</div>
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>로스팅</span>
 										<span class=span2>${bean.c_roasting}</span>
 									</div>
 								</div>
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>블렌딩</span>
 										<span class=span2>${bean.c_blending}</span>
 									</div>
 								</div>
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>분쇄여부</span>
 										<span class=span2>${bean.c_crushing_status}</span>
 									</div>
@@ -103,11 +103,11 @@
 										<div class="end_price item_tatal_box" style="">
 									
 								<div >
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>상품금액</span>
 										<span id="c_price" class=span1>${bean.c_price}원</span>
 									</div>
-									<div id="item_price1">
+									<div class="item_price1">
 										<span class=span1>합계금액</span>
 										<span id="totalprice" class=span1>${bean.c_price}원</span>
 									</div>
@@ -120,7 +120,6 @@
 									<div class="btn_choice_box">
 										<div>
 											<!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-											<button id="cartBtn" type="button" class="btn add_cart" data-toggle="modal" data-target="#myModal">장바구니 담기</button>
 											
 											<button type="submit" class="btn_add_order">바로 구매</button>
 										</div>
@@ -160,29 +159,7 @@
 
 			</div>
 	</section>
-        	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
-	<div class="container">
-	
-	  <!-- Modal -->
-	  <div class="modal fade" id="myModal" role="dialog">
-	    <div class="modal-dialog modal-sm">
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 id="modal-title" class="modal-title" style="font-size: 35px"><i class="fas fa-exclamation-circle"></i></h4>
-	        </div>
-	        <div class="modal-body">
-	          <p id="modal-body" style="font-size: 13px">장바구니에 담으시겠습니까?</p>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px" onclick="shop_cart();">
-	          	 예 
-	          </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 13px">아니오</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+        	
+
 </body>
 </html>
