@@ -52,8 +52,6 @@ public class SellLoginController extends SuperClass{
 					Seller bean = this.sdao.SelectData(sell_Email, sell_PW) ;
 				if (bean == null) { // 로그인 실패
 					System.out.println("로그인 테스트2 : 이메일 또는 비밀번호 확인필요");
-					String message = "이메일 또는 비빌번호를 다시 확인해주세요." ;
-					this.mav.addObject("errmsg", message);
 					this.mav.setViewName("redirect:/custLog.cu"); 
 					} else { // 로그인 성공
 						// 로그인에 대한 정보를 세션 영역에 바인딩

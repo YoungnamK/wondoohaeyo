@@ -17,11 +17,109 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript" src="${contextPath}/js/sellUpdate.js"></script>
 <script type="text/javascript">
-	/* 우편 번호 찾기 */
-	function findZipcode(){ 
-		var url = '<%=contextPath%>/zipcheck.se';
-		window.open(url, 'mywin','height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no');
-	};
+/* ===============================
+휴대폰번호 정규표현식
+===============================
+*/
+$(function(){
+$("#sell_Contact").blur(function() {
+	var regexp = /^[0-9]*$/;
+	var sell_Contact = $('#sell_Contact').val();
+	if( !regexp.test(sell_Contact) ) {
+		$("#check_sellContact").text("숫자만 입력해주세요 :p");
+		$("#check_sellContact").css('color', 'red');
+		$("#sell-submit").attr("disabled", true);
+		$('#sell_Contact').val('');
+      	$('#sell_Contact').focus();
+} else { 
+       	$("#check_sellContact").text("올바른 연락처 형태입니다 :)");
+		$("#check_sellContact").css('color', '#5080BF');
+		$("#sell-submit").attr("disabled", false);
+}
+});
+});	
+
+/* ===============================
+비밀번호 정규표현식
+===============================
+*/
+$(function(){
+$("#sell_PW").blur(function() {
+var regexp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+var sell_PW = $('#sell_PW').val();
+if( !regexp.test(sell_PW) ) {
+	$("#check_sellPW").text("숫자, 문자, 특수문자 포함 8~15자리 이내로 입력해주세요 :p");
+	$("#check_sellPW").css('color', 'red');
+	$("#sell-submit").attr("disabled", true);
+	$('#check_sellPW').val('');
+  	$('#check_sellPW').focus();
+}if(sell_PW == ""){
+$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
+$("#check_sellPW").css('color', 'red');
+$("#sell-submit").attr("disabled", true);
+
+}else { 
+   	$("#check_sellPW").text("올바른 비밀번호 형태입니다 :)");
+	$("#check_sellPW").css('color', '#5080BF');
+	$("#sell-submit").attr("disabled", false);
+}
+});
+});	
+
+
+/* ===============================
+비밀번호 확인 일치 검사
+===============================
+*/
+$(function(){
+$('#sell_PW2').blur(function(){
+	var sell_PW = $('#sell_PW').val();
+	var sell_PW2 = $('#sell_PW2').val();
+   if($('#sell_PW').val() != $('#sell_PW2').val()){
+    	if($('#sell_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
+    		$("#check_sellPW2").text("비밀번호가 일치하지 않습니다 :p");
+			$("#check_sellPW2").css('color', 'red');
+			$("#sell-submit").attr("disabled", true);	
+    		$('#sell_PW2').val('');
+          	$('#sell_PW2').focus();
+          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
+    		}
+    } else if(sell_PW == ""){ //비밀번호 값이 없는 경우
+    	$('#sell_PW').focus();
+    	$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
+    	$("#check_sellPW").css('color', 'red');
+    	$("#sell-submit").attr("disabled", true);
+    } else {//비밀번호가 일치하는 경우,
+			$("#check_sellPW2").text("비밀번호가 일치합니다 :)");
+ 			$("#check_sellPW2").css('color', '#5080BF');
+	    	$("#sell-submit").attr("disabled", false);
+	    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
+    }
+})  	   
+});
+
+/* ===============================
+이름 정규표현식(사업자는 한글, 영어, 숫자만)
+===============================
+*/
+$(function(){
+$("#sell_Name").blur(function() {
+	var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
+var sell_Name = $('#sell_Name').val();
+if(regExp.test(sell_Name) == false) {
+	$("#check_sellName").text("한글 또는 영어로 입력해주세요 :p");
+	$("#check_sellName").css('color', 'red');
+	$("#sell-submit").attr("disabled", true);
+	$('#sell_Name').val('');
+  	$('#sell_Name').focus();
+} else { 
+   	$("#check_sellName").text("올바른 상호명 형태입니다 :)");
+	$("#check_sellName").css('color', '#5080BF');
+	$("#sell-submit").attr("disabled", false);
+}
+});
+});	
+
 </script>
 </head>
 <body style="padding-bottom: 150px;">
@@ -68,10 +166,24 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="sell_PW" id="sell_PW"
-							value="${bean.sell_PW}"> <span class="valid_check"
-							id="err_sellPW"></span>
+							value="${bean.sell_PW}">
+						<div class="valid_check" id="check_sellPW"></div>	
 					</div>
 				</div>
+				
+				<%-- sell_PW2 비밀번호 확인 ------------------------------------------ --%>
+				<div class="form-group wow fadeInDown animated"
+					data-wow-duration="500ms" data-wow-delay=".6s">
+					<label for="sell_PW2" class="col-sm-3" style="text-align: right">
+						비밀번호 확인*
+					</label>
+					<div class="col-sm-6">
+						<input type="password" placeholder="Check Your Password"
+							class="form-control" name="sell_PW2" id="sell_PW2"> 
+							<div class="valid_check" id="check_sellPW2"></div>
+					</div>
+				</div>	
+								
 				<%-- sell_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -81,7 +193,7 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
 							name="sell_Name" id="sell_Name" value="${bean.sell_Name}">
-						<span class="valid_check" id="err_sellName"></span>
+						<div class="valid_check" id="check_sellName"></div>
 					</div>
 				</div>
 				<%-- sell_Contact ------------------------------------------------- --%>
@@ -94,11 +206,11 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
 							name="sell_Contact" id="sell_Contact"
-							value="${bean.sell_Contact}"> <span class="valid_check"
-							id="err_sellContact"></span>
+							value="${bean.sell_Contact}"> 
+							<div class="valid_check" id="check_sellContact"></div>
 					</div>
 				</div>
-				<%-- sell_Zipcode & sell_ADR01------------------------------------------------- --%>
+				<%-- sell_Zipcode ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="sell_Zipcode" class="col-sm-3"
@@ -112,6 +224,7 @@ int formright = twelve - formleft;
 							type="hidden" name="sell_Zipcode" id="sell_Zipcode"
 							value="${bean.sell_Zipcode}">
 					</div>
+					<%-- sell_ADR01 ------------------------------------------------- --%>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakesell_ADR01" id="fakesell_ADR01"
@@ -119,10 +232,11 @@ int formright = twelve - formleft;
 							type="hidden" id="sell_ADR01" name="sell_ADR01" value="${bean.sell_ADR01}"
 							style="text-align: left">
 					</div>
+					<!-- 우편번호 찿기 버튼 -->
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
 							value="<spring:message code="seller.findZipcode"/>"
-							onclick="javascript:findZipcode();">
+							onclick='zipCheck();'>
 					</div>
 				</div>
 				<%-- sell_ADR02 ------------------------------------------------- --%>

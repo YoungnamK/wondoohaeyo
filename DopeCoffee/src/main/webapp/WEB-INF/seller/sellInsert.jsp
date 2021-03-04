@@ -19,36 +19,150 @@ int formright = twelve - formleft;
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${contextPath}/js/sellInsert.js"></script>
 <script type="text/javascript">
-function checkDuplicateId(){ /* 아이디 중복 체크 */	
-	var sell_Email = document.myform.sell_Email.value;
-	if(sell_Email.length < 8){
-		alert('이메일은 최소 8자리 이상이어야 합니다.');
-		document.myform.sell_Email.focus();
-		return false;
+/* [ajax] 이메일 중복검사 */
+$(document).ready(function(){
+	$("#sell_Email").blur(function() {
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var sell_Email = $('#sell_Email').val();
+		var isCheck = $('#isCheck').val();
+		console.log(sell_Email)
+		$.ajax({
+			url : './idCheck.se',
+			type : 'get',
+			data: {'sell_Email':sell_Email},
+			contentType: "applictaion/json; charset=utf-8",
+			success : function(data) {
+			console.log("1 = 중복o / 0 = 중복x : "+ data);							
+			if (data == '1') {
+						// 1 : 이메일이 중복되는 문구
+					$("#check_sellEmail").text("사용중인 이메일입니다 :p");
+					$("#check_sellEmail").css("color", "red");
+					$("#sell-submit").attr("disabled", true);
+			} else {
+						
+				if(sell_Email == ""){
+						$("#check_sellEmail").text("이메일을 입력해주세요 :)");
+						$("#check_sellEmail").css('color', 'red');
+						$("#sell-submit").attr("disabled", true);
+				} else if(regExp.test(sell_Email) == false) {
+						$("#check_sellEmail").text("올바른 이메일 형태가 아닙니다 :p");
+						$("#check_sellEmail").css('color', 'red');
+						$("#sell-submit").attr("disabled", true);
+				} else {
+					$("#check_sellEmail").text("사용 가능한 이메일입니다 :)");
+	                $("#check_sellEmail").css('color', '#5080BF');
+	                $("#sell-submit").attr("disabled", false);
+				}
+			}
+				}, error : function(error) {
+						console.dir(error)
+				}
+			});
+		});
+	});	
+
+	/* ===============================
+	휴대폰번호 정규표현식
+	===============================
+	*/
+	$(function(){
+	$("#sell_Contact").blur(function() {
+		var regexp = /^[0-9]*$/;
+		var sell_Contact = $('#sell_Contact').val();
+		if( !regexp.test(sell_Contact) ) {
+			$("#check_sellContact").text("숫자만 입력해주세요 :p");
+			$("#check_sellContact").css('color', 'red');
+			$("#sell-submit").attr("disabled", true);
+			$('#sell_Contact').val('');
+	      	$('#sell_Contact').focus();
+	} else { 
+	       	$("#check_sellContact").text("올바른 연락처 형태입니다 :)");
+			$("#check_sellContact").css('color', '#5080BF');
+			$("#sell-submit").attr("disabled", false);
 	}
-	var url = '<%=contextPath%>/idcheck.se?sell_Email=' + sell_Email;
-	window.open(url, 'mywin', 'height=150,widht=300');			
-};
+	});
+	});		
+	
+	/* ===============================
+	비밀번호 정규표현식
+	===============================
+	*/
+	$(function(){
+	$("#sell_PW").blur(function() {
+	var regexp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	var sell_PW = $('#sell_PW').val();
+	if( !regexp.test(sell_PW) ) {
+		$("#check_sellPW").text("숫자, 문자, 특수문자 포함 8~15자리 이내로 입력해주세요 :p");
+		$("#check_sellPW").css('color', 'red');
+		$("#sell-submit").attr("disabled", true);
+		$('#check_sellPW').val('');
+	  	$('#check_sellPW').focus();
+	}if(sell_PW == ""){
+	$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
+	$("#check_sellPW").css('color', 'red');
+	$("#sell-submit").attr("disabled", true);
 
-function findZipcode(){ /* 우편 번호 찾기 */
-	// alert('우편 번호 찾기') ;
-	var url = '<%=contextPath%>
-	/zipcheck.se';
-		window.open(url, 'mywin', 'height=450,width=600,statusbar=yes,scrollbars=yes,resizable=no');
-	};
+	}else { 
+	   	$("#check_sellPW").text("올바른 비밀번호 형태입니다 :)");
+		$("#check_sellPW").css('color', '#5080BF');
+		$("#sell-submit").attr("disabled", false);
+	}
+	});
+	});	
 
-	function checkForm() { /* 회원 가입 버튼 클릭*/
-		var isCheck = document.myform.isCheck.value;
-		if (isCheck == 'false') {
-			alert('이메일 중복 체크를 해주세요.');
-			return false;
-		}
-	};
 
-	function isCheckFalse() {
-		/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
-		document.myform.isCheck.value = false;
-	};
+	/* ===============================
+	비밀번호 확인 일치 검사
+	===============================
+	*/
+	$(function(){
+	$('#sell_PW2').blur(function(){
+		var sell_PW = $('#sell_PW').val();
+		var sell_PW2 = $('#sell_PW2').val();
+	   if($('#sell_PW').val() != $('#sell_PW2').val()){
+	    	if($('#sell_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
+	    		$("#check_sellPW2").text("비밀번호가 일치하지 않습니다 :p");
+				$("#check_sellPW2").css('color', 'red');
+				$("#sell-submit").attr("disabled", true);	
+	    		$('#sell_PW2').val('');
+	          	$('#sell_PW2').focus();
+	          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
+	    		}
+	    } else if(sell_PW == ""){ //비밀번호 값이 없는 경우
+	    	$('#sell_PW').focus();
+	    	$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
+	    	$("#check_sellPW").css('color', 'red');
+	    	$("#sell-submit").attr("disabled", true);
+	    } else {//비밀번호가 일치하는 경우,
+				$("#check_sellPW2").text("비밀번호가 일치합니다 :)");
+	 			$("#check_sellPW2").css('color', '#5080BF');
+		    	$("#sell-submit").attr("disabled", false);
+		    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
+	    }
+	})  	   
+	});
+/* ===============================
+이름 정규표현식(사업자는 한글, 영어, 숫자만)
+===============================
+*/
+$(function(){
+$("#sell_Name").blur(function() {
+	var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
+	var sell_Name = $('#sell_Name').val();
+if(regExp.test(sell_Name) == false) {
+		$("#check_sellName").text("올바른 상호명 형태가 아닙니다 :p");
+		$("#check_sellName").css('color', 'red');
+		$("#sell-submit").attr("disabled", true);
+		$('#sell_Name').val('');
+      	$('#sell_Name').focus();
+} else { 
+       	$("#check_sellName").text("올바른 상호명 형태입니다 :)");
+		$("#check_sellName").css('color', '#5080BF');
+		$("#sell-submit").attr("disabled", false);
+}
+});
+});	
+
 </script>
 </head>
 <body style="padding-bottom: 150px;">
@@ -66,31 +180,24 @@ function findZipcode(){ /* 우편 번호 찾기 */
 				class="form-horizontal" role="form" name="myform"
 				onsubmit="return chk_submit();">
 
-				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
-				<input type="text" name="isCheck" value="false">
-
 				<!-- hidden으로 변경할 데이터 -->
-				<input type="text" name="sell_Status" value="신청전"> <input
-					type="text" name="sell_Join" value="Y">
+				<input type="hidden" name="sell_Status" value="신청전">
+				<input type="hidden" name="sell_Join" value="Y">
 
-				<%-- sell_Email ------------------------------------------------- --%>
+				<%-- [ajax] sell_Email ---------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="sell_Email" class="col-sm-3" style="text-align: right">
 						<spring:message code="seller.sell_Email" />*
 					</label>
 					<div class="col-sm-6">
-						<input type="text" placeholder="Your Email" class="form-control"
-							name="sell_Email" id="sell_Email" value="${sell_Email}"
-							onkeyup="isCheckFalse();" /> <span class="valid_check"
-							id="err_sellEmail"></span>
+						<input type="text" placeholder="Your Business Email" class="form-control"
+							name="sell_Email" id="sell_Email"
+							/> 
+							<div class="valid_check" id="check_sellEmail"></div>
 					</div>
-					<div class="col-sm-3" align="left">
-						<input type="button" class="btn"
-							value="<spring:message code="seller.duplicatedId"/>"
-							onclick="return checkDuplicateId();">
-					</div>
-				</div>
+				</div>				
+				
 				<%-- sell_PW ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -99,11 +206,24 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</label>
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
-							class="form-control" name="sell_PW" id="sell_PW"
-							value="${sell_PW}"> <span class="valid_check"
-							id="err_sellPW"></span>
+							class="form-control" name="sell_PW" id="sell_PW"> 
+							<div class="valid_check" id="check_sellPW"></div>
 					</div>
 				</div>
+
+				<%-- sell_PW2 비밀번호 확인 ------------------------------------------ --%>
+				<div class="form-group wow fadeInDown animated"
+					data-wow-duration="500ms" data-wow-delay=".6s">
+					<label for="sell_PW2" class="col-sm-3" style="text-align: right">
+						비밀번호 확인*
+					</label>
+					<div class="col-sm-6">
+						<input type="password" placeholder="Check Your Password"
+							class="form-control" name="sell_PW2" id="sell_PW2"> 
+							<div class="valid_check" id="check_sellPW2"></div>
+					</div>
+				</div>				
+				
 				<%-- sell_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -112,8 +232,8 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="sell_Name" id="sell_Name" value="${sell_Name}"> <span
-							class="valid_check" id="err_sellName"></span>
+							name="sell_Name" id="sell_Name" value="${sell_Name}"> 
+						<div class="valid_check" id="check_sellName"></div>
 					</div>
 				</div>
 				<%-- sell_Contact ------------------------------------------------- --%>
@@ -126,33 +246,34 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
 							name="sell_Contact" id="sell_Contact" value="${sell_Contact}">
-						<span class="valid_check" id="err_sellContact"></span>
+						<div class="valid_check" id="check_sellContact"></div>
 					</div>
 				</div>
-				<%-- sell_Zipcode & sell_ADR01------------------------------------------------- --%>
+				<%-- sell_Zipcode ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
-					<label for="sell_Zipcode" class="col-sm-3"
-						style="text-align: right"> <spring:message
-							code="seller.sell_ADR01" />
+					<label for="sell_Zipcode" class="col-sm-3" style="text-align: right"> 
+						<spring:message code="seller.sell_ADR01" />
 					</label>
+					
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakesell_Zipcode" id="fakesell_Zipcode"
-							value="${sell_Zipcode}" disabled="disabled"> <input
-							type="hidden" name="sell_Zipcode" id="sell_Zipcode"
-							value="${sell_Zipcode}">
+							value="${sell_Zipcode}" disabled="disabled"> 
+							<input type="hidden" name="sell_Zipcode" id="sell_Zipcode" value="${sell_Zipcode}">
 					</div>
+					<%-- sell_ADR01 ------------------------------------------------- --%>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakesell_ADR01" id="fakesell_ADR01" value="${sell_ADR01}"
-							disabled="disabled"> <input type="hidden" id="sell_ADR01"
-							name="sell_ADR01" style="text-align: left">
+							disabled="disabled"> 
+							<input type="hidden" id="sell_ADR01" name="sell_ADR01" style="text-align: left">
 					</div>
+					<!-- 우편번호 찿기 버튼 -->
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
 							value="<spring:message code="seller.findZipcode"/>"
-							onclick="javascript:findZipcode();">
+							onclick='zipCheck();'>
 					</div>
 				</div>
 				<%-- sell_ADR02 ------------------------------------------------- --%>
@@ -175,7 +296,7 @@ function findZipcode(){ /* 우편 번호 찾기 */
 					</p>
 					<button type="submit" id="sell-submit" class="submit"
 						data-toggle="modal" data-target="#myModal"
-						onclick="return checkForm();">동의하고 가입하기</button>
+						>동의하고 가입하기</button>
 				</div>
 			</form>
 			<%-- form태그 끝 ------------------------------------------------- --%>

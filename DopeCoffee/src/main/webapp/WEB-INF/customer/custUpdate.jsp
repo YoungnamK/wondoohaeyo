@@ -17,12 +17,134 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript" src="${contextPath}/js/custUpdate.js"></script>
 <script type="text/javascript">
-	/* 우편 번호 찾기 */
-	function findZipcode(){ 
-		// alert('우편 번호 찾기') ;
-		var url = '<%=contextPath%>/zipcheck.cu';
-		window.open(url, 'mywin','height=500,width=650,statusbar=yes,scrollbars=yes,resizable=no');
-	};
+
+/* ===============================
+휴대폰번호 정규표현식
+===============================
+*/
+$(function(){
+$("#cust_Contact").blur(function() {
+	var regexp = /^[0-9]*$/;
+	var cust_Contact = $('#cust_Contact').val();
+	if( !regexp.test(cust_Contact) ) {
+		$("#check_custContact").text("숫자만 입력해주세요 :p");
+		$("#check_custContact").css('color', 'red');
+		$("#cust-submit").attr("disabled", true);
+		$('#cust_Contact').val('');
+      	$('#cust_Contact').focus();
+} else { 
+       	$("#check_custContact").text("올바른 휴대폰번호 형태입니다 :)");
+		$("#check_custContact").css('color', '#5080BF');
+		$("#cust-submit").attr("disabled", false);
+}
+});
+});	
+
+
+/* ===============================
+비밀번호 정규표현식
+===============================
+*/
+$(function(){
+$("#cust_PW").blur(function() {
+var regexp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+var cust_PW = $('#cust_PW').val();
+if( !regexp.test(cust_PW) ) {
+	$("#check_custPW").text("숫자, 문자, 특수문자 포함 8~15자리 이내로 입력해주세요 :p");
+	$("#check_custPW").css('color', 'red');
+	$("#cust-submit").attr("disabled", true);
+	$('#check_custPW').val('');
+  	$('#check_custPW').focus();
+}if(cust_PW == ""){
+$("#check_custPW").text("비밀번호를 입력해주세요 :)");
+$("#check_custPW").css('color', 'red');
+$("#cust-submit").attr("disabled", true);
+
+}else { 
+   	$("#check_custPW").text("올바른 비밀번호 형태입니다 :)");
+	$("#check_custPW").css('color', '#5080BF');
+	$("#cust-submit").attr("disabled", false);
+}
+});
+});	
+
+
+/* ===============================
+비밀번호 확인 일치 검사
+===============================
+*/
+$(function(){
+$('#cust_PW2').blur(function(){
+	var cust_PW = $('#cust_PW').val();
+	var cust_PW2 = $('#cust_PW2').val();
+   if($('#cust_PW').val() != $('#cust_PW2').val()){
+    	if($('#cust_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
+    		$("#check_custPW2").text("비밀번호가 일치하지 않습니다 :p");
+			$("#check_custPW2").css('color', 'red');
+			$("#cust-submit").attr("disabled", true);	
+    		$('#cust_PW2').val('');
+          	$('#cust_PW2').focus();
+          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
+    		}
+    } else if(cust_PW == ""){ //비밀번호 값이 없는 경우
+    	$('#cust_PW').focus();
+    	$("#check_custPW").text("비밀번호를 입력해주세요 :)");
+    	$("#check_custPW").css('color', 'red');
+    	$("#cust-submit").attr("disabled", true);
+    } else {//비밀번호가 일치하는 경우,
+			$("#check_custPW2").text("비밀번호가 일치합니다 :)");
+ 			$("#check_custPW2").css('color', '#5080BF');
+	    	$("#cust-submit").attr("disabled", false);
+	    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
+    }
+})  	   
+});
+
+
+/* ===============================
+생년월일 정규표현식
+===============================
+*/
+$(function(){
+	$("#cust_Birth").blur(function() {
+		var regExp = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+		var cust_Birth = $('#cust_Birth').val();
+	if(regExp.test(cust_Birth) == false) { //값이 올바른 생년월일 형태가 아닌 경우
+			$("#check_custBirth").text("올바른 생년월일 형태가 아닙니다 :p");
+			$("#check_custBirth").css('color', 'red');
+			$("#cust-submit").attr("disabled", true);
+			$('#cust_Birth').val('');
+          	$('#cust_Birth').focus();
+	} else { //값이 존재하고 올바른 생년월일 형태인 경우(YYMMDD)
+           	$("#check_custBirth").text("올바른 생년월일 형태입니다 :)");
+			$("#check_custBirth").css('color', '#5080BF');
+			$("#cust-submit").attr("disabled", false);
+	}
+});
+});	
+
+/* ===============================
+이름 정규표현식(한글, 영어만)
+===============================
+*/
+$(function(){
+$("#cust_Name").blur(function() {
+	var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/;
+	var cust_Name = $('#cust_Name').val();
+if(regExp.test(cust_Name) == false) {
+		$("#check_custName").text("한글 또는 영어로 입력해주세요 :p");
+		$("#check_custName").css('color', 'red');
+		$("#cust-submit").attr("disabled", true);
+		$('#cust_Name').val('');
+      	$('#cust_Name').focus();
+} else { 
+       	$("#check_custName").text("올바른 이름 형태입니다 :)");
+		$("#check_custName").css('color', '#5080BF');
+		$("#cust-submit").attr("disabled", false);
+}
+});
+});	
+
 </script>
 </head>
 
@@ -99,10 +221,24 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
 							class="form-control" name="cust_PW" id="cust_PW"
-							value="${bean.cust_PW}"> <span class="valid_check"
-							id="err_custPW"></span>
+							value="${bean.cust_PW}"> 
+						<div class="valid_check" id="check_custPW"></div>	
 					</div>
 				</div>
+				
+				<%-- cust_PW2 확인 --------------------------------------------- --%>
+				<div class="form-group wow fadeInDown animated"
+					data-wow-duration="500ms" data-wow-delay=".6s">
+					<label for="cust_PW2" class="col-sm-3" style="text-align: right">
+						비밀번호 확인*
+					</label>
+					<div class="col-sm-6">
+						<input type="password" placeholder="Check Your Password"
+							class="form-control" name="cust_PW2" id="cust_PW2"> 
+							<div class="valid_check" id="check_custPW2"></div>
+					</div>
+				</div>
+								
 				<%-- cust_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -112,7 +248,7 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
 							name="cust_Name" id="cust_Name" value="${bean.cust_Name}">
-						<span class="valid_check" id="err_custName"></span>
+						<div class="valid_check" id="check_custName"></div>
 					</div>
 				</div>
 				<%-- cust_Contact ------------------------------------------------- --%>
@@ -125,8 +261,8 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
 							name="cust_Contact" id="cust_Contact"
-							value="${bean.cust_Contact}"> <span class="valid_check"
-							id="err_custContact"></span>
+							value="${bean.cust_Contact}">
+							<div class="valid_check" id="check_custContact"></div>
 					</div>
 				</div>
 				<%-- cust_Birth ------------------------------------------------- --%>
@@ -138,7 +274,7 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="number" placeholder="YYMMDD" class="form-control"
 							name="cust_Birth" id="cust_Birth" value="${bean.cust_Birth}">
-						<span class="valid_check" id="err_custBirth"></span>
+						<div class="valid_check" id="check_custBirth"></div>
 					</div>
 				</div>
 				<%-- cust_Zipcode & cust_ADR01------------------------------------------------- --%>
@@ -165,7 +301,7 @@ int formright = twelve - formleft;
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
 							value="<spring:message code="customer.findZipcode"/>"
-							onclick="javascript:findZipcode();">
+							onclick='zipCheck();'>
 					</div>
 				</div>
 				<%-- cust_ADR02 ------------------------------------------------- --%>

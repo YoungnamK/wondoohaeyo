@@ -19,35 +19,177 @@ int formright = twelve - formleft;
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${contextPath}/js/custInsert.js"></script>
 <script type="text/javascript">
-	function checkDuplicateId(){ /* 아이디 중복 체크 */	
-		var cust_Email = document.myform.cust_Email.value;
-		if(cust_Email.length < 8){
-			alert('이메일은 최소 8자리 이상이어야 합니다.');
-			document.myform.cust_Email.focus();
-			return false;
+/* ===============================
+[ajax] 이메일 중복검사
+===============================
+*/
+$(document).ready(function(){
+	$("#cust_Email").blur(function() {
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var cust_Email = $('#cust_Email').val();
+		var isCheck = $('#isCheck').val();
+		console.log(cust_Email);
+		$.ajax({
+			url : './idCheck.cu',
+			type : 'get',
+			data: {'cust_Email':cust_Email},
+			contentType: "applictaion/json; charset=utf-8",
+			success : function(data) {
+			console.log("1 = 중복o / 0 = 중복x : "+ data);							
+			if (data == '1') {
+						// 1 : 이메일이 중복되는 문구
+					$("#check_custEmail").text("사용중인 이메일입니다 :p");
+					$("#check_custEmail").css("color", "red");
+					$("#cust-submit").attr("disabled", true);
+			} else {
+						
+				if(cust_Email == ""){
+						$("#check_custEmail").text("이메일을 입력해주세요 :)");
+						$("#check_custEmail").css('color', 'red');
+						$("#cust-submit").attr("disabled", true);
+				} else if(regExp.test(cust_Email) == false) {
+						$("#check_custEmail").text("올바른 이메일 형태가 아닙니다 :p");
+						$("#check_custEmail").css('color', 'red');
+						$("#cust-submit").attr("disabled", true);
+				} else {
+					$("#check_custEmail").text("사용 가능한 이메일입니다 :)");
+	                $("#check_custEmail").css('color', '#5080BF');
+	                $("#sell-submit").attr("disabled", false);
+				}
+			}
+				}, error : function(error) {
+						console.dir(error)
+				}
+			});
+		});
+	});	
+
+/* ===============================
+	휴대폰번호 정규표현식
+===============================
+*/
+$(function(){
+	$("#cust_Contact").blur(function() {
+		var regexp = /^[0-9]*$/;
+		var cust_Contact = $('#cust_Contact').val();
+		if( !regexp.test(cust_Contact) ) {
+			$("#check_custContact").text("숫자만 입력해주세요 :p");
+			$("#check_custContact").css('color', 'red');
+			$("#cust-submit").attr("disabled", true);
+			$('#cust_Contact').val('');
+          	$('#cust_Contact').focus();
+	} else { 
+           	$("#check_custContact").text("올바른 휴대폰번호 형태입니다 :)");
+			$("#check_custContact").css('color', '#5080BF');
+			$("#cust-submit").attr("disabled", false);
+	}
+});
+});	
+
+/* ===============================
+	비밀번호 정규표현식
+===============================
+*/
+$(function(){
+$("#cust_PW").blur(function() {
+	var regexp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	var cust_PW = $('#cust_PW').val();
+	if( !regexp.test(cust_PW) ) {
+		$("#check_custPW").text("숫자, 문자, 특수문자 포함 8~15자리 이내로 입력해주세요 :p");
+		$("#check_custPW").css('color', 'red');
+		$("#cust-submit").attr("disabled", true);
+		$('#check_custPW').val('');
+      	$('#check_custPW').focus();
+}if(cust_PW == ""){
+	$("#check_custPW").text("비밀번호를 입력해주세요 :)");
+	$("#check_custPW").css('color', 'red');
+	$("#cust-submit").attr("disabled", true);
+	
+}else { 
+       	$("#check_custPW").text("올바른 비밀번호 형태입니다 :)");
+		$("#check_custPW").css('color', '#5080BF');
+		$("#cust-submit").attr("disabled", false);
+}
+});
+});	
+
+
+/* ===============================
+	비밀번호 확인 일치 검사
+===============================
+*/
+	$(function(){
+	$('#cust_PW2').blur(function(){
+		var cust_PW = $('#cust_PW').val();
+		var cust_PW2 = $('#cust_PW2').val();
+	   if($('#cust_PW').val() != $('#cust_PW2').val()){
+	    	if($('#cust_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
+	    		$("#check_custPW2").text("비밀번호가 일치하지 않습니다 :p");
+				$("#check_custPW2").css('color', 'red');
+				$("#cust-submit").attr("disabled", true);	
+	    		$('#cust_PW2').val('');
+	          	$('#cust_PW2').focus();
+	          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
+	    		}
+	    } else if(cust_PW == ""){ //비밀번호 값이 없는 경우
+	    	$('#cust_PW').focus();
+	    	$("#check_custPW").text("비밀번호를 입력해주세요 :)");
+	    	$("#check_custPW").css('color', 'red');
+	    	$("#cust-submit").attr("disabled", true);
+	    } else {//비밀번호가 일치하는 경우,
+				$("#check_custPW2").text("비밀번호가 일치합니다 :)");
+	 			$("#check_custPW2").css('color', '#5080BF');
+		    	$("#cust-submit").attr("disabled", false);
+		    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
+	    }
+	})  	   
+});
+
+
+/* ===============================
+	생년월일 정규표현식
+===============================
+*/
+	$(function(){
+		$("#cust_Birth").blur(function() {
+			var regExp = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+			var cust_Birth = $('#cust_Birth').val();
+		if(regExp.test(cust_Birth) == false) { //값이 올바른 생년월일 형태가 아닌 경우
+				$("#check_custBirth").text("올바른 생년월일 형태가 아닙니다 :p");
+				$("#check_custBirth").css('color', 'red');
+				$("#cust-submit").attr("disabled", true);
+				$('#cust_Birth').val('');
+	          	$('#cust_Birth').focus();
+		} else { //값이 존재하고 올바른 생년월일 형태인 경우(YYMMDD)
+	           	$("#check_custBirth").text("올바른 생년월일 형태입니다 :)");
+				$("#check_custBirth").css('color', '#5080BF');
+				$("#cust-submit").attr("disabled", false);
 		}
-		var url = '<%=contextPath%>/idcheck.cu?cust_Email=' + cust_Email ;
-		window.open(url, 'mywin', 'height=150,widht=300');			
-	};
+	});
+});	
 
-	function findZipcode(){ /* 우편 번호 찾기 */
-	// alert('우편 번호 찾기') ;
-	var url = '<%=contextPath%>/zipcheck.cu';
-		window.open(url, 'mywin', 'height=350,width=600,statusbar=yes,scrollbars=yes,resizable=no');
-	};
+/* ===============================
+	이름 정규표현식(한글, 영어만)
+===============================
+*/
+$(function(){
+	$("#cust_Name").blur(function() {
+		var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/;
+		var cust_Name = $('#cust_Name').val();
+	if(regExp.test(cust_Name) == false) {
+			$("#check_custName").text("한글 또는 영어로 입력해주세요 :p");
+			$("#check_custName").css('color', 'red');
+			$("#cust-submit").attr("disabled", true);
+			$('#cust_Name').val('');
+          	$('#cust_Name').focus();
+	} else { 
+           	$("#check_custName").text("올바른 이름 형태입니다 :)");
+			$("#check_custName").css('color', '#5080BF');
+			$("#cust-submit").attr("disabled", false);
+	}
+});
+});	
 
-	function checkForm() { /* 회원 가입 버튼 클릭 */
-		var isCheck = document.myform.isCheck.value;
-		if (isCheck == 'false') {
-			alert('이메일을 중복 체크를 해주세요.');
-			return false;
-		}
-	};
-
-	function isCheckFalse() {
-		/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
-		document.myform.isCheck.value = false;
-	};
 </script>
 </head>
 <body style="padding-bottom: 150px;">
@@ -65,11 +207,8 @@ int formright = twelve - formleft;
 				action="${apppath}/custInsert.cu" class="form-horizontal"
 				role="form" name="myform" onsubmit="return chk_submit();">
 
-				<%-- jsp 주석 : isCheck가 false이면 회원 가입이 불가능합니다. --%>
-				<input type="text" name="isCheck" value="false">
-
 				<!-- hidden으로 변경할 데이터 -->
-				<input type="text" name="cust_Join" value="Y">
+				<input type="hidden" name="cust_Join" value="Y">
 
 				<%-- 프로필사진, cust_Pic ------------------------------------------------- --%>
 				<div class="form-group">
@@ -96,9 +235,10 @@ int formright = twelve - formleft;
 							</div>
 						</div>
 					</div>
+					<!-- 파일 업로드 끝 --------------------------------------------------- -->
 				</div>
-				<!-- 파일 업로드 끝 --------------------------------------------------- -->
-				<%-- cust_Email ------------------------------------------------- --%>
+				
+				<%-- [ajax] cust_Email ---------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Email" class="col-sm-3" style="text-align: right">
@@ -106,16 +246,12 @@ int formright = twelve - formleft;
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control"
-							name="cust_Email" id="cust_Email" value="${cust_Email}"
-							onkeyup="isCheckFalse();" /> <span class="valid_check"
-							id="err_custEmail"></span>
-					</div>
-					<div class="col-sm-3" align="left">
-						<input type="button" class="btn"
-							value="<spring:message code="customer.duplicatedId"/>"
-							onclick="return checkDuplicateId();">
+							name="cust_Email" id="cust_Email" value="${userinfo != null ? userinfo.email : ''}"
+							/> 
+							<div class="valid_check" id="check_custEmail"></div>
 					</div>
 				</div>
+				
 				<%-- cust_PW ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -124,11 +260,25 @@ int formright = twelve - formleft;
 					</label>
 					<div class="col-sm-6">
 						<input type="password" placeholder="Your Password"
-							class="form-control" name="cust_PW" id="cust_PW"
-							value="${cust_PW}"> <span class="valid_check"
-							id="err_custPW"></span>
+							class="form-control" name="cust_PW" id="cust_PW"> 
+							<div class="valid_check" id="check_custPW"></div>
+							
 					</div>
 				</div>
+				
+				<%-- cust_PW2 확인 --------------------------------------------- --%>
+				<div class="form-group wow fadeInDown animated"
+					data-wow-duration="500ms" data-wow-delay=".6s">
+					<label for="cust_PW2" class="col-sm-3" style="text-align: right">
+						비밀번호 확인*
+					</label>
+					<div class="col-sm-6">
+						<input type="password" placeholder="Check Your Password"
+							class="form-control" name="cust_PW2" id="cust_PW2"> 
+							<div class="valid_check" id="check_custPW2"></div>
+					</div>
+				</div>				
+				
 				<%-- cust_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
@@ -137,21 +287,21 @@ int formright = twelve - formleft;
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="cust_Name" id="cust_Name" value="${cust_Name}"> <span
-							class="valid_check" id="err_custName"></span>
+							name="cust_Name" id="cust_Name" value="${userinfo != null ? userinfo.nickname : ''}">
+							<div class="valid_check" id="check_custName"></div>
 					</div>
 				</div>
 				<%-- cust_Contact ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
 					<label for="cust_Contact" class="col-sm-3"
-						style="text-align: right"> <spring:message
-							code="customer.cust_Contact" />*
+						style="text-align: right"> 
+						<spring:message code="customer.cust_Contact" />*
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Contact" class="form-control"
-							name="cust_Contact" id="cust_Contact" value="${cust_Contact}">
-						<span class="valid_check" id="err_custContact"></span>
+							name="cust_Contact" id="cust_Contact">
+						<div class="valid_check" id="check_custContact"></div>
 					</div>
 				</div>
 				<%-- cust_Birth ------------------------------------------------- --%>
@@ -163,33 +313,34 @@ int formright = twelve - formleft;
 					<div class="col-sm-6">
 						<input type="number" placeholder="YYMMDD" class="form-control"
 							name="cust_Birth" id="cust_Birth" value="${cust_Birth}">
-						<span class="valid_check" id="err_custBirth"></span>
+						<div class="valid_check" id="check_custBirth"></div>
 					</div>
 				</div>
-				<%-- cust_Zipcode & cust_ADR01------------------------------------------------- --%>
+				<%-- cust_Zipcode ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"
 					data-wow-duration="500ms" data-wow-delay=".6s">
-					<label for="cust_Zipcode" class="col-sm-3"
-						style="text-align: right"> <spring:message
-							code="customer.cust_ADR01" />
+					<label for="cust_Zipcode" class="col-sm-3" style="text-align: right"> 
+						<spring:message code="customer.cust_ADR01" />
 					</label>
 					<div class="col-sm-2">
 						<input type="text" placeholder="Zipcode" class="form-control"
 							name="fakecust_Zipcode" id="fakecust_Zipcode"
-							value="${cust_Zipcode}" disabled="disabled"> <input
-							type="hidden" name="cust_Zipcode" id="cust_Zipcode"
+							value="${cust_Zipcode}" disabled="disabled"> 
+							<input type="hidden" name="cust_Zipcode" id="cust_Zipcode"
 							value="${cust_Zipcode}">
 					</div>
+					<%-- cust_ADR01 ------------------------------------------------- --%>
 					<div class="col-sm-4">
 						<input type="text" placeholder="Your Address" class="form-control"
 							name="fakecust_ADR01" id="fakecust_ADR01" value="${cust_ADR01}"
-							disabled="disabled"> <input type="hidden" id="cust_ADR01"
-							name="cust_ADR01" style="text-align: left">
+							disabled="disabled"> 
+							<input type="hidden" id="cust_ADR01" name="cust_ADR01" style="text-align: left">
 					</div>
+					<!-- 우편번호 찿기 버튼 -->
 					<div class="col-sm-3" align="left">
 						<input type="button" class="btn"
 							value="<spring:message code="customer.findZipcode"/>"
-							onclick="javascript:findZipcode();">
+							onclick='zipCheck();'>
 					</div>
 				</div>
 				<%-- cust_ADR02 ------------------------------------------------- --%>
@@ -212,7 +363,7 @@ int formright = twelve - formleft;
 					</p>
 					<button type="submit" id="cust-submit" class="submit"
 						data-toggle="modal" data-target="#myModal"
-						onclick="return checkForm();">동의하고 가입하기</button>
+						>동의하고 가입하기</button>
 				</div>
 			</form>
 			<%-- form태그 시작 ------------------------------------------------- --%>

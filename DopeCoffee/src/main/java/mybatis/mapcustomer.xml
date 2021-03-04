@@ -101,6 +101,9 @@
 		where cust_Email = #{cust_Email}
 	</update>
 	
-	
+	<select id="CountData" resultType="Integer">
+		select count(*) as cnt from customers 
+		where cust_Email = #{cust_Email}
+	</select>
 
 </mapper>

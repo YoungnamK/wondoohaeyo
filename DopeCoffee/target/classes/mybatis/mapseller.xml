@@ -102,6 +102,10 @@
 		sell_Pic = #{sell_Pic}
 		where sell_Email = #{sell_Email}
 	</update>
-	
+
+	<select id="CountData" resultType="Integer">
+		select count(*) as cnt from sellers 
+		where sell_Email = #{sell_Email}
+	</select>
 	
 </mapper>

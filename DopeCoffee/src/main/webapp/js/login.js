@@ -9,9 +9,10 @@
 		var cust_PW = $('#cust_PW').val();
 		if(cust_Email == '' || cust_PW == ''){
 			$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
-			$('#modal-body').text('입력한 값을 확인하세요!');
+			$('#modal-body').text('입력한 값을 확인하세요!');			
 			return false;
 		} else {
+			$('#loginbtn').removeAttr("data-toggle");
 			return true; 
 			}
 	}
@@ -24,6 +25,7 @@
 			$('#modal-body').text('입력한 값을 확인하세요!');
 			return false;
 		} else {
+			$('#loginbtn').removeAttr("data-toggle");
 			return true;
 			}
 	}	

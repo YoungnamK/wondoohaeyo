@@ -75,20 +75,18 @@ int formright = twelve - formleft;
 				<tbody>
 					<c:forEach var="bean" items="${requestScope.lists}">
 						<tr>
-							<td><a
-								href="${contextPath}/sellApp.se?sell_Email=${bean.sell_Email}">
+							<td><a href="${contextPath}/sellApp.se?sell_Email=${bean.sell_Email}">
 									${bean.sell_Status}</a></td>
 							<td>${bean.sell_Email}</td>
-							<td><a
-								href="${contextPath}/sellUpdate.se?sell_Email=${bean.sell_Email}">
+							<td><a href="${contextPath}/sellUpdate.se?sell_Email=${bean.sell_Email}">
 									${bean.sell_Name} </a></td>
 							<td>${bean.sell_Contact}</td>
-							<td><c:if test="${bean.License == 0}"> </c:if></td>
-							<td><c:if test="${bean.License != 0}">${bean.sell_License}</c:if></td>
+							<!-- <td><c:if test="${bean.sell_License == 0}"> </c:if></td> -->
+							<td><c:if test="${bean.sell_License != 0}">${bean.sell_License}</c:if></td>
 							<td><c:if test="${not empty bean.sell_Pic}">
 									<a href="./upload/${bean.sell_Pic}" data-fancybox
-										data-caption="캡션" class="fancybox-img"> <img
-										src="./upload/${bean.sell_Pic}" class="img-responsive"
+										data-caption="캡션" class="fancybox-img" target="_blank"> 
+										<img src="./upload/${bean.sell_Pic}" class="img-responsive"
 										width="50" height="50" alt="${bean.sell_Pic}"></a>
 								</c:if></td>
 						</tr>

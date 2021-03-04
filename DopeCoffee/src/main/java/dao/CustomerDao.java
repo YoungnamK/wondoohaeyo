@@ -90,9 +90,9 @@ public class CustomerDao {
 		return this.abcd.delete(namespace + "DeleteData", bean.getCust_Email());
 	}
 
-
-
-
+	public int Count(String cust_Email) {
+		return this.abcd.selectOne(namespace + "CountData", cust_Email);	
+	}
 
 	
 }

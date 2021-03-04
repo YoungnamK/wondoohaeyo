@@ -88,19 +88,22 @@ public class SellAppController extends SuperClass{
 				multi.transferTo(target);
 				
 				seller.setSell_Pic(target.getName());
+				seller.setSell_Status("대기중");
 				int cnt =-999999;
 				cnt = this.sdao.UpdateSellApp(seller) ;
 				
 				mav.setViewName(this.redirect);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-				mav.setViewName("");
-			}catch (Exception e) {
-				e.printStackTrace();
-				this.mav.setViewName(this.redirect);
-			}
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+					mav.setViewName("");
+				}catch (Exception e) {
+					e.printStackTrace();
+					this.mav.setViewName(this.redirect);
+				}
 			}else {
 				seller.setSell_Pic(oldimg);
+				seller.setSell_Status("대기중");
+
 				int cnt =-999999;
 				cnt = this.sdao.UpdateSellApp(seller) ;
 				mav.setViewName(this.redirect);
