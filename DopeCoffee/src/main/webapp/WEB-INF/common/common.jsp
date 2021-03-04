@@ -243,7 +243,7 @@ int twelve = 12;
 									<ul>
 										<li><a href="${contextPath}/adminApp.cu">사업자 권한 승인</a></li>
 										<li><a href="${contextPath}/adminList.cu">전체 회원 관리</a></li>
-										<li><a href="${contextPath}/adminorderlist.odc">원데이 클래스 전체 결제내역</a></li>
+										<li><a href="${contextPath}/onedayAdminOrderlist.odc">원데이 클래스 <br>전체 결제내역</a></li>
 										<li><a href="${contextPath}/adminorderlist.pm">상품 전체
 												결제내역</a></li>
 									</ul>

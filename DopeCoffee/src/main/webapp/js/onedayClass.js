@@ -1225,3 +1225,14 @@ function onedayCancle(){
 	location.href = getContextPath() + "/onedayCustCancle.odc?onedayorder_seq=" + onedayorder_seq;
 }
 
+
+/*============================
+	원데이 클래스 사업자용 결제 취소 
+================================*/
+function onedaySellCancle(){
+	var onedayorder_seq = $('#onedayorder_seq').val();
+	
+	console.log(onedayorder_seq);
+	
+	location.href = getContextPath() + "/onedaySellCancle.odc?onedayorder_seq=" + onedayorder_seq;
+}

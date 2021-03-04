@@ -85,7 +85,10 @@
 								                    <td>${bean.cust_contact}</td>
 								                    <td>${bean.realtime}</td>
 								                    <td>
-								                    	<a class="management_css" href="${contextPath}/onedaySellCancle.odc?onedayorder_seq=${onedayorder_seq}">삭제</a>
+								                    	<input type="hidden" id="onedayorder_seq" value="${bean.onedayorder_seq}">
+								                    	<p class="management_css" data-toggle="modal" data-target="#myModal">
+								                    		수강 취소
+								                    	</p>
 								                    </td>
 							                	</tr>
 							            </c:forEach>  
@@ -95,7 +98,11 @@
 							       
 							         
 							      </table>
-							      
+							      <hr>
+									<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
+									data-wow-delay="1.2s">※ 사업자는 당일 수업 취소가 가능합니다.
+										<br>&nbsp;&nbsp;&nbsp;(단, 날짜가 경과된 수업은 취소가 불가능합니다.)
+									</p>
 							      <%-- 결제 목록의 하단 부분 -------------------------------------------------------%>
 						           <div align="center">
 										<footer>${requestScope.pagingHtml}</footer>
@@ -118,15 +125,18 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 id="modal-title" class="modal-title" style="font-size: 35px">
+							<i class="fas fa-exclamation-circle"></i>
 						</h4>
 					</div>
 					<div class="modal-body">
 						<p id="modal-body" style="font-size: 13px">
+							회원이 수업 참여를 할 수 없습니다. 
+							<br>정말 취소 하시겠습니까?
 						</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px">예</button>
+							style="font-size: 13px" onclick="onedaySellCancle();">예</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							style="font-size: 13px">아니오</button>
 					</div>

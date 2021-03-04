@@ -1205,6 +1205,7 @@ table td a , table td a:hover{
 
 /* 원데이 클래스 결제 상세(사업자용) */
 .management_css {
+	cursor: pointer !important;
 	font-size: 13px !important;
 	border-radius: 20px;
     background-color: #84C1D9;

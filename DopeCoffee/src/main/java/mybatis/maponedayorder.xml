@@ -137,4 +137,47 @@
 		order by booktime asc
 	</select>
 	
+	<!-- 원데이 클래스 관리자용 전체 결제 내역 테이블 갯수 구하기 -->
+	<!-- 검색 조건은 예약일자 , 예약 시간 , 클래스 코드 , 회원이메일 , 사업자 이메일 -->
+	<select id="SelectAdminTotalCount" resultType="Integer" parameterType="String">
+		select count(*) from onedayorders
+		<if test="mode == 'bookdate'">
+			where bookdate like #{keyword}
+		</if>
+		<if test="mode == 'booktime'">
+			where booktime like #{keyword}
+		</if>
+		<if test="mode == 'code'">
+			where code like #{keyword}
+		</if>
+		<if test="mode == 'cust_email'">
+			where cust_email like #{keyword}
+		</if>
+		<if test="mode == 'sell_email'">
+			where sell_email like #{keyword}
+		</if>
+	</select>
+	
+	<!-- 원데이 클래스 관리자용 전체 결제 내역 테이블 갯수 구하기 -->
+	<!-- 검색 조건은 예약일자 , 예약 시간 , 클래스 코드 , 회원이메일 , 사업자 이메일 -->
+	<select id="SelectAdminAllData" resultType="MyOnedayorder" parameterType="String">
+		<include refid="basic_select"/>
+		<if test="mode == 'bookdate'">
+			where bookdate like #{keyword}
+		</if>
+		<if test="mode == 'booktime'">
+			where booktime like #{keyword}
+		</if>
+		<if test="mode == 'code'">
+			where code like #{keyword}
+		</if>
+		<if test="mode == 'cust_email'">
+			where cust_email like #{keyword}
+		</if>
+		<if test="mode == 'sell_email'">
+			where sell_email like #{keyword}
+		</if>
+		order by bookdate asc , booktime asc
+	</select>
+	
 </mapper>

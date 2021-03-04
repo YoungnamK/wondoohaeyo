@@ -46,17 +46,16 @@ public class OnedayOrderDao {
 		cnt = this.sql_session.update(this.namespace + "UpdateRemarkData", map);
 		return cnt;
 	}
-	
-	
+
 	public int DuplCodeCheck(OnedayOrder bean) {
-		// 원데이 클래스 결제 케이블에 중복 값이 있는 지 체크 
-		// 사용자가 선택한 클래스 코드가 결제 테이블에 있는 지 중복 체크 
+		// 원데이 클래스 결제 케이블에 중복 값이 있는 지 체크
+		// 사용자가 선택한 클래스 코드가 결제 테이블에 있는 지 중복 체크
 		// 조건 1. ! 클래스 코드
-		// dupl_code 값이 1이면 예약 가능 , 0이면 아래 조건을 순차적으로 체크 
+		// dupl_code 값이 1이면 예약 가능 , 0이면 아래 조건을 순차적으로 체크
 		int dupl_code = -1;
-		
+
 		dupl_code = this.sql_session.selectOne(this.namespace + "DuplCodeCheck", bean);
-		
+
 		return dupl_code;
 	}
 
@@ -95,7 +94,7 @@ public class OnedayOrderDao {
 		int dupl_time = -1;
 
 		dupl_time = this.sql_session.selectOne(this.namespace + "DuplTimeCheck", bean);
-		
+
 		return dupl_time;
 	}
 
@@ -135,7 +134,7 @@ public class OnedayOrderDao {
 	}
 
 	public int DeleteData(int onedayorder_seq) {
-		// 회원용 결제 취소하기 
+		// 회원용 결제 취소하기
 		int cnt = this.sql_session.delete(this.namespace + "DeleteData", onedayorder_seq);
 		return cnt;
 	}
@@ -146,9 +145,9 @@ public class OnedayOrderDao {
 		map.put("sell_email", sell_email);
 		map.put("mode", mode);
 		map.put("keyword", keyword);
-		
+
 		int cnt = this.sql_session.selectOne(this.namespace + "SelectSellTotalCount", map);
-		
+
 		return cnt;
 	}
 
@@ -168,36 +167,61 @@ public class OnedayOrderDao {
 	}
 
 	public int SelectSellDetailCount(String code, String bookdate, String mode, String keyword) {
-		// 원데이 클래스 사업자용 결제 상세 테이블 갯수 구하기 
+		// 원데이 클래스 사업자용 결제 상세 테이블 갯수 구하기
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("code", code);
 		map.put("bookdate", bookdate);
 		map.put("mode", mode);
 		map.put("keyword", keyword);
-		
+
 		int cnt = -1;
-		
+
 		cnt = this.sql_session.selectOne(this.namespace + "SelectSellDetailCount", map);
-		
+
 		return cnt;
 	}
 
 	public List<OnedayOrder> SelectSellDetailAllData(String code, String bookdate, int offset, int limit, String mode,
 			String keyword) {
-		// 원데이 클래스 사업자용 결제 상세 목록 보기 
+		// 원데이 클래스 사업자용 결제 상세 목록 보기
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("code", code);
 		map.put("bookdate", bookdate);
 		map.put("mode", mode);
 		map.put("keyword", keyword);
-		
+
 		RowBounds rowbounds = new RowBounds(offset, limit);
-		
-		List<OnedayOrder> lists = this.sql_session.selectList(this.namespace + "SelectSellDetailAllData", map, rowbounds);
-		
+
+		List<OnedayOrder> lists = this.sql_session.selectList(this.namespace + "SelectSellDetailAllData", map,
+				rowbounds);
+
 		return lists;
 	}
 
-	
+	public int SelectAdminTotalCount(String mode, String keyword) {
+		// 원데이 클래스 관리자용 결제 테이블 갯수 구하기
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("mode", mode);
+		map.put("keyword", keyword);
+
+		int cnt = -1;
+		
+		cnt = this.sql_session.selectOne(this.namespace + "SelectAdminTotalCount", map);
+		
+		return cnt;
+	}
+
+	public List<OnedayOrder> SelectAdminAllData(int offset, int limit, String mode, String keyword) {
+		// 원데이 클래스 관리자용 결제 테이블 목록 보기 
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("mode", mode);
+		map.put("keyword", keyword);
+		
+		RowBounds rowbounds = new RowBounds(offset, limit);
+		
+		List<OnedayOrder> lists = this.sql_session.selectList(this.namespace + "SelectAdminAllData",map,rowbounds);
+		
+		return lists;
+	}
 
 }
