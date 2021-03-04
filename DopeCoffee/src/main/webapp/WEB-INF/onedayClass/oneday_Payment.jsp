@@ -10,9 +10,19 @@
 	<title>원데이 클래스 예약 정보</title>
 	<script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
 	<link rel="stylesheet" href="${contextPath}/css/onedayClass.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body onload="today();">
 	<section id="contact-section">
+		<%-- =======================================
+			PG사 결제에 필요한 파라미터 [시작]
+		===============================================--%>
+		<input type="hidden" id="cust_Name" name="cust_Name" value="${customer.cust_Name}">
+		<input type="hidden" id="cust_Contact" name="cust_Contact" value="${customer.cust_Contact}">
+		<%-- =======================================
+			PG사 결제에 필요한 파라미터 [끝]
+		===============================================--%>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -20,6 +30,7 @@
 						<div class="top">
 							<h2 class="subtitle subtitle_css wow fadeInDown" data-wow-duration="500ms"
 								data-wow-delay="0.3s">원데이 클래스 수업 신청</h2>
+						
 							<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
 								data-wow-delay="0.6s">${customer.cust_Name}님의 수업 신청 내역을 확인하세요!</p>
 						</div>
@@ -108,9 +119,9 @@
 														결제금액
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
-													value="${totalprice}">
+													value="100">
 													<input type="hidden" class="input_data form-control" id="totalprice" name="totalprice"
-													value="${totalprice}">
+													value="100">
 												</div>
 											</li>
 										</ul>
@@ -125,7 +136,7 @@
 									</div>
 									<div class="submit_detail">
 										<input type="submit" id="pay" class="btn-send" value="결제 하기">
-										<input type="submit" id="kakaopay" class="btn-send" value="KAKAO PAY"> 
+										<input type="button" id="kakaopay" class="btn-send" value="KAKAO PAY" onclick="payment();"> 
 										<input type="submit" id="naverpay" class="btn-send" value="NAVER PAY">
 									</div>
 								</form>

@@ -2,11 +2,9 @@ package onedayClass.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +27,10 @@ public class OnedayClassCodeCheckController {
 
 		String result = null;
 		if (cnt == 1) {
+			System.out.println("클래스 코드 중복");
 			result = "1";
 		} else {
+			System.out.println("클래스 코드 중복안됨");
 			result = "0";
 		}
 		System.out.println(result);

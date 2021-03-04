@@ -210,9 +210,12 @@ public class OnedayClassPaymentController extends SuperClass {
 	@PostMapping(value = command)
 	public ModelAndView doPost(@RequestParam(value = "code") String code,
 			@RequestParam(value = "cust_email") String cust_email,
-			@RequestParam(value = "sell_email") String sell_email, @RequestParam(value = "bookdate") String bookdate,
-			@RequestParam(value = "booktime") String booktime, @RequestParam(value = "person") String person,
-			@RequestParam(value = "totalprice") String totalprice, HttpServletRequest request) {
+			@RequestParam(value = "sell_email") String sell_email, 
+			@RequestParam(value = "bookdate") String bookdate,
+			@RequestParam(value = "booktime") String booktime, 
+			@RequestParam(value = "person") String person,
+			@RequestParam(value = "totalprice") String totalprice, 
+			HttpServletRequest request) {
 		OnedayOrder bean = new OnedayOrder();
 
 		bean.setBookdate(bookdate);
