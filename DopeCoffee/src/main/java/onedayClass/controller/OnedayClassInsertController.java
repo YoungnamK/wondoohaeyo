@@ -39,7 +39,7 @@ public class OnedayClassInsertController extends SuperClass {
 
 		Seller bean = (Seller) session.getAttribute("loginfo_seller");
 
-		if (bean.getSell_Status().equals("승인")) {
+		if (bean.getSell_Status().contains("승인")) {
 
 			System.out.println("승인된 사업자");
 			return get_gotopage;
@@ -49,7 +49,7 @@ public class OnedayClassInsertController extends SuperClass {
 			System.out.println("관리자 승인 여부 : " + bean.getSell_Status());
 			System.out.println("승인 안된 사업자"); 
 			// 에러 메세지 바인딩
-			session.setAttribute("message", "원데이 클래스 등록 권한이 없습니다. <br> 관리자에게 문의하세요.");
+			session.setAttribute("message", "수업 등록 전 관리자 승인이 필요합니다!");
 			
 			return "redirect:/sellApp.se?sell_Email=" + bean.getSell_Email();
 		}
@@ -104,12 +104,15 @@ public class OnedayClassInsertController extends SuperClass {
 
 			int cnt = -1;
 			cnt = this.onedayDao.InsertData(oneday);
-
+			
+			HttpSession session = request.getSession();
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 등록 성공");
+				session.setAttribute("message", "정상적으로 둥록이 완료 되었습니다!");
 				mav.setViewName(redirect);
 			} else {
 				System.out.println("원데이 클래스 등록 실패");
+				session.setAttribute("message", " 등록 실패! <br>원데이 클래스 수업 등록이 실패되었습니다.");
 				mav.setViewName(get_gotopage);
 			}
 

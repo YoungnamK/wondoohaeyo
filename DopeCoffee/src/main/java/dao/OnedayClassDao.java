@@ -74,10 +74,14 @@ public class OnedayClassDao {
 		return cnt;
 	}
 
-	public int DeleteData(String code) {
+	public int DeleteData(String code, int oneday_seq) {
 		// 원데이 클래스 삭제
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("oneday_seq", oneday_seq);
+		
 		int cnt = -1;
-		cnt = this.sql_session.delete(this.namespace + "DeleteData", code);
+		cnt = this.sql_session.delete(this.namespace + "DeleteData", map);
 		return cnt;
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="./../common/common.jsp"%>
 
 <!DOCTYPE html>
@@ -48,44 +49,48 @@
             </form>
             <%-- ==== 끝 ==== --%>
 			<p id="list_top">${requestScope.totalCount}개의 수업</p>
-			<c:forEach var="bean" items="${requestScope.lists}">
-				<div class="col">
-					<div class="col-sm-4">
-					<!-- 검색 모드에서 활용 [시작]-->
-						<input type="hidden" value="${bean.address1}"> <!-- 주소 지역 -->
-						<input type="hidden" value="${bean.sell_email}"> <!-- 사업자 이메일 -->
-					<!-- 검색 모드에서 활용 [끝] -->
-						<input type="hidden" id="code" value="${bean.code}"> <!-- 코드  -->
-						<figure class="wow fadeInLeft animated portfolio-item"
-							data-wow-duration="500ms" data-wow-delay="0ms">
-							<div class="img-wrapper">
-								<img src="./upload/${bean.main_image}" class="img-responsive" alt="image">
-								<div class="overlay">
-									<div class="buttons">
-										<a href="${contextPath}/onedayDetail.odc?code=${bean.code}">자세히 보기</a>
-										<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
-											<a href="${contextPath}/onedayUpdate.odc?code=${bean.code}">수정</a>
-											<a data-toggle="modal" data-target="#myModal">삭제</a>
-										</c:if>
+					<div class="row">
+						<c:forEach var="bean" items="${requestScope.lists}">
+							<div class="col-md-4">
+							<!-- 검색 모드에서 활용 [시작]-->
+								<input type="hidden" value="${bean.address1}"> <!-- 주소 지역 -->
+								<input type="hidden" value="${bean.sell_email}"> <!-- 사업자 이메일 -->
+								
+							<!-- 검색 모드에서 활용 [끝] -->
+								<input type="hidden" id="code" value="${bean.code}"> <!-- 코드  -->
+								<input type="hidden" id="oneday_seq" value="${bean.oneday_seq}"> <!--  시퀀스 -->
+								<figure class="wow fadeInLeft animated portfolio-item"
+									data-wow-duration="500ms" data-wow-delay="0ms">
+									<div class="img-wrapper">
+										<img src="./upload/${bean.main_image}" class="img-responsive" alt="image">
+										<div class="overlay">
+											<div class="buttons">
+												<a href="${contextPath}/onedayDetail.odc?code=${bean.code}">자세히 보기</a>
+												<c:if test="${bean.sell_email eq sessionScope.loginfo_seller.sell_Email}"> 
+													<a href="${contextPath}/onedayUpdate.odc?code=${bean.code}">수정</a>
+													<a data-toggle="modal" data-target="#myModal">삭제</a>
+												</c:if>
+											</div>
+										</div>
 									</div>
-								</div>
+									<figcaption>
+										<h4>
+											<a href="#detail.jsp">${bean.classname}</a>
+										</h4>
+										<div class="list_bottom">
+											<p id="list_price">
+												<i class="fas fa-won-sign"></i>&nbsp;<fmt:formatNumber pattern="###,###" value="${bean.oneprice}"/> 
+											</p>
+											<p class="list_person">최대 ${bean.person}명</p>
+										</div>
+									</figcaption>
+								</figure>
+								<br>
+								<br>
 							</div>
-							<figcaption>
-								<h4>
-									<a href="#detail.jsp">${bean.classname}</a>
-								</h4>
-								<div class="list_bottom">
-									<p id="list_price">
-										<i class="fas fa-won-sign"></i>&nbsp;${bean.oneprice}
-									</p>
-									<p class="list_person">최대 ${bean.person}명</p>
-								</div>
-							</figcaption>
-						</figure>
-					</div>
+						</c:forEach>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
 		<div align="center">
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>	

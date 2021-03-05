@@ -16,44 +16,9 @@ int formright = twelve - formleft;
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/sellApp-style.css">
 <script type="text/javascript" src="${contextPath}/js/sellApp.js"></script>
-<script type="text/javascript">
-
-/* ===============================
-사업자번호 정규표현식 (숫자만)
-===============================
-*/
-/* $(function(){
-$("#sell_License").blur(function() {
-	var regexp = /^[0-9]*$/;
-	var sell_License = $('#sell_License').val();
-	if( !regexp.test(sell_License) ) {
-		$("#check_sellLicense").text("숫자만 입력해주세요 :p");
-		$("#check_sellLicense").css('color', 'red');
-		$("#submit").attr("disabled", true);
-		$('#sell_License').val('');
-      	$('#sell_License').focus();
-	} else { 
-       	$("#check_sellLicense").text("올바른 사업자번호 형태입니다 :)");
-		$("#check_sellLicense").css('color', '#5080BF');
-		$("#submit").attr("disabled", false);
-}
-});
-});	 */
-
-/* ===============================
-sell_Status 상태가 '승인'이면, submit버튼 비활성화
-===============================
-*/
-
-statusbtn()
-document.getElementById("sell_Status").value = "대기중";
-
-</script>
 
 </head>
 <body style="padding-bottom: 150px;">
-	<script class="jsbin"
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<div class="panel" align="center">
 		<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
 			data-wow-delay="0.3s">사업자 승인 신청</h2>

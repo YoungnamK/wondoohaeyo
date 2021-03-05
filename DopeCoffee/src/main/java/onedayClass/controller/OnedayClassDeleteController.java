@@ -1,5 +1,8 @@
 package onedayClass.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,24 +37,31 @@ public class OnedayClassDeleteController extends SuperClass{
 
 	@GetMapping(value = command)
 	public String doGet(
-			@RequestParam(value = "code") String code) {
-		System.out.println("나 호출됨");
+			@RequestParam(value = "code" , required = true) String code,
+			@RequestParam(value = "oneday_seq") String oneday_seq,
+			HttpServletRequest request) {
 		
-		int cnt = -1; 
+		HttpSession session = request.getSession();
+		
+		int cnt = -1; // 원데이 클래스 결제 테이블 remark 컬럼 수정 시 사용 
 		cnt = this.orderDao.UpdateRemarkData(code); // 원데이 클래스 결제 테이블 remark 수정 
 		
-		if (cnt > 0) {
-			System.out.println("원데이 결제 테이블 비고 컬럼 수정 성공");
-			cnt = -1; // 초기화
-			cnt = this.onedayDao.DeleteData(code); // 원데이 클래스 테이블 삭제
-		}
 		
-		if (cnt > 0) {
+		int count = -1; // 원데이 클래스 테이블 삭제 시 사용
+		
+		System.out.println("원데이 결제 테이블 비고 컬럼 수정 성공");
+		
+		int _oneday_seq = Integer.parseInt(oneday_seq); 
+		
+		count = this.onedayDao.DeleteData(code , _oneday_seq); // 원데이 클래스 테이블 삭제
+		
+		if (count > 0) {
 			System.out.println("원데이 클래스 삭제 성공");
+			session.setAttribute("message", "정상적으로 삭제가 완료되었습니다!");
 		}else {
 			System.out.println("원데이 클래스 삭제 실패");
+			session.setAttribute("message", "삭제 실패! <br>원데이 클래스 수업이 삭제되지 않았습니다.");
 		}
-		
 		return redirect;
 	}
 	

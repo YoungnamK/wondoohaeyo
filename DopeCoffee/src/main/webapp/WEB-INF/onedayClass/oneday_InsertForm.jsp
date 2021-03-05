@@ -8,10 +8,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>원데이 클래스 등록</title>
-    <script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
-    <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">    
+    <script type="text/javascript" src="${contextPath}/js/onedayInsert.js"></script>
+    <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">   
+    <script type="text/javascript">
+    	
+    </script> 
 </head>
-<body onload="today();">
+<body>
 	<section id="contact-section">
 		<div class="container">
 			<div class="row">
@@ -165,9 +168,7 @@
                                                     	<div class="column_name">
 	                                                    	<spring:message code="oneday.content"/>
 	                                                    </div>
-                                                        <textarea class="form-control" id="content" name="content" placeholder="상품 설명">
-                                                        	 ${bean.content}
-                                                        </textarea>
+                                                        <textarea class="form-control" id="content" name="content" placeholder="상품 설명">${bean.content}</textarea>
                                                         <span class="valid_check" id="err_content"></span>
                                                     </div>
                                                     <ul class="list-inline pull-right">
@@ -183,7 +184,7 @@
 	                                                    	<spring:message code="oneday.startdate"/>
 	                                                    </div>
                                                         <input type="text" disabled="disabled" class="form-control" placeholder="오픈일자" 
-                                                        id="fake-startdate" name="fake-startdate">
+                                                        id="fake-startdate" name="fake-startdate" onload="startdate_loading();">
                                                         <input type="hidden" class="form-control" id="startdate" name="startdate" >
                                                     </div>
                                                     <!-- ------------------------------------- [마감일자 enddate section]--------------------------------------- -->
@@ -333,7 +334,7 @@
                                                     </ul>
                                                     <div id="submit">
                                                     	<input type="submit" id="contact-submit" class="btn btn-default btn-send" value="<spring:message code="oneday.Insertbtn"/>" 
-                                                    	data-toggle="modal" data-target="#myModal" onclick="return submitCheck();">
+                                                    	onclick="return submitCheck();">
                                                     </div>
                                                 </div>
                                                 

@@ -122,8 +122,7 @@ int twelve = 12;
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 아이콘 사용 -->
-<script src="https://kit.fontawesome.com/0bccbc6608.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/0bccbc6608.js" crossorigin="anonymous"></script>
 
 
 <!-- 에러 메세지를 담을 모달 띄우기 -->
@@ -263,7 +262,6 @@ int twelve = 12;
               에러 메세지를 담아주는 modal 부분 [시작]
         	=========================================     
         --%>
-
 	<c:if test="${not empty sessionScope.message}">
 		<div class="container">
 			<input type="hidden" id="modal_popup" value="${sessionScope.message}">
@@ -302,7 +300,7 @@ int twelve = 12;
 		if (modal_popup != '') {
 			$('#modal_pop').modal();
 		}
-<%session.removeAttribute("message");%>
+	<%session.removeAttribute("message");%>
 	}
 </script>
 

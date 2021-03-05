@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>원데이 클래스 수정</title>
-    <script type="text/javascript" src="${contextPath}/js/onedayClass.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/onedayInsert.js"></script>
     <link rel="stylesheet" href="${contextPath}/css/onedayClass.css">    
 </head>
 <body onload="today();">
@@ -76,6 +76,7 @@
                                         <form id="contact-form" method="post" action="${contextPath}/onedayUpdate.odc" role="form" enctype="multipart/form-data">
                                             <input type="hidden" id="isCheck" class="isCheck" name="isCheck" value="false">
                                             <input type="hidden" id="sell_email" name="sell_email" value="${sessionScope.loginfo_seller.sell_Email}">
+                                            <input type="hidden" id="oneday_seq" name="oneday_seq" value="${bean.oneday_seq}">
                                             <div class="tab-content">
                                                 <!-- step1 -->
                                                 <div class="tab-pane active  wow fadeInDown"  data-wow-duration="500ms" data-wow-delay="0.6s" role="tabpanel" id="step1">
@@ -182,9 +183,7 @@
                                                     	<div class="column_name">
 	                                                    	<spring:message code="oneday.content"/>
 	                                                    </div>
-                                                        <textarea class="form-control" id="content" name="content" placeholder="상품 설명">
-                                                        	 ${bean.content}
-                                                        </textarea>
+                                                        <textarea class="form-control" id="content" name="content" placeholder="상품 설명">${bean.content}</textarea>
                                                         <span class="valid_check" id="err_content"></span>
                                                     </div>
                                                     <ul class="list-inline pull-right">

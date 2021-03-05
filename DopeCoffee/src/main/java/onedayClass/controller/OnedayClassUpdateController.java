@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,10 +36,13 @@ public class OnedayClassUpdateController extends SuperClass {
 	}
 
 	@GetMapping(value = command)
-	public ModelAndView doGet(@RequestParam(value = "code") String code) {
+	public ModelAndView doGet(
+			@RequestParam(value = "code", required = true) String code) {
 
 		OnedayClass bean = this.onedayDao.SelectOneData(code);
 
+		System.out.println(bean);
+		
 		mav.addObject("bean", bean);
 		mav.setViewName(super.getpage);
 
@@ -91,11 +95,15 @@ public class OnedayClassUpdateController extends SuperClass {
 
 			int cnt = -1;
 			cnt = this.onedayDao.UpdateData(oneday);
-
+			
+			HttpSession session = request.getSession();
+			
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 수정 성공");
+				session.setAttribute("message", "정상적으로 수정이 완료되었습니다!");
 				mav.setViewName("redirect:/onedayList.odc");
 			} else {
+				session.setAttribute("message", "수정 실패! <br>원데이 클래스 수업 수정이 실패되었습니다.");
 				System.out.println("원데이 클래스 수정 실패");
 				mav.setViewName(super.getpage);
 			}
