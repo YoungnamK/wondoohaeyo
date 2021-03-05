@@ -17,7 +17,7 @@
 	<select id="SelectDataList" resultType="MyNotice">
 		select num, writer, title, content, image, readhit,
 		to_char(regdate,'YYYY-MM-DD') regdate, fix,
-		remark
+		remark, (select count(*) from comments where num=no) as comcount 
 		from notice 
 		<if test="mode == 'title'">
 			where title like #{keyword} 

@@ -144,8 +144,8 @@ th{
 	                <tr>
 	                    <td>
 		                    <a href="<%=contextPath%>/nodetail.no?num=${bean.num}&${requestScope.parameters}">
-		                    	<c:if test="${bean.fix==0 }">${bean.title }</c:if>
-		                    	<c:if test="${bean.fix==1 }"><div style="color:red;">${bean.title }</div></c:if>
+		                    	<c:if test="${bean.fix==0 }">${bean.title }<c:if test="${bean.comcount > 0 }"><span style="color: #5080bf;">&nbsp;&nbsp;(${bean.comcount})</span></c:if>  </c:if>
+		                    	<c:if test="${bean.fix==1 }"><div style="color:red;">${bean.title }<c:if test="${bean.comcount > 0 }"><span style="color: #5080bf;">&nbsp;&nbsp;(${bean.comcount})</span></c:if>  </div></c:if>
 		                    </a>
 	                    </td>
 	                    <td>관리자</td>

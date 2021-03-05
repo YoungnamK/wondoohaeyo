@@ -13,7 +13,18 @@ public class Notice {
 	private int fix;
 	private String remark;
 	
+	private int comcount;
 	
+	
+	
+public int getComcount() {
+		return comcount;
+	}
+
+	public void setComcount(int comcount) {
+		this.comcount = comcount;
+	}
+
 private MultipartFile img ;	
 
 	public MultipartFile getImg() {
