@@ -109,10 +109,21 @@ function today() {
 */
 
 function code_ajax() {
-	var font_color = '#5080BF';
+	
+	// 유효성 검사
 	var code = $('#code').val();
+	var font_color = '#5080BF';
+
+	if (code.length == 0) {
+		$("#err_code").text('클래스 코드를 입력하세요!');
+		$("#err_code").css("color", font_color);
+	}  else {
+		$("#err_code").text('');
+	}
+
 	//alert(code);
 
+	// 중복 ajax 
 	$.ajax({
 		url: '/onedayCodeCheck.odc',
 		type: 'post',
@@ -125,7 +136,18 @@ function code_ajax() {
 				$('#err_code').text('이미 존재하는 클래스 코드입니다. 다른 코드로 지정하세요!' );
 				$('#err_code').css('color', font_color);
 			}else {
-				$('#err_code').text('');
+				if (code.length > 0) {
+					if (code.indexOf('coffee_') == 0 || code.indexOf('pottery_') == 0) {
+						if(code == 'coffee_' || code=='pottery_'){
+							$("#err_code").text('기본 설정 값 다음부터 입력이 가능합니다!');
+							$('#err_code').css('color', font_color);
+						}else{
+							$("#err_code").text('');
+						}
+					} else {
+						$("#err_code").text('기본 설정 값 다음부터 입력이 가능합니다! 주제를 다시 선택하세요.');
+					}
+				}
 			}
 		}, error: function() {
 			console.log("통신 실패-값이 안넘어감");   
@@ -212,25 +234,7 @@ $(document).ready(function() {
 
 
 	// 클래스 코드 
-	$("#code").blur(function() {
-		var code = $('#code').val();
-
-		if (code.length == 0) {
-			$("#err_code").text('클래스 코드를 입력하세요!');
-			$("#err_code").css("color", font_color);
-		} else if (code.length != 0) {
-			if (code.indexOf('coffee_') == 0 || code.indexOf('pottery_') == 0) {
-				$("#err_code").text('');
-			} else {
-				$("#err_code").text('언더바 다음부터 입력이 가능합니다! 주제를 다시 선택하세요.');
-			}
-		} else {
-			$("#err_code").text('');
-		}
-
-
-
-	});
+	// 상단 code_ajax() 함수에서 유효성 검사 진행
 
 	$("#code").keyup(function() {
 		var code = $('#code').val();
@@ -521,7 +525,7 @@ function next_check1() {
 	var address2 = $('#address2').val();
 
 	// step1 단계에서 필수 입력 항목이 null 이면 modal 팝업 처리 
-	if (type == '-' || code == '' || classname == '' ||
+	if (type == '-' || code == '' || code == 'coffee_' || code == 'pottery_' || classname == '' ||
 		person == '' || oneprice == '' || zipcode == '' ||
 		address1 == '' || address2 == '') {
 		$('#isCheck').val('false');

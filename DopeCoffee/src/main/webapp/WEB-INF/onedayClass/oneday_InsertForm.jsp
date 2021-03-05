@@ -98,7 +98,7 @@
                                                     <!-- ------------------------------------- [클래스 코드 code section]--------------------------------------- -->
                                                     <div class="form-group">
                                                     	<div class="column_name">
-                                                    		<spring:message code="oneday.code"/>
+                                                    		<spring:message code="oneday.code"/>&nbsp;&nbsp;<span style="font-weight : normal; color: #727272;" >(* 기본 설정 값 다음 부터 입력하세요.)</span>
                                                     	</div>
                                                         <!-- coffee : c로 시작 / pottery : p로 시작 -->
                                                         <input type="text" class="form-control" id="code" name="code" placeholder="클래스 코드" onblur="code_ajax();">

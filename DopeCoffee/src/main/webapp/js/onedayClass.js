@@ -283,13 +283,16 @@ function getContextPath() {
 	return ctxPath;
 }
 
-function delete_check() {
+// 문제점 : 현재 모달 창으로 대상건을 삭제할 때 list 구조에 의해서 대상건에 맞는 code와 oneday_seq 값을 못 가져옴 
+// 해결 방안 : 모달창으로 확인 여부를 없애고 바로 삭제되게 구현하였음.. 이부분은 추후 수정이 필요해보임 
+/*function delete_check() {
+	
 	var code = $('#code').val();
 	var oneday_seq = $('#oneday_seq').val();
-	alert(oneday_seq);
+	
 	location.href = getContextPath() + "/onedayDelete.odc?code=" + code + "&oneday_seq=" + oneday_seq;
 }
-
+*/
 
 
 /* ===============================  

@@ -36,13 +36,12 @@ public class OnedayClassUpdateController extends SuperClass {
 	}
 
 	@GetMapping(value = command)
-	public ModelAndView doGet(
-			@RequestParam(value = "code", required = true) String code) {
+	public ModelAndView doGet(@RequestParam(value = "code", required = true) String code) {
 
 		OnedayClass bean = this.onedayDao.SelectOneData(code);
 
 		System.out.println(bean);
-		
+
 		mav.addObject("bean", bean);
 		mav.setViewName(super.getpage);
 
@@ -50,10 +49,21 @@ public class OnedayClassUpdateController extends SuperClass {
 	}
 
 	// 유효성 검사는 jsp 단 자바스크립트로 진행하였다.
+	// 이미지 수정 시 기존에 올려 놓은 사진을 지워야한다.
+	// 계속 안지우고 업로드 할 경우 이미지 폴더에 데이터가 계속 쌓이는 문제가 발생함
 	@PostMapping(value = command)
-	public ModelAndView doPost(OnedayClass oneday, HttpServletRequest request) {
-
+	public ModelAndView doPost(OnedayClass oneday, @RequestParam(value = "m_img", required = true) String old_m_img,
+			@RequestParam(value = "d_img1", required = true) String old_d_img1,
+			@RequestParam(value = "d_img2", required = true) String old_d_img2, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession(); // 메세지 넣을 세션
+
+		// 기존 업로드한 이미지를 지워야 한다.
+		System.out.println("원데이 클래스 빈 객체 확인 [수정단계]");
+		System.out.println(oneday.toString());
+		System.out.println("지워야할 이미지 (메인) : " + old_m_img);
+		System.out.println("지워야할 이미지 (세부1) : " + old_d_img1);
+		System.out.println("지워야할 이미지 (세부2) : " + old_d_img2);
 
 		// 파일 업로드 작업
 		MultipartFile multi_file1 = oneday.getM_img(); // 메인 이미지
@@ -71,33 +81,29 @@ public class OnedayClassUpdateController extends SuperClass {
 
 		try {
 			// 조건
-			// 3개의 사진이 모두 등록되어야함
+			// 1. 파라미터로 넘어오는
 
-			if (multi_file1 != null && multi_file2 != null && multi_file3 != null) {
-				destination1 = utility.Utility.getUploadedFileInfo(multi_file1, realPath);
-				multi_file1.transferTo(destination1); // 파일 업로드
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-				oneday.setMain_image(destination1.getName());
+			destination1 = utility.Utility.getUploadedFileInfo(multi_file1, realPath);
+			multi_file1.transferTo(destination1); // 파일 업로드
+			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+			oneday.setMain_image(destination1.getName());
 
-				destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
-				multi_file2.transferTo(destination2); // 파일 업로드
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-				oneday.setDetail_image1(destination2.getName());
+			destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
+			multi_file2.transferTo(destination2); // 파일 업로드
+			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+			oneday.setDetail_image1(destination2.getName());
 
-				destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
-				multi_file3.transferTo(destination3); // 파일 업로드
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-				oneday.setDetail_image2(destination3.getName());
-			}
+			destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
+			multi_file3.transferTo(destination3); // 파일 업로드
+			// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
+			oneday.setDetail_image2(destination3.getName());
 
 			System.out.println(this.getClass() + "원데이 클래스 수정 하기");
 			System.out.println(oneday.toString());
 
 			int cnt = -1;
 			cnt = this.onedayDao.UpdateData(oneday);
-			
-			HttpSession session = request.getSession();
-			
+
 			if (cnt > 0) {
 				System.out.println("원데이 클래스 수정 성공");
 				session.setAttribute("message", "정상적으로 수정이 완료되었습니다!");

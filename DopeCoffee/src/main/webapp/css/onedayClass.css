@@ -478,6 +478,9 @@ figure figcaption p {
 
 /* 총 갯수 부분 , 헤더 부분*/
 
+#list_top{
+	padding-left: 15px;	
+}
 
 .top, #top{ /* .top 은 list.jsp 를 제외한 헤더부분 , #top은 list.jsp 에서만 해당하는 헤더부분임 */
 	padding-top: 100px;
@@ -499,6 +502,8 @@ figure figcaption p {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+	padding-left : 15px;
+	padding-right : 5px;
 	margin: 10px 0px 10px 0px;
 }
 

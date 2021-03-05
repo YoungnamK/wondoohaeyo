@@ -3,6 +3,7 @@ package seller.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +48,28 @@ public class SellAppController extends SuperClass{
 	
 	@GetMapping(command)
 	public ModelAndView doGet(
-			@RequestParam(value = "sell_Email", required = true) String sell_Email			
+			@RequestParam(value = "sell_Email", required = true) String sell_Email,
+			HttpServletRequest request
 			) {
 		/* 회원 가입과는 달리 수정은 이전에 기입했던 정보를 읽어 들이는 부분이 필요함 */
+		HttpSession session = request.getSession();
+		
 		System.out.println("doGet메소드");
-		Seller bean = this.sdao.SelectDataByPk(sell_Email);
-		this.mav.addObject("bean", bean);
-		this.mav.setViewName(super.getpage); 
+		Seller bean = this.sdao.SelectDataByPk(sell_Email); // 사업자 정보를 찾아냄 
+	
+		
+		if (bean.getSell_Status().contains("신청전")) {
+			this.mav.addObject("bean", bean);
+			this.mav.setViewName(super.getpage); 
+		}else if(bean.getSell_Status().contains("대기중")){
+			session.setAttribute("message", "관리자 승인 대기중입니다.");
+			mav.setViewName("redirect:/main.co");
+		}else {
+			session.setAttribute("message", "이미 승인이 완료되었습니다.");
+			mav.setViewName("redirect:/main.co");
+		}
+		
+		
 		return this.mav ;
 	}
 	
