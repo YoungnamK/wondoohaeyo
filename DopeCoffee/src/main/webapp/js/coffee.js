@@ -253,7 +253,7 @@ function search(){
 	var totalqty = $('#total_qty').val();
 	qty = parseInt(qty);
 	// 커피상품1개의 가격
-	var c_price = $('#c_price').text();	
+	var c_price = $('#c_price').val();	
 	 c_price = parseInt(c_price);
 
 	var totalprice = '';			
@@ -266,7 +266,7 @@ function search(){
 		total = qty; 				
 	}
 	$('#qty').val(total);
-	$("#totalprice").text(totalprice + '원');
+	$("#totalprice").val(totalprice + '원');
 	
 	
 	return false;
@@ -279,7 +279,7 @@ function search(){
 		qty = parseInt(qty);
 		
 		
-	var c_price = $('#c_price').text();	
+	var c_price = $('#c_price').val();	
 	 c_price = parseInt(c_price);
 	var totalprice = '';
 	var total = '';
@@ -290,7 +290,7 @@ function search(){
 		totalprice = c_price * total;
 	}
 	$('#qty').val(total);
-	$("#totalprice").text(totalprice + '원');
+	$("#totalprice").val(totalprice + '원');
 	return false;
 	
 }

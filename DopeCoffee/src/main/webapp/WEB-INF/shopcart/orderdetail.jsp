@@ -39,7 +39,7 @@
 						</thead>
 						<tbody>
 							<c:set var="totalAmount" value="0" />
-							<c:forEach items="${requestScope.order}" var="shopinfo">
+							<c:forEach items="${requestScope.lists}" var="shopinfo">
 								<tr>
 									<td>${shopinfo.cfname}</td>
 									<td>
