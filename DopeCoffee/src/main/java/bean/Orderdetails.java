@@ -6,7 +6,7 @@ private	int odid;
 private	int oid;
 private	int cfno;
 private	int qty;
-private	String remark;
+private	String remark = " ";
 
 
 

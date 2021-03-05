@@ -60,7 +60,7 @@ public class ShopcartListController extends common.controller.SuperClass{
 				int totalAmount = 0 ; // 총 판매 금액
 			
 				
-				for(Integer cfno :  keylist){  // pnum : 상품 번호
+				for(Integer cfno :  keylist){  // cfno : 상품 번호
 					Integer qty = maplists.get(cfno) ;// 구매 수량
 					
 					// 상품 번호 pnum에 대한 Bean 정보				 				

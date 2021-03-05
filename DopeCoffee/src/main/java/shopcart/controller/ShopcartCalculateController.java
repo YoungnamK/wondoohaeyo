@@ -40,7 +40,7 @@ public class ShopcartCalculateController extends common.controller.SuperClass{
 			Map<Integer, Integer> maplists = mycart.GetAllOrderLists();
 			
 			
-			// mem : 계산을 수행하는 당사자
+			// cust : 계산을 수행하는 당사자
 			Customer cust = (Customer)session.getAttribute("loginfo");
 			
 			System.out.println("dao.Calculate 메소드를 호출합니다.");

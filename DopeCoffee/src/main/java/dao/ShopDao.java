@@ -24,8 +24,7 @@ public class ShopDao {
 	@Autowired
 	SqlSessionTemplate session;
 
-	public Orders SelectDataByPk(int oid) {
-		
+	public Orders SelectDataByPk(int oid) {		
 		return this.session.selectOne(namespace + "SelectDataByPk", oid);
 	}
 

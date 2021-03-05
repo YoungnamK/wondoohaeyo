@@ -29,6 +29,7 @@ public class ShoppingInfo {
 		this.price = price;
 		this.image = image;
 	}
+	
 	public String getCustid() {
 		return custid;
 	}

@@ -45,49 +45,22 @@
 						<form name=form1 class="form-inline" role="form" method="post" action="${contextPath}/insert.sc">
 						<input type="hidden" id="c_no" name="c_no" value="${bean.c_no}">
 						<input type="hidden" id="c_qty" name="c_qty" value="${bean.c_qty}">
-								<div >
-									<div class="item_price1">
-										<span class=span1>금액</span>
-										<span class=span1>${bean.c_price}원</span>
-									</div>
-								</div>
-								<div >
-									<div class="item_price1">
-										<span class=span1>원산지</span>
-										<span class=span2>${bean.c_origin}</span>
-									</div>
-								</div>
-								<div >
-									<div class="item_price1">
-										<span class=span1 >무게</span>
-										<span class=span2>${bean.c_weight}</span>
-									</div>
-								</div>
-								<div >
-									<div class="item_price1">
-										<span class=span1>로스팅</span>
-										<span class=span2>${bean.c_roasting}</span>
-									</div>
-								</div>
-								<div >
-									<div class="item_price1">
-										<span class=span1>블렌딩</span>
-										<span class=span2>${bean.c_blending}</span>
-									</div>
-								</div>
-								<div >
-									<div class="item_price1">
-										<span class=span1>분쇄여부</span>
-										<span class=span2>${bean.c_crushing_status}</span>
-									</div>
-								</div>	
-														
+						       <div class="author-img">
+                                    <img align="middle" width="72" height="72" src="${contextPath}/images/logo2.png">
+                                </div>
+								<p >상품명  : ${bean.c_name}</p>
+								<p class="infos">원산지  : ${bean.c_origin}</p>
+								<p class="infos">무게   : ${bean.c_weight}</p>
+								<p class="infos">로스팅  : ${bean.c_roasting}</p>
+								<p class="infos">블렌딩  : ${bean.c_blending}</p>
+								<p class="infos">분쇄여부 : ${bean.c_crushing_status}</p>
+								<p class="infos">상품금액 : ${bean.c_price} 원</p>						
 								<div class="item_price1">		
-									<span class=span1>수량</span>									
+									<p class="infos">수량</p>									
 									<span class=span2>										
 										<input type="hidden" name="c_no" value="${bean.c_no}">
 										<input type="hidden" id="total_qty" name="c_qty" value="${bean.c_qty}">
-										<input type="number" class="form-control" name="qty" id="qty"
+										<input type="text" class="form-control" name="qty" id="qty"
 											data-toggle="popover" title="수량 입력란"
 											data-trigger="hover" data-placement="auto top"
 											data-content="구매하시고자 하는 수량을 정수로 입력하세요^^"
@@ -104,11 +77,11 @@
 									
 								<div >
 									<div class="item_price1">
-										<span class=span1>상품금액</span>
-										<span id="c_price" class=span1>${bean.c_price}원</span>
+										<p class="infos">상품금액 :</p>
+										<span id="c_price" class=span1 >${bean.c_price}원</span>
 									</div>
 									<div class="item_price1">
-										<span class=span1>합계금액</span>
+										<p class="infos">총합계금액 :</p>
 										<span id="totalprice" class=span1>${bean.c_price}원</span>
 									</div>
 								</div>												

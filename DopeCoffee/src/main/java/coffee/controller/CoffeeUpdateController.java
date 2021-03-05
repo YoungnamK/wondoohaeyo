@@ -27,7 +27,7 @@ public class CoffeeUpdateController extends SuperClass {
 	
 	
 	private final String command ="/cfupdate.cf";	// 요청 커맨드(변경 요망)
-	private final String redirect ="redirect:/cflist.cf";
+	private final String redirect ="redirect:/cfList.cf";
 	private ModelAndView mav = null;			// mav 객체(변경 요망)
 	@Autowired
 	@Qualifier("cfdao")	//(변경 요망)

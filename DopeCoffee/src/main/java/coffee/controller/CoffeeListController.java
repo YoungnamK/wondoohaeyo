@@ -24,7 +24,7 @@ import utility.Paging;
 public class CoffeeListController extends SuperClass {
 	
 	private final String command ="cfList.cf";	// 요청 커맨드(변경 요망)
-	private final String redirect ="redirect:/list.cf";
+	private final String redirect ="redirect:/cfList.cf";
 	private ModelAndView mav = null;			// mav 객체(변경 요망)
 	
 	@Autowired

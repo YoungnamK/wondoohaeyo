@@ -13,8 +13,8 @@
 		 where oid = #{oid}  
 	</select>	
 		<insert id="InsertOrder" parameterType="MyOrder">
-		insert into orders(oid, custid, ,cfimg, orderdate, remark)
-		values(seqoid.nextval, #{custid}, #{cfimg}, sysdate,  #{remark})
+		insert into orders(oid, custid,  orderdate, remark)
+		values(seqorders.nextval, #{custid},  sysdate,  #{remark})
 	</insert>	
 	
 		<insert id="InsertOrderDetail" parameterType="MyOrderDetail">
@@ -37,5 +37,9 @@
 		from (orders o inner join orderdetails od
 		on o.oid=od.oid) inner join coffees c
 		on od.cfno = c.c_no and o.oid = #{oid}
+	</select>
+	
+		<select id="GetMaxNum" resultType="int">
+		select max(oid) as maxnum from orders
 	</select>
 </mapper>

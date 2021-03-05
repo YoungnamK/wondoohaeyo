@@ -46,7 +46,7 @@ public class ShopcartInsertController extends common.controller.SuperClass{
 			@RequestParam(value = "c_no", required = true) int c_no, // 시퀀스 
 			@RequestParam(value = "qty", required = true) int qty, //수량
 			HttpServletRequest request){
-		
+		System.out.println("로그인이 필요합니다.");
 		// 에러 메세지를 담을 세션 영역 및 로그인 정보를 가져올 때 사용
 		HttpSession session = request.getSession();// 에러 메세지를 담을 세션 영역
 		if (session.getAttribute("loginfo") == null ) {

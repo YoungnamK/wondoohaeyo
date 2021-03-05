@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="./../common/common.jsp"%>
 <%
@@ -38,12 +39,12 @@
 						</thead>
 						<tbody>
 							<c:set var="totalAmount" value="0" />
-							<c:forEach items="${requestScope.lists}" var="shopinfo">
+							<c:forEach items="${requestScope.order}" var="shopinfo">
 								<tr>
-									<td>${shopinfo.pname}</td>
+									<td>${shopinfo.cfname}</td>
 									<td>
 										<img alt="${shopinfo.image}" width="45" height="45" 
-											src="${applicationScope.uploadedPath}/${shopinfo.image}">										
+											src="./upload/${shopinfo.image}">										
 									</td>									
 									<td class="text-center"><fmt:formatNumber
 											value="${shopinfo.price}" pattern="###,###"/> 원</td>

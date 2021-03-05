@@ -27,8 +27,8 @@ import dao.PaymentDao;
 @Controller
 public class CoffeepaymentConroller extends SuperClass {
 	private final String command ="/payment.cf";	
-	private final String get_gotopage = "Payment";
-	private final String redirect = "redirect:/payment.cf";
+	private final String get_gotopage = "orderlist";
+	private final String redirect = "redirect:/.history.sc";
 	private ModelAndView mav = null;
 	
 	@ModelAttribute("coffee")
@@ -50,18 +50,15 @@ public class CoffeepaymentConroller extends SuperClass {
 	CustomerDao cudao;
 	
 	public CoffeepaymentConroller() {
-		super("Payment", "Payment"); // super(getpage , postpage)
+		super("Payment", "orderlist"); // super(getpage , postpage)
 		this.mav = new ModelAndView();
 	}	
 	
 	@GetMapping(value = command)
 	public ModelAndView doGet(
 			HttpServletRequest request) {	
-		
-	
-		
-	
 			mav.setViewName(super.getpage);
+		System.out.println("겟");	
 		
 		
 		

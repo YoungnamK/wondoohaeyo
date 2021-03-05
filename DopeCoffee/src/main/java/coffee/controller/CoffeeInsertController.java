@@ -51,9 +51,10 @@ public class CoffeeInsertController extends SuperClass {
 		
 		System.out.println(seller);
 		seller.getSell_Status();
-		
+	
 		if (seller.getSell_Status().equals("승인")) {
 			return get_gotopage;
+			
 		}else {
 			session.setAttribute("message", "승인 대기중입니다.");
 			return "redirect:/sellApp.se?sell_Email=" + seller.getSell_Email();
@@ -64,6 +65,7 @@ public class CoffeeInsertController extends SuperClass {
 	
 	@PostMapping(value = command)
 	public ModelAndView doPost(@RequestParam(value = "c_seller_email" , required = true)String c_seller_email,
+			@RequestParam(value="c_no" , required =  true) int c_no,
 			Coffee coffee, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// 파일 업로드 작업
@@ -112,7 +114,11 @@ public class CoffeeInsertController extends SuperClass {
 			
 			int cnt = -1;
 			cnt = cfdao.InsertData(coffee);
-
+			
+			Coffee coff = cfdao.SelectDataByPk(c_no);
+			
+			mav.addObject("bean" , coff);
+			
 			if (cnt > 0) {
 				System.out.println("등록 완료");
 				mav.setViewName(redirect);	

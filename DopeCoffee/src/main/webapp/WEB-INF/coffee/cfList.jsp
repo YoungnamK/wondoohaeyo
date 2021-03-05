@@ -30,8 +30,7 @@
 			<%-- [검색 모드] 
 		   		==== 시작 ==== 
 		   	--%>
-			<form id="contact-form search" method="get"
-				action="${contextPath}/cfList.cf" role="form">
+			<form id="contact-form search" method="get" action="${contextPath}/cfList.cf" role="form">
 				<div id="search">
 					<select class="form-control" name="mode" id="mode"
 						data-toggle="tooltip" title="검색할 조건을 선택하세요!">
@@ -48,7 +47,49 @@
 			</form>
 			<%-- ==== 끝 ==== --%>
 			<p class="list_top">${requestScope.totalCount}개의상품</p>
-			<c:forEach var="bean" items="${requestScope.lists}">
+			<c:forEach var="bean" items="${requestScope.lists}" varStatus="status">
+				<c:if test="${status.count % 3 == 0}">
+				<div class="row">
+					<div class="col-sm-4">
+						<input type="hidden" value="${bean.c_type}">
+						<!-- 주제 -->
+						<input type="hidden" value="${bean.c_origin}">
+						<!-- 지역 -->
+						<input type="hidden" id="c_no" value="${bean.c_no}">
+						<!-- 코드  -->
+						<figure class="wow fadeInLeft animated portfolio-item"
+							data-wow-duration="500ms" data-wow-delay="0ms">
+							<div class="img-wrapper">
+								<img src="./upload/${bean.c_image}" class="img-responsive"
+									alt="image">
+								<div class="overlay">
+									<div class="buttons">
+										<a href="${contextPath}/cfdetailview.cf?c_no=${bean.c_no}">
+										 	상품 보기
+										 </a>
+										<c:if test="${bean.c_seller_email eq sessionScope.loginfo_seller.sell_Email}">
+											<a href="${contextPath}/cfupdate.cf?c_no=${bean.c_no}">관리</a>
+											<a data-toggle="modal" data-target="#myModal">삭제</a>
+										</c:if>
+									</div>
+								</div>
+							</div>
+							<figcaption>
+								<h4>
+									<a href="#detail.jsp">${bean.c_name}</a>
+								</h4>
+								<div class="list_bottom">
+									<p id="list_price">
+										<i class="fas fa-won-sign"></i>&nbsp;${bean.c_price}
+									</p>
+
+								</div>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+				</c:if>
+				<c:if test="${status.count % 3 != 0}">
 				<div class="col">
 					<div class="col-sm-4">
 						<input type="hidden" value="${bean.c_type}">
@@ -88,6 +129,7 @@
 						</figure>
 					</div>
 				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 		<div align="center">

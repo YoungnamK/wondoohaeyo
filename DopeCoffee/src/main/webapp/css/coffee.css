@@ -361,10 +361,141 @@ td{
 	
 }
 
-/*결제 */
+/*이미지 */
+.file-upload {
+  background-color: #ffffff;
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+}
+
+.file-upload-btn {
+  font-size: 13px;
+  width: 100%;
+  margin: 0;
+  color: #222;
+  background: #F2EDDC;
+  border: none;
+  padding: 10px;
+  border-radius: 0px;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.file-upload-btn:hover {
+  background: #F2EDDC;
+  color: #222;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: relative;
+  height: 0px !important;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #F2EDDC;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+ 
+  background-color: #ffffff;
+  border: 4px dashed #F2EDDC;
+}
+
+.file-upload-content{
+	margin-top: 20px;
+	background-color: #ffffff;
+ 	border: 4px dashed #F2EDDC;
+}
+
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  text-transform: uppercase;
+  color: #222;
+  padding: 60px;
+}
+
+.file-upload-image {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  padding: 20px 0px 20px 0px;
+}
+
+.remove-image {
+  font-size: 13px;
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #402211;
+  border: none;
+  padding: 10px;
+  transition: all .2s ease;
+  outline: none;
+  font-weight: bold;
+}
+
+.remove-image:hover {
+  background: #402211;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+
+
+/* 결제 확인 */
+h3.widget-head {
+    color: #5080BF;
+    font-family: "맑은 고딕" !important;
+    font-weight: bold !important;
+
+}
 
 
 /* 상품 목록 */
+p.infos{
+	color:red  !important ;
+	font-family:'돋움' !important;
+}
+
 .overlay{
 	width: 100%;
 }
@@ -373,6 +504,9 @@ td{
 .overlay .buttons{
 	width: 100%;
 }
+
+
+
 
 
 
