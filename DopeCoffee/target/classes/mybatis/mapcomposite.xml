@@ -18,5 +18,12 @@
 		search_word like '%" + #{dong} + "%' 
 		order by si_nm, sgg_nm, rd_nm
 	</select>	
+	
+	<select id="SellerList" resultType="MyCombo6">
+		select cu.cust_name, c.c_name, cu.cust_email, o.orderdate, od.qty * c.c_price as amount
+		from ((custormer cu inner join orders o on cu.cust_email=o.oid) inner join
+		orderdetails od on o.oid=od.oid) inner join coffees c on od.cfno=c.c_no
+		order by c.c_name desc, cu.cust_name asc
+	</select>
 
 </mapper> 

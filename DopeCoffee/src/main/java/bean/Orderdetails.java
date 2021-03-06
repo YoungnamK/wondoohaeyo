@@ -6,19 +6,30 @@ private	int odid;
 private	int oid;
 private	int cfno;
 private	int qty;
+private	int price;
+public int getPrice() {
+	return price;
+}
+
+public void setPrice(int price) {
+	this.price = price;
+}
 private	String remark = " ";
 
 
 
 
-public Orderdetails(int odid, int oid, int cfno, int qty, String remark) {
+
+public Orderdetails(int odid, int oid, int cfno, int qty, int price, String remark) {
 	super();
 	this.odid = odid;
 	this.oid = oid;
 	this.cfno = cfno;
 	this.qty = qty;
+	this.price = price;
 	this.remark = remark;
 }
+
 public Orderdetails() {}
 
 @Override

@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import bean.Combo06;
 import bean.Postcode;
 
 @Component("cpdao")
@@ -27,6 +27,10 @@ public class CompositeDao {
 		Map<String, String> map = new HashMap<String, String>() ;
 		map.put("dong", "%" + dong + "%") ;
 		return this.abcd.selectList(namespace + ".SelectDataByPk", map);		
+	}
+
+	public List<Combo06> SellerList() {	
+			return this.abcd.selectList(namespace + ".SellerList");		
 	}
 	
 //	public List<Postcode> SelectDataZipcode(String dong) {

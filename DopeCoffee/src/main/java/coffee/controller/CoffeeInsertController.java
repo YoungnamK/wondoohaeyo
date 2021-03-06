@@ -71,13 +71,11 @@ public class CoffeeInsertController extends SuperClass {
 		// 파일 업로드 작업
 
 		MultipartFile multi_file = coffee.getCf_image(); 
-		MultipartFile multi_file2 = coffee.getCf_image2(); 
-		MultipartFile multi_file3 = coffee.getCf_image3();
+
 		
 		// File 파일 경로
 		File destination1 = null; // 메인 이미지1
-		File destination2 = null; // 메인 이미지2
-		File destination3 = null; // 메인 이미지3
+
 		
 		System.out.println(coffee.getCf_image());
 		String uploadPath = "/upload"; // 파일이 저장되는 폴더
@@ -88,21 +86,13 @@ public class CoffeeInsertController extends SuperClass {
 			
 			//메인 사진은 반드시 들어가야함
 			
-			if (multi_file != null  && multi_file2 == null && multi_file3 == null) {
+			if (multi_file != null  ) {
 				destination1 = utility.Utility.getUploadedFileInfo(multi_file, realPath);
 				multi_file.transferTo(destination1); // 파일 업로드
 				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
 				coffee.setC_image(destination1.getName());
 
-				destination2 = utility.Utility.getUploadedFileInfo(multi_file2, realPath);
-				multi_file2.transferTo(destination2); // 파일 업로드
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-				coffee.setC_image2(destination2.getName());
 
-				destination3 = utility.Utility.getUploadedFileInfo(multi_file3, realPath);
-				multi_file3.transferTo(destination3); // 파일 업로드
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
-				coffee.setC_image3(destination3.getName());
 			}
 		
 			

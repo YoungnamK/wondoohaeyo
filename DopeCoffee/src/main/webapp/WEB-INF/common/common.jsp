@@ -193,7 +193,7 @@ int twelve = 12;
 										<li><a href="${contextPath}/sellDetail.se">마이페이지</a></li>
 										<li><a
 											href="${contextPath}/sellUpdate.se?sell_Email=${sessionScope.loginfo_seller.sell_Email}">회원정보수정</a></li>
-										<li><a href="${contextPath}/sellorderlist.pm">상품관리</a></li>
+										<li><a href="${contextPath}/sellerlist.cf?sell_eamil=${sessionScope.loginfo_seller.sell_Email}">상품관리</a></li>
 										<li><a
 											href="${contextPath}/onedaySellOrderlist.odc?sell_email=${sessionScope.loginfo_seller.sell_Email}">수업관리</a></li>
 										<li><a

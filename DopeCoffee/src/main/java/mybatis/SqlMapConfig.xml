@@ -24,7 +24,7 @@
 		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
 		<typeAlias alias="MyOnedayorder" type="bean.OnedayOrder" />
 		<typeAlias alias="MyPostcode" type="bean.Postcode" />
-		
+		<typeAlias alias="MyCombo6" type="bean.Combo06" />
 		<typeAlias alias="MyCarousel" type="bean.Carousel" />
 		<typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" />
 		<typeAlias alias="MyOrder" type="bean.Orders" /> 

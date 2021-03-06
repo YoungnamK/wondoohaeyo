@@ -52,7 +52,7 @@
 	</delete>	
 	<update id="UpdateRemark" parameterType="String">
 		update orderdetails set remark = #{remark}
-		</update>	
+	</update>	
 	
 	
 	<!--  	<select id="SelectDataList" resultType="MyCoffee">
