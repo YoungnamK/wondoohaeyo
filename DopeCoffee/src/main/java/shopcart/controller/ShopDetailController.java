@@ -44,14 +44,16 @@ public class ShopDetailController extends common.controller.SuperClass{
 			//Order 주문 정보 가져 오기
 			Orders order = shopdao.SelectDataByPk(oid) ;
 			System.out.println(order);
+			System.out.println("oid :" + oid);
 			//lists : 해당 송장 번호에 대한 주문 상세 내역을 보여 주세요
 			List<ShoppingInfo> lists = shopdao.ShowDetail( oid ) ;
-			
+			System.out.println("lists : ;" + lists);
 			System.out.println("주문 상세 내역 갯수 " + lists.size());
 			
-			System.out.println(lists.toString());
+			System.out.println("tostring"+ lists.toString());
 			this.mav.addObject("order", order); //주문 정보			
 			this.mav.addObject("lists", lists); //쇼핑 정보
+			System.out.println(lists);
 			this.mav.setViewName(super.getpage);			
 		}
 		return this.mav ;

@@ -26,8 +26,8 @@
  														<input type="hidden" name="pageNumber" value="${param.pageNumber}"> <input type="hidden" name="pageSize" value="${param.pageSize}"> <input type="hidden" name="mode" value="${param.mode}"> <input type="hidden" name="keyword" value="${param.keyword}">
 								<label>상품 번호</label>
                                     <div class="form-group wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-                                        <input type="hidden" disabled="disabled" placeholder="상품번호" class="form-control" name="c_no" id="c_no" value="${bean.c_no}">
-                                        <input type="hidden" name="c_no" id="c_no" value="${bean.c_no}">		                                      
+                                        <input type="text" disabled="disabled" placeholder="상품번호" class="form-control" name="c_no" id="c_no" value="${bean.c_no}">
+                                        <input type="text" name="c_no" id="c_no" value="${bean.c_no}">		                                      
                                     </div>
                         
                                      <!-- ------------------------------------- [주제 type section]--------------------------------------- -->

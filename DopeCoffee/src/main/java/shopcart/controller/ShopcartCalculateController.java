@@ -39,7 +39,7 @@ public class ShopcartCalculateController extends common.controller.SuperClass{
 			System.out.println("maplists : 내가 구매한 상품들의 번호와 수량에 대한 컬렉션");
 			Map<Integer, Integer> maplists = mycart.GetAllOrderLists();
 			
-			
+			System.out.println("칼큐컨트롤러 맵리스트 : " + maplists );
 			// cust : 계산을 수행하는 당사자
 			Customer cust = (Customer)session.getAttribute("loginfo");
 			

@@ -38,9 +38,10 @@ public class ShopHistoryController extends SuperClass{
 	public ModelAndView doGet(
 			HttpSession session){
 		System.out.println("히스토리 들어옴");
-		
+		System.out.println("히스토리확실함");
 		Customer loginfo = (Customer)session.getAttribute("loginfo") ;
 		
+		System.out.println("로그인한사람" + loginfo);
 		if( loginfo == null ){  //미로그인 시
 			//session.setAttribute("destination", "redirect:/Order.mall");
 			this.mav.setViewName("redirect:/custLog.cu");
@@ -53,6 +54,7 @@ public class ShopHistoryController extends SuperClass{
 				
 			this.mav.addObject("lists", lists);
 			
+			System.out.println("리스트에 어떤게 들어있을까 :"+lists);
 			if(lists.size() == 0) {
 				session.setAttribute("message", "이전 쇼핑 내역이 존재하지 않습니다.");	
 			}			

@@ -17,7 +17,7 @@ public class Coffee {
 	private String c_image;
 	private String c_image2;
 	private String c_image3;
-	private String ramark;
+	private String remark;
 	// multipart
 	private MultipartFile cf_image;
 	private MultipartFile cf_image2;
@@ -173,12 +173,14 @@ public class Coffee {
 		this.c_image3 = c_image3;
 	}
 
-	public String getRamark() {
-		return ramark;
+
+
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setRamark(String ramark) {
-		this.ramark = ramark;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	@Override
@@ -187,8 +189,10 @@ public class Coffee {
 				+ c_name + ", c_price=" + c_price + ", c_origin=" + c_origin + ", c_weight=" + c_weight
 				+ ", c_roasting=" + c_roasting + ", c_blending=" + c_blending + ", c_crushing_status="
 				+ c_crushing_status + ", c_qty=" + c_qty + ", c_image=" + c_image + ", c_image2=" + c_image2
-				+ ", c_image3=" + c_image3 + ", ramark=" + ramark + "]";
+				+ ", c_image3=" + c_image3 ;
 	}
+
+
 	
 	
 	

@@ -12,22 +12,13 @@ public class ShoppingInfo {
 	
 	
 	public ShoppingInfo() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override
 	public String toString() {
 		return "ShoppingInfo [custid=" + custid + ", cfno=" + cfno + ", cfname=" + cfname + ", qty=" + qty + ", price="
 				+ price + ", image=" + image + "]";
-	}
-	public ShoppingInfo(String custid, int cfno, String cfname, int qty, int price, String image) {
-		super();
-		this.custid = custid;
-		this.cfno = cfno;
-		this.cfname = cfname;
-		this.qty = qty;
-		this.price = price;
-		this.image = image;
 	}
 	
 	public String getCustid() {

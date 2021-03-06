@@ -4,10 +4,7 @@
 	
 <mapper namespace="MapperShopcart">
 	
- 	<insert id="InsertData" parameterType="MyShoppingInfo">
- 		insert into shoppinginfos(custid, cfno, ,cfname, qty, price, image)
-		values(#{custid},seqoid.nextval, , #{cfname}, #{qty},#{price},#{image}  )
-	</insert> 
+
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyOrder">
 		 select * from orders
 		 where oid = #{oid}  
@@ -16,7 +13,9 @@
 		insert into orders(oid, custid,  orderdate, remark)
 		values(seqorders.nextval, #{custid},  sysdate,  #{remark})
 	</insert>	
-	
+		<select id="GetMaxNum" resultType="int">
+		select max(oid) as maxnum from orders
+	</select>
 		<insert id="InsertOrderDetail" parameterType="MyOrderDetail">
 		insert into orderdetails(odid, oid, cfno, qty, remark)
 		values(seqodid.nextval, #{oid}, #{cfno}, #{qty}, #{remark})
@@ -32,14 +31,12 @@
 		order by orderdate desc  
 	</select>
 	
-		<select id="ShowDetail" parameterType="Integer" resultType="MyShoppingInfo">
-		select c.c_no c_no, c.c_name c_name, od.qty, c.c_price, c.c_image 
+	<select id="ShowDetail" parameterType="Integer" resultType="MyShoppingInfo">
+		select c.c_no cfno, c.c_name cfname, od.qty, c.c_price price, c.c_image image
 		from (orders o inner join orderdetails od
 		on o.oid=od.oid) inner join coffees c
 		on od.cfno = c.c_no and o.oid = #{oid}
 	</select>
 	
-		<select id="GetMaxNum" resultType="int">
-		select max(oid) as maxnum from orders
-	</select>
+
 </mapper>

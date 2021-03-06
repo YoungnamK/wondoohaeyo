@@ -60,8 +60,12 @@ public class CoffeeDao {
 		return this.sql_session.selectOne(namespace + "SelectDataByPk" , num);
 	}
 
-	public int DeleteData(int c_no, String ramark) {
-		
+	public int DeleteData(int c_no, String remark) {
+		// 해당 상품 번호에 대한 orderdetails.remark 컬럼을 수정합니다.
+		Map<String, Object> map = new HashMap<String, Object>() ;
+		map.put("num", c_no);
+		map.put("remark", remark);		
+		this.sql_session.update(namespace + "UpdateRemark", map);
 		
 		// 해당 상품을 삭제합니다.		
 		return this.sql_session.delete(namespace + "DeleteData", c_no);

@@ -28,7 +28,7 @@ import dao.PaymentDao;
 public class CoffeepaymentConroller extends SuperClass {
 	private final String command ="/payment.cf";	
 	private final String get_gotopage = "orderlist";
-	private final String redirect = "redirect:/.history.sc";
+	private final String redirect = "redirect:/history.sc";
 	private ModelAndView mav = null;
 	
 	@ModelAttribute("coffee")

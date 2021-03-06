@@ -5,9 +5,9 @@
 	<mapper namespace="MapperCoffee">
 		<insert id="InsertData" parameterType="MyCoffee">
 			insert into coffees(c_no,c_seller_email , c_name, c_price, c_origin, c_weight, c_roasting , 
-			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,ramark, c_type)
+			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,remark, c_type)
 			values (seqcoffee.nextval ,  #{c_seller_email}, #{c_name}, #{c_price}, #{c_origin}, #{c_weight}, #{c_roasting},
-			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{ramark},#{c_type})
+			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{remark},#{c_type})
 		</insert>
 		
 	<sql id="myselect">
@@ -50,9 +50,9 @@
 	<delete id="DeleteData" parameterType="int">
 		delete from coffees where c_no = #{c_no} 
 	</delete>	
-	<!--	<update id="UpdateRemark" parameterType="String">
-		update orderdetails set ramark = #{ramark}
-		</update>	-->	
+	<update id="UpdateRemark" parameterType="String">
+		update orderdetails set remark = #{remark}
+		</update>	
 	
 	
 	<!--  	<select id="SelectDataList" resultType="MyCoffee">

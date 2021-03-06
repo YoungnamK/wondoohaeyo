@@ -7,6 +7,7 @@
 <!-- CustomerDao > namespace -->
 <mapper namespace="MapperCustomer">
 
+
 	<!-- 개인회원 테이블 조회 -->
 	<sql id="myselect">
 		select *
@@ -104,6 +105,20 @@
 	<select id="CountData" resultType="Integer">
 		select count(*) as cnt from customers 
 		where cust_Email = #{cust_Email}
+	</select>
+	
+		<delete id="DeleteShoppingInfo" parameterType="String">
+		delete from shoppinginfos				
+		where custid = #{custid}
+	</delete>
+	<insert id="InsertShoppingInfo" parameterType="MyShoppingInfo">
+		insert into shoppinginfos(custid, cfno, cfname, qty, price, image)
+		values(#{custid}, #{cfno}, #{cfname}, #{qty}, #{price}, #{image})		
+	</insert>	
+	
+		<select id="GetShoppingInfo" parameterType="String" resultType="MyShoppingInfo">
+		select * from shoppingInfos
+		where custid=#{custid}
 	</select>
 
 </mapper>

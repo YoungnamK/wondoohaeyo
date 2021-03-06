@@ -154,7 +154,7 @@
 									<div class="btn_choice_box">
 										<div>
 											<!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-
+											<button type="submit" class="btn_add_order">장바구니</button>
 											<button type="submit" class="btn_add_order">바로 구매</button>
 										</div>
 									</div>

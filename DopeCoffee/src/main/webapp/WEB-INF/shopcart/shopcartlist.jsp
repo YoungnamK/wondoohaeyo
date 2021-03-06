@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%@ include file="./../common/common.jsp"%>
     <%
 	int myoffset = 2;
@@ -31,8 +32,7 @@
 				<th class="text-center">금액</th>
 				<th class="text-center">삭제</th>				
 			</tr>
-		</thead>
-	
+		</thead>	
 					<c:forEach items="${sessionScope.shoplists}" var="shopinfo">
 					<tr>
 						<td align="center" valign="middle">${shopinfo.cfno}</td>
@@ -52,7 +52,7 @@
 				</c:forEach>
 				<tr class="header">
 			<td colspan="4" align="center">
-				<a href="<%=contextPath%>/payment.cf">결제하기</a>
+				<a href="<%=contextPath%>/calculate.sc">결제하기</a>
 				&nbsp;&nbsp; 
 				<a href="<%=contextPath%>/cfList.cf">쇼핑 계속하기</a>
 			</td>

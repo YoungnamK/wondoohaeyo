@@ -200,7 +200,7 @@
 											</p>
 										</div>
 										<div class="submit_detail">
-										<a href="<%=contextPath%>/calculate.sc">결재하기</a>
+										<a href="<%=contextPath%>/calculate.sc">결제하기</a>
 											<input id="pay" type="submit" class="btn-send" value="일반결제"><input
 												type="submit" id="kakaopay" class="btn-send"
 												value="KAKAO PAY"> <input type="submit"

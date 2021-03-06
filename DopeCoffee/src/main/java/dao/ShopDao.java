@@ -42,6 +42,7 @@ public class ShopDao {
 		Orders order = new Orders();
 		order.setCustid(cust.getCust_Email());
 		order.setRemark(" ");
+		System.out.println("orders :" + order );
 		this.session.insert(namespace + "InsertOrder", order);
 					
 		// 2. 방금 추가된 송장 번호를 읽어 옵니다.
@@ -52,7 +53,7 @@ public class ShopDao {
 		System.out.println("상품 개수 : " + keylist.size());
 		
 		Map<String, Object> map = new HashMap<String, Object>() ;
-			
+		System.out.println("map은 " + map);
 		// 반복문을 사용하여 
 		for(Integer cfno : keylist){
 			// 3. 주문 상세(orderdetails) 테이블에 추가합니다.
@@ -65,12 +66,15 @@ public class ShopDao {
 			od.setCfno(cfno); // 해당 상품 번호
 			int qty = maplists.get(cfno) ;
 			od.setQty(qty); // 구매한 수량
+			
 			od.setRemark(" ");
+			System.out.println("od 상세정보 :" +od);
 			this.session.insert(namespace + "InsertOrderDetail", od);
 			
 			// 4. 해당 상품 번호(cfno)를 이용하여 재고 수량(c_qty)을 감소시킵니다.
 			map.put("c_qty", qty) ;
 			map.put("cfno", cfno) ;
+			
 			this.session.update(namespace + "UpdateStock", map);
 		}
 
@@ -84,6 +88,8 @@ public class ShopDao {
 		
 		return this.session.selectList(namespace + "OrderMall", cust_Email);
 	}
+
+
 	
 //	public int InsertData(Coffee bean) {
 //		

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bean.Customer;
+import shopping.ShoppingInfo;
 
 @Component("cdao")
 public class CustomerDao {
@@ -92,6 +93,25 @@ public class CustomerDao {
 
 	public int Count(String cust_Email) {
 		return this.abcd.selectOne(namespace + "CountData", cust_Email);	
+	}
+
+	
+	
+	public List<ShoppingInfo> GetShoppingInfo(String cust_Email) {
+		// 로그인 하면서 이전에 keep했던 나의 장바구니 정보를 다시 읽어 옵니다. 
+		return this.abcd.selectList(namespace + "GetShoppingInfo", cust_Email);
+	}
+
+	
+	public void InsertCartData(Customer mem, List<ShoppingInfo> lists) {
+		// 1. 장바구니 테이블에 혹시 남아 있을 수 있는 회원의 행을 모두 삭제합니다. 
+		this.abcd.delete(namespace + "DeleteShoppingInfo", mem.getCust_Email());
+		
+		// 2.반복문을 사용하여 테이블에 인서트 합니다.
+		for(ShoppingInfo shpInfo : lists){
+			this.abcd.insert(namespace + "InsertShoppingInfo", shpInfo);
+		}
+		
 	}
 
 	

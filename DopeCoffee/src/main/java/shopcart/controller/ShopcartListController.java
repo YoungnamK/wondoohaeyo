@@ -44,9 +44,9 @@ public class ShopcartListController extends common.controller.SuperClass{
 			MyCartList mycart = (MyCartList)session.getAttribute("mycart") ;
 			
 			if (mycart==null) {
-				
-				
-				this.mav.setViewName("redirect:/list.sc");
+				String errmsg = "쇼핑 내역이 없어서 상품 목록으로 이동합니다." ;				
+				session.setAttribute("message", errmsg);									
+				this.mav.setViewName("redirect:/cfList.cf");
 			}else {
 				Map<Integer, Integer> maplists =  mycart.GetAllOrderLists() ;
 				
@@ -63,7 +63,7 @@ public class ShopcartListController extends common.controller.SuperClass{
 				for(Integer cfno :  keylist){  // cfno : 상품 번호
 					Integer qty = maplists.get(cfno) ;// 구매 수량
 					
-					// 상품 번호 pnum에 대한 Bean 정보				 				
+					// 상품 번호 cfno에 대한 Bean 정보				 				
 					Coffee bean = cfdao.SelectDataByPk(cfno) ;
 					
 					ShoppingInfo shopinfo = new ShoppingInfo() ;
@@ -81,6 +81,7 @@ public class ShopcartListController extends common.controller.SuperClass{
 					shopinfo.setQty(qty);  
 					
 					shoplists.add(shopinfo) ;
+					System.out.println("shoplists : " + shoplists);
 				}
 				
 				session.setAttribute("totalAmount", totalAmount) ;

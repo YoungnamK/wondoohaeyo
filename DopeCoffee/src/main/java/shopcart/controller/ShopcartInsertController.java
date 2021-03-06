@@ -37,13 +37,14 @@ public class ShopcartInsertController extends common.controller.SuperClass{
 	private ShopDao sdao;
 	
 	public ShopcartInsertController() {
-		super("shopcartlist", null);
+		super(null, null);
 		this.mav = new ModelAndView();
 	}	
 	
 	@PostMapping(command)
 	public ModelAndView doPost(
 			@RequestParam(value = "c_no", required = true) int c_no, // 시퀀스 
+			@RequestParam(value = "c_qty", required = true) int c_qty, //수량
 			@RequestParam(value = "qty", required = true) int qty, //수량
 			HttpServletRequest request){
 		System.out.println("로그인이 필요합니다.");
@@ -55,18 +56,13 @@ public class ShopcartInsertController extends common.controller.SuperClass{
 			this.mav.setViewName("redirect:/custLog.cu");
 
 		} else { // 누군가 로그인 한 상태입니다.
-			// c_qty : 재고, qty : 구매 수량		
-			
-			Coffee bean = cfdao.SelectDataByPk(c_no); // 상품정보 
-			
+			// c_qty : 재고, qty : 구매 수량			
 //			int cnt = -1; // dml 을 실행했을 떄 값이 1로 되기떄문에 구별하기 위해서 -로 지정 
-//			cnt = sdao.InsertData(bean);
-			
-			
-			if (bean.getC_qty() < qty) { //재고 수량 초과				
+//			cnt = sdao.InsertData(bean);			
+			if (c_qty < qty) { //재고 수량 초과				
 				String message = "재고 수량이 부족합니다." ;
 				System.out.println(message);
-				this.mav.addObject("errmsg", message);
+				this.mav.addObject("errmsg", message);			
 				this.mav.setViewName(redirect);
 			} else { // 판매에 문제 없슴
 				MyCartList mycart = (MyCartList)session.getAttribute("mycart") ;
