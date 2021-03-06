@@ -980,6 +980,16 @@ input#fake_person{
 	margin-bottom: 70px;
 }
 
+/* 등록하기 및 수정하기 버튼 css */
+#contact-submit-css{
+	width: 30%;
+}
+
+@media(max-width : 585px){
+	#contact-submit-css{
+		width: 50% !important;
+	}
+}
 
 /* =======================
 	원데이 클래스 예약하기

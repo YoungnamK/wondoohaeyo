@@ -3,6 +3,7 @@ package onedayClass.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +47,8 @@ public class OnedayClassSellerOrderlistController extends SuperClass {
 			@RequestParam(value = "pageNumber", required = false) String pageNumber,
 			@RequestParam(value = "pageSize", required = false) String pageSize,
 			@RequestParam(value = "mode", required = false) String mode,
-			@RequestParam(value = "keyword", required = false) String keyword, HttpServletRequest request) {
+			@RequestParam(value = "keyword", required = false) String keyword,
+			HttpServletRequest request) {
 
 		// 페이징 처리
 		FlowParameters parameters = new FlowParameters(pageNumber, pageSize, mode, keyword);
@@ -87,6 +89,9 @@ public class OnedayClassSellerOrderlistController extends SuperClass {
 			mav.addObject("lists", lists);
 
 			mav.setViewName(super.getpage);
+		}else {
+			
+			
 		}
 		return mav;
 	}

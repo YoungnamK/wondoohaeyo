@@ -85,4 +85,10 @@ public class OnedayClassDao {
 		return cnt;
 	}
 
+	public List<OnedayClass> ShowMainView() {
+		// 메인 화면에 넣어둘 원데이 클래스 리스트 
+		List<OnedayClass> lists = this.sql_session.selectList(this.namespace + "ShowMainView");
+		return lists;
+	}
+
 }

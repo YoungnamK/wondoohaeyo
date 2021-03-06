@@ -287,14 +287,14 @@
 												        </button>
 												
 												        <div id="main_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="m_img" name="m_img"  type='file' onchange="readURL_main(this);" accept="image/*"
+												            <input class="file-upload-input" id="m_img" name="m_img"  type="file" onchange="readURL_main(this);" accept="image/*"
 												            value="${bean.main_image}" />
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>
 												        </div>
 												        <div id="main_content" class="file-upload-content">
-												            <img class="file-upload-image" id="M_image" src="#" alt="your image" />
+												            <img class="file-upload-image" id="M_image" src="./upload/${bean.main_image}" alt="your image" />
 												            <div class="image-title-wrap">
 													            <button type="button" onclick="removeUpload_main()" class="remove-image" data-toggle="tooltip" title="클릭 하면 삭제됩니다!">
 													            	<span id="main_title" class="image-title">이미지 이름</span>
@@ -309,14 +309,14 @@
 												        </button>
 												
 												        <div id="detail1_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="d_img1" name="d_img1"  type='file' onchange="readURL_detail1(this);" accept="image/*"
+												            <input class="file-upload-input" id="d_img1" name="d_img1"  type="file"  onchange="readURL_detail1(this);" accept="image/*"
 												            value="${bean.detail_image1}" />
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>
 												        </div>
 												        <div id="detail1_content" class="file-upload-content">
-												            <img class="file-upload-image" id="D1_image" src="#" alt="your image" />
+												            <img class="file-upload-image" id="D1_image" src="./upload/${bean.detail_image1}" alt="your image" />
 												            <div class="image-title-wrap">
 													            <button type="button" onclick="removeUpload_detail1()" class="remove-image" data-toggle="tooltip" title="클릭 하면 삭제됩니다!">
 													            	<span id="detail1_title" class="image-title">이미지 이름</span>
@@ -332,14 +332,14 @@
 												        </button>
 												
 												        <div id="detail2_wrap" class="image-upload-wrap"> 
-												            <input class="file-upload-input" id="d_img2" name="d_img2"  type='file' onchange="readURL_detail2(this);" accept="image/*" 
+												            <input class="file-upload-input" id="d_img2" name="d_img2"  type="file" onchange="readURL_detail2(this);" accept="image/*" 
 												            value="${bean.detail_image2}"/>
 												            <div class="drag-text">
 												            <h3><i class="fas fa-paperclip"></i></h3>
 												            </div>
 												        </div>
 												        <div id="detail2_content" class="file-upload-content">
-												            <img class="file-upload-image" id="D2_image" src="#" alt="your image" />
+												            <img class="file-upload-image" id="D2_image" src="./upload/${bean.detail_image1}" alt="your image" />
 												            <div class="image-title-wrap">
 													            <button type="button" onclick="removeUpload_detail2()" class="remove-image" data-toggle="tooltip" title="클릭 하면 삭제됩니다!">
 													            	<span id="detail2_title" class="image-title">이미지 이름</span>
@@ -351,7 +351,7 @@
                                                         <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
                                                     </ul>
                                                     <div id="submit">
-                                                    	<input type="submit" id="contact-submit" class="btn btn-default btn-send" value="<spring:message code="oneday.updatebtn"/>" 
+                                                    	<input type="submit" id="contact-submit-css" class="btn btn-default btn-send" value="<spring:message code="oneday.updatebtn"/>" 
                                                     	data-toggle="modal" data-target="#myModal" onclick="return submitCheck();">
                                                     </div>
                                                 </div>

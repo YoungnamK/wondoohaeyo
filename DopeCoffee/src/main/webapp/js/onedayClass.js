@@ -1,30 +1,14 @@
 
 
 
-/* ===================
-	원데이 클래스 목록[시작]
-   ===================
+/* ==================================
+	원데이 클래스 목록 포함 모든 검색 조건[시작]
+   ==================================
 */
+$(document).ready(function() {
+	$('#search').hide();
+});
 
-
-// 페이지가 로딩 되면 
-function list_loading() {
-	// 가격 콤마 찍기
-	var oneprice = $('#list_price').text();
-	oneprice = addcomma(oneprice);
-
-	function addcomma(str) {
-		str = String(str);
-		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	}
-
-	// 최종 가격 문장
-	var result_oneprice = '<i class="fas fa-won-sign"></i>&nbsp;' + oneprice;
-	$('#list_price').html(result_oneprice);
-
-	$('#search').hide(); // 검색 부분 (===> 원데이 클래스 목록 부분)
-
-}
 
 
 // 검색 버튼을 누르면 검색 창이 나오게 수정
@@ -34,9 +18,9 @@ function search() {
 
 
 
-/* ===================
-	원데이 클래스 목록[끝]
-   ===================
+/* =================================
+	원데이 클래스 목록 포함 모든 검색 조건[끝]
+   =================================
 */
 
 
@@ -229,12 +213,13 @@ function payment() {
 	    if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
     	jQuery.ajax({
-    		url: "/onedayImportApi.odc", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-    		type: 'GET',
+    		url: "/onedayIamportApi.odc", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+    		type: 'get',
     		dataType: 'json',
 			contentType: "application/json; charset=UTF-8",
     		data: {
 	    		imp_uid : rsp.imp_uid,
+				merchant_uid : rsp.merchant_uid,
 	    		//기타 필요한 데이터가 있으면 추가 전달
 				code : code,
 				cust_email : cust_email,

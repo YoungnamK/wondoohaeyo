@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./../common/common.jsp"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
@@ -8,6 +10,50 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style type="text/css">
+		/*이미지 hover 되었을 때 전체*/
+	.overlay{
+	    width: 100% !important;
+	}
+	
+	/*이미지 hover 되었을 때 버튼*/
+	.buttons{
+	    width: inherit !important;
+	    position: absolute !important;
+	    top: 45% !important;
+	    left: 0% !important;
+	}
+	
+	/* 이미지 클래스명 ,상품명 부분 */
+	figure figcaption h4 a {
+	    color: #5080BF !important;
+	}
+	
+	figure figcaption h4 a:hover {
+	    color: #5080BF !important;
+	}
+	.list_bottom{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		align-content: center;
+	}
+
+	.list_bottom p.list_person {
+		font-size: 13px !important;
+		border-radius: 20px;
+	    background-color: #84C1D9;
+		padding: 5px 10px 5px 10px;
+		color: #fff;
+		font-weight: bold !important;
+		margin-top: 10px !important;
+	}
+	#list_price{
+		font-size: 20px;
+	}
+	
+</style>
 </head>
 <body>
 
@@ -56,149 +102,47 @@
 	<section id="works" class="works">
 		<div class="container">
 			<div class="section-heading">
-				<h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest
-					Works</h1>
+				<h1 class="title wow fadeInDown" data-wow-delay=".3s">
+					NEW COFFEE & ONEDAY CLASS</h1>
 				<p class="wow fadeInDown" data-wow-delay=".5s">
-					Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque
-					auctor neque nec urna. Nulla sit amet est. Aenean posuere <br>
-					tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin
-					urna dolor sagittis lacus.
+					가장 최신 상품 입니다.
+				</p>
+				<p class="wow fadeInDown" data-wow-delay=".5s">
+					로그인 하시고 DOPE COFFEE의 다양한 커피와 원데이클래스를 만나보세요.
 				</p>
 			</div>
-			<div class="row">
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated portfolio-item"
-						data-wow-duration="500ms" data-wow-delay="0ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-1.jpg" class="img-responsive"
-								alt="this is a title">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-1.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
+			<c:forEach var="onedaybean" items="${requestScope.lists}" varStatus="status">
+				<c:if test="${status.count <= 3}">
+					<div class="row">
+						<div class="col-sm-4 col-xs-12">
+							<figure class="wow fadeInLeft animated portfolio-item"
+								data-wow-duration="500ms" data-wow-delay="0ms">
+								<div class="img-wrapper">
+									<img src="./upload/${onedaybean.main_image}" class="img-responsive"
+										alt="this is a title">
+									<div class="overlay">
+										<div class="buttons">
+											<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}">수업보기</a>
+										</div>
+									</div>
 								</div>
-							</div>
+								<figcaption>
+									<h4>
+										<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}"> ${onedaybean.classname}</a>
+									</h4>
+									<div class="list_bottom">
+										<p id="list_price">
+											<i class="fas fa-won-sign"></i>&nbsp;
+											<fmt:formatNumber pattern="###,###" value="${onedaybean.oneprice}" />
+										</p>
+										<p class="list_person">최대 ${onedaybean.person}명</p>
+									</div>
+								</figcaption>
+							</figure>
 						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Dew Drop </a>
-							</h4>
-							<p>Redesigne UI Concept</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated" data-wow-duration="500ms"
-						data-wow-delay="300ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-2.jpg" class="img-responsive"
-								alt="this is a title">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-2.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
-								</div>
-							</div>
-						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Bottle Mockup </a>
-							</h4>
-							<p>Lorem ipsum dolor sit.</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated" data-wow-duration="500ms"
-						data-wow-delay="300ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-3.jpg" class="img-responsive"
-								alt="">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-3.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
-								</div>
-							</div>
-						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Table Design </a>
-							</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated" data-wow-duration="500ms"
-						data-wow-delay="600ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-4.jpg" class="img-responsive"
-								alt="">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-4.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
-								</div>
-							</div>
-						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Make Up elements </a>
-							</h4>
-							<p>Lorem ipsum dolor.</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated" data-wow-duration="500ms"
-						data-wow-delay="900ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-5.jpg" class="img-responsive"
-								alt="">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-5.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
-								</div>
-							</div>
-						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Shoping Bag Concept </a>
-							</h4>
-							<p>Lorem ipsum dolor.</p>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="col-sm-4 col-xs-12">
-					<figure class="wow fadeInLeft animated" data-wow-duration="500ms"
-						data-wow-delay="1200ms">
-						<div class="img-wrapper">
-							<img src="images/portfolio/item-6.jpg" class="img-responsive"
-								alt="">
-							<div class="overlay">
-								<div class="buttons">
-									<a rel="gallery" class="fancybox"
-										href="images/portfolio/item-6.jpg">Demo</a> <a target="_blank"
-										href="single-portfolio.html">Details</a>
-								</div>
-							</div>
-						</div>
-						<figcaption>
-							<h4>
-								<a href="#"> Caramel Bottle </a>
-							</h4>
-							<p>Lorem ipsum dolor.</p>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
+					</div>
+				</c:if>
+			</c:forEach>
 		</div>
 	</section>
 	<!-- #works -->

@@ -333,7 +333,7 @@
                                                         <li class="step-li"><button type="button" class="btn btn-default prev-step">이전 단계</button></li>
                                                     </ul>
                                                     <div id="submit">
-                                                    	<input type="submit" id="contact-submit" class="btn btn-default btn-send" value="<spring:message code="oneday.Insertbtn"/>" 
+                                                    	<input type="submit" id="contact-submit-css" class="btn btn-default btn-send" value="<spring:message code="oneday.Insertbtn"/>" 
                                                     	onclick="return submitCheck();">
                                                     </div>
                                                 </div>
