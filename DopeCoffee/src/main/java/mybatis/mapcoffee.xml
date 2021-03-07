@@ -35,34 +35,32 @@
 		where c_no=#{c_no}
 	</update>
 
-	<select id="SelectTotalCount" parameterType="String"
-		resultType="Integer">
-		select count(*) from coffees
-		<if test="mode == c_type">
+	<select id="SelectTotalCount" parameterType="String"  resultType="Integer">
+		select count(*) from coffees	
+		<if test="mode == 'c_type'">
 			where c_type like #{keyword}
 		</if>
-		<if test="mode == c_origin">
+		<if test="mode == 'c_origin'">
 			where c_origin like #{keyword}
 		</if>
-		<if test="mode == c_weight">
+		<if test="mode == 'c_weight'">
 			where c_weight like #{keyword}
 		</if>
 	</select>
-
-	<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
-	<select id="SelectAllData" parameterType="String"
-		resultType="MyCoffee">
-		<include refid="myselect" />
-		<if test="mode == c_type">
+	
+		<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
+	<select id="SelectAllData" parameterType="String" resultType="MyCoffee">
+		<include refid="myselect"/>
+		<if test="mode == 'c_type'">
 			where c_type like #{keyword}
 		</if>
-		<if test="mode == c_origin">
+		<if test="mode == 'c_origin'">
 			where c_origin like #{keyword}
 		</if>
-		<if test="mode == c_weight">
+		<if test="mode == 'c_weight'">
 			where c_weight like #{keyword}
 		</if>
-		order by rownum desc
+		order by c_no desc
 	</select>
 	<!-- ASDADS -->
 	<select id="SelectDataByPk" parameterType="int"
