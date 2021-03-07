@@ -43,32 +43,11 @@ function zipCheck() {
    ===============================
 */
 		var font_color = '#5080BF';
-		var custEmailCheck = false;
 		var custPWCheck = false;
-		var custNameCheck = false;
 		var custContactCheck = false;
 		var custBirthCheck = false;
 		
 		$(document).ready(function() {
-		
-			$("#cust_Email").keyup(function() {
-				if ($(this).val().length < 8) {
-					$("#err_custEmail").text('이메일은 8글자 이상 입력하세요!');
-					$("#err_custEmail").css("color", font_color);
-				} else {
-					$("#err_custEmail").text('');
-					custEmailCheck = true;
-				}
-			});
-			$("#cust_Email").blur(function() {
-				var cust_Email = $('#cust_Email').val();
-				if (cust_Email.length == 0) {
-					$("#err_custEmail").text('필수 입력 항목입니다.');
-					$("#err_custEmail").css("color", font_color);
-				} else {
-					$("#err_custEmail").text('');
-				}
-			});
 
 			$("#cust_PW").keyup(function() {
 				if ($(this).val().length < 8) {
@@ -86,25 +65,6 @@ function zipCheck() {
 					$("#err_custPW").css("color", font_color);
 				} else {
 					$("#err_custPW").text('');
-				}
-			});
-			
-			$("#cust_Name").keyup(function() {
-				if ($(this).val().length < 1) {
-					$("#err_custName").text('이름은 1글자 이상 입력하세요!');
-					$("#err_custName").css("color", font_color);
-				} else {
-					$("#err_custName").text('');
-					custNameCheck = true;
-				}
-			});
-			$("#cust_Name").blur(function() {
-				var cust_Name = $('#cust_Name').val();
-				if (cust_Name.length == 0) {
-					$("#err_custName").text('필수 입력 항목입니다.');
-					$("#err_custName").css("color", font_color);
-				} else {
-					$("#err_custName").text('');
 				}
 			});
 						
@@ -154,8 +114,8 @@ function zipCheck() {
    ===============================
 */
 		function chk_submit() {
-			if (custEmailCheck == false || custPWCheck == false
-					|| custNameCheck == false || custContactCheck == false || custBirthCheck == false) {
+			if (custPWCheck == false
+					|| custContactCheck == false || custBirthCheck == false) {
 				$('#cust-submit').effect("shake");
 				$('button#modalbtn1').attr('data-toggle', 'modal');
 				$('#modal-title').html(

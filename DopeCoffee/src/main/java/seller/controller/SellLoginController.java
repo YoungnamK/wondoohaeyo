@@ -52,6 +52,7 @@ public class SellLoginController extends SuperClass{
 					Seller bean = this.sdao.SelectData(sell_Email, sell_PW) ;
 				if (bean == null) { // 로그인 실패
 					System.out.println("로그인 테스트2 : 이메일 또는 비밀번호 확인필요");
+					session.setAttribute("message", "이메일 또는 비밀번호를 확인해주세요.");
 					this.mav.setViewName("redirect:/custLog.cu"); 
 					} else { // 로그인 성공
 						// 로그인에 대한 정보를 세션 영역에 바인딩
@@ -64,6 +65,7 @@ public class SellLoginController extends SuperClass{
 			} else {
 				this.mav.addObject("sell_Email", sell_Email);
 				this.mav.addObject("sell_PW", sell_PW);
+				session.setAttribute("message", "이메일 또는 비밀번호를 확인해주세요.");
 				this.mav.setViewName("redirect:/custLog.cu"); 
 			}	
 			return this.mav ;

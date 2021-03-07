@@ -288,6 +288,7 @@ if(regExp.test(sell_Name) == false) {
 							value="${sell_ADR02}">
 					</div>
 				</div>
+				<br /><br />
 				<%-- 하단 버튼------------------------------------------------- --%>
 				<div class="col-sm-offset-3 col-sm-6">
 					<p style="font-size: 10px; line-height: 12px;">

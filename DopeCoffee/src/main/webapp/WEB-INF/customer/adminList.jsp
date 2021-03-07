@@ -16,6 +16,12 @@ int formright = twelve - formleft;
 <title>전체 개인 회원 목록</title>
 <!-- AdminList Style CSS -->
 <link rel="stylesheet" href="${contextPath}/css/adminList-style.css">
+<style type="text/css">
+th{
+	background-color: #5080bf;
+	color:white;
+}
+</style>
 </head>
 <body>
 	<%-- 관리자 권한, 회원 목록 보기 -------------------------------------------------------%>
@@ -58,13 +64,12 @@ int formright = twelve - formleft;
 				<%-- 회원 목록의 header 부분 -------------------------------------------------------%>
 				<thead>
 					<tr>
-						<th><spring:message code="customer.cust_Email" /></th>
-						<th><spring:message code="customer.cust_Name" /></th>
-						<th><spring:message code="customer.cust_Contact" /></th>
-						<th><spring:message code="customer.cust_Birth" /></th>
-						<th><spring:message code="customer.cust_Join" /></th>
-						<th><spring:message code="customer.savepoint" /></th>
-						<th><spring:message code="customer.cust_RegDate" /></th>
+						<th width="20%"><spring:message code="customer.cust_Email" /></th>
+						<th width="10%"><spring:message code="customer.cust_Name" /></th>
+						<th width="10%"><spring:message code="customer.cust_Birth" /></th>
+						<th width="20%"><spring:message code="customer.cust_Contact" /></th>
+						<th width="10%"><spring:message code="customer.cust_Join" /></th>
+						<th width="10%"><spring:message code="customer.cust_RegDate" /></th>
 					</tr>
 				</thead>
 
@@ -72,14 +77,11 @@ int formright = twelve - formleft;
 				<tbody>
 					<c:forEach var="bean" items="${requestScope.lists}">
 						<tr>
-							<td>${bean.cust_Email}</td>
-							<td><a
-								href="${contextPath}/custUpdate.cu?cust_Email=${bean.cust_Email}">
-									${bean.cust_Name} </a></td>
-							<td>${bean.cust_Contact}</td>
+							<td><a href="${contextPath}/custUpdate.cu?cust_Email=${bean.cust_Email}">${bean.cust_Email}</a></td>
+							<td>${bean.cust_Name}</td>
 							<td>${bean.cust_Birth}</td>
+							<td>${bean.cust_Contact}</td>
 							<td>${bean.cust_Join}</td>
-							<td>${bean.savepoint}원</td>
 							<td>${bean.cust_RegDate}</td>
 						</tr>
 					</c:forEach>
@@ -88,7 +90,7 @@ int formright = twelve - formleft;
 				<%-- 회원 목록의 하단 부분 -------------------------------------------------------%>
 				<tfoot>
 					<tr>
-						<td colspan="7" align="center">${requestScope.pagingHtml}</td>
+						<td colspan="6" align="center">${requestScope.pagingHtml}</td>
 					</tr>
 				</tfoot>
 			</table>

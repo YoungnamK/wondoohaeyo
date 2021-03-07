@@ -3,6 +3,7 @@ package seller.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ import utility.Utility;
 		
 		@PostMapping(command)
 		public ModelAndView doPost(
+			HttpSession session,				
 			@ModelAttribute("seller") Seller seller,
 			BindingResult errors) {
 			
@@ -72,6 +74,7 @@ import utility.Utility;
 				System.out.println("유효성 검사 통과");
 				// 회원정보수정 완료 후, 다시 회원정보수정 페이지로 이동
 				this.sdao.UpdateData(seller);
+				session.setAttribute("message", "회원정보수정이 완료되었습니다.");
 				this.mav.setViewName(this.redirect);
 			} 
 			return this.mav ;

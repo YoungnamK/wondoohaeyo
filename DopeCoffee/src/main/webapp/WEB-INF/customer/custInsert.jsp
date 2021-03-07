@@ -214,7 +214,7 @@ $(function(){
 				<div class="form-group">
 					<div class="file-upload">
 						<button class="file-upload-btn" type="button"
-							onclick="$('.file-upload-input').trigger( 'click' )">*Add
+							onclick="$('.file-upload-input').trigger( 'click' )">Add
 							Image</button>
 						<div class="image-upload-wrap">
 							<input type="file" class="file-upload-input" name="img" id="img"
@@ -246,7 +246,7 @@ $(function(){
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Email" class="form-control"
-							name="cust_Email" id="cust_Email" value="${userinfo != null ? userinfo.email : ''}"
+							name="cust_Email" id="cust_Email" value="${sessionScope.k_email != null ? sessionScope.k_email : ''}"
 							/> 
 							<div class="valid_check" id="check_custEmail"></div>
 					</div>
@@ -287,7 +287,7 @@ $(function(){
 					</label>
 					<div class="col-sm-6">
 						<input type="text" placeholder="Your Name" class="form-control"
-							name="cust_Name" id="cust_Name" value="${userinfo != null ? userinfo.nickname : ''}">
+							name="cust_Name" id="cust_Name" value="${sessionScope.k_name != null ? sessionScope.k_name : ''}">
 							<div class="valid_check" id="check_custName"></div>
 					</div>
 				</div>
@@ -355,6 +355,7 @@ $(function(){
 							value="${cust_ADR02}">
 					</div>
 				</div>
+				<br /><br />
 				<%-- 하단 버튼------------------------------------------------- --%>
 				<div class="submit_btn col-sm-offset-3 col-sm-6">
 					<p style="font-size: 10px; line-height: 12px;">

@@ -3,6 +3,7 @@ package customer.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +51,13 @@ import utility.Utility;
 			System.out.println("doGet메소드");
 			Customer bean = cdao.SelectDataByPk(cust_Email);
 			this.mav.addObject("bean", bean);
-			this.mav.setViewName(super.getpage); 
+			this.mav.setViewName(super.getpage);
 			return this.mav ;
 		}
 		
 		@PostMapping(command)
 		public ModelAndView doPost(
+			HttpSession session,
 			@ModelAttribute("customer") Customer customer,
 			BindingResult errors, HttpServletRequest request,
 			@RequestParam( value = "oldimg",required = false) String oldimg) {
@@ -85,6 +87,7 @@ import utility.Utility;
 					customer.setCust_Pic(target.getName());
 					int cnt = -999999;
 					cnt = this.cdao.UpdateData(customer) ;
+					session.setAttribute("message", "회원정보수정이 완료되었습니다.");
 					mav.setViewName(this.redirect);
 				} catch (IllegalStateException e) {
 					e.printStackTrace();

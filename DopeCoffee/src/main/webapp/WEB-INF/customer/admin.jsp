@@ -4,7 +4,7 @@
 <!-- spring:message 및 properties 파일 사용을 위함  -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%
-int myoffset = 2;
+int myoffset = 3;
 int mywidth = twelve - 2 * myoffset;
 int formleft = 3;
 int formright = twelve - formleft;
@@ -13,7 +13,7 @@ int formright = twelve - formleft;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전체 개인 회원 목록</title>
+<title>사업자 승인 상태 목록 페이지입니다.</title>
 <!-- AdminList Style CSS -->
 <link rel="stylesheet" href="${contextPath}/css/adminList-style.css">
 
@@ -25,16 +25,17 @@ int formright = twelve - formleft;
 th{
 	background-color: #5080bf;
 	color:white;
-}</style>
+}
+</style>
 </head>
 <body>
 	<%-- 관리자 권한, 회원 목록 보기 -------------------------------------------------------%>
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
 		<div class="panel" align="center">
 			<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms"
-				data-wow-delay="0.3s">사업자회원 전체 목록</h2>
+				data-wow-delay="0.3s">관리자용 사업자 승인 관리</h2>
 			<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
-				data-wow-delay="0.3s">사업자회원 전체 목록 페이지입니다.</p>
+				data-wow-delay="0.3s">관리자용 사업자 승인 관리 페이지입니다.</p>
 		</div>
 		<div class="row">
 			<%-- 상단 페이지 수 show ---------------------------------------------------%>
@@ -67,24 +68,28 @@ th{
 				<%-- 회원 목록의 header 부분 -------------------------------------------------------%>
 				<thead>
 					<tr>
-						<th width="20%"><spring:message code="seller.sell_Email" /></th>
-						<th width="20%"><spring:message code="seller.sell_Name" /></th>
-						<th width="20%"><spring:message code="seller.sell_Contact" /></th>
-						<th width="20%"><spring:message code="seller.sell_License" /></th>
 						<th width="10%"><spring:message code="seller.sell_Status" /></th>
+						<th width="20%"><spring:message code="seller.sell_Email" /></th>
+						<th width="15%"><spring:message code="seller.sell_Name" /></th>
+						<th width="15%"><spring:message code="seller.sell_License" /></th>
+						<th width="25%">사업자등록증</th>
 					</tr>
 				</thead>
 				<%-- 회원 목록의 내용 부분 -------------------------------------------------------%>
 				<tbody>
 					<c:forEach var="bean" items="${requestScope.lists}">
 						<tr>
-							<td><a href="${contextPath}/sellUpdate.se?sell_Email=${bean.sell_Email}">${bean.sell_Email}</a></td>
-							<td>${bean.sell_Name} </td>
-							<td>${bean.sell_Contact}</td>
-							<!-- <td><c:if test="${bean.sell_License == 0}"> </c:if></td> -->
+							<td  height="70px"><a href="${contextPath}/adminChk.cu?sell_Email=${bean.sell_Email}">
+									${bean.sell_Status}</a></td>
+							<td  height="70px">${bean.sell_Email}</td>
+							<td  height="70px">${bean.sell_Name}</td>
 							<td><c:if test="${bean.sell_License != 0}">${bean.sell_License}</c:if></td>
-							<td>${bean.sell_Status}</td>
-							
+							<td  height="70px"><c:if test="${not empty bean.sell_Pic}">
+									<a href="./upload/${bean.sell_Pic}" data-fancybox
+										data-caption="캡션" class="fancybox-img" target="_blank"> 
+										<img src="./upload/${bean.sell_Pic}" class="img-responsive"
+										width="50" height="50" alt="${bean.sell_Pic}"></a>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>

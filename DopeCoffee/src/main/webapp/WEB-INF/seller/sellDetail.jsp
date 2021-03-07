@@ -14,6 +14,21 @@ int formright = twelve - formleft;
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
+<style type="text/css">
+#status {
+  width: 65px;
+  height: 20px;
+  font-size:11px;
+  font-weight: bold;
+  font-family: 'Nanum Gothic';
+  color: white;
+  line-height: 21px;
+  text-align: center;
+  background: #84C1D9;
+  border: solid 1px grey;
+  border-radius: 90px;
+}
+</style>
 </head>
 <body>
 	<div align="center" class="container col-sm-offset-2 col-sm-8">
@@ -23,6 +38,8 @@ int formright = twelve - formleft;
 			<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms"
 				data-wow-delay="0.3s">
 				${sessionScope.loginfo_seller.sell_Name}&nbsp;사업자님의 가입 정보입니다.</p>
+				
+				<div id="status">${sessionScope.loginfo_seller.sell_Status}</div>
 		</div>
 		<div class="panel panel-body">
 			<%-- sell_Email ------------------------------------------------- --%>

@@ -7,7 +7,6 @@
 <!-- CustomerDao > namespace -->
 <mapper namespace="MapperCustomer">
 
-
 	<!-- 개인회원 테이블 조회 -->
 	<sql id="myselect">
 		select *
@@ -42,7 +41,7 @@
 	<!-- 개인회원 전체목록 조회 -->
 	<select id="SelectDataList" resultType="MyCustomer">
 		select cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
-		cust_Pic, to_char(cust_RegDate, 'yyyy/MM/dd') as cust_RegDate, cust_Join, remark, savepoint
+		cust_Pic, to_char(cust_RegDate, 'yyyy/MM/dd') as cust_RegDate, cust_Join, remark
 		from customers
 		<if test="mode == 'cust_Contact'">
 			where cust_Contact like #{keyword}
@@ -56,10 +55,11 @@
 	<!-- 회원가입시 데이터 추가 -->
 	<insert id="InsertData" parameterType="MyCustomer">
 		insert into customers(cust_Email, cust_PW, cust_Name, cust_Contact, cust_Birth, cust_Zipcode, cust_ADR01, cust_ADR02, 
-		cust_Pic, cust_RegDate, cust_Join, remark, savepoint) 
+		cust_Pic, cust_RegDate, cust_Join, remark) 
 		values(#{cust_Email}, #{cust_PW}, #{cust_Name}, #{cust_Contact}, #{cust_Birth}, #{cust_Zipcode}, #{cust_ADR01}, 
-		#{cust_ADR02}, #{cust_Pic}, sysdate, #{cust_Join}, #{remark}, #{savepoint})
+		#{cust_ADR02}, #{cust_Pic}, sysdate, #{cust_Join}, #{remark})
 	</insert>
+
 	
 	<!-- 이메일 주소로 동일한 메일 주소 조회 -->
 	<select id="SelectDataByPk" parameterType="String" resultType="MyCustomer">
@@ -98,7 +98,6 @@
 		cust_Pic = #{cust_Pic},
 		cust_Join = #{cust_Join},
 		remark = #{remark},
-		savepoint = #{savepoint}
 		where cust_Email = #{cust_Email}
 	</update>
 	
@@ -107,18 +106,13 @@
 		where cust_Email = #{cust_Email}
 	</select>
 	
-		<delete id="DeleteShoppingInfo" parameterType="String">
-		delete from shoppinginfos				
-		where custid = #{custid}
-	</delete>
-	<insert id="InsertShoppingInfo" parameterType="MyShoppingInfo">
-		insert into shoppinginfos(custid, cfno, cfname, qty, price, image)
-		values(#{custid}, #{cfno}, #{cfname}, #{qty}, #{price}, #{image})		
-	</insert>	
-	
-		<select id="GetShoppingInfo" parameterType="String" resultType="MyShoppingInfo">
-		select * from shoppingInfos
-		where custid=#{custid}
-	</select>
+	   <select id="findUser" resultType="Integer">
+      select count(*) as cnt from customers 
+      where cust_Email = #{email}
+   </select>
+   
+   <select id="kakaoLogin" resultType="MyCustomer">
+      select * from customers where cust_Email = #{email}
+   </select>
 
 </mapper>

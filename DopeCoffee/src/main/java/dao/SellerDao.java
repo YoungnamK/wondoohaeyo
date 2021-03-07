@@ -107,5 +107,9 @@ public class SellerDao {
 		return this.abcd.selectOne(namespace + "CountData", sell_Email);	
 	}
 
+	public int UpdateStatusData(Seller bean) {
+		return this.abcd.update(namespace + "UpdateStatusData", bean);
+	}
+
 	
 }

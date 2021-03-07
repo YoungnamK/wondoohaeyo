@@ -131,7 +131,7 @@ if(regExp.test(sell_Name) == false) {
 				data-wow-delay="0.3s">사업자 정보 수정 페이지입니다.</p>
 			<!-- 회원탈퇴 ----------------------------------------------------- -->
 			<div class="delete">
-				<a href="${contextPath}/sellDel.se?sell_Email=${bean.sell_Email}">
+				<a id="delbtn" data-toggle="modal" data-target=".modal">
 					회원탈퇴</a>
 			</div>
 		</div>
@@ -268,14 +268,18 @@ if(regExp.test(sell_Name) == false) {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
+						<h4 id="modal-title" class="modal-title" style="font-size: 35px">
+							<i class="fas fa-exclamation-circle"></i>
+						</h4>
 					</div>
 					<div class="modal-body">
-						<p id="modal-body" style="font-size: 13px"></p>
+						<p id="modal-body" style="font-size: 13px">정말 삭제하시겠습니까?</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="loginGo_btn btn-default"
-							data-dismiss="modal" style="font-size: 13px">닫기</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							style="font-size: 13px" id="modal-btn-del" onclick="del_check();">삭제</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							style="font-size: 13px" id="modal-btn-no">닫기</button>
 					</div>
 				</div>
 			</div>

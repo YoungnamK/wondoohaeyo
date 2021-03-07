@@ -17,33 +17,9 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custLog-style.css">
 <script type="text/javascript" src="${contextPath}/js/login.js"></script>
 
-
 <!-- 카카오 로그인 구현중 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-<script>
-
-   //사용할 앱의 JavaScript 키 설정
-/*   window.Kakao.init("b8d0c914a6edd571c65d199b22e14fb8");
-   
-   function kakaoLogin(){
-      window.Kakao.Auth.login({
-         scope:'profile, account_email, birthday',
-         success: function(authObj) {
-            console.log(authObj);
-            //로그인 된 상태에서 유저 정보 가져오기
-            window.Kakao.authObj.API.request({
-               url: '/v2/user/me',
-               succeess: res => {
-                  const kakao_account = res.kakao_account;
-                  console.log(kakao_account);
-               }
-            });
-         }
-      });
-   }*/
-</script>
-
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ --><script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
    <div align="center" class="container col-md-12">
@@ -83,13 +59,12 @@ int formright = twelve - formleft;
                   </div>
                   
                   <!-- 카카오 로그인 버튼 생성 -->
-                  <!-- <a href="javascript:kakaoLogin();"> -->
-                   <a href="https://kauth.kakao.com/oauth/authorize?client_id=b8d0c914a6edd571c65d199b22e14fb8&redirect_uri=http://localhost:8989/cafe/custLog.cu&response_type=code">
-                     <button type="button" class="kakao btn-lg" id="kakao-login-btn">
-                        카카오로 시작하기
-                     </button>
-                  </a>
-                  
+						<!-- <a href="javascript:kakaoLogin();"> -->
+						 <a href="https://kauth.kakao.com/oauth/authorize?client_id=b8d0c914a6edd571c65d199b22e14fb8&redirect_uri=http://localhost:8989/cafe/kakaoLog.cu&response_type=code">
+							<button type="button" class="kakao btn-lg" id="kakao-login-btn">
+								카카오로 시작하기
+							</button>
+						</a>
                </form>
             </li>
             <%-- 사업자회원 로그인 ------------------------------------------------------- --%>
@@ -122,26 +97,6 @@ int formright = twelve - formleft;
          </ul>
       </div>
    </div>
-   <!-- ------------------------------------- [모달 section]--------------------------------------- -->
-   <div class="container">
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 id="modal-title" class="modal-title" style="font-size: 35px"></h4>
-               </div>
-               <div class="modal-body">
-                  <p id="modal-body" style="font-size: 13px"></p>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal"
-                     style="font-size: 13px">닫기</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+
 </body>
 </html>

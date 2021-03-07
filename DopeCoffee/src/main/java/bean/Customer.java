@@ -9,19 +9,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class Customer {
 	private final String MUST_INPUT = "필수 입력 사항입니다.";
 	
-	@Length(min=8, max=50, message="이메일 주소는 최소 8자리 이상입니다.")
 	private String cust_Email;
 	
-	@Length(min=8, max=20, message="비밀번호는 최소 8자리 이상입니다.")
 	private String cust_PW;
 	
-	@Length(min=2, max=20, message="이름은 최소 2자리 이상입니다.")	
 	private String cust_Name;
 	
-	@Length(min=11, max=20, message="휴대폰번호는 최소 11자리 이상입니다.")
 	private String cust_Contact;
 	
-	@Length(min=6, max=6, message="생년월일은 주민번호 앞 6자리로 입력해주세요.")
 	private String cust_Birth;
 	
 	private String cust_Zipcode;
@@ -34,13 +29,10 @@ public class Customer {
 	
 	private String cust_RegDate;
 	
-	@NotNull(message="개인정보 동의는 반드시 체크가 되어야 합니다.")
 	private String cust_Join;
 	
 	private String remark;
-	
-	private int savepoint;
-	
+		
 	private MultipartFile img ;	
 
 	public MultipartFile getImg() {
@@ -126,12 +118,7 @@ public class Customer {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public int getSavepoint() {
-		return savepoint;
-	}
-	public void setSavepoint(int savepoint) {
-		this.savepoint = savepoint;
-	}
+
 	public String getMUST_INPUT() {
 		return MUST_INPUT;
 	}
@@ -143,7 +130,7 @@ public class Customer {
 				+ ", cust_Name=" + cust_Name + ", cust_Contact=" + cust_Contact + ", cust_Birth=" + cust_Birth
 				+ ", cust_Zipcode=" + cust_Zipcode + ", cust_ADR01=" + cust_ADR01 + ", cust_ADR02=" + cust_ADR02
 				+ ", cust_Pic=" + cust_Pic + ", cust_RegDate=" + cust_RegDate + ", cust_Join=" + cust_Join + ", remark="
-				+ remark + ", savepoint=" + savepoint + "]";
+				+ remark + "]";
 	}
 	
 	
