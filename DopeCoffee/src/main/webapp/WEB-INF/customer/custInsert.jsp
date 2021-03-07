@@ -100,7 +100,7 @@ $("#cust_PW").blur(function() {
 		$("#cust-submit").attr("disabled", true);
 		$('#check_custPW').val('');
       	$('#check_custPW').focus();
-}if(cust_PW == ""){
+}else if(cust_PW == ""){
 	$("#check_custPW").text("비밀번호를 입력해주세요 :)");
 	$("#check_custPW").css('color', 'red');
 	$("#cust-submit").attr("disabled", true);

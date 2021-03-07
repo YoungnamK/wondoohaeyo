@@ -183,3 +183,8 @@ button.submit {
 	margin-right: 20px;
 	color:black;
 		}
+		
+/* 회원 탈퇴 */
+#delbtn{
+	cursor: pointer !important;
+}

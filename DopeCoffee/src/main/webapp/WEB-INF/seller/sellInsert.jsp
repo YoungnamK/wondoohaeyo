@@ -97,7 +97,7 @@ $(document).ready(function(){
 		$("#sell-submit").attr("disabled", true);
 		$('#check_sellPW').val('');
 	  	$('#check_sellPW').focus();
-	}if(sell_PW == ""){
+	}else if(sell_PW == ""){
 	$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
 	$("#check_sellPW").css('color', 'red');
 	$("#sell-submit").attr("disabled", true);

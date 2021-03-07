@@ -119,9 +119,9 @@
 														결제금액
 													</div>
 													<input type="text" class="input_data form-control" disabled="disabled" id="fake_totalprice" name="fake_totalprice"
-													value="100">
+													value="${totalprice}">
 													<input type="hidden" class="input_data form-control" id="totalprice" name="totalprice"
-													value="100">
+													value="${totalprice}">
 												</div>
 											</li>
 										</ul>
@@ -135,9 +135,7 @@
 										<p id="price"><i class="fas fa-won-sign"></i>&nbsp;${totalprice}원</p>
 									</div>
 									<div class="submit_detail">
-										<input type="submit" id="pay" class="btn-send" value="결제 하기">
-										<input type="button" id="kakaopay" class="btn-send" value="KAKAO PAY" onclick="payment();"> 
-										<input type="submit" id="naverpay" class="btn-send" value="NAVER PAY">
+										<input type="button" id="pay" class="btn-send" value="결제하기" onclick="payment();"> 
 									</div>
 								</form>
 							</div>

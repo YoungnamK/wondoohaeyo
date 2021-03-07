@@ -17,7 +17,18 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript" src="${contextPath}/js/custUpdate.js"></script>
 <script type="text/javascript">
+/*탈퇴 부분*/
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
 
+
+function del_check(){
+	var cust_Email=$('#cust_Email').val();
+	location.href ="/custDel.cu?cust_Email="+cust_Email;
+}
 /* ===============================
 휴대폰번호 정규표현식
 ===============================
@@ -55,7 +66,7 @@ if( !regexp.test(cust_PW) ) {
 	$("#cust-submit").attr("disabled", true);
 	$('#check_custPW').val('');
   	$('#check_custPW').focus();
-}if(cust_PW == ""){
+}else if(cust_PW == ""){
 $("#check_custPW").text("비밀번호를 입력해주세요 :)");
 $("#check_custPW").css('color', 'red');
 $("#cust-submit").attr("disabled", true);
@@ -73,32 +84,6 @@ $("#cust-submit").attr("disabled", true);
 비밀번호 확인 일치 검사
 ===============================
 */
-$(function(){
-$('#cust_PW2').blur(function(){
-	var cust_PW = $('#cust_PW').val();
-	var cust_PW2 = $('#cust_PW2').val();
-   if($('#cust_PW').val() != $('#cust_PW2').val()){
-    	if($('#cust_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
-    		$("#check_custPW2").text("비밀번호가 일치하지 않습니다 :p");
-			$("#check_custPW2").css('color', 'red');
-			$("#cust-submit").attr("disabled", true);	
-    		$('#cust_PW2').val('');
-          	$('#cust_PW2').focus();
-          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
-    		}
-    } else if(cust_PW == ""){ //비밀번호 값이 없는 경우
-    	$('#cust_PW').focus();
-    	$("#check_custPW").text("비밀번호를 입력해주세요 :)");
-    	$("#check_custPW").css('color', 'red');
-    	$("#cust-submit").attr("disabled", true);
-    } else {//비밀번호가 일치하는 경우,
-			$("#check_custPW2").text("비밀번호가 일치합니다 :)");
- 			$("#check_custPW2").css('color', '#5080BF');
-	    	$("#cust-submit").attr("disabled", false);
-	    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
-    }
-})  	   
-});
 
 
 /* ===============================
@@ -226,18 +211,6 @@ if(regExp.test(cust_Name) == false) {
 					</div>
 				</div>
 				
-				<%-- cust_PW2 확인 --------------------------------------------- --%>
-				<div class="form-group wow fadeInDown animated"
-					data-wow-duration="500ms" data-wow-delay=".6s">
-					<label for="cust_PW2" class="col-sm-3" style="text-align: right">
-						비밀번호 확인*
-					</label>
-					<div class="col-sm-6">
-						<input type="password" placeholder="Check Your Password"
-							class="form-control" name="cust_PW2" id="cust_PW2"> 
-							<div class="valid_check" id="check_custPW2"></div>
-					</div>
-				</div>
 								
 				<%-- cust_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"

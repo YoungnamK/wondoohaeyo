@@ -17,6 +17,20 @@ int formright = twelve - formleft;
 <link rel="stylesheet" href="${contextPath}/css/custInsert-style.css">
 <script type="text/javascript" src="${contextPath}/js/sellUpdate.js"></script>
 <script type="text/javascript">
+/*탈퇴 부분*/
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
+
+
+function del_check(){
+	var sell_Email=$('#sell_Email').val();
+	location.href ="/sellDel.se?sell_Email="+sell_Email;
+}
+
+
 /* ===============================
 휴대폰번호 정규표현식
 ===============================
@@ -53,7 +67,7 @@ if( !regexp.test(sell_PW) ) {
 	$("#sell-submit").attr("disabled", true);
 	$('#check_sellPW').val('');
   	$('#check_sellPW').focus();
-}if(sell_PW == ""){
+}else if(sell_PW == ""){
 $("#check_sellPW").text("비밀번호를 입력해주세요 :)");
 $("#check_sellPW").css('color', 'red');
 $("#sell-submit").attr("disabled", true);
@@ -71,32 +85,6 @@ $("#sell-submit").attr("disabled", true);
 비밀번호 확인 일치 검사
 ===============================
 */
-$(function(){
-$('#sell_PW2').blur(function(){
-	var sell_PW = $('#sell_PW').val();
-	var sell_PW2 = $('#sell_PW2').val();
-   if($('#sell_PW').val() != $('#sell_PW2').val()){
-    	if($('#sell_PW2').val()!=''){//비밀번호가 일치하지 않고 공백도 아닐 경우
-    		$("#check_sellPW2").text("비밀번호가 일치하지 않습니다 :p");
-			$("#check_sellPW2").css('color', 'red');
-			$("#sell-submit").attr("disabled", true);	
-    		$('#sell_PW2').val('');
-          	$('#sell_PW2').focus();
-          	//경고text를 화면에 출력하고 submit버튼을 비활성화시킴 
-    		}
-    } else if(sell_PW == ""){ //비밀번호 값이 없는 경우
-    	$('#sell_PW').focus();
-    	$("#check_sellPW").text("비밀번호를 입력해주세요 :)");
-    	$("#check_sellPW").css('color', 'red');
-    	$("#sell-submit").attr("disabled", true);
-    } else {//비밀번호가 일치하는 경우,
-			$("#check_sellPW2").text("비밀번호가 일치합니다 :)");
- 			$("#check_sellPW2").css('color', '#5080BF');
-	    	$("#sell-submit").attr("disabled", false);
-	    	//경고text를 화면에서 숨기고 submit버튼을 활성화시킴	  
-    }
-})  	   
-});
 
 /* ===============================
 이름 정규표현식(사업자는 한글, 영어, 숫자만)
@@ -171,18 +159,6 @@ if(regExp.test(sell_Name) == false) {
 					</div>
 				</div>
 				
-				<%-- sell_PW2 비밀번호 확인 ------------------------------------------ --%>
-				<div class="form-group wow fadeInDown animated"
-					data-wow-duration="500ms" data-wow-delay=".6s">
-					<label for="sell_PW2" class="col-sm-3" style="text-align: right">
-						비밀번호 확인*
-					</label>
-					<div class="col-sm-6">
-						<input type="password" placeholder="Check Your Password"
-							class="form-control" name="sell_PW2" id="sell_PW2"> 
-							<div class="valid_check" id="check_sellPW2"></div>
-					</div>
-				</div>	
 								
 				<%-- sell_Name ------------------------------------------------- --%>
 				<div class="form-group wow fadeInDown animated"

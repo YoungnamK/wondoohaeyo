@@ -27,7 +27,7 @@ public class SellDelController extends SuperClass{
 	
 	public SellDelController() {
 		// (변경 요망)
-		super("custDel", null); // super(getpage, postpage)  
+		super("sellDel", null); // super(getpage, postpage)  
 		this.mav = new ModelAndView();
 	}
 	

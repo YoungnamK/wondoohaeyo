@@ -6,13 +6,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import bean.Checkes;
 import bean.Coffee;
-import bean.OnedayClass;
 
 @Component("cfdao")
 public class CoffeeDao {

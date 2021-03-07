@@ -17,15 +17,11 @@
 		<typeAlias alias="MyCustomer" type="bean.Customer" />
 		<typeAlias alias="MySeller" type="bean.Seller" />
 		<typeAlias alias="MyShopping" type="bean.Shoppings" /> 
-		 
-		 <typeAlias alias="MyPayment" type="bean.Payment" /> 
+		<typeAlias alias="MyPayment" type="bean.Payment" /> 
 		<typeAlias alias="MyProducts" type="bean.Products" /> 
 		<typeAlias alias="MyCoffee" type="bean.Coffee" />
 		<typeAlias alias="MyOnedayclass" type="bean.OnedayClass" />
 		<typeAlias alias="MyOnedayorder" type="bean.OnedayOrder" />
-		<typeAlias alias="MyPostcode" type="bean.Postcode" />
-		<typeAlias alias="MyCombo6" type="bean.Combo06" />
-		<typeAlias alias="MyCarousel" type="bean.Carousel" />
 		<typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" />
 		<typeAlias alias="MyOrder" type="bean.Orders" /> 
 		<typeAlias alias="MyOrderDetail" type="bean.Orderdetails" />
@@ -43,13 +39,8 @@
 			<mapper resource="mybatis/mapseller.xml" />
 		 	<mapper resource="mybatis/mapcoffee.xml" /> 
 		 	<mapper resource="mybatis/mapproducts.xml" /> 
-	<!-- 	<mapper resource="mybatis/maporder.xml" /> -->
-	<!-- 	<mapper resource="mybatis/mapproductpay.xml" /> -->
-	<!-- 	<mapper resource="mybatis/mapshopping.xml" /> -->
 			<mapper resource="mybatis/maponedayclass.xml" />
 			<mapper resource="mybatis/maponedayorder.xml" />
-			<mapper resource="mybatis/mapcomposite.xml" />
-			<mapper resource="mybatis/mapshopcart.xml" />
 	</mappers>
 	
 	

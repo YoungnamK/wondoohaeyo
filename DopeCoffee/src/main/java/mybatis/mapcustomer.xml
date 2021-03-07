@@ -97,7 +97,7 @@
 		cust_ADR02 = #{cust_ADR02},
 		cust_Pic = #{cust_Pic},
 		cust_Join = #{cust_Join},
-		remark = #{remark},
+		remark = #{remark}
 		where cust_Email = #{cust_Email}
 	</update>
 	

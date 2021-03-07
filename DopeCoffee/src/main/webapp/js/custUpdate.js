@@ -177,3 +177,18 @@ function zipCheck() {
 			} 		
 			return true;
 		};
+
+/* ===============================  
+	   회원 탈퇴
+==================================*/
+function getContextPath() {
+	var offset = location.href.indexOf(location.host) + location.host.length;
+	var ctxPath = location.href.substring(offset, location.href.indexOf('/', offset + 1));
+	return ctxPath;
+}
+
+
+function del_check() {
+	var cust_Email = $('#cust_Email').val();
+	location.href = getContextPath() + "/custDel.cu?cust_Email=" + cust_Email;
+}

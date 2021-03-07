@@ -1,8 +1,6 @@
 package customer.controller;
 //관리자가 사업자의 승인상태를 수정하는 controller
 
-import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

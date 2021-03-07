@@ -41,6 +41,7 @@ public class CustDelController extends SuperClass{
 		int cnt = -99999 ;
 		cnt = this.cdao.DeleteData(bean) ;
 		
+		
 		// 탈퇴하는 사람에 대한 세션 정보를 완전히 비웁니다.
 		session.invalidate();
 		this.mav.setViewName(this.redirect); 
