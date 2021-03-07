@@ -167,8 +167,9 @@ public class OnedayClassPaymentController extends SuperClass {
 							// 조건 2. 조건 1을 만족하고 , 사용자 지정 인원수 <= 초기 설정 인원수 - 결제 테이블 총 인원수
 							int duplication = this.orderDao.DuplicationCheck(bean);
 
-							if (duplication == 1) {
-								System.out.println("duplication이 1일때 예약 가능 : " + duplication);
+							if (duplication >= 1) {
+								// duplication 의 해당 하는 값이 1개 이상일 가능성이 있기때문에 크거나 같다고 설정 
+								System.out.println("duplication이 1이상일때 예약 가능 : " + duplication);
 
 								// 인원수 체크 중복 조건에 해당하는 경우
 								// 각 해당 파라미터를 바인딩 후 , 결제 확인 페이지로 이동

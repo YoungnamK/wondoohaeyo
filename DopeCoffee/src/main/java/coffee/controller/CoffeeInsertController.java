@@ -20,7 +20,6 @@ import bean.Coffee;
 import bean.Seller;
 import common.controller.SuperClass;
 import dao.CoffeeDao;
-import utility.Utility;
 
 @Controller
 public class CoffeeInsertController extends SuperClass {
@@ -56,7 +55,7 @@ public class CoffeeInsertController extends SuperClass {
 			return get_gotopage;
 			
 		}else {
-			session.setAttribute("message", "승인 대기중입니다.");
+			session.setAttribute("message", "상품 등록 권한이 없습니다. 관리자에게 문의하세요.");
 			return "redirect:/sellApp.se?sell_Email=" + seller.getSell_Email();
 		}
 		
@@ -65,17 +64,15 @@ public class CoffeeInsertController extends SuperClass {
 	
 	@PostMapping(value = command)
 	public ModelAndView doPost(@RequestParam(value = "c_seller_email" , required = true)String c_seller_email,
-			
-			Coffee coffee, HttpServletRequest request) {
+		Coffee coffee, HttpServletRequest request) {
+		
 		ModelAndView mav = new ModelAndView();
 		// 파일 업로드 작업
 
 		MultipartFile multi_file = coffee.getCf_image(); 
-
 		
 		// File 파일 경로
 		File destination1 = null; // 메인 이미지1
-
 		
 		System.out.println(coffee.getCf_image());
 		String uploadPath = "/upload"; // 파일이 저장되는 폴더
@@ -86,13 +83,11 @@ public class CoffeeInsertController extends SuperClass {
 			
 			//메인 사진은 반드시 들어가야함
 			
-			if (multi_file != null  ) {
+			if (multi_file != null) {
 				destination1 = utility.Utility.getUploadedFileInfo(multi_file, realPath);
 				multi_file.transferTo(destination1); // 파일 업로드
 				// 원래 이미지에 날짜를 붙인 새 이미지 이름을 넣기
 				coffee.setC_image(destination1.getName());
-
-
 			}
 		
 			

@@ -12,6 +12,10 @@
 <title>커피상품 등록</title>
 <script type="text/javascript" src="${contextPath}/js/coffee.js"></script>
 <link rel="stylesheet" href="${contextPath}/css/coffee.css">
+<style type="text/css">
+	
+
+</style>
 </head>
 <body>
 
@@ -30,11 +34,8 @@
 						<div class="contact-form">
 							<c:set var="contextPath" value="<%=contextPath%>"
 								scope="application" />
-							<form id="contact-form" method="post"
-								action="${contextPath}/cfInsert.cf" role="form"
-								enctype="multipart/form-data">
-								<input type="hidden" value="abcd@naver.com"
-									name="c_seller_email">
+							<form id="contact-form" method="post" action="${contextPath}/cfInsert.cf" role="form" enctype="multipart/form-data">
+								<input type="hidden" value="${sessionScope.loginfo_seller.sell_Email}" name="c_seller_email">
 								<label>커피 타입</label>
 								<div class="form-group">
 									<select class="form-control" name="c_type" id="c_type">
@@ -120,20 +121,6 @@
 										name="cf_image" id="cf_image">
 								</div>
 
-								<label>상세 이미지</label>
-								<div class="form-group wow fadeInDown animated"
-									data-wow-duration="500ms" data-wow-delay="0.3s"
-									style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-									<input type="file" placeholder="상세 이미지" class="form-control"
-										name="cf_image2" id="cf_image2">
-								</div>
-								<label>상세 이미지</label>
-								<div class="form-group wow fadeInDown animated"
-									data-wow-duration="500ms" data-wow-delay="0.3s"
-									style="visibility: visible; animation-duration: 500ms; animation-delay: 0.3s; animation-name: fadeInDown;">
-									<input type="file" placeholder="상세 이미지" class="form-control"
-										name="cf_image3" id="cf_image3">
-								</div>
 
 								<div id="submit" class="wow fadeInDown animated"
 									data-wow-duration="500ms" data-wow-delay="0.3s"

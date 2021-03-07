@@ -38,7 +38,14 @@ public class CoffeeDeleteController extends SuperClass {
 		int cnt = -999999 ;
 		String remark = "상품 " + bean.getC_name() + "(" + c_no + ") 삭제됨";
 		cnt = dao.DeleteData(c_no, remark) ;
-	 	this.mav.setViewName(this.redirect);
+		
+		if (cnt > 0) {
+			System.out.println("삭제 성공");
+			this.mav.setViewName(this.redirect);
+		}else {
+			System.out.println("삭제 실패");
+		}
+		
 		return this.mav ;
 	}
 }

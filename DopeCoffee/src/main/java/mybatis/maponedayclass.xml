@@ -104,5 +104,6 @@
 	<!-- 가장 최근 등록 수업 3개 가져오기 (메인화면용) -->
 	<select id="ShowMainView" resultType="MyOnedayclass">
 		<include refid="basic_select"/>
+		order by oneday_seq desc
 	</select>
 </mapper>

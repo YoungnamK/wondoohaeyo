@@ -125,9 +125,21 @@ int twelve = 12;
 <script src="https://kit.fontawesome.com/0bccbc6608.js" crossorigin="anonymous"></script>
 
 
-<!-- 에러 메세지를 담을 모달 띄우기 -->
 <script type="text/javascript">
+	/* ==================================
+	 모든 검색 기능 토글 처리 
+	==================================
+	*/
+	$(document).ready(function() {
+	$('#search').hide();
+	});
 	
+	
+	
+	//검색 버튼을 누르면 검색 창이 나오게 수정
+	function search() {
+	$('#search').toggle();
+	}	
 </script>
 </head>
 <body onload="modal_popup();">
@@ -228,9 +240,8 @@ int twelve = 12;
 
 								<div class="dropdown-menu">
 									<ul>
-										<li><a href="${contextPath}/admin.cu">사업자 승인 관리</a></li>
-										<li><a href="${contextPath}/adminApp.cu">사업자회원 관리</a></li>
-										<li><a href="${contextPath}/adminList.cu">개인회원 관리</a></li>
+										<li><a href="${contextPath}/adminApp.cu">사업자 권한 승인</a></li>
+										<li><a href="${contextPath}/adminList.cu">전체 회원 관리</a></li>
 										<li><a href="${contextPath}/onedayAdminOrderlist.odc">원데이 클래스 <br>전체 결제내역</a></li>
 										<li><a href="${contextPath}/adminorderlist.pm">상품 전체
 												결제내역</a></li>
@@ -261,7 +272,7 @@ int twelve = 12;
 	</header>
 	<%-- =======================================
               에러 메세지를 담아주는 modal 부분 [시작]
-        	=========================================     
+         ========================================     
         --%>
 	<c:if test="${not empty sessionScope.message}">
 		<div class="container">
@@ -308,6 +319,6 @@ int twelve = 12;
 
 <%-- =======================================
              에러 메세지를 담아주는 modal 부분 [끝]
-        	=========================================     
-        --%>
+     =======================================     
+--%>
 </html>

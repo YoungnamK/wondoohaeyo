@@ -74,7 +74,7 @@
 								data-wow-delay=".4s">
 								<span>안녕하세요. DOPE COFFEE 입니다. 당신과 딱 맞는 </span><br> <span
 									class="cd-words-wrapper"> <b class="is-visible">커피를
-										찾아드립니다.</b> <b>커피용품을 찾아드립니다.</b> <b>디저트를 찾아드립니다.</b>
+										찾아드립니다.</b> <b>원데이 클래스를 찾아드립니다.</b> 
 								</span>
 							</h1>
 						</section>
@@ -86,7 +86,7 @@
 						</h2>
 						<a
 							class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green"
-							data-wow-delay=".9s" href="#works" data-section="#works">대표
+							data-wow-delay=".9s" href="#works" data-section="#works">최신
 							상품 보기</a>
 						<div align="right" id="kakao-talk-channel-chat-button"
 							data-channel-public-id="_qsUeK" data-title="consult"
@@ -108,42 +108,82 @@
 					가장 최신 상품 입니다.
 				</p>
 				<p class="wow fadeInDown" data-wow-delay=".5s">
-					로그인 하시고 DOPE COFFEE의 다양한 커피와 원데이클래스를 만나보세요.
+					로그인을 하시고 DOPE COFFEE의 다양한 커피와 원데이클래스를 만나보세요.
 				</p>
 			</div>
-			<c:forEach var="onedaybean" items="${requestScope.lists}" varStatus="status">
-				<c:if test="${status.count <= 3}">
-					<div class="row">
-						<div class="col-sm-4 col-xs-12">
-							<figure class="wow fadeInLeft animated portfolio-item"
-								data-wow-duration="500ms" data-wow-delay="0ms">
-								<div class="img-wrapper">
-									<img src="./upload/${onedaybean.main_image}" class="img-responsive"
-										alt="this is a title">
-									<div class="overlay">
-										<div class="buttons">
-											<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}">수업보기</a>
+			<%-- =================
+				커피 섹션
+			====================== --%>
+			<div class="row">
+				<c:forEach var="coffeebean" items="${requestScope.coffeelists}" varStatus="status">
+					<c:if test="${status.count <= 3}">
+						<div class="col">
+							<div class="col-sm-4 col-xs-12">
+								<figure class="wow fadeInLeft animated portfolio-item"
+									data-wow-duration="500ms" data-wow-delay="0ms">
+									<div class="img-wrapper">
+										<img src="./upload/${coffeebean.c_image}" class="img-responsive"
+											alt="this is a title">
+										<div class="overlay">
+											<div class="buttons">
+												<a href="${contextPath}/cfdetailview.cf?c_no=${coffeebean.c_no}">상품보기</a>
+											</div>
 										</div>
 									</div>
-								</div>
-								<figcaption>
-									<h4>
-										<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}"> ${onedaybean.classname}</a>
-									</h4>
-									<div class="list_bottom">
-										<p id="list_price">
-											<i class="fas fa-won-sign"></i>&nbsp;
-											<fmt:formatNumber pattern="###,###" value="${onedaybean.oneprice}" />
-										</p>
-										<p class="list_person">최대 ${onedaybean.person}명</p>
-									</div>
-								</figcaption>
-							</figure>
+									<figcaption>
+										<h4>
+											<a href="${contextPath}/cfdetailview.cf?c_no=${coffeebean.c_no}">${coffeebean.c_name}</a>
+										</h4>
+										<div class="list_bottom">
+											<p id="list_price">
+												<i class="fas fa-won-sign"></i>&nbsp;
+												<fmt:formatNumber pattern="###,###" value="${coffeebean.c_price}" />
+											</p>
+										</div>
+									</figcaption>
+								</figure>
+							</div>
 						</div>
-					</div>
-				</c:if>
-			</c:forEach>
-		</div>
+					</c:if>
+				</c:forEach>
+			</div>
+			<%-- =================
+				원데이 섹션
+			====================== --%>
+			<div class="row">
+				<c:forEach var="onedaybean" items="${requestScope.lists}" varStatus="status">
+					<c:if test="${status.count <= 3}">
+						<div class="col">
+							<div class="col-sm-4 col-xs-12">
+								<figure class="wow fadeInLeft animated portfolio-item"
+									data-wow-duration="500ms" data-wow-delay="0ms">
+									<div class="img-wrapper">
+										<img src="./upload/${onedaybean.main_image}" class="img-responsive"
+											alt="this is a title">
+										<div class="overlay">
+											<div class="buttons">
+												<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}">수업보기</a>
+											</div>
+										</div>
+									</div>
+									<figcaption>
+										<h4>
+											<a href="${contextPath}/onedayDetail.odc?code=${onedaybean.code}"> ${onedaybean.classname}</a>
+										</h4>
+										<div class="list_bottom">
+											<p id="list_price">
+												<i class="fas fa-won-sign"></i>&nbsp;
+												<fmt:formatNumber pattern="###,###" value="${onedaybean.oneprice}" />
+											</p>
+											<p class="list_person">최대 ${onedaybean.person}명</p>
+										</div>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
 	</section>
 	<!-- #works -->
 

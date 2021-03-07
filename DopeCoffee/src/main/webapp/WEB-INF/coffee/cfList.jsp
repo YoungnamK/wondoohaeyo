@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,123 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${contextPath}/js/coffee.js"></script>
 <link rel="stylesheet" href="${contextPath}/css/coffee.css">
+<style type="text/css">
+		/*이미지 hover 되었을 때 전체*/
+	.overlay{
+	    width: 100% !important;
+	}
+	
+	/*이미지 hover 되었을 때 버튼*/
+	.buttons{
+	    width: inherit !important;
+	    position: absolute !important;
+	    top: 45% !important;
+	    left: 0% !important;
+	}
+	
+	/* 이미지 클래스명 ,상품명 부분 */
+	figure figcaption h4 a {
+	    color: #5080BF !important;
+	}
+	
+	figure figcaption h4 a:hover {
+	    color: #5080BF !important;
+	}
+	.list_bottom{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		align-content: center;
+	}
 
+	.list_bottom p.list_person {
+		font-size: 13px !important;
+		border-radius: 20px;
+	    background-color: #84C1D9;
+		padding: 5px 10px 5px 10px;
+		color: #fff;
+		font-weight: bold !important;
+		margin-top: 10px !important;
+	}
+	#list_price{
+		font-size: 20px;
+	}
+	
+	
+	/* 검색 부분  시작*/
+#search_btn{
+	cursor: pointer;
+}
+
+
+#search {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding-left : 15px;
+	padding-right : 5px;
+	margin: 10px 0px 10px 0px;
+}
+
+
+select#mode{
+	width: 10%;
+    height: 40px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);	
+}
+
+input#keyword{
+	display: block !important;
+	width: 20%;
+    height: 40px !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.428571429 !important;
+    background-color: #fff !important;
+    background-image: none !important;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s !important;
+    border-radius: 1px !important;
+    border: 1px solid rgba(111, 121, 122, 0.3) !important;
+    -webkit-box-shadow: none !important;
+}
+
+#search button{
+	height: 40px;
+    font-size: 13px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-radius: 1px;
+    border: 1px solid rgba(111, 121, 122, 0.3);	
+}
+
+@media( max-width : 585px ) {
+	select#mode{
+		width: 30%;
+	} 
+	
+	input#keyword{
+		width: 60%;
+	}
+	
+	button {
+		width: 10%;
+	}
+	
+	
+}
+
+/* 검색 부분  끝*/
+	
+</style>
 </head>
 <body>
 	<section class="works service-page">
@@ -80,7 +196,8 @@
 								</h4>
 								<div class="list_bottom">
 									<p id="list_price">
-										<i class="fas fa-won-sign"></i>&nbsp;${bean.c_price}
+										<i class="fas fa-won-sign"></i>&nbsp;
+										<fmt:formatNumber pattern="###,###" value="${bean.c_price}" />
 									</p>
 
 								</div>
@@ -110,7 +227,7 @@
 										 </a>
 										<c:if test="${bean.c_seller_email eq sessionScope.loginfo_seller.sell_Email}">
 											<a href="${contextPath}/cfupdate.cf?c_no=${bean.c_no}">관리</a>
-											<a data-toggle="modal" data-target="#myModal">삭제</a>
+											<a href="${contextPath}/cfdelete.cf?c_no=${bean.c_no}">삭제</a>
 										</c:if>
 									</div>
 								</div>
@@ -136,35 +253,5 @@
 			<footer>${requestScope.pagingHtml}</footer>
 		</div>
 	</section>
-
-	<!-- ------------------------------------- [모달 section]--------------------------------------- -->
-	<div class="container">
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 id="modal-title" class="modal-title" style="font-size: 35px">
-							<i class="fas fa-exclamation-circle"></i>
-						</h4>
-					</div>
-					<div class="modal-body">
-						<p id="modal-body" style="font-size: 13px">정말 삭제 하시겠습니까?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px" onclick="delete_check();">예</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							style="font-size: 13px">아니오</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
 </body>
 </html>

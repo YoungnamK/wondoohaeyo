@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Coffee;
 import bean.OnedayClass;
+import dao.CoffeeDao;
 import dao.OnedayClassDao;
 
 // 메인 컨트롤러 
@@ -20,6 +22,10 @@ public class MainController extends SuperClass {
 
 	private ModelAndView mav = null; // 뷰에 넘겨 줄 ModelAndView 객체
 
+	@Autowired
+	@Qualifier(value = "cfdao")
+	private CoffeeDao cfdao;
+	
 	@Autowired
 	@Qualifier(value = "onedayDao")
 	private OnedayClassDao onedayDao;
@@ -34,10 +40,13 @@ public class MainController extends SuperClass {
 		
 		// 가장 최근에 등록된 원데이 클래스 3개를 가져온다.
 		List<OnedayClass> lists = this.onedayDao.ShowMainView();
+		List<Coffee> coffeelists = this.cfdao.ShowMainView();
 		
-		if (lists.size() > 0) {
+		if (lists.size() > 0 && coffeelists.size() > 0) {
 			System.out.println("메인 ==> 원데이 클래스 리스트 담기 성공");
+			
 			mav.addObject("lists", lists);
+			mav.addObject("coffeelists", coffeelists);
 			mav.setViewName(super.getpage);
 			
 		}else {

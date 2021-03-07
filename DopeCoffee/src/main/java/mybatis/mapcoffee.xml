@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-	<mapper namespace="MapperCoffee">
-		<insert id="InsertData" parameterType="MyCoffee">
-			insert into coffees(c_no,c_seller_email , c_name, c_price, c_origin, c_weight, c_roasting , 
-			c_blending ,c_crushing_status ,c_qty ,c_image, c_image2,c_image3 ,remark, c_type)
-			values (seqcoffee.nextval ,  #{c_seller_email}, #{c_name}, #{c_price}, #{c_origin}, #{c_weight}, #{c_roasting},
-			#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{c_image2}, #{c_image3}, #{remark},#{c_type})
-		</insert>
-		
+
+<mapper namespace="MapperCoffee">
 	<sql id="myselect">
 		select * from coffees
-	</sql> 	
-		
-	<select id="SelectTotalCount" parameterType="String"  resultType="Integer">
-		select count(*) from coffees	
+	</sql>
+
+	<!-- 상품 등록 -->
+	<insert id="InsertData" parameterType="MyCoffee">
+		insert into coffees(c_no,c_seller_email , c_name, c_price, c_origin,
+		c_weight, c_roasting ,
+		c_blending ,c_crushing_status ,c_qty ,c_image,remark, c_type)
+		values (seqcoffee.nextval , #{c_seller_email}, #{c_name}, #{c_price},
+		#{c_origin}, #{c_weight}, #{c_roasting},
+		#{c_blending}, #{c_crushing_status}, #{c_qty}, #{c_image}, #{remark},#{c_type})
+	</insert>
+
+	<!-- 상품 수정 -->
+	<update id="UpdateData" parameterType="MyCoffee">
+		update coffees
+		set
+		c_type=#{c_type},
+		c_seller_email=#{c_seller_email},
+		c_name=#{c_name},
+		c_price=#{c_price},
+		c_origin=#{c_origin},
+		c_weight=#{c_weight},
+		c_roasting=#{c_roasting},
+		c_blending=#{c_blending},
+		c_crushing_status=#{c_crushing_status},
+		c_qty=#{c_qty},
+		c_image=#{c_image}
+		where c_no=#{c_no}
+	</update>
+
+	<select id="SelectTotalCount" parameterType="String"
+		resultType="Integer">
+		select count(*) from coffees
 		<if test="mode == c_type">
 			where c_type like #{keyword}
 		</if>
@@ -26,10 +48,11 @@
 			where c_weight like #{keyword}
 		</if>
 	</select>
-	
-		<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
-	<select id="SelectAllData" parameterType="String" resultType="MyCoffee">
-		<include refid="myselect"/>
+
+	<!-- 타입 / 원산지 / 무게 로 목록 조회함 -->
+	<select id="SelectAllData" parameterType="String"
+		resultType="MyCoffee">
+		<include refid="myselect" />
 		<if test="mode == c_type">
 			where c_type like #{keyword}
 		</if>
@@ -41,33 +64,32 @@
 		</if>
 		order by rownum desc
 	</select>
-	<!--  ASDADS -->
-	<select id="SelectDataByPk" parameterType="int" resultType="MyCoffee">
+	<!-- ASDADS -->
+	<select id="SelectDataByPk" parameterType="int"
+		resultType="MyCoffee">
 		<include refid="myselect" />
-		 where c_no=#{c_no}
+		where c_no=#{c_no}
 	</select>
-	
-	<delete id="DeleteData" parameterType="int">
-		delete from coffees where c_no = #{c_no} 
-	</delete>	
-	<update id="UpdateRemark" parameterType="String">
-		update orderdetails set remark = #{remark}
-	</update>	
-	
-	
-	<!--  	<select id="SelectDataList" resultType="MyCoffee">
-		<include refid="myselect" />
-		<if test="mode == 'c_name'">
-			where c_name like #{keyword}
-		</if>
-		<if test="mode == 'c_origin'">
-			where c_origin like #{keyword}
-		</if>
-		<if test="mode == 'c_blending'">
-			where c_blending like #{keyword}
-		</if>
-		order by c_no desc
-	</select>	  -->	
 
-		
-	</mapper>
+	<delete id="DeleteData" parameterType="int">
+		delete from coffees where
+		c_no = #{c_no}
+	</delete>
+	<update id="UpdateRemark" parameterType="String">
+		update orderdetails set
+		remark = #{remark}
+	</update>
+
+	<!-- 가장 최근 등록 수업 3개 가져오기 (메인화면용) -->
+	<select id="ShowMainView" resultType="MyCoffee">
+		<include refid="myselect"/>
+		order by c_no desc
+	</select>
+
+	<!-- <select id="SelectDataList" resultType="MyCoffee"> <include refid="myselect" 
+		/> <if test="mode == 'c_name'"> where c_name like #{keyword} </if> <if test="mode 
+		== 'c_origin'"> where c_origin like #{keyword} </if> <if test="mode == 'c_blending'"> 
+		where c_blending like #{keyword} </if> order by c_no desc </select> -->
+
+
+</mapper>

@@ -71,6 +71,19 @@ public class CoffeeDao {
 		return this.sql_session.delete(namespace + "DeleteData", c_no);
 	}
 
+	public int UpdateData(Coffee coffee) {
+		// 상품 수정 
+		int cnt = -1;
+		cnt = this.sql_session.update(this.namespace + "UpdateData", coffee);
+		return cnt;
+	}
+
+	public List<Coffee> ShowMainView() {
+		// 메인 화면에 넣어둘 원데이 클래스 리스트 
+		List<Coffee> coffeelists = this.sql_session.selectList(this.namespace + "ShowMainView");
+		return coffeelists;
+	}
+
 
 
 //	public List<Coffee> SelectDataList(int offset, int limit, String mode, String keyword) {

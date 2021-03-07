@@ -1,29 +1,5 @@
 
 
-
-/* ==================================
-	원데이 클래스 목록 포함 모든 검색 조건[시작]
-   ==================================
-*/
-$(document).ready(function() {
-	$('#search').hide();
-});
-
-
-
-// 검색 버튼을 누르면 검색 창이 나오게 수정
-function search() {
-	$('#search').toggle();
-}
-
-
-
-/* =================================
-	원데이 클래스 목록 포함 모든 검색 조건[끝]
-   =================================
-*/
-
-
 /* =========================
 	원데이 클래스 상세 및 결제[시작]
    =========================
@@ -172,93 +148,88 @@ $(document).ready(function() {
 });
 
 /*=======================================
-	원데이 클래스 실 결제 처리 => 아임포트 API
+   원데이 클래스 실 결제 처리 => 아임포트 API
 =========================================*/
 
 function payment() {
-	// 결제 테이블에 넣을 파라미터
-	var code = $('#code').val(); // 주문 클래스
-	var cust_email = $('#cust_email').val(); // 회원 이메일
-	var sell_email = $('#sell_email').val(); // 사업자 이메일
-	var bookdate = $('#bookdate').val(); // 예약 일자 
-	var booktime = $('#booktime').val(); // 예약 시간 
-	var person = $('#person').val(); // 인원수 
-	var totalprice = $('#totalprice').val(); // 결제 총 가격
-	
-	totalprice = removecomma(totalprice); // 페이징 로딩 될때 설정했던 콤마 제거
+   // 결제 테이블에 넣을 파라미터
+   var code = $('#code').val(); // 주문 클래스
+   var cust_email = $('#cust_email').val(); // 회원 이메일
+   var sell_email = $('#sell_email').val(); // 사업자 이메일
+   var bookdate = $('#bookdate').val(); // 예약 일자 
+   var booktime = $('#booktime').val(); // 예약 시간 
+   var person = $('#person').val(); // 인원수 
+   var totalprice = $('#totalprice').val(); // 결제 총 가격
+   
+   totalprice = removecomma(totalprice); // 페이징 로딩 될때 설정했던 콤마 제거
 
-	function removecomma(pStr) {
-		var strCheck = /\,/g;
-		pStr = pStr.replace(strCheck, '');
-		return pStr;
-	}
-	
-	// API 용 파라미터 
-	var cust_Name = $('#cust_Name').val(); // 회원 이름
-	var cust_Contact = $('#cust_Contact').val(); // 회원 연락처
-	
-	
-	
-	IMP.init('imp63433419'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	IMP.request_pay({
-	    pg : 'inicis', // version 1.1.0부터 지원.
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명: ' + code + " | 결제 테스트",
-	    amount : totalprice, // 결제 금액
-	    buyer_email : cust_email,// 결제자 이메일
-	    buyer_name : cust_Name, // 결제자 이름
-	    buyer_tel : cust_Contact// 결제자 휴대폰 번호
-	}, function(rsp) {
-	    if ( rsp.success ) {
-    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-    	jQuery.ajax({
-    		url: "/onedayIamportApi.odc", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-    		type: 'get',
-    		dataType: 'json',
-			contentType: "application/json; charset=UTF-8",
-    		data: {
-	    		imp_uid : rsp.imp_uid,
-				merchant_uid : rsp.merchant_uid,
-	    		//기타 필요한 데이터가 있으면 추가 전달
-				code : code,
-				cust_email : cust_email,
-				sell_email : sell_email,
-				bookdate : bookdate,
-				booktime : booktime,
-				person : person,
-				totalprice : totalprice	
-    		}
-    	}).done(function(data) {
-    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-			console.log("확인 ==> " + data)
+   function removecomma(pStr) {
+      var strCheck = /\,/g;
+      pStr = pStr.replace(strCheck, '');
+      return pStr;
+   }
+   
+   // API 용 파라미터 
+   var cust_Name = $('#cust_Name').val(); // 회원 이름
+   var cust_Contact = $('#cust_Contact').val(); // 회원 연락처
+   
+   
+   
+   IMP.init('imp63433419'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+   IMP.request_pay({
+       pg : 'inicis', // version 1.1.0부터 지원.
+       pay_method : 'card',
+       merchant_uid : 'merchant_' + new Date().getTime(),
+       name : '주문명: ' + code + " | 결제 테스트",
+       amount : totalprice, // 결제 금액
+       buyer_email : cust_email,// 결제자 이메일
+       buyer_name : cust_Name, // 결제자 이름
+       buyer_tel : cust_Contact// 결제자 휴대폰 번호
+   }, function(rsp) {
+       if ( rsp.success ) {
+       //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            
+       jQuery.ajax({
+          url: "/onedayIamportApi.odc", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+          type: 'get',
+          dataType: 'json',
+          contentType: "application/json; charset=UTF-8",
+          data: {
+             imp_uid : rsp.imp_uid,
+             merchant_uid : rsp.merchant_uid,
+             //기타 필요한 데이터가 있으면 추가 전달
+             code : code,
+             cust_email : cust_email,
+             sell_email : sell_email,
+             bookdate : bookdate,
+             booktime : booktime,
+             person : person,
+             totalprice : totalprice   
+          },
+         success : function(data){
+            console.log('데이터'+data)
+            if(data =="success"){
+               var msg = '결제가 완료되었습니다.';
+             msg += '\n고유ID : ' + rsp.imp_uid;
+             msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+             msg += '\결제 금액 : ' + rsp.paid_amount;
+             msg += '카드 승인번호 : ' + rsp.apply_num;
 
-    		if ( everythings_fine ) {
-	
-    			var msg = '결제가 완료되었습니다.';
-    			msg += '\n고유ID : ' + rsp.imp_uid;
-    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-    			msg += '\결제 금액 : ' + rsp.paid_amount;
-    			msg += '카드 승인번호 : ' + rsp.apply_num;
-
-    			alert(msg);
-    		} else {
-    			//[3] 아직 제대로 결제가 되지 않았습니다.
-    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-    		}
-    	});
+             alert(msg);
+            window.location.href='/onedayCustOrderList.odc?cust_email='+cust_email;
+            }
+         }
+       });
+            
     } else{
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
 
         alert(msg);
-		
-		}
-	});
+      
+      }
+   });
 }
-
-
-
 /* ===============================  
 	   원데이 클래스 삭제
 ==================================*/
@@ -434,6 +405,7 @@ function myBooktimeCheck() {
 				$('#modal-title').html('<i class="fas fa-exclamation-circle"></i>');
 				$('#modal-body').html('이미 마감된 수업입니다.<br>이용 시간을 확인하세요!');
 				$('#myModal').modal();
+				$('#booktime').val('-');
 			}
 		}
 	}
