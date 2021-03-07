@@ -193,34 +193,31 @@ function payment() {
           url: "/onedayIamportApi.odc", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
           type: 'get',
           dataType: 'json',
-          contentType: "application/json; charset=UTF-8",
+         contentType: "application/json; charset=UTF-8",
           data: {
              imp_uid : rsp.imp_uid,
-             merchant_uid : rsp.merchant_uid,
+            merchant_uid : rsp.merchant_uid,
              //기타 필요한 데이터가 있으면 추가 전달
-             code : code,
-             cust_email : cust_email,
-             sell_email : sell_email,
-             bookdate : bookdate,
-             booktime : booktime,
-             person : person,
-             totalprice : totalprice   
+            code : code,
+            cust_email : cust_email,
+            sell_email : sell_email,
+            bookdate : bookdate,
+            booktime : booktime,
+            person : person,
+            totalprice : totalprice   
           },
          success : function(data){
-            console.log('데이터'+data)
-            if(data =="success"){
-               var msg = '결제가 완료되었습니다.';
+         console.log(data)
+             var msg = '결제가 완료되었습니다.';
              msg += '\n고유ID : ' + rsp.imp_uid;
              msg += '\n상점 거래ID : ' + rsp.merchant_uid;
              msg += '\결제 금액 : ' + rsp.paid_amount;
              msg += '카드 승인번호 : ' + rsp.apply_num;
 
              alert(msg);
-            window.location.href='/onedayCustOrderList.odc?cust_email='+cust_email;
-            }
          }
        });
-            
+        
     } else{
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
@@ -228,6 +225,7 @@ function payment() {
         alert(msg);
       
       }
+        window.location.replace("/onedayList.odc");  
    });
 }
 /* ===============================  
